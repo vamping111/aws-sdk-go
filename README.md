@@ -16,6 +16,10 @@ Jump To:
 * [Contributing](#Contributing)
 * [More Resources](#Resources)
 
+## Using AWS API for C2
+
+Documentation: [docs/c2/README](docs/c2/README.md)
+
 ## Getting Started
 
 ### Installing
