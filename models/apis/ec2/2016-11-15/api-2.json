@@ -27913,6 +27913,7 @@
       "required":["SnapshotId"],
       "members":{
         "Attribute":{"shape":"SnapshotAttributeName"},
+        "Description":{"shape":"AttributeValue"},
         "CreateVolumePermission":{"shape":"CreateVolumePermissionModifications"},
         "GroupNames":{
           "shape":"GroupNameStringList",
