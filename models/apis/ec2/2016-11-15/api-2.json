@@ -3859,6 +3859,14 @@
       "input":{"shape":"ModifyReservedInstancesRequest"},
       "output":{"shape":"ModifyReservedInstancesResult"}
     },
+    "ModifySecurityGroupAttribute": {
+      "name": "ModifySecurityGroupAttribute",
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {"shape": "ModifySecurityGroupAttributeRequest"}
+    },
     "ModifySecurityGroupRules":{
       "name":"ModifySecurityGroupRules",
       "http":{
@@ -27882,6 +27890,15 @@
           "shape":"String",
           "locationName":"reservedInstancesModificationId"
         }
+      }
+    },
+    "ModifySecurityGroupAttributeRequest": {
+      "type": "structure",
+      "required":["Description"],
+      "members":{
+        "GroupId":{"shape": "SecurityGroupId"},
+        "GroupName":{"shape": "SecurityGroupName"},
+        "Description":{"shape": "AttributeValue"}
       }
     },
     "ModifySecurityGroupRulesRequest":{

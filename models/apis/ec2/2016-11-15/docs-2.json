@@ -434,6 +434,7 @@
     "ModifyNetworkInterfaceAttribute": "<p>Modifies the specified network interface attribute. You can specify only one attribute at a time. You can use this action to attach and detach security groups from an existing EC2 instance.</p>",
     "ModifyPrivateDnsNameOptions": "<p>Modifies the options for instance hostnames for the specified instance.</p>",
     "ModifyReservedInstances": "<p>Modifies the Availability Zone, instance count, instance type, or network platform (EC2-Classic or EC2-VPC) of your Reserved Instances. The Reserved Instances to be modified must be identical, except for Availability Zone, network platform, and instance type.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html\">Modifying Reserved Instances</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+    "ModifySecurityGroupAttribute": "<p>Modifies the specified attribute of the specified security group.</p>",
     "ModifySecurityGroupRules": "<p>Modifies the rules of a security group.</p>",
     "ModifySnapshotAttribute": "<p>Adds or removes permission settings for the specified snapshot. You may add or remove specified Amazon Web Services account IDs from a snapshot's list of create volume permissions, but you cannot do both in a single operation. If you need to both add and remove account IDs for a snapshot, you must use multiple operations. You can make up to 500 modifications to a snapshot in a single operation.</p> <p>Encrypted snapshots and snapshots with Amazon Web Services Marketplace product codes cannot be made public. Snapshots encrypted with your default KMS key cannot be shared with other accounts.</p> <p>For more information about modifying snapshot permissions, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modifying-snapshot-permissions.html\">Share a snapshot</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "ModifySnapshotTier": "<p>Archives an Amazon EBS snapshot. When you archive a snapshot, it is converted to a full snapshot that includes all of the blocks of data that were written to the volume at the time the snapshot was created, and moved from the standard tier to the archive tier. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshot-archive.html\">Archive Amazon EBS snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
@@ -1401,6 +1402,7 @@
         "ModifyInstanceAttributeRequest$Ramdisk": "<p>Changes the instance's RAM disk to the specified value. We recommend that you use PV-GRUB instead of kernels and RAM disks. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html\">PV-GRUB</a>.</p>",
         "ModifyInstanceAttributeRequest$SriovNetSupport": "<p>Set to <code>simple</code> to enable enhanced networking with the Intel 82599 Virtual Function interface for the instance.</p> <p>There is no way to disable enhanced networking with the Intel 82599 Virtual Function interface at this time.</p> <p>This option is supported only for HVM instances. Specifying this option with a PV instance can make it unreachable.</p>",
         "ModifyNetworkInterfaceAttributeRequest$Description": "<p>A description for the network interface.</p>",
+        "ModifySecurityGroupAttributeRequest$Description": "<p>A description for the security group.</p>",
         "ModifySnapshotAttributeRequest$Description": "<p>A description for the snapshot.</p>"
       }
     },
@@ -12622,6 +12624,11 @@
       "refs": {
       }
     },
+    "ModifySecurityGroupAttributeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ModifySecurityGroupRulesRequest": {
       "base": null,
       "refs": {
@@ -15645,6 +15652,7 @@
         "DeleteSecurityGroupRequest$GroupId": "<p>The ID of the security group. Required for a nondefault VPC.</p>",
         "GroupIdStringList$member": null,
         "GroupIds$member": null,
+        "ModifySecurityGroupAttributeRequest$GroupId": "<p>The ID of the security group.</p>",
         "ModifySecurityGroupRulesRequest$GroupId": "<p>The ID of the security group.</p>",
         "RequestSpotLaunchSpecificationSecurityGroupIdList$member": null,
         "RevokeSecurityGroupEgressRequest$GroupId": "<p>The ID of the security group.</p>",
@@ -15688,6 +15696,7 @@
         "AuthorizeSecurityGroupIngressRequest$GroupName": "<p>[EC2-Classic, default VPC] The name of the security group. You must specify either the security group ID or the security group name in the request.</p>",
         "DeleteSecurityGroupRequest$GroupName": "<p>[EC2-Classic, default VPC] The name of the security group. You can specify either the security group name or the security group ID.</p>",
         "GroupNameStringList$member": null,
+        "ModifySecurityGroupAttributeRequest$GroupName": "<p>The name of the security group.</p>",
         "RevokeSecurityGroupIngressRequest$GroupName": "<p>[EC2-Classic, default VPC] The name of the security group. You must specify either the security group ID or the security group name in the request.</p>",
         "SecurityGroupStringList$member": null,
         "UpdateSecurityGroupRuleDescriptionsEgressRequest$GroupName": "<p>[Default VPC] The name of the security group. You must specify either the security group ID or the security group name in the request.</p>",
