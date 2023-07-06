@@ -2136,6 +2136,10 @@ type EC2API interface {
 	ModifyReservedInstancesWithContext(aws.Context, *ec2.ModifyReservedInstancesInput, ...request.Option) (*ec2.ModifyReservedInstancesOutput, error)
 	ModifyReservedInstancesRequest(*ec2.ModifyReservedInstancesInput) (*request.Request, *ec2.ModifyReservedInstancesOutput)
 
+	ModifySecurityGroupAttribute(*ec2.ModifySecurityGroupAttributeInput) (*ec2.ModifySecurityGroupAttributeOutput, error)
+	ModifySecurityGroupAttributeWithContext(aws.Context, *ec2.ModifySecurityGroupAttributeInput, ...request.Option) (*ec2.ModifySecurityGroupAttributeOutput, error)
+	ModifySecurityGroupAttributeRequest(*ec2.ModifySecurityGroupAttributeInput) (*request.Request, *ec2.ModifySecurityGroupAttributeOutput)
+
 	ModifySecurityGroupRules(*ec2.ModifySecurityGroupRulesInput) (*ec2.ModifySecurityGroupRulesOutput, error)
 	ModifySecurityGroupRulesWithContext(aws.Context, *ec2.ModifySecurityGroupRulesInput, ...request.Option) (*ec2.ModifySecurityGroupRulesOutput, error)
 	ModifySecurityGroupRulesRequest(*ec2.ModifySecurityGroupRulesInput) (*request.Request, *ec2.ModifySecurityGroupRulesOutput)
