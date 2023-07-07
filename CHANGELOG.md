@@ -1,3 +1,9 @@
+Release v1.44.10-CROC2 (2023-07-06)
+===
+
+### Service client updates
+* ec2 api to update description in snapshot and security group
+
 Release v1.44.10-CROC1 (2022-07-18)
 ===
 
