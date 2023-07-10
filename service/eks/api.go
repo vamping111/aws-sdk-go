@@ -1510,7 +1510,7 @@ func (c *EKS) DescribeClusterRequest(input *DescribeClusterInput) (req *request.
 // (https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html).
 //
 // The API server endpoint and certificate authority data aren't available until
-// the cluster reaches the ACTIVE state.
+// the cluster reaches the READY state.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3516,7 +3516,7 @@ func (c *EKS) UpdateClusterConfigRequest(input *UpdateClusterConfigInput) (req *
 // Cluster updates are asynchronous, and they should finish within a few minutes.
 // During an update, the cluster status moves to UPDATING (this status transition
 // is eventually consistent). When the update is complete (either Failed or
-// Successful), the cluster status moves to Active.
+// Successful), the cluster status moves to READY.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3624,7 +3624,7 @@ func (c *EKS) UpdateClusterVersionRequest(input *UpdateClusterVersionInput) (req
 // Cluster updates are asynchronous, and they should finish within a few minutes.
 // During an update, the cluster status moves to UPDATING (this status transition
 // is eventually consistent). When the update is complete (either Failed or
-// Successful), the cluster status moves to Active.
+// Successful), the cluster status moves to READY.
 //
 // If your cluster has managed node groups attached to it, all of your node
 // groups’ Kubernetes versions must match the cluster’s Kubernetes version
@@ -12055,14 +12055,23 @@ func CapacityTypes_Values() []string {
 }
 
 const (
+	// ClusterStatusClaimed is a ClusterStatus enum value
+	ClusterStatusClaimed = "CLAIMED"
+
 	// ClusterStatusCreating is a ClusterStatus enum value
 	ClusterStatusCreating = "CREATING"
 
-	// ClusterStatusActive is a ClusterStatus enum value
-	ClusterStatusActive = "ACTIVE"
+	// ClusterStatusProvisioning is a ClusterStatus enum value
+	ClusterStatusProvisioning = "PROVISIONING"
+
+	// ClusterStatusReady is a ClusterStatus enum value
+	ClusterStatusReady = "READY"
 
 	// ClusterStatusDeleting is a ClusterStatus enum value
 	ClusterStatusDeleting = "DELETING"
+
+	// ClusterStatusDeleted is a ClusterStatus enum value
+	ClusterStatusDeleted = "DELETED"
 
 	// ClusterStatusFailed is a ClusterStatus enum value
 	ClusterStatusFailed = "FAILED"
@@ -12077,9 +12086,12 @@ const (
 // ClusterStatus_Values returns all elements of the ClusterStatus enum
 func ClusterStatus_Values() []string {
 	return []string{
+		ClusterStatusClaimed,
 		ClusterStatusCreating,
-		ClusterStatusActive,
+		ClusterStatusProvisioning,
+		ClusterStatusReady,
 		ClusterStatusDeleting,
+		ClusterStatusDeleted,
 		ClusterStatusFailed,
 		ClusterStatusUpdating,
 		ClusterStatusPending,
@@ -12386,6 +12398,9 @@ const (
 	// NodegroupStatusCreating is a NodegroupStatus enum value
 	NodegroupStatusCreating = "CREATING"
 
+	// NodegroupStatusPending is a NodegroupStatus enum value
+	NodegroupStatusPending = "PENDING"
+
 	// NodegroupStatusActive is a NodegroupStatus enum value
 	NodegroupStatusActive = "ACTIVE"
 
@@ -12394,6 +12409,9 @@ const (
 
 	// NodegroupStatusDeleting is a NodegroupStatus enum value
 	NodegroupStatusDeleting = "DELETING"
+
+	// NodegroupStatusDeleted is a NodegroupStatus enum value
+	NodegroupStatusDeleted = "DELETED"
 
 	// NodegroupStatusCreateFailed is a NodegroupStatus enum value
 	NodegroupStatusCreateFailed = "CREATE_FAILED"
@@ -12409,9 +12427,11 @@ const (
 func NodegroupStatus_Values() []string {
 	return []string{
 		NodegroupStatusCreating,
+		NodegroupStatusPending,
 		NodegroupStatusActive,
 		NodegroupStatusUpdating,
 		NodegroupStatusDeleting,
+		NodegroupStatusDeleted,
 		NodegroupStatusCreateFailed,
 		NodegroupStatusDeleteFailed,
 		NodegroupStatusDegraded,

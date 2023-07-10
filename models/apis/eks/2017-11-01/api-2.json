@@ -800,9 +800,12 @@
     "ClusterStatus":{
       "type":"string",
       "enum":[
+        "CLAIMED",
         "CREATING",
-        "ACTIVE",
+        "PROVISIONING",
+        "READY",
         "DELETING",
+        "DELETED",
         "FAILED",
         "UPDATING",
         "PENDING"
@@ -1829,9 +1832,11 @@
       "type":"string",
       "enum":[
         "CREATING",
+        "PENDING",
         "ACTIVE",
         "UPDATING",
         "DELETING",
+        "DELETED",
         "CREATE_FAILED",
         "DELETE_FAILED",
         "DEGRADED"
