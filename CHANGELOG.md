@@ -1,3 +1,9 @@
+Release v1.44.10-CROC3 (2023-07-20)
+===
+
+### Service client updates
+* add detaching to volume states
+
 Release v1.44.10-CROC2 (2023-07-06)
 ===
 
