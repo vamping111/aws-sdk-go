@@ -38806,6 +38806,7 @@
         "creating",
         "available",
         "in-use",
+        "detaching",
         "deleting",
         "deleted",
         "error"
