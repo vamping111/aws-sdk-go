@@ -1,3 +1,9 @@
+Release v1.44.10-CROC4 (2023-09-12)
+===
+
+### Service client updates
+* add new statuses for eks cluster and eks node group 
+
 Release v1.44.10-CROC3 (2023-07-20)
 ===
 
