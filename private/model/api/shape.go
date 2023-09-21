@@ -296,7 +296,7 @@ func (s *Shape) GoTypeWithPkgNameElem() string {
 // UseIndirection returns if the shape's reference should use indirection or not.
 func (s *ShapeRef) UseIndirection() bool {
 	switch s.Shape.Type {
-	case "map", "list", "blob", "structure", "jsonvalue":
+	case "map", "list", "blob", "structure", "jsonvalue", "none":
 		return false
 	}
 
@@ -436,6 +436,10 @@ func goType(s *Shape, withPkgName bool) string {
 	case "timestamp":
 		s.API.imports["time"] = true
 		return "*time.Time"
+	// none is a special type for string -> any maps.
+	// any can be bool, int, float, string, list and map.
+	case "none":
+		return "map[string]interface{}"
 	default:
 		panic("Unsupported shape type: " + s.Type)
 	}
