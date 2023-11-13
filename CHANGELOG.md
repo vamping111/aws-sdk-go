@@ -1,3 +1,9 @@
+Release v1.44.10-CROC5 (2023-11-13)
+===
+
+### Service client updates
+* ec2: make AttachVolume.Device parameter optional
+
 Release v1.44.10-CROC4 (2023-09-12)
 ===
 
