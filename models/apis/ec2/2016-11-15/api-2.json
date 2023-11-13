@@ -6311,7 +6311,6 @@
     "AttachVolumeRequest":{
       "type":"structure",
       "required":[
-        "Device",
         "InstanceId",
         "VolumeId"
       ],
