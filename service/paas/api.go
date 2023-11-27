@@ -1422,7 +1422,9 @@ func (s *CreateServiceOutput) SetService(v *Service) *CreateServiceOutput {
 type DatabaseBackup struct {
 	_ struct{} `type:"structure"`
 
-	BackupId *string `locationName:"backupId" type:"string"`
+	BackupEnabled *bool `locationName:"backupEnabled" type:"boolean"`
+
+	Id *string `locationName:"id" type:"string"`
 
 	Location *string `locationName:"location" type:"string"`
 
@@ -1432,13 +1434,11 @@ type DatabaseBackup struct {
 
 	Parameters map[string]interface{} `locationName:"parameters" type:"none"`
 
-	ServiceId *string `locationName:"serviceId" type:"string"`
-
-	ServiceName *string `locationName:"serviceName" type:"string"`
-
 	Size *int64 `locationName:"size" type:"integer"`
 
 	Status *string `locationName:"status" type:"string"`
+
+	Users []*UserResponse `locationName:"users" type:"list"`
 }
 
 // String returns the string representation.
@@ -1459,9 +1459,15 @@ func (s DatabaseBackup) GoString() string {
 	return s.String()
 }
 
-// SetBackupId sets the BackupId field's value.
-func (s *DatabaseBackup) SetBackupId(v string) *DatabaseBackup {
-	s.BackupId = &v
+// SetBackupEnabled sets the BackupEnabled field's value.
+func (s *DatabaseBackup) SetBackupEnabled(v bool) *DatabaseBackup {
+	s.BackupEnabled = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *DatabaseBackup) SetId(v string) *DatabaseBackup {
+	s.Id = &v
 	return s
 }
 
@@ -1489,18 +1495,6 @@ func (s *DatabaseBackup) SetParameters(v map[string]interface{}) *DatabaseBackup
 	return s
 }
 
-// SetServiceId sets the ServiceId field's value.
-func (s *DatabaseBackup) SetServiceId(v string) *DatabaseBackup {
-	s.ServiceId = &v
-	return s
-}
-
-// SetServiceName sets the ServiceName field's value.
-func (s *DatabaseBackup) SetServiceName(v string) *DatabaseBackup {
-	s.ServiceName = &v
-	return s
-}
-
 // SetSize sets the Size field's value.
 func (s *DatabaseBackup) SetSize(v int64) *DatabaseBackup {
 	s.Size = &v
@@ -1510,6 +1504,12 @@ func (s *DatabaseBackup) SetSize(v int64) *DatabaseBackup {
 // SetStatus sets the Status field's value.
 func (s *DatabaseBackup) SetStatus(v string) *DatabaseBackup {
 	s.Status = &v
+	return s
+}
+
+// SetUsers sets the Users field's value.
+func (s *DatabaseBackup) SetUsers(v []*UserResponse) *DatabaseBackup {
+	s.Users = v
 	return s
 }
 
