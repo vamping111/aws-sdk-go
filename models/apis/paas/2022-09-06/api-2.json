@@ -171,10 +171,7 @@
         "login": {"shape": "String"},
         "name": {"shape": "String"},
         "email": {"shape": "String"},
-        "enabled": {"shape": "Boolean"},
-        "lastLoginTime": {"shape": "Integer"},
-        "modifyTime": {"shape": "Integer"},
-        "projectGrants": {"shape": "StringList"}
+        "enabled": {"shape": "Boolean"}
       }
     },
     "Boolean": {"type": "boolean"},

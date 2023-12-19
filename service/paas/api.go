@@ -1079,15 +1079,9 @@ type BackupUser struct {
 
 	Id *string `locationName:"id" type:"string"`
 
-	LastLoginTime *int64 `locationName:"lastLoginTime" type:"integer"`
-
 	Login *string `locationName:"login" type:"string"`
 
-	ModifyTime *int64 `locationName:"modifyTime" type:"integer"`
-
 	Name *string `locationName:"name" type:"string"`
-
-	ProjectGrants []*string `locationName:"projectGrants" type:"list"`
 }
 
 // String returns the string representation.
@@ -1126,33 +1120,15 @@ func (s *BackupUser) SetId(v string) *BackupUser {
 	return s
 }
 
-// SetLastLoginTime sets the LastLoginTime field's value.
-func (s *BackupUser) SetLastLoginTime(v int64) *BackupUser {
-	s.LastLoginTime = &v
-	return s
-}
-
 // SetLogin sets the Login field's value.
 func (s *BackupUser) SetLogin(v string) *BackupUser {
 	s.Login = &v
 	return s
 }
 
-// SetModifyTime sets the ModifyTime field's value.
-func (s *BackupUser) SetModifyTime(v int64) *BackupUser {
-	s.ModifyTime = &v
-	return s
-}
-
 // SetName sets the Name field's value.
 func (s *BackupUser) SetName(v string) *BackupUser {
 	s.Name = &v
-	return s
-}
-
-// SetProjectGrants sets the ProjectGrants field's value.
-func (s *BackupUser) SetProjectGrants(v []*string) *BackupUser {
-	s.ProjectGrants = v
 	return s
 }
 
