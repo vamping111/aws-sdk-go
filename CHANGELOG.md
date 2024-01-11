@@ -1,3 +1,9 @@
+Release v1.44.10-CROC6 (2024-01-11)
+===
+
+### Service client updates
+* add PaaS api support
+
 Release v1.44.10-CROC5 (2023-11-13)
 ===
 
