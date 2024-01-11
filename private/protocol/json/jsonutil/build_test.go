@@ -31,6 +31,7 @@ type J struct {
 	D  *int64
 	F  *float64
 	T  *time.Time
+	A  map[string]interface{}
 }
 
 var zero = 0.0
@@ -54,6 +55,20 @@ var jsonTests = []struct {
 			T:  T(time.Unix(987, 0)),
 		},
 		`{"S":"str","SS":["A","B","C"],"D":123,"F":4.56,"T":987}`,
+		``,
+	},
+	{
+		J{
+			A: map[string]interface{}{ // keys will be sorted
+				"A":  map[string]interface{}{"S": S("str")},
+				"S":  S("str"),
+				"SS": []string{"A", "B", "C"},
+				"D":  D(123),
+				"F":  F(4.56),
+				"T":  T(time.Unix(987, 0)),
+			},
+		},
+		`{"A":{"A":{"S":"str"},"D":123,"F":4.56,"S":"str","SS":["A","B","C"],"T":987}}`,
 		``,
 	},
 	{
@@ -93,7 +108,7 @@ func TestBuildJSON(t *testing.T) {
 			if err != nil {
 				t.Errorf("expect nil, %v", err)
 			}
-			if e, a := string(out), test.out; e != a {
+			if e, a := test.out, string(out); e != a {
 				t.Errorf("expect %v, got %v", e, a)
 			}
 		}

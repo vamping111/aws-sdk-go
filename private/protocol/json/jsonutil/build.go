@@ -54,6 +54,8 @@ func buildAny(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) err
 			if _, ok := value.Interface().(aws.JSONValue); !ok {
 				t = "map"
 			}
+		case reflect.Interface:
+			return buildAny(reflect.ValueOf(value.Interface()), buf, tag)
 		}
 	}
 
@@ -65,7 +67,7 @@ func buildAny(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) err
 		return buildStruct(value, buf, tag)
 	case "list":
 		return buildList(value, buf, tag)
-	case "map":
+	case "map", "none":
 		return buildMap(value, buf, tag)
 	default:
 		return buildScalar(origVal, buf, tag)

@@ -120,3 +120,77 @@ func TestUnmarshalJSON_JSONNumber(t *testing.T) {
 		})
 	}
 }
+
+func TestUnmarshalJSON_MapStringAny(t *testing.T) {
+	type input struct {
+		Parameters map[string]interface{} `locationName:"parameters"`
+	}
+
+	cases := map[string]struct {
+		JSON     string
+		Value    input
+		Expected input
+	}{
+		"all supported types wo map": {
+			JSON: `{"parameters":{"B":false,"D":500,"F":0.2,"L":["1","2"],"S":"str"}}`,
+			Expected: input{
+				Parameters: map[string]interface{}{
+					"B": false,
+					"D": int64(500),
+					"F": 0.2,
+					"L": []interface{}{"1", "2"},
+					"S": "str",
+				},
+			},
+		},
+		"map": {
+			JSON: `{"parameters":{"A":{"B":false,"D":500,"F":0.2,"L":["1","2"],"S":"str"}}}`,
+			Expected: input{
+				Parameters: map[string]interface{}{
+					"A": map[string]interface{}{
+						"B": false,
+						"D": int64(500),
+						"F": 0.2,
+						"L": []interface{}{"1", "2"},
+						"S": "str",
+					},
+				},
+			},
+		},
+		"map with nested map": {
+			JSON: `{"parameters":{"A":{"A1":{"A2":{"B":false}}}}}`,
+			Expected: input{
+				Parameters: map[string]interface{}{
+					"A": map[string]interface{}{
+						"A1": map[string]interface{}{
+							"A2": map[string]interface{}{"B": false},
+						},
+					},
+				},
+			},
+		},
+		"list with nested list": {
+			JSON: `{"parameters":{"L":[{"L1":["str"]},{"L2":[false]}]}}`,
+			Expected: input{
+				Parameters: map[string]interface{}{
+					"L": []interface{}{
+						map[string]interface{}{"L1": []interface{}{"str"}},
+						map[string]interface{}{"L2": []interface{}{false}},
+					},
+				},
+			},
+		},
+	}
+
+	for name, tt := range cases {
+		t.Run(name, func(t *testing.T) {
+			err := jsonutil.UnmarshalJSON(&tt.Value, bytes.NewReader([]byte(tt.JSON)))
+			if err != nil {
+				t.Errorf("expect no error, got %v", err)
+			}
+			if e, a := tt.Expected, tt.Value; !reflect.DeepEqual(e, a) {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
+	}
+}

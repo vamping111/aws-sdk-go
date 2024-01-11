@@ -101,6 +101,21 @@ func (u unmarshaler) unmarshalAny(value reflect.Value, data interface{}, tag ref
 			if _, ok := value.Interface().(aws.JSONValue); !ok {
 				t = "map"
 			}
+		case reflect.Interface:
+			if _, ok := data.(map[string]interface{}); ok {
+
+				// Value should hold `map[string]interface{}`, but its real type is `interface{}`
+				// (causes an error in `unmarshalMap`).
+				// tempValue is created with correct type to be processed by `unmarshalMap`,
+				// result is set to original value.
+				mapType := reflect.ValueOf(map[string]interface{}{}).Type()
+				tempValue := reflect.Indirect(reflect.New(mapType))
+				err := u.unmarshalMap(tempValue, data, tag)
+				value.Set(tempValue)
+				return err
+			}
+
+			return u.unmarshalInterface(value, data)
 		}
 	}
 
@@ -112,7 +127,7 @@ func (u unmarshaler) unmarshalAny(value reflect.Value, data interface{}, tag ref
 		return u.unmarshalStruct(value, data, tag)
 	case "list":
 		return u.unmarshalList(value, data, tag)
-	case "map":
+	case "map", "none":
 		return u.unmarshalMap(value, data, tag)
 	default:
 		return u.unmarshalScalar(value, data, tag)
@@ -300,5 +315,32 @@ func (u unmarshaler) unmarshalScalar(value reflect.Value, data interface{}, tag 
 	default:
 		return fmt.Errorf("unsupported JSON value (%v)", data)
 	}
+	return nil
+}
+
+// unmarshalInterface deserializes data to value with type interface{}.
+//
+// unmarshal<Type> methods cannot be used because they rely on specific type held by value.
+// It cannot be evaluated from interface{}.
+func (u unmarshaler) unmarshalInterface(value reflect.Value, data interface{}) error {
+	if number, ok := data.(json.Number); ok {
+		intValue, err := number.Int64()
+
+		if err == nil {
+			value.Set(reflect.ValueOf(intValue))
+			return nil
+		}
+
+		floatValue, err := number.Float64()
+		if err == nil {
+			value.Set(reflect.ValueOf(floatValue))
+			return nil
+		}
+
+		return err
+	}
+
+	value.Set(reflect.ValueOf(data))
+
 	return nil
 }
