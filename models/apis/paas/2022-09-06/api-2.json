@@ -259,15 +259,15 @@
     "DatabaseBackup": {
       "type": "structure",
       "members": {
+        "backupEnabled": {"shape": "Boolean"},
+        "id": {"shape": "String"},
         "name": {"shape": "String"},
-        "serviceName": {"shape": "String"},
-        "serviceId": {"shape": "String"},
-        "backupId": {"shape": "String"},
         "size": {"shape": "Integer"},
         "status": {"shape": "String"},
         "parameters": {"shape": "None"},
         "logfile": {"shape": "String"},
-        "location": {"shape": "String"}
+        "location": {"shape": "String"},
+        "users": {"shape": "UserResponseList"}
       }
     },
     "DatabaseBackupList": {
