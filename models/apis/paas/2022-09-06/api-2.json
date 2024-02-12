@@ -591,7 +591,8 @@
         "backupSettings": {"shape": "BackupSettingsResponse"},
         "totalCpuCount": {"shape": "Integer"},
         "totalMemory": {"shape": "Integer"},
-        "vpcId": {"shape": "String"}
+        "vpcId": {"shape": "String"},
+        "isRolledBack": {"shape": "Boolean"}
       }
     },
     "String": {"type": "string"},
