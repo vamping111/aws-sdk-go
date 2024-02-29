@@ -28115,7 +28115,9 @@
         "DefaultRouteTableAssociation":{"shape":"DefaultRouteTableAssociationValue"},
         "AssociationDefaultRouteTableId":{"shape":"TransitGatewayRouteTableId"},
         "DefaultRouteTablePropagation":{"shape":"DefaultRouteTablePropagationValue"},
-        "PropagationDefaultRouteTableId":{"shape":"TransitGatewayRouteTableId"}
+        "PropagationDefaultRouteTableId":{"shape":"TransitGatewayRouteTableId"},
+        "AddSharedOwners":{"shape":"TransitGatewaySharedOwnerStringList"},
+        "RemoveSharedOwners":{"shape":"TransitGatewaySharedOwnerStringList"}
       }
     },
     "ModifyTransitGatewayPrefixListReferenceRequest":{
@@ -37501,6 +37503,10 @@
         "MulticastSupport":{
           "shape":"MulticastSupportValue",
           "locationName":"multicastSupport"
+        },
+        "SharedOwners": {
+          "shape": "ValueStringList",
+          "locationName": "sharedOwners"
         }
       }
     },
@@ -37650,7 +37656,8 @@
         "VpnEcmpSupport":{"shape":"VpnEcmpSupportValue"},
         "DnsSupport":{"shape":"DnsSupportValue"},
         "MulticastSupport":{"shape":"MulticastSupportValue"},
-        "TransitGatewayCidrBlocks":{"shape":"TransitGatewayCidrBlockStringList"}
+        "TransitGatewayCidrBlocks":{"shape":"TransitGatewayCidrBlockStringList"},
+        "SharedOwners":{"shape":"TransitGatewaySharedOwnerStringList"}
       }
     },
     "TransitGatewayRoute":{
@@ -37871,6 +37878,13 @@
         "static",
         "propagated"
       ]
+    },
+    "TransitGatewaySharedOwnerStringList": {
+      "type": "list",
+      "member": {
+        "shape": "String",
+        "locationName": "item"
+      }
     },
     "TransitGatewayState":{
       "type":"string",
