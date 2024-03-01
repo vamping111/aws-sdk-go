@@ -1,8 +1,5 @@
-Release v24.0.0 (2024-02-29)
+Release v1.44.10-CROC7 (2024-03-01)
 ===
-
-### General
-* Change versioning policy: `v1.44.10-CROCX` => semver started from `v24.0.0`
 
 ### Service client updates
 * `service/ec2`: Update service API
