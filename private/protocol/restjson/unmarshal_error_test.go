@@ -274,3 +274,78 @@ func TestUnmarshalError_SerializationError(t *testing.T) {
 		})
 	}
 }
+
+func TestUnmarshalError(t *testing.T) {
+	cases := map[string]struct {
+		Header             http.Header
+		Body               string
+		ExpectedErrCode    string
+		ExpectedErrMessage string
+	}{
+		"code and msg from header": {
+			Header: http.Header{
+				errorTypeHeader:    []string{"err type header"},
+				errorMessageHeader: []string{"err msg header"},
+			},
+			Body:               `{"__type": "err type", "code": "err code", "message": "err msg"}`,
+			ExpectedErrCode:    "err type header",
+			ExpectedErrMessage: "err msg header",
+		},
+		"code from err type": {
+			Header:             http.Header{},
+			Body:               `{"__type": "err type", "code": "err code", "message": "err msg"}`,
+			ExpectedErrCode:    "err type",
+			ExpectedErrMessage: "err msg",
+		},
+		"code from err code": {
+			Header:             http.Header{},
+			Body:               `{"code": "err code", "message": "err msg"}`,
+			ExpectedErrCode:    "err code",
+			ExpectedErrMessage: "err msg",
+		},
+		"empty code": {
+			Header:             http.Header{},
+			Body:               `{"__type": "", "message": "err msg"}`,
+			ExpectedErrCode:    "",
+			ExpectedErrMessage: "err msg",
+		},
+		"empty message": {
+			Header:             http.Header{},
+			Body:               `{"__type": "err type", "message": ""}`,
+			ExpectedErrCode:    "err type",
+			ExpectedErrMessage: "",
+		},
+	}
+
+	for name, c := range cases {
+		t.Run(name, func(t *testing.T) {
+			statusCode := 400
+			requestID := "123"
+
+			req := &request.Request{
+				RequestID: requestID,
+				HTTPResponse: &http.Response{
+					StatusCode: statusCode,
+					Header:     c.Header,
+					Body:       ioutil.NopCloser(strings.NewReader(c.Body)),
+				},
+			}
+
+			UnmarshalError(req)
+			if req.Error == nil {
+				t.Fatal("expect error, got none")
+			}
+
+			actual := req.Error.(awserr.RequestFailure)
+			expected := awserr.NewRequestFailure(
+				awserr.New(c.ExpectedErrCode, c.ExpectedErrMessage, nil),
+				statusCode,
+				requestID,
+			)
+
+			if !reflect.DeepEqual(expected, actual) {
+				t.Errorf("expect %v, got %v", expected, actual)
+			}
+		})
+	}
+}
