@@ -2691,6 +2691,8 @@ type Service struct {
 
 	Instances []*Instance `locationName:"instances" type:"list"`
 
+	IsRolledBack *bool `locationName:"isRolledBack" type:"boolean"`
+
 	Name *string `locationName:"name" type:"string"`
 
 	NetworkInterfaceIds []*string `locationName:"networkInterfaceIds" type:"list"`
@@ -2813,6 +2815,12 @@ func (s *Service) SetInstanceType(v string) *Service {
 // SetInstances sets the Instances field's value.
 func (s *Service) SetInstances(v []*Instance) *Service {
 	s.Instances = v
+	return s
+}
+
+// SetIsRolledBack sets the IsRolledBack field's value.
+func (s *Service) SetIsRolledBack(v bool) *Service {
+	s.IsRolledBack = &v
 	return s
 }
 
