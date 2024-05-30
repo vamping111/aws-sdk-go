@@ -40,7 +40,6 @@ func (u *UnmarshalTypedError) UnmarshalError(
 	resp *http.Response,
 	respMeta protocol.ResponseMetadata,
 ) (error, error) {
-
 	code := resp.Header.Get(errorTypeHeader)
 	msg := resp.Header.Get(errorMessageHeader)
 
@@ -99,6 +98,8 @@ var UnmarshalErrorHandler = request.NamedHandler{
 func UnmarshalError(r *request.Request) {
 	defer r.HTTPResponse.Body.Close()
 
+	// TODO: extract to private method, reuse in UnmarshalTypedError.UnmarshalError
+	// https://github.com/aws/aws-sdk-go/pull/4817
 	var jsonErr jsonErrorResponse
 	err := jsonutil.UnmarshalJSONError(&jsonErr, r.HTTPResponse.Body)
 	if err != nil {
@@ -111,10 +112,15 @@ func UnmarshalError(r *request.Request) {
 		return
 	}
 
-	code := r.HTTPResponse.Header.Get(errorTypeHeader)
-	if code == "" {
+	var code string
+	if r.HTTPResponse.Header.Get(errorTypeHeader) != "" {
+		code = r.HTTPResponse.Header.Get(errorTypeHeader)
+	} else if jsonErr.Type != "" {
+		code = jsonErr.Type
+	} else {
 		code = jsonErr.Code
 	}
+
 	msg := r.HTTPResponse.Header.Get(errorMessageHeader)
 	if msg == "" {
 		msg = jsonErr.Message
@@ -122,13 +128,14 @@ func UnmarshalError(r *request.Request) {
 
 	code = strings.SplitN(code, ":", 2)[0]
 	r.Error = awserr.NewRequestFailure(
-		awserr.New(code, jsonErr.Message, nil),
+		awserr.New(code, msg, nil),
 		r.HTTPResponse.StatusCode,
 		r.RequestID,
 	)
 }
 
 type jsonErrorResponse struct {
+	Type    string `json:"__type"`
 	Code    string `json:"code"`
 	Message string `json:"message"`
 }
