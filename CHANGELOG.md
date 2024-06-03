@@ -1,3 +1,12 @@
+Release v1.44.10-CROC8 (2024-06-03)
+===
+
+### Service client updates
+* `private/protocol`: add `__type` field to error response struct
+* `service/paas`: Update service API
+  * add `isRolledBack` attribute to Service shape
+
+
 Release v1.44.10-CROC7 (2024-03-01)
 ===
 
