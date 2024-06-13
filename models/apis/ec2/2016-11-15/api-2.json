@@ -21017,7 +21017,7 @@
           "locationName":"instanceType"
         },
         "InstanceFamily":{
-          "shape":"String",
+          "shape":"InstanceFamily",
           "locationName":"instanceFamily"
         },
         "Sockets":{
@@ -22775,6 +22775,13 @@
           "shape":"ExportEnvironment",
           "locationName":"targetEnvironment"
         }
+      }
+    },
+    "InstanceFamily": {
+      "type":"list",
+      "member": {
+        "shape": "String",
+        "locationName": "item"
       }
     },
     "InstanceFamilyCreditSpecification":{
