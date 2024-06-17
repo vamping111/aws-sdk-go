@@ -1378,8 +1378,7 @@
       "required":[
         "HostedZone",
         "ChangeInfo",
-        "DelegationSet",
-        "Location"
+        "DelegationSet"
       ],
       "members":{
         "HostedZone":{"shape":"HostedZone"},
@@ -2996,10 +2995,7 @@
     "ListHostedZonesResponse":{
       "type":"structure",
       "required":[
-        "HostedZones",
-        "Marker",
-        "IsTruncated",
-        "MaxItems"
+        "HostedZones"
       ],
       "members":{
         "HostedZones":{"shape":"HostedZones"},
@@ -3071,9 +3067,7 @@
     "ListResourceRecordSetsResponse":{
       "type":"structure",
       "required":[
-        "ResourceRecordSets",
-        "IsTruncated",
-        "MaxItems"
+        "ResourceRecordSets"
       ],
       "members":{
         "ResourceRecordSets":{"shape":"ResourceRecordSets"},

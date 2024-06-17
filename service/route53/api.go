@@ -8448,9 +8448,7 @@ type CreateHostedZoneOutput struct {
 	HostedZone *HostedZone `type:"structure" required:"true"`
 
 	// The unique URL representing the new hosted zone.
-	//
-	// Location is a required field
-	Location *string `location:"header" locationName:"Location" type:"string" required:"true"`
+	Location *string `location:"header" locationName:"Location" type:"string"`
 
 	// A complex type that contains information about an Amazon VPC that you associated
 	// with this hosted zone.
@@ -14448,22 +14446,16 @@ type ListHostedZonesOutput struct {
 	// response was truncated, you can get more hosted zones by submitting another
 	// ListHostedZones request and specifying the value of NextMarker in the marker
 	// parameter.
-	//
-	// IsTruncated is a required field
-	IsTruncated *bool `type:"boolean" required:"true"`
+	IsTruncated *bool `type:"boolean"`
 
 	// For the second and subsequent calls to ListHostedZones, Marker is the value
 	// that you specified for the marker parameter in the request that produced
 	// the current response.
-	//
-	// Marker is a required field
-	Marker *string `type:"string" required:"true"`
+	Marker *string `type:"string"`
 
 	// The value that you specified for the maxitems parameter in the call to ListHostedZones
 	// that produced the current response.
-	//
-	// MaxItems is a required field
-	MaxItems *string `type:"string" required:"true"`
+	MaxItems *string `type:"string"`
 
 	// If IsTruncated is true, the value of NextMarker identifies the first hosted
 	// zone in the next group of hosted zones. Submit another ListHostedZones request,
@@ -14774,14 +14766,10 @@ type ListResourceRecordSetsOutput struct {
 	// A flag that indicates whether more resource record sets remain to be listed.
 	// If your results were truncated, you can make a follow-up pagination request
 	// by using the NextRecordName element.
-	//
-	// IsTruncated is a required field
-	IsTruncated *bool `type:"boolean" required:"true"`
+	IsTruncated *bool `type:"boolean"`
 
 	// The maximum number of records you requested.
-	//
-	// MaxItems is a required field
-	MaxItems *string `type:"string" required:"true"`
+	MaxItems *string `type:"string"`
 
 	// Resource record sets that have a routing policy other than simple: If results
 	// were truncated for a given DNS name and type, the value of SetIdentifier
