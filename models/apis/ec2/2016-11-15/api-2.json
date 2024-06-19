@@ -5359,6 +5359,10 @@
         "locationName":"item"
       }
     },
+    "AllocationTime":{
+      "type":"timestamp",
+      "timestampFormat":"unixTimestamp"
+    },
     "AllocationState":{
       "type":"string",
       "enum":[
@@ -20897,7 +20901,7 @@
           "locationName":"state"
         },
         "AllocationTime":{
-          "shape":"DateTime",
+          "shape":"AllocationTime",
           "locationName":"allocationTime"
         },
         "ReleaseTime":{
