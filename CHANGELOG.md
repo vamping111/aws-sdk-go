@@ -1,3 +1,18 @@
+Release v1.44.10-ROCKIT9 (2024-07-01)
+===
+
+### General
+* Change version label to `ROCKITX`
+### Service client updates
+* `service/route53`: Update service API
+  * Make optional the `Marker`, `IsTruncated` and `MaxItems` parameters for the `ListHostedZonesResponse`
+  * Make optional the `Location` parameter for the `CreateHostedZoneResponse`
+  * Make optional the `IsTruncated` and `MaxItems` parameters for the `ListResourceRecordSetsResponse`
+* `service/ec2`: Update service API
+  * Change the `InstanceFamily` shape to a list of Strings
+  * Change the `AllocationTime` shape for the `Host` shape to a UNIX timestamp
+  * Update possible virtualization type values
+
 Release v1.44.10-CROC8 (2024-06-03)
 ===
 
