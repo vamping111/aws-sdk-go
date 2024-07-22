@@ -729,10 +729,7 @@
         "GreaterThanOrEqualToThreshold",
         "GreaterThanThreshold",
         "LessThanThreshold",
-        "LessThanOrEqualToThreshold",
-        "LessThanLowerOrGreaterThanUpperThreshold",
-        "LessThanLowerThreshold",
-        "GreaterThanUpperThreshold"
+        "LessThanOrEqualToThreshold"
       ]
     },
     "CompositeAlarm":{
@@ -1649,7 +1646,7 @@
         "AlarmName":{"shape":"AlarmName"},
         "AlarmArn":{"shape":"AlarmArn"},
         "AlarmDescription":{"shape":"AlarmDescription"},
-        "AlarmConfigurationUpdatedTimestamp":{"shape":"Timestamp"},
+        "AlarmConfigurationUpdatedTimestamp":{"shape":"UnixTimestamp"},
         "ActionsEnabled":{"shape":"ActionsEnabled"},
         "OKActions":{"shape":"ResourceList"},
         "AlarmActions":{"shape":"ResourceList"},
@@ -2163,33 +2160,9 @@
     "StandardUnit":{
       "type":"string",
       "enum":[
-        "Seconds",
-        "Microseconds",
-        "Milliseconds",
-        "Bytes",
-        "Kilobytes",
-        "Megabytes",
-        "Gigabytes",
-        "Terabytes",
-        "Bits",
-        "Kilobits",
-        "Megabits",
-        "Gigabits",
-        "Terabits",
         "Percent",
-        "Count",
-        "Bytes/Second",
-        "Kilobytes/Second",
-        "Megabytes/Second",
-        "Gigabytes/Second",
-        "Terabytes/Second",
-        "Bits/Second",
-        "Kilobits/Second",
-        "Megabits/Second",
-        "Gigabits/Second",
-        "Terabits/Second",
-        "Count/Second",
-        "None"
+        "Bytes",
+        "Count"
       ]
     },
     "StartMetricStreamsInput":{
@@ -2344,6 +2317,10 @@
         "ResourceARN":{"shape":"AmazonResourceName"},
         "TagKeys":{"shape":"TagKeyList"}
       }
+    },
+    "UnixTimestamp":{
+      "type":"timestamp",
+      "timestampFormat":"unixTimestamp"
     },
     "UntagResourceOutput":{
       "type":"structure",
