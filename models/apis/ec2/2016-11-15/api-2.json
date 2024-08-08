@@ -19771,7 +19771,10 @@
     },
     "GatewayType":{
       "type":"string",
-      "enum":["ipsec.1"]
+      "enum":[
+        "ipsec.1",
+        "ipsec.legacy"
+      ]
     },
     "GetAssociatedEnclaveCertificateIamRolesRequest":{
       "type":"structure",
