@@ -28,14 +28,13 @@ const opCancelJob = "CancelJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CancelJobRequest method.
+//	req, resp := client.CancelJobRequest(params)
 //
-//    // Example sending a request using the CancelJobRequest method.
-//    req, resp := client.CancelJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CancelJob
 func (c *Batch) CancelJobRequest(input *CancelJobInput) (req *request.Request, output *CancelJobOutput) {
@@ -70,13 +69,14 @@ func (c *Batch) CancelJobRequest(input *CancelJobInput) (req *request.Request, o
 // API operation CancelJob for usage and error information.
 //
 // Returned Error Types:
-//   * ClientException
-//   These errors are usually caused by a client action, such as using an action
-//   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that's not valid.
 //
-//   * ServerException
-//   These errors are usually caused by a server issue.
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an identifier that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CancelJob
 func (c *Batch) CancelJob(input *CancelJobInput) (*CancelJobOutput, error) {
@@ -116,14 +116,13 @@ const opCreateComputeEnvironment = "CreateComputeEnvironment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateComputeEnvironmentRequest method.
+//	req, resp := client.CreateComputeEnvironmentRequest(params)
 //
-//    // Example sending a request using the CreateComputeEnvironmentRequest method.
-//    req, resp := client.CreateComputeEnvironmentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CreateComputeEnvironment
 func (c *Batch) CreateComputeEnvironmentRequest(input *CreateComputeEnvironmentInput) (req *request.Request, output *CreateComputeEnvironmentOutput) {
@@ -196,13 +195,14 @@ func (c *Batch) CreateComputeEnvironmentRequest(input *CreateComputeEnvironmentI
 // API operation CreateComputeEnvironment for usage and error information.
 //
 // Returned Error Types:
-//   * ClientException
-//   These errors are usually caused by a client action, such as using an action
-//   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that's not valid.
 //
-//   * ServerException
-//   These errors are usually caused by a server issue.
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an identifier that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CreateComputeEnvironment
 func (c *Batch) CreateComputeEnvironment(input *CreateComputeEnvironmentInput) (*CreateComputeEnvironmentOutput, error) {
@@ -242,14 +242,13 @@ const opCreateJobQueue = "CreateJobQueue"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateJobQueueRequest method.
+//	req, resp := client.CreateJobQueueRequest(params)
 //
-//    // Example sending a request using the CreateJobQueueRequest method.
-//    req, resp := client.CreateJobQueueRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CreateJobQueue
 func (c *Batch) CreateJobQueueRequest(input *CreateJobQueueInput) (req *request.Request, output *CreateJobQueueOutput) {
@@ -288,13 +287,14 @@ func (c *Batch) CreateJobQueueRequest(input *CreateJobQueueInput) (req *request.
 // API operation CreateJobQueue for usage and error information.
 //
 // Returned Error Types:
-//   * ClientException
-//   These errors are usually caused by a client action, such as using an action
-//   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that's not valid.
 //
-//   * ServerException
-//   These errors are usually caused by a server issue.
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an identifier that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CreateJobQueue
 func (c *Batch) CreateJobQueue(input *CreateJobQueueInput) (*CreateJobQueueOutput, error) {
@@ -334,14 +334,13 @@ const opCreateSchedulingPolicy = "CreateSchedulingPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateSchedulingPolicyRequest method.
+//	req, resp := client.CreateSchedulingPolicyRequest(params)
 //
-//    // Example sending a request using the CreateSchedulingPolicyRequest method.
-//    req, resp := client.CreateSchedulingPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CreateSchedulingPolicy
 func (c *Batch) CreateSchedulingPolicyRequest(input *CreateSchedulingPolicyInput) (req *request.Request, output *CreateSchedulingPolicyOutput) {
@@ -372,13 +371,14 @@ func (c *Batch) CreateSchedulingPolicyRequest(input *CreateSchedulingPolicyInput
 // API operation CreateSchedulingPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * ClientException
-//   These errors are usually caused by a client action, such as using an action
-//   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that's not valid.
 //
-//   * ServerException
-//   These errors are usually caused by a server issue.
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an identifier that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CreateSchedulingPolicy
 func (c *Batch) CreateSchedulingPolicy(input *CreateSchedulingPolicyInput) (*CreateSchedulingPolicyOutput, error) {
@@ -418,14 +418,13 @@ const opDeleteComputeEnvironment = "DeleteComputeEnvironment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteComputeEnvironmentRequest method.
+//	req, resp := client.DeleteComputeEnvironmentRequest(params)
 //
-//    // Example sending a request using the DeleteComputeEnvironmentRequest method.
-//    req, resp := client.DeleteComputeEnvironmentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeleteComputeEnvironment
 func (c *Batch) DeleteComputeEnvironmentRequest(input *DeleteComputeEnvironmentInput) (req *request.Request, output *DeleteComputeEnvironmentOutput) {
@@ -464,13 +463,14 @@ func (c *Batch) DeleteComputeEnvironmentRequest(input *DeleteComputeEnvironmentI
 // API operation DeleteComputeEnvironment for usage and error information.
 //
 // Returned Error Types:
-//   * ClientException
-//   These errors are usually caused by a client action, such as using an action
-//   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that's not valid.
 //
-//   * ServerException
-//   These errors are usually caused by a server issue.
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an identifier that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeleteComputeEnvironment
 func (c *Batch) DeleteComputeEnvironment(input *DeleteComputeEnvironmentInput) (*DeleteComputeEnvironmentOutput, error) {
@@ -510,14 +510,13 @@ const opDeleteJobQueue = "DeleteJobQueue"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteJobQueueRequest method.
+//	req, resp := client.DeleteJobQueueRequest(params)
 //
-//    // Example sending a request using the DeleteJobQueueRequest method.
-//    req, resp := client.DeleteJobQueueRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeleteJobQueue
 func (c *Batch) DeleteJobQueueRequest(input *DeleteJobQueueInput) (req *request.Request, output *DeleteJobQueueOutput) {
@@ -555,13 +554,14 @@ func (c *Batch) DeleteJobQueueRequest(input *DeleteJobQueueInput) (req *request.
 // API operation DeleteJobQueue for usage and error information.
 //
 // Returned Error Types:
-//   * ClientException
-//   These errors are usually caused by a client action, such as using an action
-//   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that's not valid.
 //
-//   * ServerException
-//   These errors are usually caused by a server issue.
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an identifier that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeleteJobQueue
 func (c *Batch) DeleteJobQueue(input *DeleteJobQueueInput) (*DeleteJobQueueOutput, error) {
@@ -601,14 +601,13 @@ const opDeleteSchedulingPolicy = "DeleteSchedulingPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteSchedulingPolicyRequest method.
+//	req, resp := client.DeleteSchedulingPolicyRequest(params)
 //
-//    // Example sending a request using the DeleteSchedulingPolicyRequest method.
-//    req, resp := client.DeleteSchedulingPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeleteSchedulingPolicy
 func (c *Batch) DeleteSchedulingPolicyRequest(input *DeleteSchedulingPolicyInput) (req *request.Request, output *DeleteSchedulingPolicyOutput) {
@@ -642,13 +641,14 @@ func (c *Batch) DeleteSchedulingPolicyRequest(input *DeleteSchedulingPolicyInput
 // API operation DeleteSchedulingPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * ClientException
-//   These errors are usually caused by a client action, such as using an action
-//   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that's not valid.
 //
-//   * ServerException
-//   These errors are usually caused by a server issue.
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an identifier that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeleteSchedulingPolicy
 func (c *Batch) DeleteSchedulingPolicy(input *DeleteSchedulingPolicyInput) (*DeleteSchedulingPolicyOutput, error) {
@@ -688,14 +688,13 @@ const opDeregisterJobDefinition = "DeregisterJobDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeregisterJobDefinitionRequest method.
+//	req, resp := client.DeregisterJobDefinitionRequest(params)
 //
-//    // Example sending a request using the DeregisterJobDefinitionRequest method.
-//    req, resp := client.DeregisterJobDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeregisterJobDefinition
 func (c *Batch) DeregisterJobDefinitionRequest(input *DeregisterJobDefinitionInput) (req *request.Request, output *DeregisterJobDefinitionOutput) {
@@ -728,13 +727,14 @@ func (c *Batch) DeregisterJobDefinitionRequest(input *DeregisterJobDefinitionInp
 // API operation DeregisterJobDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * ClientException
-//   These errors are usually caused by a client action, such as using an action
-//   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that's not valid.
 //
-//   * ServerException
-//   These errors are usually caused by a server issue.
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an identifier that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeregisterJobDefinition
 func (c *Batch) DeregisterJobDefinition(input *DeregisterJobDefinitionInput) (*DeregisterJobDefinitionOutput, error) {
@@ -774,14 +774,13 @@ const opDescribeComputeEnvironments = "DescribeComputeEnvironments"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeComputeEnvironmentsRequest method.
+//	req, resp := client.DescribeComputeEnvironmentsRequest(params)
 //
-//    // Example sending a request using the DescribeComputeEnvironmentsRequest method.
-//    req, resp := client.DescribeComputeEnvironmentsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeComputeEnvironments
 func (c *Batch) DescribeComputeEnvironmentsRequest(input *DescribeComputeEnvironmentsInput) (req *request.Request, output *DescribeComputeEnvironmentsOutput) {
@@ -822,13 +821,14 @@ func (c *Batch) DescribeComputeEnvironmentsRequest(input *DescribeComputeEnviron
 // API operation DescribeComputeEnvironments for usage and error information.
 //
 // Returned Error Types:
-//   * ClientException
-//   These errors are usually caused by a client action, such as using an action
-//   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that's not valid.
 //
-//   * ServerException
-//   These errors are usually caused by a server issue.
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an identifier that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeComputeEnvironments
 func (c *Batch) DescribeComputeEnvironments(input *DescribeComputeEnvironmentsInput) (*DescribeComputeEnvironmentsOutput, error) {
@@ -860,15 +860,14 @@ func (c *Batch) DescribeComputeEnvironmentsWithContext(ctx aws.Context, input *D
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeComputeEnvironments operation.
-//    pageNum := 0
-//    err := client.DescribeComputeEnvironmentsPages(params,
-//        func(page *batch.DescribeComputeEnvironmentsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeComputeEnvironments operation.
+//	pageNum := 0
+//	err := client.DescribeComputeEnvironmentsPages(params,
+//	    func(page *batch.DescribeComputeEnvironmentsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Batch) DescribeComputeEnvironmentsPages(input *DescribeComputeEnvironmentsInput, fn func(*DescribeComputeEnvironmentsOutput, bool) bool) error {
 	return c.DescribeComputeEnvironmentsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -920,14 +919,13 @@ const opDescribeJobDefinitions = "DescribeJobDefinitions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeJobDefinitionsRequest method.
+//	req, resp := client.DescribeJobDefinitionsRequest(params)
 //
-//    // Example sending a request using the DescribeJobDefinitionsRequest method.
-//    req, resp := client.DescribeJobDefinitionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeJobDefinitions
 func (c *Batch) DescribeJobDefinitionsRequest(input *DescribeJobDefinitionsInput) (req *request.Request, output *DescribeJobDefinitionsOutput) {
@@ -965,13 +963,14 @@ func (c *Batch) DescribeJobDefinitionsRequest(input *DescribeJobDefinitionsInput
 // API operation DescribeJobDefinitions for usage and error information.
 //
 // Returned Error Types:
-//   * ClientException
-//   These errors are usually caused by a client action, such as using an action
-//   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that's not valid.
 //
-//   * ServerException
-//   These errors are usually caused by a server issue.
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an identifier that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeJobDefinitions
 func (c *Batch) DescribeJobDefinitions(input *DescribeJobDefinitionsInput) (*DescribeJobDefinitionsOutput, error) {
@@ -1003,15 +1002,14 @@ func (c *Batch) DescribeJobDefinitionsWithContext(ctx aws.Context, input *Descri
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeJobDefinitions operation.
-//    pageNum := 0
-//    err := client.DescribeJobDefinitionsPages(params,
-//        func(page *batch.DescribeJobDefinitionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeJobDefinitions operation.
+//	pageNum := 0
+//	err := client.DescribeJobDefinitionsPages(params,
+//	    func(page *batch.DescribeJobDefinitionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Batch) DescribeJobDefinitionsPages(input *DescribeJobDefinitionsInput, fn func(*DescribeJobDefinitionsOutput, bool) bool) error {
 	return c.DescribeJobDefinitionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1063,14 +1061,13 @@ const opDescribeJobQueues = "DescribeJobQueues"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeJobQueuesRequest method.
+//	req, resp := client.DescribeJobQueuesRequest(params)
 //
-//    // Example sending a request using the DescribeJobQueuesRequest method.
-//    req, resp := client.DescribeJobQueuesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeJobQueues
 func (c *Batch) DescribeJobQueuesRequest(input *DescribeJobQueuesInput) (req *request.Request, output *DescribeJobQueuesOutput) {
@@ -1107,13 +1104,14 @@ func (c *Batch) DescribeJobQueuesRequest(input *DescribeJobQueuesInput) (req *re
 // API operation DescribeJobQueues for usage and error information.
 //
 // Returned Error Types:
-//   * ClientException
-//   These errors are usually caused by a client action, such as using an action
-//   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that's not valid.
 //
-//   * ServerException
-//   These errors are usually caused by a server issue.
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an identifier that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeJobQueues
 func (c *Batch) DescribeJobQueues(input *DescribeJobQueuesInput) (*DescribeJobQueuesOutput, error) {
@@ -1145,15 +1143,14 @@ func (c *Batch) DescribeJobQueuesWithContext(ctx aws.Context, input *DescribeJob
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeJobQueues operation.
-//    pageNum := 0
-//    err := client.DescribeJobQueuesPages(params,
-//        func(page *batch.DescribeJobQueuesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeJobQueues operation.
+//	pageNum := 0
+//	err := client.DescribeJobQueuesPages(params,
+//	    func(page *batch.DescribeJobQueuesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Batch) DescribeJobQueuesPages(input *DescribeJobQueuesInput, fn func(*DescribeJobQueuesOutput, bool) bool) error {
 	return c.DescribeJobQueuesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1205,14 +1202,13 @@ const opDescribeJobs = "DescribeJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeJobsRequest method.
+//	req, resp := client.DescribeJobsRequest(params)
 //
-//    // Example sending a request using the DescribeJobsRequest method.
-//    req, resp := client.DescribeJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeJobs
 func (c *Batch) DescribeJobsRequest(input *DescribeJobsInput) (req *request.Request, output *DescribeJobsOutput) {
@@ -1243,13 +1239,14 @@ func (c *Batch) DescribeJobsRequest(input *DescribeJobsInput) (req *request.Requ
 // API operation DescribeJobs for usage and error information.
 //
 // Returned Error Types:
-//   * ClientException
-//   These errors are usually caused by a client action, such as using an action
-//   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that's not valid.
 //
-//   * ServerException
-//   These errors are usually caused by a server issue.
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an identifier that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeJobs
 func (c *Batch) DescribeJobs(input *DescribeJobsInput) (*DescribeJobsOutput, error) {
@@ -1289,14 +1286,13 @@ const opDescribeSchedulingPolicies = "DescribeSchedulingPolicies"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSchedulingPoliciesRequest method.
+//	req, resp := client.DescribeSchedulingPoliciesRequest(params)
 //
-//    // Example sending a request using the DescribeSchedulingPoliciesRequest method.
-//    req, resp := client.DescribeSchedulingPoliciesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeSchedulingPolicies
 func (c *Batch) DescribeSchedulingPoliciesRequest(input *DescribeSchedulingPoliciesInput) (req *request.Request, output *DescribeSchedulingPoliciesOutput) {
@@ -1327,13 +1323,14 @@ func (c *Batch) DescribeSchedulingPoliciesRequest(input *DescribeSchedulingPolic
 // API operation DescribeSchedulingPolicies for usage and error information.
 //
 // Returned Error Types:
-//   * ClientException
-//   These errors are usually caused by a client action, such as using an action
-//   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that's not valid.
 //
-//   * ServerException
-//   These errors are usually caused by a server issue.
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an identifier that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeSchedulingPolicies
 func (c *Batch) DescribeSchedulingPolicies(input *DescribeSchedulingPoliciesInput) (*DescribeSchedulingPoliciesOutput, error) {
@@ -1373,14 +1370,13 @@ const opListJobs = "ListJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListJobsRequest method.
+//	req, resp := client.ListJobsRequest(params)
 //
-//    // Example sending a request using the ListJobsRequest method.
-//    req, resp := client.ListJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/ListJobs
 func (c *Batch) ListJobsRequest(input *ListJobsInput) (req *request.Request, output *ListJobsOutput) {
@@ -1411,11 +1407,11 @@ func (c *Batch) ListJobsRequest(input *ListJobsInput) (req *request.Request, out
 //
 // You must specify only one of the following items:
 //
-//    * A job queue ID to return a list of jobs in that job queue
+//   - A job queue ID to return a list of jobs in that job queue
 //
-//    * A multi-node parallel job ID to return a list of nodes for that job
+//   - A multi-node parallel job ID to return a list of nodes for that job
 //
-//    * An array job ID to return a list of the children for that job
+//   - An array job ID to return a list of the children for that job
 //
 // You can filter the results by job status with the jobStatus parameter. If
 // you don't specify a status, only RUNNING jobs are returned.
@@ -1428,13 +1424,14 @@ func (c *Batch) ListJobsRequest(input *ListJobsInput) (req *request.Request, out
 // API operation ListJobs for usage and error information.
 //
 // Returned Error Types:
-//   * ClientException
-//   These errors are usually caused by a client action, such as using an action
-//   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that's not valid.
 //
-//   * ServerException
-//   These errors are usually caused by a server issue.
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an identifier that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/ListJobs
 func (c *Batch) ListJobs(input *ListJobsInput) (*ListJobsOutput, error) {
@@ -1466,15 +1463,14 @@ func (c *Batch) ListJobsWithContext(ctx aws.Context, input *ListJobsInput, opts 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListJobs operation.
-//    pageNum := 0
-//    err := client.ListJobsPages(params,
-//        func(page *batch.ListJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListJobs operation.
+//	pageNum := 0
+//	err := client.ListJobsPages(params,
+//	    func(page *batch.ListJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Batch) ListJobsPages(input *ListJobsInput, fn func(*ListJobsOutput, bool) bool) error {
 	return c.ListJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1526,14 +1522,13 @@ const opListSchedulingPolicies = "ListSchedulingPolicies"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSchedulingPoliciesRequest method.
+//	req, resp := client.ListSchedulingPoliciesRequest(params)
 //
-//    // Example sending a request using the ListSchedulingPoliciesRequest method.
-//    req, resp := client.ListSchedulingPoliciesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/ListSchedulingPolicies
 func (c *Batch) ListSchedulingPoliciesRequest(input *ListSchedulingPoliciesInput) (req *request.Request, output *ListSchedulingPoliciesOutput) {
@@ -1570,13 +1565,14 @@ func (c *Batch) ListSchedulingPoliciesRequest(input *ListSchedulingPoliciesInput
 // API operation ListSchedulingPolicies for usage and error information.
 //
 // Returned Error Types:
-//   * ClientException
-//   These errors are usually caused by a client action, such as using an action
-//   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that's not valid.
 //
-//   * ServerException
-//   These errors are usually caused by a server issue.
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an identifier that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/ListSchedulingPolicies
 func (c *Batch) ListSchedulingPolicies(input *ListSchedulingPoliciesInput) (*ListSchedulingPoliciesOutput, error) {
@@ -1608,15 +1604,14 @@ func (c *Batch) ListSchedulingPoliciesWithContext(ctx aws.Context, input *ListSc
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSchedulingPolicies operation.
-//    pageNum := 0
-//    err := client.ListSchedulingPoliciesPages(params,
-//        func(page *batch.ListSchedulingPoliciesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSchedulingPolicies operation.
+//	pageNum := 0
+//	err := client.ListSchedulingPoliciesPages(params,
+//	    func(page *batch.ListSchedulingPoliciesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Batch) ListSchedulingPoliciesPages(input *ListSchedulingPoliciesInput, fn func(*ListSchedulingPoliciesOutput, bool) bool) error {
 	return c.ListSchedulingPoliciesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1668,14 +1663,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/ListTagsForResource
 func (c *Batch) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -1708,13 +1702,14 @@ func (c *Batch) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * ClientException
-//   These errors are usually caused by a client action, such as using an action
-//   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that's not valid.
 //
-//   * ServerException
-//   These errors are usually caused by a server issue.
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an identifier that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/ListTagsForResource
 func (c *Batch) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -1754,14 +1749,13 @@ const opRegisterJobDefinition = "RegisterJobDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RegisterJobDefinitionRequest method.
+//	req, resp := client.RegisterJobDefinitionRequest(params)
 //
-//    // Example sending a request using the RegisterJobDefinitionRequest method.
-//    req, resp := client.RegisterJobDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/RegisterJobDefinition
 func (c *Batch) RegisterJobDefinitionRequest(input *RegisterJobDefinitionInput) (req *request.Request, output *RegisterJobDefinitionOutput) {
@@ -1792,13 +1786,14 @@ func (c *Batch) RegisterJobDefinitionRequest(input *RegisterJobDefinitionInput) 
 // API operation RegisterJobDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * ClientException
-//   These errors are usually caused by a client action, such as using an action
-//   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that's not valid.
 //
-//   * ServerException
-//   These errors are usually caused by a server issue.
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an identifier that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/RegisterJobDefinition
 func (c *Batch) RegisterJobDefinition(input *RegisterJobDefinitionInput) (*RegisterJobDefinitionOutput, error) {
@@ -1838,14 +1833,13 @@ const opSubmitJob = "SubmitJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SubmitJobRequest method.
+//	req, resp := client.SubmitJobRequest(params)
 //
-//    // Example sending a request using the SubmitJobRequest method.
-//    req, resp := client.SubmitJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/SubmitJob
 func (c *Batch) SubmitJobRequest(input *SubmitJobInput) (req *request.Request, output *SubmitJobOutput) {
@@ -1889,13 +1883,14 @@ func (c *Batch) SubmitJobRequest(input *SubmitJobInput) (req *request.Request, o
 // API operation SubmitJob for usage and error information.
 //
 // Returned Error Types:
-//   * ClientException
-//   These errors are usually caused by a client action, such as using an action
-//   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that's not valid.
 //
-//   * ServerException
-//   These errors are usually caused by a server issue.
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an identifier that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/SubmitJob
 func (c *Batch) SubmitJob(input *SubmitJobInput) (*SubmitJobOutput, error) {
@@ -1935,14 +1930,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/TagResource
 func (c *Batch) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -1980,13 +1974,14 @@ func (c *Batch) TagResourceRequest(input *TagResourceInput) (req *request.Reques
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ClientException
-//   These errors are usually caused by a client action, such as using an action
-//   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that's not valid.
 //
-//   * ServerException
-//   These errors are usually caused by a server issue.
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an identifier that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/TagResource
 func (c *Batch) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -2026,14 +2021,13 @@ const opTerminateJob = "TerminateJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TerminateJobRequest method.
+//	req, resp := client.TerminateJobRequest(params)
 //
-//    // Example sending a request using the TerminateJobRequest method.
-//    req, resp := client.TerminateJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/TerminateJob
 func (c *Batch) TerminateJobRequest(input *TerminateJobInput) (req *request.Request, output *TerminateJobOutput) {
@@ -2067,13 +2061,14 @@ func (c *Batch) TerminateJobRequest(input *TerminateJobInput) (req *request.Requ
 // API operation TerminateJob for usage and error information.
 //
 // Returned Error Types:
-//   * ClientException
-//   These errors are usually caused by a client action, such as using an action
-//   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that's not valid.
 //
-//   * ServerException
-//   These errors are usually caused by a server issue.
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an identifier that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/TerminateJob
 func (c *Batch) TerminateJob(input *TerminateJobInput) (*TerminateJobOutput, error) {
@@ -2113,14 +2108,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/UntagResource
 func (c *Batch) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -2152,13 +2146,14 @@ func (c *Batch) UntagResourceRequest(input *UntagResourceInput) (req *request.Re
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ClientException
-//   These errors are usually caused by a client action, such as using an action
-//   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that's not valid.
 //
-//   * ServerException
-//   These errors are usually caused by a server issue.
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an identifier that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/UntagResource
 func (c *Batch) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -2198,14 +2193,13 @@ const opUpdateComputeEnvironment = "UpdateComputeEnvironment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateComputeEnvironmentRequest method.
+//	req, resp := client.UpdateComputeEnvironmentRequest(params)
 //
-//    // Example sending a request using the UpdateComputeEnvironmentRequest method.
-//    req, resp := client.UpdateComputeEnvironmentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/UpdateComputeEnvironment
 func (c *Batch) UpdateComputeEnvironmentRequest(input *UpdateComputeEnvironmentInput) (req *request.Request, output *UpdateComputeEnvironmentOutput) {
@@ -2236,13 +2230,14 @@ func (c *Batch) UpdateComputeEnvironmentRequest(input *UpdateComputeEnvironmentI
 // API operation UpdateComputeEnvironment for usage and error information.
 //
 // Returned Error Types:
-//   * ClientException
-//   These errors are usually caused by a client action, such as using an action
-//   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that's not valid.
 //
-//   * ServerException
-//   These errors are usually caused by a server issue.
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an identifier that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/UpdateComputeEnvironment
 func (c *Batch) UpdateComputeEnvironment(input *UpdateComputeEnvironmentInput) (*UpdateComputeEnvironmentOutput, error) {
@@ -2282,14 +2277,13 @@ const opUpdateJobQueue = "UpdateJobQueue"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateJobQueueRequest method.
+//	req, resp := client.UpdateJobQueueRequest(params)
 //
-//    // Example sending a request using the UpdateJobQueueRequest method.
-//    req, resp := client.UpdateJobQueueRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/UpdateJobQueue
 func (c *Batch) UpdateJobQueueRequest(input *UpdateJobQueueInput) (req *request.Request, output *UpdateJobQueueOutput) {
@@ -2320,13 +2314,14 @@ func (c *Batch) UpdateJobQueueRequest(input *UpdateJobQueueInput) (req *request.
 // API operation UpdateJobQueue for usage and error information.
 //
 // Returned Error Types:
-//   * ClientException
-//   These errors are usually caused by a client action, such as using an action
-//   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that's not valid.
 //
-//   * ServerException
-//   These errors are usually caused by a server issue.
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an identifier that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/UpdateJobQueue
 func (c *Batch) UpdateJobQueue(input *UpdateJobQueueInput) (*UpdateJobQueueOutput, error) {
@@ -2366,14 +2361,13 @@ const opUpdateSchedulingPolicy = "UpdateSchedulingPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateSchedulingPolicyRequest method.
+//	req, resp := client.UpdateSchedulingPolicyRequest(params)
 //
-//    // Example sending a request using the UpdateSchedulingPolicyRequest method.
-//    req, resp := client.UpdateSchedulingPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/UpdateSchedulingPolicy
 func (c *Batch) UpdateSchedulingPolicyRequest(input *UpdateSchedulingPolicyInput) (req *request.Request, output *UpdateSchedulingPolicyOutput) {
@@ -2405,13 +2399,14 @@ func (c *Batch) UpdateSchedulingPolicyRequest(input *UpdateSchedulingPolicyInput
 // API operation UpdateSchedulingPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * ClientException
-//   These errors are usually caused by a client action, such as using an action
-//   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that's not valid.
 //
-//   * ServerException
-//   These errors are usually caused by a server issue.
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an identifier that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/UpdateSchedulingPolicy
 func (c *Batch) UpdateSchedulingPolicy(input *UpdateSchedulingPolicyInput) (*UpdateSchedulingPolicyOutput, error) {
@@ -9473,11 +9468,11 @@ func (s *SchedulingPolicyListingDetail) SetArn(v string) *SchedulingPolicyListin
 // An object representing the secret to expose to your container. Secrets can
 // be exposed to a container in the following ways:
 //
-//    * To inject sensitive data into your containers as environment variables,
-//    use the secrets container definition parameter.
+//   - To inject sensitive data into your containers as environment variables,
+//     use the secrets container definition parameter.
 //
-//    * To reference sensitive information in the log configuration of a container,
-//    use the secretOptions container definition parameter.
+//   - To reference sensitive information in the log configuration of a container,
+//     use the secretOptions container definition parameter.
 //
 // For more information, see Specifying sensitive data (https://docs.aws.amazon.com/batch/latest/userguide/specifying-sensitive-data.html)
 // in the Batch User Guide.

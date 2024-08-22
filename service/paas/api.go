@@ -28,14 +28,13 @@ const opCreateService = "CreateService"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateServiceRequest method.
+//	req, resp := client.CreateServiceRequest(params)
 //
-//    // Example sending a request using the CreateServiceRequest method.
-//    req, resp := client.CreateServiceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/CreateService
 func (c *PaaS) CreateServiceRequest(input *CreateServiceInput) (req *request.Request, output *CreateServiceOutput) {
@@ -100,14 +99,13 @@ const opDeleteBackups = "DeleteBackups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteBackupsRequest method.
+//	req, resp := client.DeleteBackupsRequest(params)
 //
-//    // Example sending a request using the DeleteBackupsRequest method.
-//    req, resp := client.DeleteBackupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/DeleteBackups
 func (c *PaaS) DeleteBackupsRequest(input *DeleteBackupsInput) (req *request.Request, output *DeleteBackupsOutput) {
@@ -173,14 +171,13 @@ const opDeleteService = "DeleteService"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteServiceRequest method.
+//	req, resp := client.DeleteServiceRequest(params)
 //
-//    // Example sending a request using the DeleteServiceRequest method.
-//    req, resp := client.DeleteServiceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/DeleteService
 func (c *PaaS) DeleteServiceRequest(input *DeleteServiceInput) (req *request.Request, output *DeleteServiceOutput) {
@@ -246,14 +243,13 @@ const opDescribeBackup = "DescribeBackup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeBackupRequest method.
+//	req, resp := client.DescribeBackupRequest(params)
 //
-//    // Example sending a request using the DescribeBackupRequest method.
-//    req, resp := client.DescribeBackupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/DescribeBackup
 func (c *PaaS) DescribeBackupRequest(input *DescribeBackupInput) (req *request.Request, output *DescribeBackupOutput) {
@@ -318,14 +314,13 @@ const opDescribeService = "DescribeService"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeServiceRequest method.
+//	req, resp := client.DescribeServiceRequest(params)
 //
-//    // Example sending a request using the DescribeServiceRequest method.
-//    req, resp := client.DescribeServiceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/DescribeService
 func (c *PaaS) DescribeServiceRequest(input *DescribeServiceInput) (req *request.Request, output *DescribeServiceOutput) {
@@ -390,14 +385,13 @@ const opListBackupUsers = "ListBackupUsers"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListBackupUsersRequest method.
+//	req, resp := client.ListBackupUsersRequest(params)
 //
-//    // Example sending a request using the ListBackupUsersRequest method.
-//    req, resp := client.ListBackupUsersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/ListBackupUsers
 func (c *PaaS) ListBackupUsersRequest(input *ListBackupUsersInput) (req *request.Request, output *ListBackupUsersOutput) {
@@ -462,14 +456,13 @@ const opListBackups = "ListBackups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListBackupsRequest method.
+//	req, resp := client.ListBackupsRequest(params)
 //
-//    // Example sending a request using the ListBackupsRequest method.
-//    req, resp := client.ListBackupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/ListBackups
 func (c *PaaS) ListBackupsRequest(input *ListBackupsInput) (req *request.Request, output *ListBackupsOutput) {
@@ -534,14 +527,13 @@ const opListServices = "ListServices"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListServicesRequest method.
+//	req, resp := client.ListServicesRequest(params)
 //
-//    // Example sending a request using the ListServicesRequest method.
-//    req, resp := client.ListServicesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/ListServices
 func (c *PaaS) ListServicesRequest(input *ListServicesInput) (req *request.Request, output *ListServicesOutput) {
@@ -606,14 +598,13 @@ const opModifyBackup = "ModifyBackup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ModifyBackupRequest method.
+//	req, resp := client.ModifyBackupRequest(params)
 //
-//    // Example sending a request using the ModifyBackupRequest method.
-//    req, resp := client.ModifyBackupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/ModifyBackup
 func (c *PaaS) ModifyBackupRequest(input *ModifyBackupInput) (req *request.Request, output *ModifyBackupOutput) {
@@ -678,14 +669,13 @@ const opModifyService = "ModifyService"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ModifyServiceRequest method.
+//	req, resp := client.ModifyServiceRequest(params)
 //
-//    // Example sending a request using the ModifyServiceRequest method.
-//    req, resp := client.ModifyServiceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/ModifyService
 func (c *PaaS) ModifyServiceRequest(input *ModifyServiceInput) (req *request.Request, output *ModifyServiceOutput) {
@@ -750,14 +740,13 @@ const opModifyServiceParameters = "ModifyServiceParameters"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ModifyServiceParametersRequest method.
+//	req, resp := client.ModifyServiceParametersRequest(params)
 //
-//    // Example sending a request using the ModifyServiceParametersRequest method.
-//    req, resp := client.ModifyServiceParametersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/ModifyServiceParameters
 func (c *PaaS) ModifyServiceParametersRequest(input *ModifyServiceParametersInput) (req *request.Request, output *ModifyServiceParametersOutput) {
