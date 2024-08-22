@@ -11578,7 +11578,7 @@ func (s *AccessLogSettings) SetFormat(v string) *AccessLogSettings {
 //	X-Amz-Date: 20160531T184618Z Authorization: AWS4-HMAC-SHA256 Credential={access_key_ID}/us-east-1/apigateway/aws4_request,
 //	SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash}
 //
-// Response
+// # Response
 //
 // The successful response returns a 200 OK status code and a payload similar
 // to the following:
@@ -18469,7 +18469,7 @@ func (s *GetGatewayResponsesInput) SetRestApiId(v string) *GetGatewayResponsesIn
 //	SignedHeaders=content-type;host;x-amz-date, Signature=59b42fe54a76a5de8adf2c67baa6d39206f8e9ad49a1d77ccc6a5da3103a398a
 //	Cache-Control: no-cache Postman-Token: 5637af27-dc29-fc5c-9dfe-0645d52cb515
 //
-// Response
+// # Response
 //
 // The successful operation returns the 200 OK status code and a payload similar
 // to the following:
@@ -21772,7 +21772,7 @@ func (s *LimitExceededException) RequestID() string {
 //	Authorization: AWS4-HMAC-SHA256 Credential={access_key_ID}/20160603/us-east-1/apigateway/aws4_request,
 //	SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash}
 //
-// Response
+// # Response
 //
 // The successful response returns a 200 OK status code and a payload similar
 // to the following:
@@ -22051,7 +22051,7 @@ func (s *Method) SetRequestValidatorId(v string) *Method {
 //	X-Amz-Date: 20160603T222952Z Authorization: AWS4-HMAC-SHA256 Credential={access_key_ID}/20160603/us-east-1/apigateway/aws4_request,
 //	SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash}
 //
-// Response
+// # Response
 //
 // The successful response returns 200 OK status and a payload as follows:
 //
