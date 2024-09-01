@@ -154,6 +154,10 @@ get-deps-verify:
 	@echo "go get SDK verification utilities"
 	go get golang.org/x/lint/golint
 
+install-deps-verify:
+	@echo "go install SDK verification utilities"
+	go install golang.org/x/lint/golint@latest
+
 ##############
 # Benchmarks #
 ##############
