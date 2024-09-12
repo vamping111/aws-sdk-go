@@ -378,30 +378,6 @@ func (c *IAM) AttachGroupPolicyRequest(input *AttachGroupPolicyInput) (req *requ
 //
 // See the AWS API reference guide for AWS Identity and Access Management's
 // API operation AttachGroupPolicy for usage and error information.
-//
-// Returned Error Codes:
-//
-//   - ErrCodeNoSuchEntityException "NoSuchEntity"
-//     The request was rejected because it referenced a resource entity that does
-//     not exist. The error message describes the resource.
-//
-//   - ErrCodeLimitExceededException "LimitExceeded"
-//     The request was rejected because it attempted to create resources beyond
-//     the current Amazon Web Services account limits. The error message describes
-//     the limit exceeded.
-//
-//   - ErrCodeInvalidInputException "InvalidInput"
-//     The request was rejected because an invalid or out-of-range value was supplied
-//     for an input parameter.
-//
-//   - ErrCodePolicyNotAttachableException "PolicyNotAttachable"
-//     The request failed because Amazon Web Services service role policies can
-//     only be attached to the service-linked role for that service.
-//
-//   - ErrCodeServiceFailureException "ServiceFailure"
-//     The request processing has failed because of an unknown error, exception
-//     or failure.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/AttachGroupPolicy
 func (c *IAM) AttachGroupPolicy(input *AttachGroupPolicyInput) (*AttachGroupPolicyOutput, error) {
 	req, out := c.AttachGroupPolicyRequest(input)
@@ -606,30 +582,6 @@ func (c *IAM) AttachUserPolicyRequest(input *AttachUserPolicyInput) (req *reques
 //
 // See the AWS API reference guide for AWS Identity and Access Management's
 // API operation AttachUserPolicy for usage and error information.
-//
-// Returned Error Codes:
-//
-//   - ErrCodeNoSuchEntityException "NoSuchEntity"
-//     The request was rejected because it referenced a resource entity that does
-//     not exist. The error message describes the resource.
-//
-//   - ErrCodeLimitExceededException "LimitExceeded"
-//     The request was rejected because it attempted to create resources beyond
-//     the current Amazon Web Services account limits. The error message describes
-//     the limit exceeded.
-//
-//   - ErrCodeInvalidInputException "InvalidInput"
-//     The request was rejected because an invalid or out-of-range value was supplied
-//     for an input parameter.
-//
-//   - ErrCodePolicyNotAttachableException "PolicyNotAttachable"
-//     The request failed because Amazon Web Services service role policies can
-//     only be attached to the service-linked role for that service.
-//
-//   - ErrCodeServiceFailureException "ServiceFailure"
-//     The request processing has failed because of an unknown error, exception
-//     or failure.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/AttachUserPolicy
 func (c *IAM) AttachUserPolicy(input *AttachUserPolicyInput) (*AttachUserPolicyOutput, error) {
 	req, out := c.AttachUserPolicyRequest(input)
@@ -1021,26 +973,6 @@ func (c *IAM) CreateGroupRequest(input *CreateGroupInput) (req *request.Request,
 //
 // See the AWS API reference guide for AWS Identity and Access Management's
 // API operation CreateGroup for usage and error information.
-//
-// Returned Error Codes:
-//
-//   - ErrCodeLimitExceededException "LimitExceeded"
-//     The request was rejected because it attempted to create resources beyond
-//     the current Amazon Web Services account limits. The error message describes
-//     the limit exceeded.
-//
-//   - ErrCodeEntityAlreadyExistsException "EntityAlreadyExists"
-//     The request was rejected because it attempted to create a resource that already
-//     exists.
-//
-//   - ErrCodeNoSuchEntityException "NoSuchEntity"
-//     The request was rejected because it referenced a resource entity that does
-//     not exist. The error message describes the resource.
-//
-//   - ErrCodeServiceFailureException "ServiceFailure"
-//     The request processing has failed because of an unknown error, exception
-//     or failure.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/CreateGroup
 func (c *IAM) CreateGroup(input *CreateGroupInput) (*CreateGroupOutput, error) {
 	req, out := c.CreateGroupRequest(input)
@@ -1474,35 +1406,6 @@ func (c *IAM) CreatePolicyRequest(input *CreatePolicyInput) (req *request.Reques
 //
 // See the AWS API reference guide for AWS Identity and Access Management's
 // API operation CreatePolicy for usage and error information.
-//
-// Returned Error Codes:
-//
-//   - ErrCodeInvalidInputException "InvalidInput"
-//     The request was rejected because an invalid or out-of-range value was supplied
-//     for an input parameter.
-//
-//   - ErrCodeLimitExceededException "LimitExceeded"
-//     The request was rejected because it attempted to create resources beyond
-//     the current Amazon Web Services account limits. The error message describes
-//     the limit exceeded.
-//
-//   - ErrCodeEntityAlreadyExistsException "EntityAlreadyExists"
-//     The request was rejected because it attempted to create a resource that already
-//     exists.
-//
-//   - ErrCodeMalformedPolicyDocumentException "MalformedPolicyDocument"
-//     The request was rejected because the policy document was malformed. The error
-//     message describes the specific error.
-//
-//   - ErrCodeConcurrentModificationException "ConcurrentModification"
-//     The request was rejected because multiple requests to change this object
-//     were submitted simultaneously. Wait a few minutes and submit your request
-//     again.
-//
-//   - ErrCodeServiceFailureException "ServiceFailure"
-//     The request processing has failed because of an unknown error, exception
-//     or failure.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/CreatePolicy
 func (c *IAM) CreatePolicy(input *CreatePolicyInput) (*CreatePolicyOutput, error) {
 	req, out := c.CreatePolicyRequest(input)
@@ -1628,6 +1531,77 @@ func (c *IAM) CreatePolicyVersion(input *CreatePolicyVersionInput) (*CreatePolic
 // for more information on using Contexts.
 func (c *IAM) CreatePolicyVersionWithContext(ctx aws.Context, input *CreatePolicyVersionInput, opts ...request.Option) (*CreatePolicyVersionOutput, error) {
 	req, out := c.CreatePolicyVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateProject = "CreateProject"
+
+// CreateProjectRequest generates a "aws/request.Request" representing the
+// client's request for the CreateProject operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateProject for more information on using the CreateProject
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateProjectRequest method.
+//	req, resp := client.CreateProjectRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/CreateProject
+func (c *IAM) CreateProjectRequest(input *CreateProjectInput) (req *request.Request, output *CreateProjectOutput) {
+	op := &request.Operation{
+		Name:       opCreateProject,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateProjectInput{}
+	}
+
+	output = &CreateProjectOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateProject API operation for AWS Identity and Access Management.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Identity and Access Management's
+// API operation CreateProject for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/CreateProject
+func (c *IAM) CreateProject(input *CreateProjectInput) (*CreateProjectOutput, error) {
+	req, out := c.CreateProjectRequest(input)
+	return out, req.Send()
+}
+
+// CreateProjectWithContext is the same as CreateProject with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateProject for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IAM) CreateProjectWithContext(ctx aws.Context, input *CreateProjectInput, opts ...request.Option) (*CreateProjectOutput, error) {
+	req, out := c.CreateProjectRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2716,26 +2690,6 @@ func (c *IAM) DeleteGroupRequest(input *DeleteGroupInput) (req *request.Request,
 //
 // See the AWS API reference guide for AWS Identity and Access Management's
 // API operation DeleteGroup for usage and error information.
-//
-// Returned Error Codes:
-//
-//   - ErrCodeNoSuchEntityException "NoSuchEntity"
-//     The request was rejected because it referenced a resource entity that does
-//     not exist. The error message describes the resource.
-//
-//   - ErrCodeDeleteConflictException "DeleteConflict"
-//     The request was rejected because it attempted to delete a resource that has
-//     attached subordinate entities. The error message describes these entities.
-//
-//   - ErrCodeLimitExceededException "LimitExceeded"
-//     The request was rejected because it attempted to create resources beyond
-//     the current Amazon Web Services account limits. The error message describes
-//     the limit exceeded.
-//
-//   - ErrCodeServiceFailureException "ServiceFailure"
-//     The request processing has failed because of an unknown error, exception
-//     or failure.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteGroup
 func (c *IAM) DeleteGroup(input *DeleteGroupInput) (*DeleteGroupOutput, error) {
 	req, out := c.DeleteGroupRequest(input)
@@ -3236,30 +3190,6 @@ func (c *IAM) DeletePolicyRequest(input *DeletePolicyInput) (req *request.Reques
 //
 // See the AWS API reference guide for AWS Identity and Access Management's
 // API operation DeletePolicy for usage and error information.
-//
-// Returned Error Codes:
-//
-//   - ErrCodeNoSuchEntityException "NoSuchEntity"
-//     The request was rejected because it referenced a resource entity that does
-//     not exist. The error message describes the resource.
-//
-//   - ErrCodeLimitExceededException "LimitExceeded"
-//     The request was rejected because it attempted to create resources beyond
-//     the current Amazon Web Services account limits. The error message describes
-//     the limit exceeded.
-//
-//   - ErrCodeInvalidInputException "InvalidInput"
-//     The request was rejected because an invalid or out-of-range value was supplied
-//     for an input parameter.
-//
-//   - ErrCodeDeleteConflictException "DeleteConflict"
-//     The request was rejected because it attempted to delete a resource that has
-//     attached subordinate entities. The error message describes these entities.
-//
-//   - ErrCodeServiceFailureException "ServiceFailure"
-//     The request processing has failed because of an unknown error, exception
-//     or failure.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeletePolicy
 func (c *IAM) DeletePolicy(input *DeletePolicyInput) (*DeletePolicyOutput, error) {
 	req, out := c.DeletePolicyRequest(input)
@@ -3383,6 +3313,78 @@ func (c *IAM) DeletePolicyVersion(input *DeletePolicyVersionInput) (*DeletePolic
 // for more information on using Contexts.
 func (c *IAM) DeletePolicyVersionWithContext(ctx aws.Context, input *DeletePolicyVersionInput, opts ...request.Option) (*DeletePolicyVersionOutput, error) {
 	req, out := c.DeletePolicyVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteProject = "DeleteProject"
+
+// DeleteProjectRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteProject operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteProject for more information on using the DeleteProject
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteProjectRequest method.
+//	req, resp := client.DeleteProjectRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteProject
+func (c *IAM) DeleteProjectRequest(input *DeleteProjectInput) (req *request.Request, output *DeleteProjectOutput) {
+	op := &request.Operation{
+		Name:       opDeleteProject,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteProjectInput{}
+	}
+
+	output = &DeleteProjectOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteProject API operation for AWS Identity and Access Management.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Identity and Access Management's
+// API operation DeleteProject for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteProject
+func (c *IAM) DeleteProject(input *DeleteProjectInput) (*DeleteProjectOutput, error) {
+	req, out := c.DeleteProjectRequest(input)
+	return out, req.Send()
+}
+
+// DeleteProjectWithContext is the same as DeleteProject with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteProject for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IAM) DeleteProjectWithContext(ctx aws.Context, input *DeleteProjectInput, opts ...request.Option) (*DeleteProjectOutput, error) {
+	req, out := c.DeleteProjectRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4351,31 +4353,6 @@ func (c *IAM) DeleteUserRequest(input *DeleteUserInput) (req *request.Request, o
 //
 // See the AWS API reference guide for AWS Identity and Access Management's
 // API operation DeleteUser for usage and error information.
-//
-// Returned Error Codes:
-//
-//   - ErrCodeLimitExceededException "LimitExceeded"
-//     The request was rejected because it attempted to create resources beyond
-//     the current Amazon Web Services account limits. The error message describes
-//     the limit exceeded.
-//
-//   - ErrCodeNoSuchEntityException "NoSuchEntity"
-//     The request was rejected because it referenced a resource entity that does
-//     not exist. The error message describes the resource.
-//
-//   - ErrCodeDeleteConflictException "DeleteConflict"
-//     The request was rejected because it attempted to delete a resource that has
-//     attached subordinate entities. The error message describes these entities.
-//
-//   - ErrCodeConcurrentModificationException "ConcurrentModification"
-//     The request was rejected because multiple requests to change this object
-//     were submitted simultaneously. Wait a few minutes and submit your request
-//     again.
-//
-//   - ErrCodeServiceFailureException "ServiceFailure"
-//     The request processing has failed because of an unknown error, exception
-//     or failure.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteUser
 func (c *IAM) DeleteUser(input *DeleteUserInput) (*DeleteUserOutput, error) {
 	req, out := c.DeleteUserRequest(input)
@@ -4737,26 +4714,6 @@ func (c *IAM) DetachGroupPolicyRequest(input *DetachGroupPolicyInput) (req *requ
 //
 // See the AWS API reference guide for AWS Identity and Access Management's
 // API operation DetachGroupPolicy for usage and error information.
-//
-// Returned Error Codes:
-//
-//   - ErrCodeNoSuchEntityException "NoSuchEntity"
-//     The request was rejected because it referenced a resource entity that does
-//     not exist. The error message describes the resource.
-//
-//   - ErrCodeLimitExceededException "LimitExceeded"
-//     The request was rejected because it attempted to create resources beyond
-//     the current Amazon Web Services account limits. The error message describes
-//     the limit exceeded.
-//
-//   - ErrCodeInvalidInputException "InvalidInput"
-//     The request was rejected because an invalid or out-of-range value was supplied
-//     for an input parameter.
-//
-//   - ErrCodeServiceFailureException "ServiceFailure"
-//     The request processing has failed because of an unknown error, exception
-//     or failure.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DetachGroupPolicy
 func (c *IAM) DetachGroupPolicy(input *DetachGroupPolicyInput) (*DetachGroupPolicyOutput, error) {
 	req, out := c.DetachGroupPolicyRequest(input)
@@ -4941,26 +4898,6 @@ func (c *IAM) DetachUserPolicyRequest(input *DetachUserPolicyInput) (req *reques
 //
 // See the AWS API reference guide for AWS Identity and Access Management's
 // API operation DetachUserPolicy for usage and error information.
-//
-// Returned Error Codes:
-//
-//   - ErrCodeNoSuchEntityException "NoSuchEntity"
-//     The request was rejected because it referenced a resource entity that does
-//     not exist. The error message describes the resource.
-//
-//   - ErrCodeLimitExceededException "LimitExceeded"
-//     The request was rejected because it attempted to create resources beyond
-//     the current Amazon Web Services account limits. The error message describes
-//     the limit exceeded.
-//
-//   - ErrCodeInvalidInputException "InvalidInput"
-//     The request was rejected because an invalid or out-of-range value was supplied
-//     for an input parameter.
-//
-//   - ErrCodeServiceFailureException "ServiceFailure"
-//     The request processing has failed because of an unknown error, exception
-//     or failure.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DetachUserPolicy
 func (c *IAM) DetachUserPolicy(input *DetachUserPolicyInput) (*DetachUserPolicyOutput, error) {
 	req, out := c.DetachUserPolicyRequest(input)
@@ -6250,17 +6187,6 @@ func (c *IAM) GetGroupRequest(input *GetGroupInput) (req *request.Request, outpu
 //
 // See the AWS API reference guide for AWS Identity and Access Management's
 // API operation GetGroup for usage and error information.
-//
-// Returned Error Codes:
-//
-//   - ErrCodeNoSuchEntityException "NoSuchEntity"
-//     The request was rejected because it referenced a resource entity that does
-//     not exist. The error message describes the resource.
-//
-//   - ErrCodeServiceFailureException "ServiceFailure"
-//     The request processing has failed because of an unknown error, exception
-//     or failure.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetGroup
 func (c *IAM) GetGroup(input *GetGroupInput) (*GetGroupOutput, error) {
 	req, out := c.GetGroupRequest(input)
@@ -6868,21 +6794,6 @@ func (c *IAM) GetPolicyRequest(input *GetPolicyInput) (req *request.Request, out
 //
 // See the AWS API reference guide for AWS Identity and Access Management's
 // API operation GetPolicy for usage and error information.
-//
-// Returned Error Codes:
-//
-//   - ErrCodeNoSuchEntityException "NoSuchEntity"
-//     The request was rejected because it referenced a resource entity that does
-//     not exist. The error message describes the resource.
-//
-//   - ErrCodeInvalidInputException "InvalidInput"
-//     The request was rejected because an invalid or out-of-range value was supplied
-//     for an input parameter.
-//
-//   - ErrCodeServiceFailureException "ServiceFailure"
-//     The request processing has failed because of an unknown error, exception
-//     or failure.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetPolicy
 func (c *IAM) GetPolicy(input *GetPolicyInput) (*GetPolicyOutput, error) {
 	req, out := c.GetPolicyRequest(input)
@@ -7009,6 +6920,77 @@ func (c *IAM) GetPolicyVersion(input *GetPolicyVersionInput) (*GetPolicyVersionO
 // for more information on using Contexts.
 func (c *IAM) GetPolicyVersionWithContext(ctx aws.Context, input *GetPolicyVersionInput, opts ...request.Option) (*GetPolicyVersionOutput, error) {
 	req, out := c.GetPolicyVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetProject = "GetProject"
+
+// GetProjectRequest generates a "aws/request.Request" representing the
+// client's request for the GetProject operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetProject for more information on using the GetProject
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetProjectRequest method.
+//	req, resp := client.GetProjectRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetProject
+func (c *IAM) GetProjectRequest(input *GetProjectInput) (req *request.Request, output *GetProjectOutput) {
+	op := &request.Operation{
+		Name:       opGetProject,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetProjectInput{}
+	}
+
+	output = &GetProjectOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetProject API operation for AWS Identity and Access Management.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Identity and Access Management's
+// API operation GetProject for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetProject
+func (c *IAM) GetProject(input *GetProjectInput) (*GetProjectOutput, error) {
+	req, out := c.GetProjectRequest(input)
+	return out, req.Send()
+}
+
+// GetProjectWithContext is the same as GetProject with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetProject for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IAM) GetProjectWithContext(ctx aws.Context, input *GetProjectInput, opts ...request.Option) (*GetProjectOutput, error) {
+	req, out := c.GetProjectRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8980,17 +8962,6 @@ func (c *IAM) ListGroupPoliciesRequest(input *ListGroupPoliciesInput) (req *requ
 //
 // See the AWS API reference guide for AWS Identity and Access Management's
 // API operation ListGroupPolicies for usage and error information.
-//
-// Returned Error Codes:
-//
-//   - ErrCodeNoSuchEntityException "NoSuchEntity"
-//     The request was rejected because it referenced a resource entity that does
-//     not exist. The error message describes the resource.
-//
-//   - ErrCodeServiceFailureException "ServiceFailure"
-//     The request processing has failed because of an unknown error, exception
-//     or failure.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListGroupPolicies
 func (c *IAM) ListGroupPolicies(input *ListGroupPoliciesInput) (*ListGroupPoliciesOutput, error) {
 	req, out := c.ListGroupPoliciesRequest(input)
@@ -9123,12 +9094,6 @@ func (c *IAM) ListGroupsRequest(input *ListGroupsInput) (req *request.Request, o
 //
 // See the AWS API reference guide for AWS Identity and Access Management's
 // API operation ListGroups for usage and error information.
-//
-// Returned Error Codes:
-//   - ErrCodeServiceFailureException "ServiceFailure"
-//     The request processing has failed because of an unknown error, exception
-//     or failure.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListGroups
 func (c *IAM) ListGroups(input *ListGroupsInput) (*ListGroupsOutput, error) {
 	req, out := c.ListGroupsRequest(input)
@@ -10213,12 +10178,6 @@ func (c *IAM) ListPoliciesRequest(input *ListPoliciesInput) (req *request.Reques
 //
 // See the AWS API reference guide for AWS Identity and Access Management's
 // API operation ListPolicies for usage and error information.
-//
-// Returned Error Codes:
-//   - ErrCodeServiceFailureException "ServiceFailure"
-//     The request processing has failed because of an unknown error, exception
-//     or failure.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListPolicies
 func (c *IAM) ListPolicies(input *ListPoliciesInput) (*ListPoliciesOutput, error) {
 	req, out := c.ListPoliciesRequest(input)
@@ -11840,6 +11799,148 @@ func (c *IAM) ListSigningCertificatesPagesWithContext(ctx aws.Context, input *Li
 	return p.Err()
 }
 
+const opListUserGlobalGroups = "ListUserGlobalGroups"
+
+// ListUserGlobalGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the ListUserGlobalGroups operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListUserGlobalGroups for more information on using the ListUserGlobalGroups
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListUserGlobalGroupsRequest method.
+//	req, resp := client.ListUserGlobalGroupsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListUserGlobalGroups
+func (c *IAM) ListUserGlobalGroupsRequest(input *ListUserGlobalGroupsInput) (req *request.Request, output *ListUserGlobalGroupsOutput) {
+	op := &request.Operation{
+		Name:       opListUserGlobalGroups,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListUserGlobalGroupsInput{}
+	}
+
+	output = &ListUserGlobalGroupsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListUserGlobalGroups API operation for AWS Identity and Access Management.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Identity and Access Management's
+// API operation ListUserGlobalGroups for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListUserGlobalGroups
+func (c *IAM) ListUserGlobalGroups(input *ListUserGlobalGroupsInput) (*ListUserGlobalGroupsOutput, error) {
+	req, out := c.ListUserGlobalGroupsRequest(input)
+	return out, req.Send()
+}
+
+// ListUserGlobalGroupsWithContext is the same as ListUserGlobalGroups with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListUserGlobalGroups for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IAM) ListUserGlobalGroupsWithContext(ctx aws.Context, input *ListUserGlobalGroupsInput, opts ...request.Option) (*ListUserGlobalGroupsOutput, error) {
+	req, out := c.ListUserGlobalGroupsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListUserGlobalPolicies = "ListUserGlobalPolicies"
+
+// ListUserGlobalPoliciesRequest generates a "aws/request.Request" representing the
+// client's request for the ListUserGlobalPolicies operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListUserGlobalPolicies for more information on using the ListUserGlobalPolicies
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListUserGlobalPoliciesRequest method.
+//	req, resp := client.ListUserGlobalPoliciesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListUserGlobalPolicies
+func (c *IAM) ListUserGlobalPoliciesRequest(input *ListUserGlobalPoliciesInput) (req *request.Request, output *ListUserGlobalPoliciesOutput) {
+	op := &request.Operation{
+		Name:       opListUserGlobalPolicies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListUserGlobalPoliciesInput{}
+	}
+
+	output = &ListUserGlobalPoliciesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListUserGlobalPolicies API operation for AWS Identity and Access Management.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Identity and Access Management's
+// API operation ListUserGlobalPolicies for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListUserGlobalPolicies
+func (c *IAM) ListUserGlobalPolicies(input *ListUserGlobalPoliciesInput) (*ListUserGlobalPoliciesOutput, error) {
+	req, out := c.ListUserGlobalPoliciesRequest(input)
+	return out, req.Send()
+}
+
+// ListUserGlobalPoliciesWithContext is the same as ListUserGlobalPolicies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListUserGlobalPolicies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IAM) ListUserGlobalPoliciesWithContext(ctx aws.Context, input *ListUserGlobalPoliciesInput, opts ...request.Option) (*ListUserGlobalPoliciesOutput, error) {
+	req, out := c.ListUserGlobalPoliciesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListUserPolicies = "ListUserPolicies"
 
 // ListUserPoliciesRequest generates a "aws/request.Request" representing the
@@ -11988,6 +12089,148 @@ func (c *IAM) ListUserPoliciesPagesWithContext(ctx aws.Context, input *ListUserP
 	}
 
 	return p.Err()
+}
+
+const opListUserProjectGroups = "ListUserProjectGroups"
+
+// ListUserProjectGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the ListUserProjectGroups operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListUserProjectGroups for more information on using the ListUserProjectGroups
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListUserProjectGroupsRequest method.
+//	req, resp := client.ListUserProjectGroupsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListUserProjectGroups
+func (c *IAM) ListUserProjectGroupsRequest(input *ListUserProjectGroupsInput) (req *request.Request, output *ListUserProjectGroupsOutput) {
+	op := &request.Operation{
+		Name:       opListUserProjectGroups,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListUserProjectGroupsInput{}
+	}
+
+	output = &ListUserProjectGroupsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListUserProjectGroups API operation for AWS Identity and Access Management.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Identity and Access Management's
+// API operation ListUserProjectGroups for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListUserProjectGroups
+func (c *IAM) ListUserProjectGroups(input *ListUserProjectGroupsInput) (*ListUserProjectGroupsOutput, error) {
+	req, out := c.ListUserProjectGroupsRequest(input)
+	return out, req.Send()
+}
+
+// ListUserProjectGroupsWithContext is the same as ListUserProjectGroups with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListUserProjectGroups for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IAM) ListUserProjectGroupsWithContext(ctx aws.Context, input *ListUserProjectGroupsInput, opts ...request.Option) (*ListUserProjectGroupsOutput, error) {
+	req, out := c.ListUserProjectGroupsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListUserProjectPolicies = "ListUserProjectPolicies"
+
+// ListUserProjectPoliciesRequest generates a "aws/request.Request" representing the
+// client's request for the ListUserProjectPolicies operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListUserProjectPolicies for more information on using the ListUserProjectPolicies
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListUserProjectPoliciesRequest method.
+//	req, resp := client.ListUserProjectPoliciesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListUserProjectPolicies
+func (c *IAM) ListUserProjectPoliciesRequest(input *ListUserProjectPoliciesInput) (req *request.Request, output *ListUserProjectPoliciesOutput) {
+	op := &request.Operation{
+		Name:       opListUserProjectPolicies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListUserProjectPoliciesInput{}
+	}
+
+	output = &ListUserProjectPoliciesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListUserProjectPolicies API operation for AWS Identity and Access Management.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Identity and Access Management's
+// API operation ListUserProjectPolicies for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListUserProjectPolicies
+func (c *IAM) ListUserProjectPolicies(input *ListUserProjectPoliciesInput) (*ListUserProjectPoliciesOutput, error) {
+	req, out := c.ListUserProjectPoliciesRequest(input)
+	return out, req.Send()
+}
+
+// ListUserProjectPoliciesWithContext is the same as ListUserProjectPolicies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListUserProjectPolicies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IAM) ListUserProjectPoliciesWithContext(ctx aws.Context, input *ListUserProjectPoliciesInput, opts ...request.Option) (*ListUserProjectPoliciesOutput, error) {
+	req, out := c.ListUserProjectPoliciesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListUserTags = "ListUserTags"
@@ -13226,22 +13469,6 @@ func (c *IAM) RemoveUserFromGroupRequest(input *RemoveUserFromGroupInput) (req *
 //
 // See the AWS API reference guide for AWS Identity and Access Management's
 // API operation RemoveUserFromGroup for usage and error information.
-//
-// Returned Error Codes:
-//
-//   - ErrCodeNoSuchEntityException "NoSuchEntity"
-//     The request was rejected because it referenced a resource entity that does
-//     not exist. The error message describes the resource.
-//
-//   - ErrCodeLimitExceededException "LimitExceeded"
-//     The request was rejected because it attempted to create resources beyond
-//     the current Amazon Web Services account limits. The error message describes
-//     the limit exceeded.
-//
-//   - ErrCodeServiceFailureException "ServiceFailure"
-//     The request processing has failed because of an unknown error, exception
-//     or failure.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/RemoveUserFromGroup
 func (c *IAM) RemoveUserFromGroup(input *RemoveUserFromGroupInput) (*RemoveUserFromGroupOutput, error) {
 	req, out := c.RemoveUserFromGroupRequest(input)
@@ -16426,6 +16653,148 @@ func (c *IAM) UpdateOpenIDConnectProviderThumbprintWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+const opUpdatePolicy = "UpdatePolicy"
+
+// UpdatePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdatePolicy for more information on using the UpdatePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdatePolicyRequest method.
+//	req, resp := client.UpdatePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdatePolicy
+func (c *IAM) UpdatePolicyRequest(input *UpdatePolicyInput) (req *request.Request, output *UpdatePolicyOutput) {
+	op := &request.Operation{
+		Name:       opUpdatePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdatePolicyInput{}
+	}
+
+	output = &UpdatePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdatePolicy API operation for AWS Identity and Access Management.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Identity and Access Management's
+// API operation UpdatePolicy for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdatePolicy
+func (c *IAM) UpdatePolicy(input *UpdatePolicyInput) (*UpdatePolicyOutput, error) {
+	req, out := c.UpdatePolicyRequest(input)
+	return out, req.Send()
+}
+
+// UpdatePolicyWithContext is the same as UpdatePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdatePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IAM) UpdatePolicyWithContext(ctx aws.Context, input *UpdatePolicyInput, opts ...request.Option) (*UpdatePolicyOutput, error) {
+	req, out := c.UpdatePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateProject = "UpdateProject"
+
+// UpdateProjectRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateProject operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateProject for more information on using the UpdateProject
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateProjectRequest method.
+//	req, resp := client.UpdateProjectRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateProject
+func (c *IAM) UpdateProjectRequest(input *UpdateProjectInput) (req *request.Request, output *UpdateProjectOutput) {
+	op := &request.Operation{
+		Name:       opUpdateProject,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateProjectInput{}
+	}
+
+	output = &UpdateProjectOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateProject API operation for AWS Identity and Access Management.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Identity and Access Management's
+// API operation UpdateProject for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateProject
+func (c *IAM) UpdateProject(input *UpdateProjectInput) (*UpdateProjectOutput, error) {
+	req, out := c.UpdateProjectRequest(input)
+	return out, req.Send()
+}
+
+// UpdateProjectWithContext is the same as UpdateProject with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateProject for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IAM) UpdateProjectWithContext(ctx aws.Context, input *UpdateProjectInput, opts ...request.Option) (*UpdateProjectOutput, error) {
+	req, out := c.UpdateProjectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateRole = "UpdateRole"
 
 // UpdateRoleRequest generates a "aws/request.Request" representing the
@@ -17127,7 +17496,6 @@ func (c *IAM) UpdateUserRequest(input *UpdateUserInput) (req *request.Request, o
 
 	output = &UpdateUserOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -17152,37 +17520,6 @@ func (c *IAM) UpdateUserRequest(input *UpdateUserInput) (req *request.Request, o
 //
 // See the AWS API reference guide for AWS Identity and Access Management's
 // API operation UpdateUser for usage and error information.
-//
-// Returned Error Codes:
-//
-//   - ErrCodeNoSuchEntityException "NoSuchEntity"
-//     The request was rejected because it referenced a resource entity that does
-//     not exist. The error message describes the resource.
-//
-//   - ErrCodeLimitExceededException "LimitExceeded"
-//     The request was rejected because it attempted to create resources beyond
-//     the current Amazon Web Services account limits. The error message describes
-//     the limit exceeded.
-//
-//   - ErrCodeEntityAlreadyExistsException "EntityAlreadyExists"
-//     The request was rejected because it attempted to create a resource that already
-//     exists.
-//
-//   - ErrCodeEntityTemporarilyUnmodifiableException "EntityTemporarilyUnmodifiable"
-//     The request was rejected because it referenced an entity that is temporarily
-//     unmodifiable, such as a user name that was deleted and then recreated. The
-//     error indicates that the request is likely to succeed if you try again after
-//     waiting several minutes. The error message describes the entity.
-//
-//   - ErrCodeConcurrentModificationException "ConcurrentModification"
-//     The request was rejected because multiple requests to change this object
-//     were submitted simultaneously. Wait a few minutes and submit your request
-//     again.
-//
-//   - ErrCodeServiceFailureException "ServiceFailure"
-//     The request processing has failed because of an unknown error, exception
-//     or failure.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateUser
 func (c *IAM) UpdateUser(input *UpdateUserInput) (*UpdateUserOutput, error) {
 	req, out := c.UpdateUserRequest(input)
@@ -17932,7 +18269,7 @@ type AddClientIDToOpenIDConnectProviderInput struct {
 	// by using the ListOpenIDConnectProviders operation.
 	//
 	// OpenIDConnectProviderArn is a required field
-	OpenIDConnectProviderArn *string `min:"20" type:"string" required:"true"`
+	OpenIDConnectProviderArn *string `min:"15" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -17965,8 +18302,8 @@ func (s *AddClientIDToOpenIDConnectProviderInput) Validate() error {
 	if s.OpenIDConnectProviderArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("OpenIDConnectProviderArn"))
 	}
-	if s.OpenIDConnectProviderArn != nil && len(*s.OpenIDConnectProviderArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("OpenIDConnectProviderArn", 20))
+	if s.OpenIDConnectProviderArn != nil && len(*s.OpenIDConnectProviderArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("OpenIDConnectProviderArn", 15))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -18108,21 +18445,17 @@ func (s AddRoleToInstanceProfileOutput) GoString() string {
 type AddUserToGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the group to update.
+	// The Amazon Resource Name (ARN). ARNs are unique identifiers for Amazon Web
+	// Services resources.
 	//
-	// This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of upper and lowercase alphanumeric characters
-	// with no spaces. You can also include any of the following characters: _+=,.@-
+	// For more information about ARNs, go to Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
-	// GroupName is a required field
-	GroupName *string `min:"1" type:"string" required:"true"`
+	// GroupArn is a required field
+	GroupArn *string `min:"15" type:"string" required:"true"`
 
-	// The name of the user to add.
-	//
-	// This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of upper and lowercase alphanumeric characters
-	// with no spaces. You can also include any of the following characters: _+=,.@-
-	//
+	ProjectName *string `min:"1" type:"string"`
+
 	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
@@ -18148,11 +18481,14 @@ func (s AddUserToGroupInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AddUserToGroupInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AddUserToGroupInput"}
-	if s.GroupName == nil {
-		invalidParams.Add(request.NewErrParamRequired("GroupName"))
+	if s.GroupArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupArn"))
 	}
-	if s.GroupName != nil && len(*s.GroupName) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
+	if s.GroupArn != nil && len(*s.GroupArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupArn", 15))
+	}
+	if s.ProjectName != nil && len(*s.ProjectName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectName", 1))
 	}
 	if s.UserName == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserName"))
@@ -18167,9 +18503,15 @@ func (s *AddUserToGroupInput) Validate() error {
 	return nil
 }
 
-// SetGroupName sets the GroupName field's value.
-func (s *AddUserToGroupInput) SetGroupName(v string) *AddUserToGroupInput {
-	s.GroupName = &v
+// SetGroupArn sets the GroupArn field's value.
+func (s *AddUserToGroupInput) SetGroupArn(v string) *AddUserToGroupInput {
+	s.GroupArn = &v
+	return s
+}
+
+// SetProjectName sets the ProjectName field's value.
+func (s *AddUserToGroupInput) SetProjectName(v string) *AddUserToGroupInput {
+	s.ProjectName = &v
 	return s
 }
 
@@ -18219,7 +18561,7 @@ type AttachGroupPolicyInput struct {
 	// in the Amazon Web Services General Reference.
 	//
 	// PolicyArn is a required field
-	PolicyArn *string `min:"20" type:"string" required:"true"`
+	PolicyArn *string `min:"15" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -18252,8 +18594,8 @@ func (s *AttachGroupPolicyInput) Validate() error {
 	if s.PolicyArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyArn"))
 	}
-	if s.PolicyArn != nil && len(*s.PolicyArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 20))
+	if s.PolicyArn != nil && len(*s.PolicyArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 15))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -18305,7 +18647,7 @@ type AttachRolePolicyInput struct {
 	// in the Amazon Web Services General Reference.
 	//
 	// PolicyArn is a required field
-	PolicyArn *string `min:"20" type:"string" required:"true"`
+	PolicyArn *string `min:"15" type:"string" required:"true"`
 
 	// The name (friendly name, not ARN) of the role to attach the policy to.
 	//
@@ -18341,8 +18683,8 @@ func (s *AttachRolePolicyInput) Validate() error {
 	if s.PolicyArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyArn"))
 	}
-	if s.PolicyArn != nil && len(*s.PolicyArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 20))
+	if s.PolicyArn != nil && len(*s.PolicyArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 15))
 	}
 	if s.RoleName == nil {
 		invalidParams.Add(request.NewErrParamRequired("RoleName"))
@@ -18400,7 +18742,9 @@ type AttachUserPolicyInput struct {
 	// in the Amazon Web Services General Reference.
 	//
 	// PolicyArn is a required field
-	PolicyArn *string `min:"20" type:"string" required:"true"`
+	PolicyArn *string `min:"15" type:"string" required:"true"`
+
+	ProjectName *string `min:"1" type:"string"`
 
 	// The name (friendly name, not ARN) of the IAM user to attach the policy to.
 	//
@@ -18436,8 +18780,11 @@ func (s *AttachUserPolicyInput) Validate() error {
 	if s.PolicyArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyArn"))
 	}
-	if s.PolicyArn != nil && len(*s.PolicyArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 20))
+	if s.PolicyArn != nil && len(*s.PolicyArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 15))
+	}
+	if s.ProjectName != nil && len(*s.ProjectName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectName", 1))
 	}
 	if s.UserName == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserName"))
@@ -18455,6 +18802,12 @@ func (s *AttachUserPolicyInput) Validate() error {
 // SetPolicyArn sets the PolicyArn field's value.
 func (s *AttachUserPolicyInput) SetPolicyArn(v string) *AttachUserPolicyInput {
 	s.PolicyArn = &v
+	return s
+}
+
+// SetProjectName sets the ProjectName field's value.
+func (s *AttachUserPolicyInput) SetProjectName(v string) *AttachUserPolicyInput {
+	s.ProjectName = &v
 	return s
 }
 
@@ -18499,7 +18852,7 @@ type AttachedPermissionsBoundary struct {
 
 	// The ARN of the policy used to set the permissions boundary for the user or
 	// role.
-	PermissionsBoundaryArn *string `min:"20" type:"string"`
+	PermissionsBoundaryArn *string `min:"15" type:"string"`
 
 	// The permissions boundary usage type that indicates what type of IAM resource
 	// is used as the permissions boundary for an entity. This data type can only
@@ -18555,7 +18908,7 @@ type AttachedPolicy struct {
 	//
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the Amazon Web Services General Reference.
-	PolicyArn *string `min:"20" type:"string"`
+	PolicyArn *string `min:"15" type:"string"`
 
 	// The friendly name of the attached policy.
 	PolicyName *string `min:"1" type:"string"`
@@ -18954,6 +19307,9 @@ type CreateGroupInput struct {
 	// (\u007F), including most punctuation characters, digits, and upper and lowercased
 	// letters.
 	Path *string `min:"1" type:"string"`
+
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"GrantsTypeType"`
 }
 
 // String returns the string representation.
@@ -18986,6 +19342,9 @@ func (s *CreateGroupInput) Validate() error {
 	if s.Path != nil && len(*s.Path) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Path", 1))
 	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -19002,6 +19361,12 @@ func (s *CreateGroupInput) SetGroupName(v string) *CreateGroupInput {
 // SetPath sets the Path field's value.
 func (s *CreateGroupInput) SetPath(v string) *CreateGroupInput {
 	s.Path = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CreateGroupInput) SetType(v string) *CreateGroupInput {
+	s.Type = &v
 	return s
 }
 
@@ -19442,7 +19807,7 @@ type CreateOpenIDConnectProviderOutput struct {
 
 	// The Amazon Resource Name (ARN) of the new IAM OpenID Connect provider that
 	// is created. For more information, see OpenIDConnectProviderListEntry.
-	OpenIDConnectProviderArn *string `min:"20" type:"string"`
+	OpenIDConnectProviderArn *string `min:"15" type:"string"`
 
 	// A list of tags that are attached to the new IAM OIDC provider. The returned
 	// list of tags is sorted by tag key. For more information about tagging, see
@@ -19493,6 +19858,8 @@ type CreatePolicyInput struct {
 	// be changed.
 	Description *string `type:"string"`
 
+	Document *string `type:"string"`
+
 	// The path for the policy.
 	//
 	// For more information about paths, see IAM identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
@@ -19511,38 +19878,6 @@ type CreatePolicyInput struct {
 	// You cannot use an asterisk (*) in the path name.
 	Path *string `min:"1" type:"string"`
 
-	// The JSON policy document that you want to use as the content for the new
-	// policy.
-	//
-	// You must provide policies in JSON format in IAM. However, for CloudFormation
-	// templates formatted in YAML, you can provide the policy in JSON or YAML format.
-	// CloudFormation always converts a YAML policy to JSON format before submitting
-	// it to IAM.
-	//
-	// The maximum length of the policy document that you can pass in this operation,
-	// including whitespace, is listed below. To view the maximum character counts
-	// of a managed policy with no whitespaces, see IAM and STS character quotas
-	// (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-quotas.html#reference_iam-quotas-entity-length).
-	//
-	// To learn more about JSON policy grammar, see Grammar of the IAM JSON policy
-	// language (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_grammar.html)
-	// in the IAM User Guide.
-	//
-	// The regex pattern (http://wikipedia.org/wiki/regex) used to validate this
-	// parameter is a string of characters consisting of the following:
-	//
-	//    * Any printable ASCII character ranging from the space character (\u0020)
-	//    through the end of the ASCII character range
-	//
-	//    * The printable characters in the Basic Latin and Latin-1 Supplement character
-	//    set (through \u00FF)
-	//
-	//    * The special characters tab (\u0009), line feed (\u000A), and carriage
-	//    return (\u000D)
-	//
-	// PolicyDocument is a required field
-	PolicyDocument *string `min:"1" type:"string" required:"true"`
-
 	// The friendly name of the policy.
 	//
 	// IAM user, group, role, and policy names must be unique within the account.
@@ -19560,6 +19895,9 @@ type CreatePolicyInput struct {
 	// If any one of the tags is invalid or if you exceed the allowed maximum number
 	// of tags, then the entire request fails and the resource is not created.
 	Tags []*Tag `type:"list"`
+
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"GrantsTypeType"`
 }
 
 // String returns the string representation.
@@ -19586,17 +19924,14 @@ func (s *CreatePolicyInput) Validate() error {
 	if s.Path != nil && len(*s.Path) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Path", 1))
 	}
-	if s.PolicyDocument == nil {
-		invalidParams.Add(request.NewErrParamRequired("PolicyDocument"))
-	}
-	if s.PolicyDocument != nil && len(*s.PolicyDocument) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicyDocument", 1))
-	}
 	if s.PolicyName == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyName"))
 	}
 	if s.PolicyName != nil && len(*s.PolicyName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("PolicyName", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
 	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
@@ -19621,15 +19956,15 @@ func (s *CreatePolicyInput) SetDescription(v string) *CreatePolicyInput {
 	return s
 }
 
-// SetPath sets the Path field's value.
-func (s *CreatePolicyInput) SetPath(v string) *CreatePolicyInput {
-	s.Path = &v
+// SetDocument sets the Document field's value.
+func (s *CreatePolicyInput) SetDocument(v string) *CreatePolicyInput {
+	s.Document = &v
 	return s
 }
 
-// SetPolicyDocument sets the PolicyDocument field's value.
-func (s *CreatePolicyInput) SetPolicyDocument(v string) *CreatePolicyInput {
-	s.PolicyDocument = &v
+// SetPath sets the Path field's value.
+func (s *CreatePolicyInput) SetPath(v string) *CreatePolicyInput {
+	s.Path = &v
 	return s
 }
 
@@ -19642,6 +19977,12 @@ func (s *CreatePolicyInput) SetPolicyName(v string) *CreatePolicyInput {
 // SetTags sets the Tags field's value.
 func (s *CreatePolicyInput) SetTags(v []*Tag) *CreatePolicyInput {
 	s.Tags = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CreatePolicyInput) SetType(v string) *CreatePolicyInput {
+	s.Type = &v
 	return s
 }
 
@@ -19687,7 +20028,7 @@ type CreatePolicyVersionInput struct {
 	// in the Amazon Web Services General Reference.
 	//
 	// PolicyArn is a required field
-	PolicyArn *string `min:"20" type:"string" required:"true"`
+	PolicyArn *string `min:"15" type:"string" required:"true"`
 
 	// The JSON policy document that you want to use as the content for this new
 	// version of the policy.
@@ -19715,7 +20056,7 @@ type CreatePolicyVersionInput struct {
 	//    return (\u000D)
 	//
 	// PolicyDocument is a required field
-	PolicyDocument *string `min:"1" type:"string" required:"true"`
+	PolicyDocument *string `type:"string" required:"true"`
 
 	// Specifies whether to set this version as the policy's default version.
 	//
@@ -19753,14 +20094,11 @@ func (s *CreatePolicyVersionInput) Validate() error {
 	if s.PolicyArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyArn"))
 	}
-	if s.PolicyArn != nil && len(*s.PolicyArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 20))
+	if s.PolicyArn != nil && len(*s.PolicyArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 15))
 	}
 	if s.PolicyDocument == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyDocument"))
-	}
-	if s.PolicyDocument != nil && len(*s.PolicyDocument) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicyDocument", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -19819,6 +20157,95 @@ func (s *CreatePolicyVersionOutput) SetPolicyVersion(v *PolicyVersion) *CreatePo
 	return s
 }
 
+type CreateProjectInput struct {
+	_ struct{} `type:"structure"`
+
+	// DisplayName is a required field
+	DisplayName *string `type:"string" required:"true"`
+
+	// ProjectName is a required field
+	ProjectName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateProjectInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateProjectInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateProjectInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateProjectInput"}
+	if s.DisplayName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DisplayName"))
+	}
+	if s.ProjectName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProjectName"))
+	}
+	if s.ProjectName != nil && len(*s.ProjectName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *CreateProjectInput) SetDisplayName(v string) *CreateProjectInput {
+	s.DisplayName = &v
+	return s
+}
+
+// SetProjectName sets the ProjectName field's value.
+func (s *CreateProjectInput) SetProjectName(v string) *CreateProjectInput {
+	s.ProjectName = &v
+	return s
+}
+
+type CreateProjectOutput struct {
+	_ struct{} `type:"structure"`
+
+	Project *Project `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateProjectOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateProjectOutput) GoString() string {
+	return s.String()
+}
+
+// SetProject sets the Project field's value.
+func (s *CreateProjectOutput) SetProject(v *Project) *CreateProjectOutput {
+	s.Project = v
+	return s
+}
+
 type CreateRoleInput struct {
 	_ struct{} `type:"structure"`
 
@@ -19845,7 +20272,7 @@ type CreateRoleInput struct {
 	// Upon success, the response includes the same trust policy in JSON format.
 	//
 	// AssumeRolePolicyDocument is a required field
-	AssumeRolePolicyDocument *string `min:"1" type:"string" required:"true"`
+	AssumeRolePolicyDocument *string `type:"string" required:"true"`
 
 	// A description of the role.
 	Description *string `type:"string"`
@@ -19883,7 +20310,7 @@ type CreateRoleInput struct {
 
 	// The ARN of the policy that is used to set the permissions boundary for the
 	// role.
-	PermissionsBoundary *string `min:"20" type:"string"`
+	PermissionsBoundary *string `min:"15" type:"string"`
 
 	// The name of the role to create.
 	//
@@ -19928,17 +20355,14 @@ func (s *CreateRoleInput) Validate() error {
 	if s.AssumeRolePolicyDocument == nil {
 		invalidParams.Add(request.NewErrParamRequired("AssumeRolePolicyDocument"))
 	}
-	if s.AssumeRolePolicyDocument != nil && len(*s.AssumeRolePolicyDocument) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("AssumeRolePolicyDocument", 1))
-	}
 	if s.MaxSessionDuration != nil && *s.MaxSessionDuration < 3600 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxSessionDuration", 3600))
 	}
 	if s.Path != nil && len(*s.Path) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Path", 1))
 	}
-	if s.PermissionsBoundary != nil && len(*s.PermissionsBoundary) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("PermissionsBoundary", 20))
+	if s.PermissionsBoundary != nil && len(*s.PermissionsBoundary) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PermissionsBoundary", 15))
 	}
 	if s.RoleName == nil {
 		invalidParams.Add(request.NewErrParamRequired("RoleName"))
@@ -20146,7 +20570,7 @@ type CreateSAMLProviderOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the new SAML provider resource in IAM.
-	SAMLProviderArn *string `min:"20" type:"string"`
+	SAMLProviderArn *string `min:"15" type:"string"`
 
 	// A list of tags that are attached to the new IAM SAML provider. The returned
 	// list of tags is sorted by tag key. For more information about tagging, see
@@ -20412,6 +20836,16 @@ func (s *CreateServiceSpecificCredentialOutput) SetServiceSpecificCredential(v *
 type CreateUserInput struct {
 	_ struct{} `type:"structure"`
 
+	// DisplayName is a required field
+	DisplayName *string `type:"string" required:"true"`
+
+	Email *string `type:"string"`
+
+	OtpRequired *bool `type:"boolean"`
+
+	// Password is a required field
+	Password *string `type:"string" required:"true"`
+
 	// The path for the user name. For more information about paths, see IAM identifiers
 	// (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the IAM User Guide.
@@ -20429,7 +20863,7 @@ type CreateUserInput struct {
 
 	// The ARN of the policy that is used to set the permissions boundary for the
 	// user.
-	PermissionsBoundary *string `min:"20" type:"string"`
+	PermissionsBoundary *string `min:"15" type:"string"`
 
 	// A list of tags that you want to attach to the new user. Each tag consists
 	// of a key name and an associated value. For more information about tagging,
@@ -20471,11 +20905,17 @@ func (s CreateUserInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateUserInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateUserInput"}
+	if s.DisplayName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DisplayName"))
+	}
+	if s.Password == nil {
+		invalidParams.Add(request.NewErrParamRequired("Password"))
+	}
 	if s.Path != nil && len(*s.Path) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Path", 1))
 	}
-	if s.PermissionsBoundary != nil && len(*s.PermissionsBoundary) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("PermissionsBoundary", 20))
+	if s.PermissionsBoundary != nil && len(*s.PermissionsBoundary) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PermissionsBoundary", 15))
 	}
 	if s.UserName == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserName"))
@@ -20498,6 +20938,30 @@ func (s *CreateUserInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *CreateUserInput) SetDisplayName(v string) *CreateUserInput {
+	s.DisplayName = &v
+	return s
+}
+
+// SetEmail sets the Email field's value.
+func (s *CreateUserInput) SetEmail(v string) *CreateUserInput {
+	s.Email = &v
+	return s
+}
+
+// SetOtpRequired sets the OtpRequired field's value.
+func (s *CreateUserInput) SetOtpRequired(v bool) *CreateUserInput {
+	s.OtpRequired = &v
+	return s
+}
+
+// SetPassword sets the Password field's value.
+func (s *CreateUserInput) SetPassword(v string) *CreateUserInput {
+	s.Password = &v
+	return s
 }
 
 // SetPath sets the Path field's value.
@@ -21332,7 +21796,7 @@ type DeleteOpenIDConnectProviderInput struct {
 	// ARNs by using the ListOpenIDConnectProviders operation.
 	//
 	// OpenIDConnectProviderArn is a required field
-	OpenIDConnectProviderArn *string `min:"20" type:"string" required:"true"`
+	OpenIDConnectProviderArn *string `min:"15" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -21359,8 +21823,8 @@ func (s *DeleteOpenIDConnectProviderInput) Validate() error {
 	if s.OpenIDConnectProviderArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("OpenIDConnectProviderArn"))
 	}
-	if s.OpenIDConnectProviderArn != nil && len(*s.OpenIDConnectProviderArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("OpenIDConnectProviderArn", 20))
+	if s.OpenIDConnectProviderArn != nil && len(*s.OpenIDConnectProviderArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("OpenIDConnectProviderArn", 15))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -21400,13 +21864,8 @@ func (s DeleteOpenIDConnectProviderOutput) GoString() string {
 type DeletePolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the IAM policy you want to delete.
-	//
-	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
-	//
-	// PolicyArn is a required field
-	PolicyArn *string `min:"20" type:"string" required:"true"`
+	// PolicyName is a required field
+	PolicyName *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -21430,11 +21889,11 @@ func (s DeletePolicyInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DeletePolicyInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeletePolicyInput"}
-	if s.PolicyArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("PolicyArn"))
+	if s.PolicyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyName"))
 	}
-	if s.PolicyArn != nil && len(*s.PolicyArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 20))
+	if s.PolicyName != nil && len(*s.PolicyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyName", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -21443,9 +21902,9 @@ func (s *DeletePolicyInput) Validate() error {
 	return nil
 }
 
-// SetPolicyArn sets the PolicyArn field's value.
-func (s *DeletePolicyInput) SetPolicyArn(v string) *DeletePolicyInput {
-	s.PolicyArn = &v
+// SetPolicyName sets the PolicyName field's value.
+func (s *DeletePolicyInput) SetPolicyName(v string) *DeletePolicyInput {
+	s.PolicyName = &v
 	return s
 }
 
@@ -21481,7 +21940,7 @@ type DeletePolicyVersionInput struct {
 	// in the Amazon Web Services General Reference.
 	//
 	// PolicyArn is a required field
-	PolicyArn *string `min:"20" type:"string" required:"true"`
+	PolicyArn *string `min:"15" type:"string" required:"true"`
 
 	// The policy version to delete.
 	//
@@ -21522,8 +21981,8 @@ func (s *DeletePolicyVersionInput) Validate() error {
 	if s.PolicyArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyArn"))
 	}
-	if s.PolicyArn != nil && len(*s.PolicyArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 20))
+	if s.PolicyArn != nil && len(*s.PolicyArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 15))
 	}
 	if s.VersionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("VersionId"))
@@ -21566,6 +22025,75 @@ func (s DeletePolicyVersionOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeletePolicyVersionOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteProjectInput struct {
+	_ struct{} `type:"structure"`
+
+	// ProjectName is a required field
+	ProjectName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteProjectInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteProjectInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteProjectInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteProjectInput"}
+	if s.ProjectName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProjectName"))
+	}
+	if s.ProjectName != nil && len(*s.ProjectName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProjectName sets the ProjectName field's value.
+func (s *DeleteProjectInput) SetProjectName(v string) *DeleteProjectInput {
+	s.ProjectName = &v
+	return s
+}
+
+type DeleteProjectOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteProjectOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteProjectOutput) GoString() string {
 	return s.String()
 }
 
@@ -21819,7 +22347,7 @@ type DeleteSAMLProviderInput struct {
 	// The Amazon Resource Name (ARN) of the SAML provider to delete.
 	//
 	// SAMLProviderArn is a required field
-	SAMLProviderArn *string `min:"20" type:"string" required:"true"`
+	SAMLProviderArn *string `min:"15" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -21846,8 +22374,8 @@ func (s *DeleteSAMLProviderInput) Validate() error {
 	if s.SAMLProviderArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("SAMLProviderArn"))
 	}
-	if s.SAMLProviderArn != nil && len(*s.SAMLProviderArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("SAMLProviderArn", 20))
+	if s.SAMLProviderArn != nil && len(*s.SAMLProviderArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("SAMLProviderArn", 15))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -22710,7 +23238,7 @@ type DetachGroupPolicyInput struct {
 	// in the Amazon Web Services General Reference.
 	//
 	// PolicyArn is a required field
-	PolicyArn *string `min:"20" type:"string" required:"true"`
+	PolicyArn *string `min:"15" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -22743,8 +23271,8 @@ func (s *DetachGroupPolicyInput) Validate() error {
 	if s.PolicyArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyArn"))
 	}
-	if s.PolicyArn != nil && len(*s.PolicyArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 20))
+	if s.PolicyArn != nil && len(*s.PolicyArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 15))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -22796,7 +23324,7 @@ type DetachRolePolicyInput struct {
 	// in the Amazon Web Services General Reference.
 	//
 	// PolicyArn is a required field
-	PolicyArn *string `min:"20" type:"string" required:"true"`
+	PolicyArn *string `min:"15" type:"string" required:"true"`
 
 	// The name (friendly name, not ARN) of the IAM role to detach the policy from.
 	//
@@ -22832,8 +23360,8 @@ func (s *DetachRolePolicyInput) Validate() error {
 	if s.PolicyArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyArn"))
 	}
-	if s.PolicyArn != nil && len(*s.PolicyArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 20))
+	if s.PolicyArn != nil && len(*s.PolicyArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 15))
 	}
 	if s.RoleName == nil {
 		invalidParams.Add(request.NewErrParamRequired("RoleName"))
@@ -22891,7 +23419,9 @@ type DetachUserPolicyInput struct {
 	// in the Amazon Web Services General Reference.
 	//
 	// PolicyArn is a required field
-	PolicyArn *string `min:"20" type:"string" required:"true"`
+	PolicyArn *string `min:"15" type:"string" required:"true"`
+
+	ProjectName *string `min:"1" type:"string"`
 
 	// The name (friendly name, not ARN) of the IAM user to detach the policy from.
 	//
@@ -22927,8 +23457,11 @@ func (s *DetachUserPolicyInput) Validate() error {
 	if s.PolicyArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyArn"))
 	}
-	if s.PolicyArn != nil && len(*s.PolicyArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 20))
+	if s.PolicyArn != nil && len(*s.PolicyArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 15))
+	}
+	if s.ProjectName != nil && len(*s.ProjectName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectName", 1))
 	}
 	if s.UserName == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserName"))
@@ -22946,6 +23479,12 @@ func (s *DetachUserPolicyInput) Validate() error {
 // SetPolicyArn sets the PolicyArn field's value.
 func (s *DetachUserPolicyInput) SetPolicyArn(v string) *DetachUserPolicyInput {
 	s.PolicyArn = &v
+	return s
+}
+
+// SetProjectName sets the ProjectName field's value.
+func (s *DetachUserPolicyInput) SetProjectName(v string) *DetachUserPolicyInput {
+	s.ProjectName = &v
 	return s
 }
 
@@ -23192,7 +23731,7 @@ type EntityInfo struct {
 	// in the Amazon Web Services General Reference.
 	//
 	// Arn is a required field
-	Arn *string `min:"20" type:"string" required:"true"`
+	Arn *string `min:"15" type:"string" required:"true"`
 
 	// The identifier of the entity (user or role).
 	//
@@ -23622,7 +24161,7 @@ type GenerateServiceLastAccessedDetailsInput struct {
 	// to access an Amazon Web Services service.
 	//
 	// Arn is a required field
-	Arn *string `min:"20" type:"string" required:"true"`
+	Arn *string `min:"15" type:"string" required:"true"`
 
 	// The level of detail that you want to generate. You can specify whether you
 	// want to generate information about the last attempt to access services or
@@ -23657,8 +24196,8 @@ func (s *GenerateServiceLastAccessedDetailsInput) Validate() error {
 	if s.Arn == nil {
 		invalidParams.Add(request.NewErrParamRequired("Arn"))
 	}
-	if s.Arn != nil && len(*s.Arn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("Arn", 20))
+	if s.Arn != nil && len(*s.Arn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 15))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -24210,7 +24749,7 @@ type GetContextKeysForPrincipalPolicyInput struct {
 	// in the Amazon Web Services General Reference.
 	//
 	// PolicySourceArn is a required field
-	PolicySourceArn *string `min:"20" type:"string" required:"true"`
+	PolicySourceArn *string `min:"15" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -24237,8 +24776,8 @@ func (s *GetContextKeysForPrincipalPolicyInput) Validate() error {
 	if s.PolicySourceArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicySourceArn"))
 	}
-	if s.PolicySourceArn != nil && len(*s.PolicySourceArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicySourceArn", 20))
+	if s.PolicySourceArn != nil && len(*s.PolicySourceArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicySourceArn", 15))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -24336,14 +24875,21 @@ func (s *GetCredentialReportOutput) SetReportFormat(v string) *GetCredentialRepo
 type GetGroupInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN). ARNs are unique identifiers for Amazon Web
+	// Services resources.
+	//
+	// For more information about ARNs, go to Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	//
+	// GroupArn is a required field
+	GroupArn *string `min:"15" type:"string" required:"true"`
+
 	// The name of the group.
 	//
 	// This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex))
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: _+=,.@-
-	//
-	// GroupName is a required field
-	GroupName *string `min:"1" type:"string" required:"true"`
+	GroupName *string `min:"1" type:"string"`
 
 	// Use this parameter only when paginating results and only after you receive
 	// a response indicating that the results are truncated. Set it to the value
@@ -24384,8 +24930,11 @@ func (s GetGroupInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetGroupInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetGroupInput"}
-	if s.GroupName == nil {
-		invalidParams.Add(request.NewErrParamRequired("GroupName"))
+	if s.GroupArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupArn"))
+	}
+	if s.GroupArn != nil && len(*s.GroupArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupArn", 15))
 	}
 	if s.GroupName != nil && len(*s.GroupName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
@@ -24401,6 +24950,12 @@ func (s *GetGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetGroupArn sets the GroupArn field's value.
+func (s *GetGroupInput) SetGroupArn(v string) *GetGroupInput {
+	s.GroupArn = &v
+	return s
 }
 
 // SetGroupName sets the GroupName field's value.
@@ -24580,7 +25135,7 @@ type GetGroupPolicyOutput struct {
 	// converts a YAML policy to JSON format before submitting it to IAM.
 	//
 	// PolicyDocument is a required field
-	PolicyDocument *string `min:"1" type:"string" required:"true"`
+	PolicyDocument *string `type:"string" required:"true"`
 
 	// The name of the policy.
 	//
@@ -24810,7 +25365,7 @@ type GetOpenIDConnectProviderInput struct {
 	// in the Amazon Web Services General Reference.
 	//
 	// OpenIDConnectProviderArn is a required field
-	OpenIDConnectProviderArn *string `min:"20" type:"string" required:"true"`
+	OpenIDConnectProviderArn *string `min:"15" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -24837,8 +25392,8 @@ func (s *GetOpenIDConnectProviderInput) Validate() error {
 	if s.OpenIDConnectProviderArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("OpenIDConnectProviderArn"))
 	}
-	if s.OpenIDConnectProviderArn != nil && len(*s.OpenIDConnectProviderArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("OpenIDConnectProviderArn", 20))
+	if s.OpenIDConnectProviderArn != nil && len(*s.OpenIDConnectProviderArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("OpenIDConnectProviderArn", 15))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -25159,7 +25714,7 @@ type GetPolicyInput struct {
 	// in the Amazon Web Services General Reference.
 	//
 	// PolicyArn is a required field
-	PolicyArn *string `min:"20" type:"string" required:"true"`
+	PolicyArn *string `min:"15" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -25186,8 +25741,8 @@ func (s *GetPolicyInput) Validate() error {
 	if s.PolicyArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyArn"))
 	}
-	if s.PolicyArn != nil && len(*s.PolicyArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 20))
+	if s.PolicyArn != nil && len(*s.PolicyArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 15))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -25244,7 +25799,7 @@ type GetPolicyVersionInput struct {
 	// in the Amazon Web Services General Reference.
 	//
 	// PolicyArn is a required field
-	PolicyArn *string `min:"20" type:"string" required:"true"`
+	PolicyArn *string `min:"15" type:"string" required:"true"`
 
 	// Identifies the policy version to retrieve.
 	//
@@ -25281,8 +25836,8 @@ func (s *GetPolicyVersionInput) Validate() error {
 	if s.PolicyArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyArn"))
 	}
-	if s.PolicyArn != nil && len(*s.PolicyArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 20))
+	if s.PolicyArn != nil && len(*s.PolicyArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 15))
 	}
 	if s.VersionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("VersionId"))
@@ -25335,6 +25890,83 @@ func (s GetPolicyVersionOutput) GoString() string {
 // SetPolicyVersion sets the PolicyVersion field's value.
 func (s *GetPolicyVersionOutput) SetPolicyVersion(v *PolicyVersion) *GetPolicyVersionOutput {
 	s.PolicyVersion = v
+	return s
+}
+
+type GetProjectInput struct {
+	_ struct{} `type:"structure"`
+
+	// ProjectName is a required field
+	ProjectName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetProjectInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetProjectInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetProjectInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetProjectInput"}
+	if s.ProjectName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProjectName"))
+	}
+	if s.ProjectName != nil && len(*s.ProjectName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProjectName sets the ProjectName field's value.
+func (s *GetProjectInput) SetProjectName(v string) *GetProjectInput {
+	s.ProjectName = &v
+	return s
+}
+
+type GetProjectOutput struct {
+	_ struct{} `type:"structure"`
+
+	Project *Project `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetProjectOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetProjectOutput) GoString() string {
+	return s.String()
+}
+
+// SetProject sets the Project field's value.
+func (s *GetProjectOutput) SetProject(v *Project) *GetProjectOutput {
+	s.Project = v
 	return s
 }
 
@@ -25510,7 +26142,7 @@ type GetRolePolicyOutput struct {
 	// converts a YAML policy to JSON format before submitting it to IAM.
 	//
 	// PolicyDocument is a required field
-	PolicyDocument *string `min:"1" type:"string" required:"true"`
+	PolicyDocument *string `type:"string" required:"true"`
 
 	// The name of the policy.
 	//
@@ -25569,7 +26201,7 @@ type GetSAMLProviderInput struct {
 	// in the Amazon Web Services General Reference.
 	//
 	// SAMLProviderArn is a required field
-	SAMLProviderArn *string `min:"20" type:"string" required:"true"`
+	SAMLProviderArn *string `min:"15" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -25596,8 +26228,8 @@ func (s *GetSAMLProviderInput) Validate() error {
 	if s.SAMLProviderArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("SAMLProviderArn"))
 	}
-	if s.SAMLProviderArn != nil && len(*s.SAMLProviderArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("SAMLProviderArn", 20))
+	if s.SAMLProviderArn != nil && len(*s.SAMLProviderArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("SAMLProviderArn", 15))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -26582,7 +27214,7 @@ type GetUserPolicyOutput struct {
 	// converts a YAML policy to JSON format before submitting it to IAM.
 	//
 	// PolicyDocument is a required field
-	PolicyDocument *string `min:"1" type:"string" required:"true"`
+	PolicyDocument *string `type:"string" required:"true"`
 
 	// The name of the policy.
 	//
@@ -26643,37 +27275,31 @@ func (s *GetUserPolicyOutput) SetUserName(v string) *GetUserPolicyOutput {
 type Group struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) specifying the group. For more information
-	// about ARNs and how to use them in policies, see IAM identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
-	// in the IAM User Guide.
-	//
-	// Arn is a required field
-	Arn *string `min:"20" type:"string" required:"true"`
+	CreateDate *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
-	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
-	// when the group was created.
+	// The Amazon Resource Name (ARN). ARNs are unique identifiers for Amazon Web
+	// Services resources.
 	//
-	// CreateDate is a required field
-	CreateDate *time.Time `type:"timestamp" required:"true"`
+	// For more information about ARNs, go to Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	GroupArn *string `min:"15" type:"string"`
 
 	// The stable and unique string identifying the group. For more information
 	// about IDs, see IAM identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the IAM User Guide.
-	//
-	// GroupId is a required field
-	GroupId *string `min:"16" type:"string" required:"true"`
+	GroupId *string `min:"16" type:"string"`
 
 	// The friendly name that identifies the group.
-	//
-	// GroupName is a required field
-	GroupName *string `min:"1" type:"string" required:"true"`
+	GroupName *string `min:"1" type:"string"`
+
+	Owner *string `type:"string" enum:"GrantsOwnerType"`
 
 	// The path to the group. For more information about paths, see IAM identifiers
 	// (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the IAM User Guide.
-	//
-	// Path is a required field
-	Path *string `min:"1" type:"string" required:"true"`
+	Path *string `min:"1" type:"string"`
+
+	Type *string `type:"string" enum:"GrantsTypeType"`
 }
 
 // String returns the string representation.
@@ -26694,15 +27320,15 @@ func (s Group) GoString() string {
 	return s.String()
 }
 
-// SetArn sets the Arn field's value.
-func (s *Group) SetArn(v string) *Group {
-	s.Arn = &v
-	return s
-}
-
 // SetCreateDate sets the CreateDate field's value.
 func (s *Group) SetCreateDate(v time.Time) *Group {
 	s.CreateDate = &v
+	return s
+}
+
+// SetGroupArn sets the GroupArn field's value.
+func (s *Group) SetGroupArn(v string) *Group {
+	s.GroupArn = &v
 	return s
 }
 
@@ -26718,9 +27344,21 @@ func (s *Group) SetGroupName(v string) *Group {
 	return s
 }
 
+// SetOwner sets the Owner field's value.
+func (s *Group) SetOwner(v string) *Group {
+	s.Owner = &v
+	return s
+}
+
 // SetPath sets the Path field's value.
 func (s *Group) SetPath(v string) *Group {
 	s.Path = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Group) SetType(v string) *Group {
+	s.Type = &v
 	return s
 }
 
@@ -26736,7 +27374,7 @@ type GroupDetail struct {
 	//
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the Amazon Web Services General Reference.
-	Arn *string `min:"20" type:"string"`
+	Arn *string `min:"15" type:"string"`
 
 	// A list of the managed policies attached to the group.
 	AttachedManagedPolicies []*AttachedPolicy `type:"list"`
@@ -26842,7 +27480,7 @@ type InstanceProfile struct {
 	// in the IAM User Guide.
 	//
 	// Arn is a required field
-	Arn *string `min:"20" type:"string" required:"true"`
+	Arn *string `min:"15" type:"string" required:"true"`
 
 	// The date when the instance profile was created.
 	//
@@ -27744,7 +28382,7 @@ type ListEntitiesForPolicyInput struct {
 	// in the Amazon Web Services General Reference.
 	//
 	// PolicyArn is a required field
-	PolicyArn *string `min:"20" type:"string" required:"true"`
+	PolicyArn *string `min:"15" type:"string" required:"true"`
 
 	// The policy usage method to use for filtering the results.
 	//
@@ -27789,8 +28427,8 @@ func (s *ListEntitiesForPolicyInput) Validate() error {
 	if s.PolicyArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyArn"))
 	}
-	if s.PolicyArn != nil && len(*s.PolicyArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 20))
+	if s.PolicyArn != nil && len(*s.PolicyArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 15))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -27912,14 +28550,21 @@ func (s *ListEntitiesForPolicyOutput) SetPolicyUsers(v []*PolicyUser) *ListEntit
 type ListGroupPoliciesInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN). ARNs are unique identifiers for Amazon Web
+	// Services resources.
+	//
+	// For more information about ARNs, go to Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	//
+	// GroupArn is a required field
+	GroupArn *string `min:"15" type:"string" required:"true"`
+
 	// The name of the group to list policies for.
 	//
 	// This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex))
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: _+=,.@-
-	//
-	// GroupName is a required field
-	GroupName *string `min:"1" type:"string" required:"true"`
+	GroupName *string `min:"1" type:"string"`
 
 	// Use this parameter only when paginating results and only after you receive
 	// a response indicating that the results are truncated. Set it to the value
@@ -27960,8 +28605,11 @@ func (s ListGroupPoliciesInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListGroupPoliciesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListGroupPoliciesInput"}
-	if s.GroupName == nil {
-		invalidParams.Add(request.NewErrParamRequired("GroupName"))
+	if s.GroupArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupArn"))
+	}
+	if s.GroupArn != nil && len(*s.GroupArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupArn", 15))
 	}
 	if s.GroupName != nil && len(*s.GroupName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
@@ -27977,6 +28625,12 @@ func (s *ListGroupPoliciesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetGroupArn sets the GroupArn field's value.
+func (s *ListGroupPoliciesInput) SetGroupArn(v string) *ListGroupPoliciesInput {
+	s.GroupArn = &v
+	return s
 }
 
 // SetGroupName sets the GroupName field's value.
@@ -28013,14 +28667,14 @@ type ListGroupPoliciesOutput struct {
 	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
+	Policies []*Policy `type:"list"`
+
 	// A list of policy names.
 	//
 	// This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex))
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: _+=,.@-
-	//
-	// PolicyNames is a required field
-	PolicyNames []*string `type:"list" required:"true"`
+	PolicyNames []*string `type:"list"`
 }
 
 // String returns the string representation.
@@ -28050,6 +28704,12 @@ func (s *ListGroupPoliciesOutput) SetIsTruncated(v bool) *ListGroupPoliciesOutpu
 // SetMarker sets the Marker field's value.
 func (s *ListGroupPoliciesOutput) SetMarker(v string) *ListGroupPoliciesOutput {
 	s.Marker = &v
+	return s
+}
+
+// SetPolicies sets the Policies field's value.
+func (s *ListGroupPoliciesOutput) SetPolicies(v []*Policy) *ListGroupPoliciesOutput {
+	s.Policies = v
 	return s
 }
 
@@ -28225,6 +28885,8 @@ type ListGroupsInput struct {
 	// service where to continue from.
 	MaxItems *int64 `min:"1" type:"integer"`
 
+	Owner *string `type:"string" enum:"GrantsOwnerType"`
+
 	// The path prefix for filtering the results. For example, the prefix /division_abc/subdivision_xyz/
 	// gets all groups whose path starts with /division_abc/subdivision_xyz/.
 	//
@@ -28236,6 +28898,8 @@ type ListGroupsInput struct {
 	// through the DEL character (\u007F), including most punctuation characters,
 	// digits, and upper and lowercased letters.
 	PathPrefix *string `min:"1" type:"string"`
+
+	Type *string `type:"string" enum:"GrantsTypeType"`
 }
 
 // String returns the string representation.
@@ -28287,9 +28951,21 @@ func (s *ListGroupsInput) SetMaxItems(v int64) *ListGroupsInput {
 	return s
 }
 
+// SetOwner sets the Owner field's value.
+func (s *ListGroupsInput) SetOwner(v string) *ListGroupsInput {
+	s.Owner = &v
+	return s
+}
+
 // SetPathPrefix sets the PathPrefix field's value.
 func (s *ListGroupsInput) SetPathPrefix(v string) *ListGroupsInput {
 	s.PathPrefix = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ListGroupsInput) SetType(v string) *ListGroupsInput {
+	s.Type = &v
 	return s
 }
 
@@ -29107,7 +29783,7 @@ type ListOpenIDConnectProviderTagsInput struct {
 	// with no spaces. You can also include any of the following characters: _+=,.@-
 	//
 	// OpenIDConnectProviderArn is a required field
-	OpenIDConnectProviderArn *string `min:"20" type:"string" required:"true"`
+	OpenIDConnectProviderArn *string `min:"15" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -29140,8 +29816,8 @@ func (s *ListOpenIDConnectProviderTagsInput) Validate() error {
 	if s.OpenIDConnectProviderArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("OpenIDConnectProviderArn"))
 	}
-	if s.OpenIDConnectProviderArn != nil && len(*s.OpenIDConnectProviderArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("OpenIDConnectProviderArn", 20))
+	if s.OpenIDConnectProviderArn != nil && len(*s.OpenIDConnectProviderArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("OpenIDConnectProviderArn", 15))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -29344,7 +30020,7 @@ type ListPoliciesGrantingServiceAccessInput struct {
 	// to list.
 	//
 	// Arn is a required field
-	Arn *string `min:"20" type:"string" required:"true"`
+	Arn *string `min:"15" type:"string" required:"true"`
 
 	// Use this parameter only when paginating results and only after you receive
 	// a response indicating that the results are truncated. Set it to the value
@@ -29391,8 +30067,8 @@ func (s *ListPoliciesGrantingServiceAccessInput) Validate() error {
 	if s.Arn == nil {
 		invalidParams.Add(request.NewErrParamRequired("Arn"))
 	}
-	if s.Arn != nil && len(*s.Arn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("Arn", 20))
+	if s.Arn != nil && len(*s.Arn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 15))
 	}
 	if s.Marker != nil && len(*s.Marker) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Marker", 1))
@@ -29512,6 +30188,8 @@ type ListPoliciesInput struct {
 	// or when the parameter is not included, all policies are returned.
 	OnlyAttached *bool `type:"boolean"`
 
+	Owner *string `type:"string" enum:"GrantsOwnerType"`
+
 	// The path prefix for filtering the results. This parameter is optional. If
 	// it is not included, it defaults to a slash (/), listing all policies. This
 	// parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex))
@@ -29540,6 +30218,8 @@ type ListPoliciesInput struct {
 	// This parameter is optional. If it is not included, or if it is set to All,
 	// all policies are returned.
 	Scope *string `type:"string" enum:"PolicyScopeType"`
+
+	Type *string `type:"string" enum:"GrantsTypeType"`
 }
 
 // String returns the string representation.
@@ -29597,6 +30277,12 @@ func (s *ListPoliciesInput) SetOnlyAttached(v bool) *ListPoliciesInput {
 	return s
 }
 
+// SetOwner sets the Owner field's value.
+func (s *ListPoliciesInput) SetOwner(v string) *ListPoliciesInput {
+	s.Owner = &v
+	return s
+}
+
 // SetPathPrefix sets the PathPrefix field's value.
 func (s *ListPoliciesInput) SetPathPrefix(v string) *ListPoliciesInput {
 	s.PathPrefix = &v
@@ -29612,6 +30298,12 @@ func (s *ListPoliciesInput) SetPolicyUsageFilter(v string) *ListPoliciesInput {
 // SetScope sets the Scope field's value.
 func (s *ListPoliciesInput) SetScope(v string) *ListPoliciesInput {
 	s.Scope = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ListPoliciesInput) SetType(v string) *ListPoliciesInput {
+	s.Type = &v
 	return s
 }
 
@@ -29698,7 +30390,7 @@ type ListPolicyTagsInput struct {
 	// with no spaces. You can also include any of the following characters: _+=,.@-
 	//
 	// PolicyArn is a required field
-	PolicyArn *string `min:"20" type:"string" required:"true"`
+	PolicyArn *string `min:"15" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -29731,8 +30423,8 @@ func (s *ListPolicyTagsInput) Validate() error {
 	if s.PolicyArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyArn"))
 	}
-	if s.PolicyArn != nil && len(*s.PolicyArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 20))
+	if s.PolicyArn != nil && len(*s.PolicyArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 15))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -29844,7 +30536,7 @@ type ListPolicyVersionsInput struct {
 	// in the Amazon Web Services General Reference.
 	//
 	// PolicyArn is a required field
-	PolicyArn *string `min:"20" type:"string" required:"true"`
+	PolicyArn *string `min:"15" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -29877,8 +30569,8 @@ func (s *ListPolicyVersionsInput) Validate() error {
 	if s.PolicyArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyArn"))
 	}
-	if s.PolicyArn != nil && len(*s.PolicyArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 20))
+	if s.PolicyArn != nil && len(*s.PolicyArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 15))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -30432,7 +31124,7 @@ type ListSAMLProviderTagsInput struct {
 	// with no spaces. You can also include any of the following characters: _+=,.@-
 	//
 	// SAMLProviderArn is a required field
-	SAMLProviderArn *string `min:"20" type:"string" required:"true"`
+	SAMLProviderArn *string `min:"15" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -30465,8 +31157,8 @@ func (s *ListSAMLProviderTagsInput) Validate() error {
 	if s.SAMLProviderArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("SAMLProviderArn"))
 	}
-	if s.SAMLProviderArn != nil && len(*s.SAMLProviderArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("SAMLProviderArn", 20))
+	if s.SAMLProviderArn != nil && len(*s.SAMLProviderArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("SAMLProviderArn", 15))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -31275,6 +31967,163 @@ func (s *ListSigningCertificatesOutput) SetMarker(v string) *ListSigningCertific
 	return s
 }
 
+type ListUserGlobalGroupsInput struct {
+	_ struct{} `type:"structure"`
+
+	// UserName is a required field
+	UserName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUserGlobalGroupsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUserGlobalGroupsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListUserGlobalGroupsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListUserGlobalGroupsInput"}
+	if s.UserName == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserName"))
+	}
+	if s.UserName != nil && len(*s.UserName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUserName sets the UserName field's value.
+func (s *ListUserGlobalGroupsInput) SetUserName(v string) *ListUserGlobalGroupsInput {
+	s.UserName = &v
+	return s
+}
+
+type ListUserGlobalGroupsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains a list of IAM groups.
+	//
+	// This data type is used as a response element in the ListGroups operation.
+	Groups []*Group `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUserGlobalGroupsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUserGlobalGroupsOutput) GoString() string {
+	return s.String()
+}
+
+// SetGroups sets the Groups field's value.
+func (s *ListUserGlobalGroupsOutput) SetGroups(v []*Group) *ListUserGlobalGroupsOutput {
+	s.Groups = v
+	return s
+}
+
+type ListUserGlobalPoliciesInput struct {
+	_ struct{} `type:"structure"`
+
+	// UserName is a required field
+	UserName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUserGlobalPoliciesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUserGlobalPoliciesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListUserGlobalPoliciesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListUserGlobalPoliciesInput"}
+	if s.UserName == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserName"))
+	}
+	if s.UserName != nil && len(*s.UserName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUserName sets the UserName field's value.
+func (s *ListUserGlobalPoliciesInput) SetUserName(v string) *ListUserGlobalPoliciesInput {
+	s.UserName = &v
+	return s
+}
+
+type ListUserGlobalPoliciesOutput struct {
+	_ struct{} `type:"structure"`
+
+	Policies []*Policy `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUserGlobalPoliciesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUserGlobalPoliciesOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicies sets the Policies field's value.
+func (s *ListUserGlobalPoliciesOutput) SetPolicies(v []*Policy) *ListUserGlobalPoliciesOutput {
+	s.Policies = v
+	return s
+}
+
 type ListUserPoliciesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -31418,6 +32267,193 @@ func (s *ListUserPoliciesOutput) SetMarker(v string) *ListUserPoliciesOutput {
 // SetPolicyNames sets the PolicyNames field's value.
 func (s *ListUserPoliciesOutput) SetPolicyNames(v []*string) *ListUserPoliciesOutput {
 	s.PolicyNames = v
+	return s
+}
+
+type ListUserProjectGroupsInput struct {
+	_ struct{} `type:"structure"`
+
+	// ProjectName is a required field
+	ProjectName *string `min:"1" type:"string" required:"true"`
+
+	// UserName is a required field
+	UserName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUserProjectGroupsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUserProjectGroupsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListUserProjectGroupsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListUserProjectGroupsInput"}
+	if s.ProjectName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProjectName"))
+	}
+	if s.ProjectName != nil && len(*s.ProjectName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectName", 1))
+	}
+	if s.UserName == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserName"))
+	}
+	if s.UserName != nil && len(*s.UserName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProjectName sets the ProjectName field's value.
+func (s *ListUserProjectGroupsInput) SetProjectName(v string) *ListUserProjectGroupsInput {
+	s.ProjectName = &v
+	return s
+}
+
+// SetUserName sets the UserName field's value.
+func (s *ListUserProjectGroupsInput) SetUserName(v string) *ListUserProjectGroupsInput {
+	s.UserName = &v
+	return s
+}
+
+type ListUserProjectGroupsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains a list of IAM groups.
+	//
+	// This data type is used as a response element in the ListGroups operation.
+	Groups []*Group `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUserProjectGroupsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUserProjectGroupsOutput) GoString() string {
+	return s.String()
+}
+
+// SetGroups sets the Groups field's value.
+func (s *ListUserProjectGroupsOutput) SetGroups(v []*Group) *ListUserProjectGroupsOutput {
+	s.Groups = v
+	return s
+}
+
+type ListUserProjectPoliciesInput struct {
+	_ struct{} `type:"structure"`
+
+	// ProjectName is a required field
+	ProjectName *string `min:"1" type:"string" required:"true"`
+
+	// UserName is a required field
+	UserName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUserProjectPoliciesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUserProjectPoliciesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListUserProjectPoliciesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListUserProjectPoliciesInput"}
+	if s.ProjectName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProjectName"))
+	}
+	if s.ProjectName != nil && len(*s.ProjectName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectName", 1))
+	}
+	if s.UserName == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserName"))
+	}
+	if s.UserName != nil && len(*s.UserName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProjectName sets the ProjectName field's value.
+func (s *ListUserProjectPoliciesInput) SetProjectName(v string) *ListUserProjectPoliciesInput {
+	s.ProjectName = &v
+	return s
+}
+
+// SetUserName sets the UserName field's value.
+func (s *ListUserProjectPoliciesInput) SetUserName(v string) *ListUserProjectPoliciesInput {
+	s.UserName = &v
+	return s
+}
+
+type ListUserProjectPoliciesOutput struct {
+	_ struct{} `type:"structure"`
+
+	Policies []*Policy `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUserProjectPoliciesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUserProjectPoliciesOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicies sets the Policies field's value.
+func (s *ListUserProjectPoliciesOutput) SetPolicies(v []*Policy) *ListUserProjectPoliciesOutput {
+	s.Policies = v
 	return s
 }
 
@@ -31986,7 +33022,7 @@ type ManagedPolicyDetail struct {
 	//
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the Amazon Web Services General Reference.
-	Arn *string `min:"20" type:"string"`
+	Arn *string `min:"15" type:"string"`
 
 	// The number of principal entities (users, groups, and roles) that the policy
 	// is attached to.
@@ -32145,7 +33181,7 @@ type OpenIDConnectProviderListEntry struct {
 	//
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the Amazon Web Services General Reference.
-	Arn *string `min:"20" type:"string"`
+	Arn *string `min:"15" type:"string"`
 }
 
 // String returns the string representation.
@@ -32390,20 +33426,11 @@ func (s *PermissionsBoundaryDecisionDetail) SetAllowedByPermissionsBoundary(v bo
 type Policy struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN). ARNs are unique identifiers for Amazon Web
-	// Services resources.
-	//
-	// For more information about ARNs, go to Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the Amazon Web Services General Reference.
-	Arn *string `min:"20" type:"string"`
-
 	// The number of entities (users, groups, and roles) that the policy is attached
 	// to.
 	AttachmentCount *int64 `type:"integer"`
 
-	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
-	// when the policy was created.
-	CreateDate *time.Time `type:"timestamp"`
+	CreateDate *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
 	// The identifier for the version of the policy that is set as the default version.
 	DefaultVersionId *string `type:"string"`
@@ -32414,8 +33441,12 @@ type Policy struct {
 	// not included in the response to the ListPolicies operation.
 	Description *string `type:"string"`
 
+	Document *string `type:"string"`
+
 	// Specifies whether the policy can be attached to an IAM user, group, or role.
 	IsAttachable *bool `type:"boolean"`
+
+	Owner *string `type:"string" enum:"GrantsOwnerType"`
 
 	// The path to the policy.
 	//
@@ -32431,6 +33462,13 @@ type Policy struct {
 	// in the IAM User Guide.
 	PermissionsBoundaryUsageCount *int64 `type:"integer"`
 
+	// The Amazon Resource Name (ARN). ARNs are unique identifiers for Amazon Web
+	// Services resources.
+	//
+	// For more information about ARNs, go to Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	PolicyArn *string `min:"15" type:"string"`
+
 	// The stable and unique string identifying the policy.
 	//
 	// For more information about IDs, see IAM identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
@@ -32445,14 +33483,9 @@ type Policy struct {
 	// in the IAM User Guide.
 	Tags []*Tag `type:"list"`
 
-	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
-	// when the policy was last updated.
-	//
-	// When a policy has only one version, this field contains the date and time
-	// when the policy was created. When a policy has more than one version, this
-	// field contains the date and time when the most recent policy version was
-	// created.
-	UpdateDate *time.Time `type:"timestamp"`
+	Type *string `type:"string" enum:"GrantsTypeType"`
+
+	UpdateDate *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 }
 
 // String returns the string representation.
@@ -32471,12 +33504,6 @@ func (s Policy) String() string {
 // value will be replaced with "sensitive".
 func (s Policy) GoString() string {
 	return s.String()
-}
-
-// SetArn sets the Arn field's value.
-func (s *Policy) SetArn(v string) *Policy {
-	s.Arn = &v
-	return s
 }
 
 // SetAttachmentCount sets the AttachmentCount field's value.
@@ -32503,9 +33530,21 @@ func (s *Policy) SetDescription(v string) *Policy {
 	return s
 }
 
+// SetDocument sets the Document field's value.
+func (s *Policy) SetDocument(v string) *Policy {
+	s.Document = &v
+	return s
+}
+
 // SetIsAttachable sets the IsAttachable field's value.
 func (s *Policy) SetIsAttachable(v bool) *Policy {
 	s.IsAttachable = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *Policy) SetOwner(v string) *Policy {
+	s.Owner = &v
 	return s
 }
 
@@ -32518,6 +33557,12 @@ func (s *Policy) SetPath(v string) *Policy {
 // SetPermissionsBoundaryUsageCount sets the PermissionsBoundaryUsageCount field's value.
 func (s *Policy) SetPermissionsBoundaryUsageCount(v int64) *Policy {
 	s.PermissionsBoundaryUsageCount = &v
+	return s
+}
+
+// SetPolicyArn sets the PolicyArn field's value.
+func (s *Policy) SetPolicyArn(v string) *Policy {
+	s.PolicyArn = &v
 	return s
 }
 
@@ -32539,6 +33584,12 @@ func (s *Policy) SetTags(v []*Tag) *Policy {
 	return s
 }
 
+// SetType sets the Type field's value.
+func (s *Policy) SetType(v string) *Policy {
+	s.Type = &v
+	return s
+}
+
 // SetUpdateDate sets the UpdateDate field's value.
 func (s *Policy) SetUpdateDate(v time.Time) *Policy {
 	s.UpdateDate = &v
@@ -32553,7 +33604,7 @@ type PolicyDetail struct {
 	_ struct{} `type:"structure"`
 
 	// The policy document.
-	PolicyDocument *string `min:"1" type:"string"`
+	PolicyDocument *string `type:"string"`
 
 	// The name of the policy.
 	PolicyName *string `min:"1" type:"string"`
@@ -32617,7 +33668,7 @@ type PolicyGrantingServiceAccess struct {
 	//
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the Amazon Web Services General Reference.
-	PolicyArn *string `min:"20" type:"string"`
+	PolicyArn *string `min:"15" type:"string"`
 
 	// The policy name.
 	//
@@ -32857,7 +33908,7 @@ type PolicyVersion struct {
 	// method to convert the policy back to plain JSON text. For example, if you
 	// use Java, you can use the decode method of the java.net.URLDecoder utility
 	// class in the Java SDK. Other languages and SDKs provide similar functionality.
-	Document *string `min:"1" type:"string"`
+	Document *string `type:"string"`
 
 	// Specifies whether the policy version is set as the policy's default version.
 	IsDefaultVersion *bool `type:"boolean"`
@@ -32955,6 +34006,140 @@ func (s *Position) SetLine(v int64) *Position {
 	return s
 }
 
+type Project struct {
+	_ struct{} `type:"structure"`
+
+	CreateDate *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	DisplayName *string `type:"string"`
+
+	// The Amazon Resource Name (ARN). ARNs are unique identifiers for Amazon Web
+	// Services resources.
+	//
+	// For more information about ARNs, go to Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	ProjectArn *string `min:"15" type:"string"`
+
+	ProjectId *string `min:"16" type:"string"`
+
+	ProjectName *string `min:"1" type:"string"`
+
+	S3Email *string `type:"string"`
+
+	State *string `type:"string" enum:"ProjectStateType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Project) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Project) GoString() string {
+	return s.String()
+}
+
+// SetCreateDate sets the CreateDate field's value.
+func (s *Project) SetCreateDate(v time.Time) *Project {
+	s.CreateDate = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *Project) SetDisplayName(v string) *Project {
+	s.DisplayName = &v
+	return s
+}
+
+// SetProjectArn sets the ProjectArn field's value.
+func (s *Project) SetProjectArn(v string) *Project {
+	s.ProjectArn = &v
+	return s
+}
+
+// SetProjectId sets the ProjectId field's value.
+func (s *Project) SetProjectId(v string) *Project {
+	s.ProjectId = &v
+	return s
+}
+
+// SetProjectName sets the ProjectName field's value.
+func (s *Project) SetProjectName(v string) *Project {
+	s.ProjectName = &v
+	return s
+}
+
+// SetS3Email sets the S3Email field's value.
+func (s *Project) SetS3Email(v string) *Project {
+	s.S3Email = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *Project) SetState(v string) *Project {
+	s.State = &v
+	return s
+}
+
+type ProjectLinkType struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN). ARNs are unique identifiers for Amazon Web
+	// Services resources.
+	//
+	// For more information about ARNs, go to Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	ProjectArn *string `min:"15" type:"string"`
+
+	ProjectId *string `min:"16" type:"string"`
+
+	ProjectName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProjectLinkType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProjectLinkType) GoString() string {
+	return s.String()
+}
+
+// SetProjectArn sets the ProjectArn field's value.
+func (s *ProjectLinkType) SetProjectArn(v string) *ProjectLinkType {
+	s.ProjectArn = &v
+	return s
+}
+
+// SetProjectId sets the ProjectId field's value.
+func (s *ProjectLinkType) SetProjectId(v string) *ProjectLinkType {
+	s.ProjectId = &v
+	return s
+}
+
+// SetProjectName sets the ProjectName field's value.
+func (s *ProjectLinkType) SetProjectName(v string) *ProjectLinkType {
+	s.ProjectName = &v
+	return s
+}
+
 type PutGroupPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -32987,7 +34172,7 @@ type PutGroupPolicyInput struct {
 	//    return (\u000D)
 	//
 	// PolicyDocument is a required field
-	PolicyDocument *string `min:"1" type:"string" required:"true"`
+	PolicyDocument *string `type:"string" required:"true"`
 
 	// The name of the policy document.
 	//
@@ -33028,9 +34213,6 @@ func (s *PutGroupPolicyInput) Validate() error {
 	}
 	if s.PolicyDocument == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyDocument"))
-	}
-	if s.PolicyDocument != nil && len(*s.PolicyDocument) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicyDocument", 1))
 	}
 	if s.PolicyName == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyName"))
@@ -33092,7 +34274,7 @@ type PutRolePermissionsBoundaryInput struct {
 	// role.
 	//
 	// PermissionsBoundary is a required field
-	PermissionsBoundary *string `min:"20" type:"string" required:"true"`
+	PermissionsBoundary *string `min:"15" type:"string" required:"true"`
 
 	// The name (friendly name, not ARN) of the IAM role for which you want to set
 	// the permissions boundary.
@@ -33125,8 +34307,8 @@ func (s *PutRolePermissionsBoundaryInput) Validate() error {
 	if s.PermissionsBoundary == nil {
 		invalidParams.Add(request.NewErrParamRequired("PermissionsBoundary"))
 	}
-	if s.PermissionsBoundary != nil && len(*s.PermissionsBoundary) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("PermissionsBoundary", 20))
+	if s.PermissionsBoundary != nil && len(*s.PermissionsBoundary) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PermissionsBoundary", 15))
 	}
 	if s.RoleName == nil {
 		invalidParams.Add(request.NewErrParamRequired("RoleName"))
@@ -33198,7 +34380,7 @@ type PutRolePolicyInput struct {
 	//    return (\u000D)
 	//
 	// PolicyDocument is a required field
-	PolicyDocument *string `min:"1" type:"string" required:"true"`
+	PolicyDocument *string `type:"string" required:"true"`
 
 	// The name of the policy document.
 	//
@@ -33242,9 +34424,6 @@ func (s *PutRolePolicyInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PutRolePolicyInput"}
 	if s.PolicyDocument == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyDocument"))
-	}
-	if s.PolicyDocument != nil && len(*s.PolicyDocument) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicyDocument", 1))
 	}
 	if s.PolicyName == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyName"))
@@ -33312,7 +34491,7 @@ type PutUserPermissionsBoundaryInput struct {
 	// user.
 	//
 	// PermissionsBoundary is a required field
-	PermissionsBoundary *string `min:"20" type:"string" required:"true"`
+	PermissionsBoundary *string `min:"15" type:"string" required:"true"`
 
 	// The name (friendly name, not ARN) of the IAM user for which you want to set
 	// the permissions boundary.
@@ -33345,8 +34524,8 @@ func (s *PutUserPermissionsBoundaryInput) Validate() error {
 	if s.PermissionsBoundary == nil {
 		invalidParams.Add(request.NewErrParamRequired("PermissionsBoundary"))
 	}
-	if s.PermissionsBoundary != nil && len(*s.PermissionsBoundary) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("PermissionsBoundary", 20))
+	if s.PermissionsBoundary != nil && len(*s.PermissionsBoundary) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PermissionsBoundary", 15))
 	}
 	if s.UserName == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserName"))
@@ -33418,7 +34597,7 @@ type PutUserPolicyInput struct {
 	//    return (\u000D)
 	//
 	// PolicyDocument is a required field
-	PolicyDocument *string `min:"1" type:"string" required:"true"`
+	PolicyDocument *string `type:"string" required:"true"`
 
 	// The name of the policy document.
 	//
@@ -33462,9 +34641,6 @@ func (s *PutUserPolicyInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PutUserPolicyInput"}
 	if s.PolicyDocument == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyDocument"))
-	}
-	if s.PolicyDocument != nil && len(*s.PolicyDocument) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicyDocument", 1))
 	}
 	if s.PolicyName == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyName"))
@@ -33542,7 +34718,7 @@ type RemoveClientIDFromOpenIDConnectProviderInput struct {
 	// in the Amazon Web Services General Reference.
 	//
 	// OpenIDConnectProviderArn is a required field
-	OpenIDConnectProviderArn *string `min:"20" type:"string" required:"true"`
+	OpenIDConnectProviderArn *string `min:"15" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -33575,8 +34751,8 @@ func (s *RemoveClientIDFromOpenIDConnectProviderInput) Validate() error {
 	if s.OpenIDConnectProviderArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("OpenIDConnectProviderArn"))
 	}
-	if s.OpenIDConnectProviderArn != nil && len(*s.OpenIDConnectProviderArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("OpenIDConnectProviderArn", 20))
+	if s.OpenIDConnectProviderArn != nil && len(*s.OpenIDConnectProviderArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("OpenIDConnectProviderArn", 15))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -33718,21 +34894,17 @@ func (s RemoveRoleFromInstanceProfileOutput) GoString() string {
 type RemoveUserFromGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the group to update.
+	// The Amazon Resource Name (ARN). ARNs are unique identifiers for Amazon Web
+	// Services resources.
 	//
-	// This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of upper and lowercase alphanumeric characters
-	// with no spaces. You can also include any of the following characters: _+=,.@-
+	// For more information about ARNs, go to Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
-	// GroupName is a required field
-	GroupName *string `min:"1" type:"string" required:"true"`
+	// GroupArn is a required field
+	GroupArn *string `min:"15" type:"string" required:"true"`
 
-	// The name of the user to remove.
-	//
-	// This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of upper and lowercase alphanumeric characters
-	// with no spaces. You can also include any of the following characters: _+=,.@-
-	//
+	ProjectName *string `min:"1" type:"string"`
+
 	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
@@ -33758,11 +34930,14 @@ func (s RemoveUserFromGroupInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *RemoveUserFromGroupInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "RemoveUserFromGroupInput"}
-	if s.GroupName == nil {
-		invalidParams.Add(request.NewErrParamRequired("GroupName"))
+	if s.GroupArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupArn"))
 	}
-	if s.GroupName != nil && len(*s.GroupName) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
+	if s.GroupArn != nil && len(*s.GroupArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupArn", 15))
+	}
+	if s.ProjectName != nil && len(*s.ProjectName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectName", 1))
 	}
 	if s.UserName == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserName"))
@@ -33777,9 +34952,15 @@ func (s *RemoveUserFromGroupInput) Validate() error {
 	return nil
 }
 
-// SetGroupName sets the GroupName field's value.
-func (s *RemoveUserFromGroupInput) SetGroupName(v string) *RemoveUserFromGroupInput {
-	s.GroupName = &v
+// SetGroupArn sets the GroupArn field's value.
+func (s *RemoveUserFromGroupInput) SetGroupArn(v string) *RemoveUserFromGroupInput {
+	s.GroupArn = &v
+	return s
+}
+
+// SetProjectName sets the ProjectName field's value.
+func (s *RemoveUserFromGroupInput) SetProjectName(v string) *RemoveUserFromGroupInput {
+	s.ProjectName = &v
 	return s
 }
 
@@ -34161,10 +35342,10 @@ type Role struct {
 	// in the IAM User Guide guide.
 	//
 	// Arn is a required field
-	Arn *string `min:"20" type:"string" required:"true"`
+	Arn *string `min:"15" type:"string" required:"true"`
 
 	// The policy that grants an entity permission to assume the role.
-	AssumeRolePolicyDocument *string `min:"1" type:"string"`
+	AssumeRolePolicyDocument *string `type:"string"`
 
 	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
 	// when the role was created.
@@ -34317,10 +35498,10 @@ type RoleDetail struct {
 	//
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the Amazon Web Services General Reference.
-	Arn *string `min:"20" type:"string"`
+	Arn *string `min:"15" type:"string"`
 
 	// The trust policy that grants permission to assume the role.
-	AssumeRolePolicyDocument *string `min:"1" type:"string"`
+	AssumeRolePolicyDocument *string `type:"string"`
 
 	// A list of managed policies attached to the role. These policies are the role's
 	// access (permissions) policies.
@@ -34568,7 +35749,7 @@ type SAMLProviderListEntry struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the SAML provider.
-	Arn *string `min:"20" type:"string"`
+	Arn *string `min:"15" type:"string"`
 
 	// The date and time when the SAML provider was created.
 	CreateDate *time.Time `type:"timestamp"`
@@ -34861,7 +36042,7 @@ type ServerCertificateMetadata struct {
 	// in the IAM User Guide.
 	//
 	// Arn is a required field
-	Arn *string `min:"20" type:"string" required:"true"`
+	Arn *string `min:"15" type:"string" required:"true"`
 
 	// The date on which the certificate is set to expire.
 	Expiration *time.Time `type:"timestamp"`
@@ -34963,7 +36144,7 @@ type ServiceLastAccessed struct {
 	//
 	// This field is null if no IAM entities attempted to access the service within
 	// the reporting period (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_access-advisor.html#service-last-accessed-reporting-period).
-	LastAuthenticatedEntity *string `min:"20" type:"string"`
+	LastAuthenticatedEntity *string `min:"15" type:"string"`
 
 	// The Region from which the authenticated entity (user or role) last attempted
 	// to access the service. Amazon Web Services does not report unauthenticated
@@ -35279,7 +36460,7 @@ type SetDefaultPolicyVersionInput struct {
 	// in the Amazon Web Services General Reference.
 	//
 	// PolicyArn is a required field
-	PolicyArn *string `min:"20" type:"string" required:"true"`
+	PolicyArn *string `min:"15" type:"string" required:"true"`
 
 	// The version of the policy to set as the default (operative) version.
 	//
@@ -35315,8 +36496,8 @@ func (s *SetDefaultPolicyVersionInput) Validate() error {
 	if s.PolicyArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyArn"))
 	}
-	if s.PolicyArn != nil && len(*s.PolicyArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 20))
+	if s.PolicyArn != nil && len(*s.PolicyArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 15))
 	}
 	if s.VersionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("VersionId"))
@@ -35700,7 +36881,7 @@ type SimulateCustomPolicyInput struct {
 	//
 	//    * The special characters tab (\u0009), line feed (\u000A), and carriage
 	//    return (\u000D)
-	ResourcePolicy *string `min:"1" type:"string"`
+	ResourcePolicy *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -35744,9 +36925,6 @@ func (s *SimulateCustomPolicyInput) Validate() error {
 	}
 	if s.ResourceOwner != nil && len(*s.ResourceOwner) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ResourceOwner", 1))
-	}
-	if s.ResourcePolicy != nil && len(*s.ResourcePolicy) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("ResourcePolicy", 1))
 	}
 	if s.ContextEntries != nil {
 		for i, v := range s.ContextEntries {
@@ -36000,7 +37178,7 @@ type SimulatePrincipalPolicyInput struct {
 	// in the Amazon Web Services General Reference.
 	//
 	// PolicySourceArn is a required field
-	PolicySourceArn *string `min:"20" type:"string" required:"true"`
+	PolicySourceArn *string `min:"15" type:"string" required:"true"`
 
 	// A list of ARNs of Amazon Web Services resources to include in the simulation.
 	// If this parameter is not provided, then the value defaults to * (all resources).
@@ -36079,7 +37257,7 @@ type SimulatePrincipalPolicyInput struct {
 	//
 	//    * The special characters tab (\u0009), line feed (\u000A), and carriage
 	//    return (\u000D)
-	ResourcePolicy *string `min:"1" type:"string"`
+	ResourcePolicy *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -36118,17 +37296,14 @@ func (s *SimulatePrincipalPolicyInput) Validate() error {
 	if s.PolicySourceArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicySourceArn"))
 	}
-	if s.PolicySourceArn != nil && len(*s.PolicySourceArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicySourceArn", 20))
+	if s.PolicySourceArn != nil && len(*s.PolicySourceArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicySourceArn", 15))
 	}
 	if s.ResourceHandlingOption != nil && len(*s.ResourceHandlingOption) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ResourceHandlingOption", 1))
 	}
 	if s.ResourceOwner != nil && len(*s.ResourceOwner) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ResourceOwner", 1))
-	}
-	if s.ResourcePolicy != nil && len(*s.ResourcePolicy) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("ResourcePolicy", 1))
 	}
 	if s.ContextEntries != nil {
 		for i, v := range s.ContextEntries {
@@ -36569,7 +37744,7 @@ type TagOpenIDConnectProviderInput struct {
 	// with no spaces. You can also include any of the following characters: _+=,.@-
 	//
 	// OpenIDConnectProviderArn is a required field
-	OpenIDConnectProviderArn *string `min:"20" type:"string" required:"true"`
+	OpenIDConnectProviderArn *string `min:"15" type:"string" required:"true"`
 
 	// The list of tags that you want to attach to the OIDC identity provider in
 	// IAM. Each tag consists of a key name and an associated value.
@@ -36602,8 +37777,8 @@ func (s *TagOpenIDConnectProviderInput) Validate() error {
 	if s.OpenIDConnectProviderArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("OpenIDConnectProviderArn"))
 	}
-	if s.OpenIDConnectProviderArn != nil && len(*s.OpenIDConnectProviderArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("OpenIDConnectProviderArn", 20))
+	if s.OpenIDConnectProviderArn != nil && len(*s.OpenIDConnectProviderArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("OpenIDConnectProviderArn", 15))
 	}
 	if s.Tags == nil {
 		invalidParams.Add(request.NewErrParamRequired("Tags"))
@@ -36669,7 +37844,7 @@ type TagPolicyInput struct {
 	// with no spaces. You can also include any of the following characters: _+=,.@-
 	//
 	// PolicyArn is a required field
-	PolicyArn *string `min:"20" type:"string" required:"true"`
+	PolicyArn *string `min:"15" type:"string" required:"true"`
 
 	// The list of tags that you want to attach to the IAM customer managed policy.
 	// Each tag consists of a key name and an associated value.
@@ -36702,8 +37877,8 @@ func (s *TagPolicyInput) Validate() error {
 	if s.PolicyArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyArn"))
 	}
-	if s.PolicyArn != nil && len(*s.PolicyArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 20))
+	if s.PolicyArn != nil && len(*s.PolicyArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 15))
 	}
 	if s.Tags == nil {
 		invalidParams.Add(request.NewErrParamRequired("Tags"))
@@ -36869,7 +38044,7 @@ type TagSAMLProviderInput struct {
 	// with no spaces. You can also include any of the following characters: _+=,.@-
 	//
 	// SAMLProviderArn is a required field
-	SAMLProviderArn *string `min:"20" type:"string" required:"true"`
+	SAMLProviderArn *string `min:"15" type:"string" required:"true"`
 
 	// The list of tags that you want to attach to the SAML identity provider in
 	// IAM. Each tag consists of a key name and an associated value.
@@ -36902,8 +38077,8 @@ func (s *TagSAMLProviderInput) Validate() error {
 	if s.SAMLProviderArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("SAMLProviderArn"))
 	}
-	if s.SAMLProviderArn != nil && len(*s.SAMLProviderArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("SAMLProviderArn", 20))
+	if s.SAMLProviderArn != nil && len(*s.SAMLProviderArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("SAMLProviderArn", 15))
 	}
 	if s.Tags == nil {
 		invalidParams.Add(request.NewErrParamRequired("Tags"))
@@ -37176,7 +38351,7 @@ type TrackedActionLastAccessed struct {
 	//
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the Amazon Web Services General Reference.
-	LastAccessedEntity *string `min:"20" type:"string"`
+	LastAccessedEntity *string `min:"15" type:"string"`
 
 	// The Region from which the authenticated entity (user or role) last attempted
 	// to access the tracked action. Amazon Web Services does not report unauthenticated
@@ -37429,7 +38604,7 @@ type UntagOpenIDConnectProviderInput struct {
 	// with no spaces. You can also include any of the following characters: _+=,.@-
 	//
 	// OpenIDConnectProviderArn is a required field
-	OpenIDConnectProviderArn *string `min:"20" type:"string" required:"true"`
+	OpenIDConnectProviderArn *string `min:"15" type:"string" required:"true"`
 
 	// A list of key names as a simple array of strings. The tags with matching
 	// keys are removed from the specified OIDC provider.
@@ -37462,8 +38637,8 @@ func (s *UntagOpenIDConnectProviderInput) Validate() error {
 	if s.OpenIDConnectProviderArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("OpenIDConnectProviderArn"))
 	}
-	if s.OpenIDConnectProviderArn != nil && len(*s.OpenIDConnectProviderArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("OpenIDConnectProviderArn", 20))
+	if s.OpenIDConnectProviderArn != nil && len(*s.OpenIDConnectProviderArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("OpenIDConnectProviderArn", 15))
 	}
 	if s.TagKeys == nil {
 		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
@@ -37520,7 +38695,7 @@ type UntagPolicyInput struct {
 	// with no spaces. You can also include any of the following characters: _+=,.@-
 	//
 	// PolicyArn is a required field
-	PolicyArn *string `min:"20" type:"string" required:"true"`
+	PolicyArn *string `min:"15" type:"string" required:"true"`
 
 	// A list of key names as a simple array of strings. The tags with matching
 	// keys are removed from the specified policy.
@@ -37553,8 +38728,8 @@ func (s *UntagPolicyInput) Validate() error {
 	if s.PolicyArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyArn"))
 	}
-	if s.PolicyArn != nil && len(*s.PolicyArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 20))
+	if s.PolicyArn != nil && len(*s.PolicyArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyArn", 15))
 	}
 	if s.TagKeys == nil {
 		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
@@ -37701,7 +38876,7 @@ type UntagSAMLProviderInput struct {
 	// with no spaces. You can also include any of the following characters: _+=,.@-
 	//
 	// SAMLProviderArn is a required field
-	SAMLProviderArn *string `min:"20" type:"string" required:"true"`
+	SAMLProviderArn *string `min:"15" type:"string" required:"true"`
 
 	// A list of key names as a simple array of strings. The tags with matching
 	// keys are removed from the specified SAML identity provider.
@@ -37734,8 +38909,8 @@ func (s *UntagSAMLProviderInput) Validate() error {
 	if s.SAMLProviderArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("SAMLProviderArn"))
 	}
-	if s.SAMLProviderArn != nil && len(*s.SAMLProviderArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("SAMLProviderArn", 20))
+	if s.SAMLProviderArn != nil && len(*s.SAMLProviderArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("SAMLProviderArn", 15))
 	}
 	if s.TagKeys == nil {
 		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
@@ -38290,7 +39465,7 @@ type UpdateAssumeRolePolicyInput struct {
 	//    return (\u000D)
 	//
 	// PolicyDocument is a required field
-	PolicyDocument *string `min:"1" type:"string" required:"true"`
+	PolicyDocument *string `type:"string" required:"true"`
 
 	// The name of the role to update with the new policy.
 	//
@@ -38325,9 +39500,6 @@ func (s *UpdateAssumeRolePolicyInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateAssumeRolePolicyInput"}
 	if s.PolicyDocument == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyDocument"))
-	}
-	if s.PolicyDocument != nil && len(*s.PolicyDocument) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("PolicyDocument", 1))
 	}
 	if s.RoleName == nil {
 		invalidParams.Add(request.NewErrParamRequired("RoleName"))
@@ -38615,7 +39787,7 @@ type UpdateOpenIDConnectProviderThumbprintInput struct {
 	// in the Amazon Web Services General Reference.
 	//
 	// OpenIDConnectProviderArn is a required field
-	OpenIDConnectProviderArn *string `min:"20" type:"string" required:"true"`
+	OpenIDConnectProviderArn *string `min:"15" type:"string" required:"true"`
 
 	// A list of certificate thumbprints that are associated with the specified
 	// IAM OpenID Connect provider. For more information, see CreateOpenIDConnectProvider.
@@ -38648,8 +39820,8 @@ func (s *UpdateOpenIDConnectProviderThumbprintInput) Validate() error {
 	if s.OpenIDConnectProviderArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("OpenIDConnectProviderArn"))
 	}
-	if s.OpenIDConnectProviderArn != nil && len(*s.OpenIDConnectProviderArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("OpenIDConnectProviderArn", 20))
+	if s.OpenIDConnectProviderArn != nil && len(*s.OpenIDConnectProviderArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("OpenIDConnectProviderArn", 15))
 	}
 	if s.ThumbprintList == nil {
 		invalidParams.Add(request.NewErrParamRequired("ThumbprintList"))
@@ -38693,6 +39865,192 @@ func (s UpdateOpenIDConnectProviderThumbprintOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateOpenIDConnectProviderThumbprintOutput) GoString() string {
 	return s.String()
+}
+
+type UpdatePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	Description *string `type:"string"`
+
+	Document *string `type:"string"`
+
+	// PolicyName is a required field
+	PolicyName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePolicyInput"}
+	if s.PolicyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyName"))
+	}
+	if s.PolicyName != nil && len(*s.PolicyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdatePolicyInput) SetDescription(v string) *UpdatePolicyInput {
+	s.Description = &v
+	return s
+}
+
+// SetDocument sets the Document field's value.
+func (s *UpdatePolicyInput) SetDocument(v string) *UpdatePolicyInput {
+	s.Document = &v
+	return s
+}
+
+// SetPolicyName sets the PolicyName field's value.
+func (s *UpdatePolicyInput) SetPolicyName(v string) *UpdatePolicyInput {
+	s.PolicyName = &v
+	return s
+}
+
+type UpdatePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains information about a managed policy.
+	//
+	// This data type is used as a response element in the CreatePolicy, GetPolicy,
+	// and ListPolicies operations.
+	//
+	// For more information about managed policies, refer to Managed policies and
+	// inline policies (https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
+	// in the IAM User Guide.
+	Policy *Policy `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *UpdatePolicyOutput) SetPolicy(v *Policy) *UpdatePolicyOutput {
+	s.Policy = v
+	return s
+}
+
+type UpdateProjectInput struct {
+	_ struct{} `type:"structure"`
+
+	DisplayName *string `type:"string"`
+
+	// ProjectName is a required field
+	ProjectName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProjectInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProjectInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateProjectInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateProjectInput"}
+	if s.ProjectName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProjectName"))
+	}
+	if s.ProjectName != nil && len(*s.ProjectName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *UpdateProjectInput) SetDisplayName(v string) *UpdateProjectInput {
+	s.DisplayName = &v
+	return s
+}
+
+// SetProjectName sets the ProjectName field's value.
+func (s *UpdateProjectInput) SetProjectName(v string) *UpdateProjectInput {
+	s.ProjectName = &v
+	return s
+}
+
+type UpdateProjectOutput struct {
+	_ struct{} `type:"structure"`
+
+	Project *Project `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProjectOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProjectOutput) GoString() string {
+	return s.String()
+}
+
+// SetProject sets the Project field's value.
+func (s *UpdateProjectOutput) SetProject(v *Project) *UpdateProjectOutput {
+	s.Project = v
+	return s
 }
 
 type UpdateRoleDescriptionInput struct {
@@ -38912,7 +40270,7 @@ type UpdateSAMLProviderInput struct {
 	// in the Amazon Web Services General Reference.
 	//
 	// SAMLProviderArn is a required field
-	SAMLProviderArn *string `min:"20" type:"string" required:"true"`
+	SAMLProviderArn *string `min:"15" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -38945,8 +40303,8 @@ func (s *UpdateSAMLProviderInput) Validate() error {
 	if s.SAMLProviderArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("SAMLProviderArn"))
 	}
-	if s.SAMLProviderArn != nil && len(*s.SAMLProviderArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("SAMLProviderArn", 20))
+	if s.SAMLProviderArn != nil && len(*s.SAMLProviderArn) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("SAMLProviderArn", 15))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -38972,7 +40330,7 @@ type UpdateSAMLProviderOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the SAML provider that was updated.
-	SAMLProviderArn *string `min:"20" type:"string"`
+	SAMLProviderArn *string `min:"15" type:"string"`
 }
 
 // String returns the string representation.
@@ -39441,6 +40799,14 @@ func (s UpdateSigningCertificateOutput) GoString() string {
 type UpdateUserInput struct {
 	_ struct{} `type:"structure"`
 
+	DisableOtp *bool `type:"boolean"`
+
+	DisplayName *string `type:"string"`
+
+	Email *string `type:"string"`
+
+	Enabled *bool `type:"boolean"`
+
 	// New path for the IAM user. Include this parameter only if you're changing
 	// the user's path.
 	//
@@ -39460,13 +40826,12 @@ type UpdateUserInput struct {
 	// named both "MyResource" and "myresource".
 	NewUserName *string `min:"1" type:"string"`
 
-	// Name of the user to update. If you're changing the name of the user, this
-	// is the original user name.
-	//
-	// This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of upper and lowercase alphanumeric characters
-	// with no spaces. You can also include any of the following characters: _+=,.@-
-	//
+	OtpRequired *bool `type:"boolean"`
+
+	Password *string `type:"string"`
+
+	Phone *string `type:"string"`
+
 	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
@@ -39511,6 +40876,30 @@ func (s *UpdateUserInput) Validate() error {
 	return nil
 }
 
+// SetDisableOtp sets the DisableOtp field's value.
+func (s *UpdateUserInput) SetDisableOtp(v bool) *UpdateUserInput {
+	s.DisableOtp = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *UpdateUserInput) SetDisplayName(v string) *UpdateUserInput {
+	s.DisplayName = &v
+	return s
+}
+
+// SetEmail sets the Email field's value.
+func (s *UpdateUserInput) SetEmail(v string) *UpdateUserInput {
+	s.Email = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *UpdateUserInput) SetEnabled(v bool) *UpdateUserInput {
+	s.Enabled = &v
+	return s
+}
+
 // SetNewPath sets the NewPath field's value.
 func (s *UpdateUserInput) SetNewPath(v string) *UpdateUserInput {
 	s.NewPath = &v
@@ -39523,6 +40912,24 @@ func (s *UpdateUserInput) SetNewUserName(v string) *UpdateUserInput {
 	return s
 }
 
+// SetOtpRequired sets the OtpRequired field's value.
+func (s *UpdateUserInput) SetOtpRequired(v bool) *UpdateUserInput {
+	s.OtpRequired = &v
+	return s
+}
+
+// SetPassword sets the Password field's value.
+func (s *UpdateUserInput) SetPassword(v string) *UpdateUserInput {
+	s.Password = &v
+	return s
+}
+
+// SetPhone sets the Phone field's value.
+func (s *UpdateUserInput) SetPhone(v string) *UpdateUserInput {
+	s.Phone = &v
+	return s
+}
+
 // SetUserName sets the UserName field's value.
 func (s *UpdateUserInput) SetUserName(v string) *UpdateUserInput {
 	s.UserName = &v
@@ -39531,6 +40938,17 @@ func (s *UpdateUserInput) SetUserName(v string) *UpdateUserInput {
 
 type UpdateUserOutput struct {
 	_ struct{} `type:"structure"`
+
+	// Contains information about an IAM user entity.
+	//
+	// This data type is used as a response element in the following operations:
+	//
+	//    * CreateUser
+	//
+	//    * GetUser
+	//
+	//    * ListUsers
+	User *User `type:"structure"`
 }
 
 // String returns the string representation.
@@ -39549,6 +40967,12 @@ func (s UpdateUserOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateUserOutput) GoString() string {
 	return s.String()
+}
+
+// SetUser sets the User field's value.
+func (s *UpdateUserOutput) SetUser(v *User) *UpdateUserOutput {
+	s.User = v
+	return s
 }
 
 type UploadSSHPublicKeyInput struct {
@@ -40029,70 +41453,59 @@ func (s *UploadSigningCertificateOutput) SetCertificate(v *SigningCertificate) *
 type User struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) that identifies the user. For more information
-	// about ARNs and how to use ARNs in policies, see IAM Identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
-	// in the IAM User Guide.
-	//
-	// Arn is a required field
-	Arn *string `min:"20" type:"string" required:"true"`
+	DisplayName *string `type:"string"`
 
-	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
-	// when the user was created.
-	//
-	// CreateDate is a required field
-	CreateDate *time.Time `type:"timestamp" required:"true"`
+	Email *string `type:"string"`
 
-	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
-	// when the user's password was last used to sign in to an Amazon Web Services
-	// website. For a list of Amazon Web Services websites that capture a user's
-	// last sign-in time, see the Credential reports (https://docs.aws.amazon.com/IAM/latest/UserGuide/credential-reports.html)
-	// topic in the IAM User Guide. If a password is used more than once in a five-minute
-	// span, only the first use is returned in this field. If the field is null
-	// (no value), then it indicates that they never signed in with a password.
-	// This can be because:
-	//
-	//    * The user never had a password.
-	//
-	//    * A password exists but has not been used since IAM started tracking this
-	//    information on October 20, 2014.
-	//
-	// A null value does not mean that the user never had a password. Also, if the
-	// user does not currently have a password but had one in the past, then this
-	// field contains the date and time the most recent password was used.
-	//
-	// This value is returned only in the GetUser and ListUsers operations.
-	PasswordLastUsed *time.Time `type:"timestamp"`
+	Enabled *bool `type:"boolean"`
+
+	IdentityProvider *string `type:"string"`
+
+	LastLoginDate *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	Login *string `type:"string"`
+
+	OtpRequired *bool `type:"boolean"`
 
 	// The path to the user. For more information about paths, see IAM identifiers
 	// (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the IAM User Guide.
 	//
 	// The ARN of the policy used to set the permissions boundary for the user.
-	//
-	// Path is a required field
-	Path *string `min:"1" type:"string" required:"true"`
+	Path *string `min:"1" type:"string"`
 
 	// For more information about permissions boundaries, see Permissions boundaries
 	// for IAM identities (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html)
 	// in the IAM User Guide.
 	PermissionsBoundary *AttachedPermissionsBoundary `type:"structure"`
 
+	Phone *string `type:"string"`
+
+	Projects []*ProjectLinkType `type:"list"`
+
+	SecretKey *string `type:"string"`
+
 	// A list of tags that are associated with the user. For more information about
 	// tagging, see Tagging IAM resources (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html)
 	// in the IAM User Guide.
 	Tags []*Tag `type:"list"`
 
+	UpdateDate *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The Amazon Resource Name (ARN). ARNs are unique identifiers for Amazon Web
+	// Services resources.
+	//
+	// For more information about ARNs, go to Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	UserArn *string `min:"15" type:"string"`
+
 	// The stable and unique string identifying the user. For more information about
 	// IDs, see IAM identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the IAM User Guide.
-	//
-	// UserId is a required field
-	UserId *string `min:"16" type:"string" required:"true"`
+	UserId *string `min:"16" type:"string"`
 
 	// The friendly name identifying the user.
-	//
-	// UserName is a required field
-	UserName *string `min:"1" type:"string" required:"true"`
+	UserName *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -40113,21 +41526,45 @@ func (s User) GoString() string {
 	return s.String()
 }
 
-// SetArn sets the Arn field's value.
-func (s *User) SetArn(v string) *User {
-	s.Arn = &v
+// SetDisplayName sets the DisplayName field's value.
+func (s *User) SetDisplayName(v string) *User {
+	s.DisplayName = &v
 	return s
 }
 
-// SetCreateDate sets the CreateDate field's value.
-func (s *User) SetCreateDate(v time.Time) *User {
-	s.CreateDate = &v
+// SetEmail sets the Email field's value.
+func (s *User) SetEmail(v string) *User {
+	s.Email = &v
 	return s
 }
 
-// SetPasswordLastUsed sets the PasswordLastUsed field's value.
-func (s *User) SetPasswordLastUsed(v time.Time) *User {
-	s.PasswordLastUsed = &v
+// SetEnabled sets the Enabled field's value.
+func (s *User) SetEnabled(v bool) *User {
+	s.Enabled = &v
+	return s
+}
+
+// SetIdentityProvider sets the IdentityProvider field's value.
+func (s *User) SetIdentityProvider(v string) *User {
+	s.IdentityProvider = &v
+	return s
+}
+
+// SetLastLoginDate sets the LastLoginDate field's value.
+func (s *User) SetLastLoginDate(v time.Time) *User {
+	s.LastLoginDate = &v
+	return s
+}
+
+// SetLogin sets the Login field's value.
+func (s *User) SetLogin(v string) *User {
+	s.Login = &v
+	return s
+}
+
+// SetOtpRequired sets the OtpRequired field's value.
+func (s *User) SetOtpRequired(v bool) *User {
+	s.OtpRequired = &v
 	return s
 }
 
@@ -40143,9 +41580,39 @@ func (s *User) SetPermissionsBoundary(v *AttachedPermissionsBoundary) *User {
 	return s
 }
 
+// SetPhone sets the Phone field's value.
+func (s *User) SetPhone(v string) *User {
+	s.Phone = &v
+	return s
+}
+
+// SetProjects sets the Projects field's value.
+func (s *User) SetProjects(v []*ProjectLinkType) *User {
+	s.Projects = v
+	return s
+}
+
+// SetSecretKey sets the SecretKey field's value.
+func (s *User) SetSecretKey(v string) *User {
+	s.SecretKey = &v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *User) SetTags(v []*Tag) *User {
 	s.Tags = v
+	return s
+}
+
+// SetUpdateDate sets the UpdateDate field's value.
+func (s *User) SetUpdateDate(v time.Time) *User {
+	s.UpdateDate = &v
+	return s
+}
+
+// SetUserArn sets the UserArn field's value.
+func (s *User) SetUserArn(v string) *User {
+	s.UserArn = &v
 	return s
 }
 
@@ -40174,7 +41641,7 @@ type UserDetail struct {
 	//
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the Amazon Web Services General Reference.
-	Arn *string `min:"20" type:"string"`
+	Arn *string `min:"15" type:"string"`
 
 	// A list of the managed policies attached to the user.
 	AttachedManagedPolicies []*AttachedPolicy `type:"list"`
@@ -40567,6 +42034,38 @@ func GlobalEndpointTokenVersion_Values() []string {
 }
 
 const (
+	// GrantsOwnerTypeProvider is a GrantsOwnerType enum value
+	GrantsOwnerTypeProvider = "provider"
+
+	// GrantsOwnerTypeSelf is a GrantsOwnerType enum value
+	GrantsOwnerTypeSelf = "self"
+)
+
+// GrantsOwnerType_Values returns all elements of the GrantsOwnerType enum
+func GrantsOwnerType_Values() []string {
+	return []string{
+		GrantsOwnerTypeProvider,
+		GrantsOwnerTypeSelf,
+	}
+}
+
+const (
+	// GrantsTypeTypeGlobal is a GrantsTypeType enum value
+	GrantsTypeTypeGlobal = "global"
+
+	// GrantsTypeTypeProject is a GrantsTypeType enum value
+	GrantsTypeTypeProject = "project"
+)
+
+// GrantsTypeType_Values returns all elements of the GrantsTypeType enum
+func GrantsTypeType_Values() []string {
+	return []string{
+		GrantsTypeTypeGlobal,
+		GrantsTypeTypeProject,
+	}
+}
+
+const (
 	// JobStatusTypeInProgress is a JobStatusType enum value
 	JobStatusTypeInProgress = "IN_PROGRESS"
 
@@ -40733,6 +42232,26 @@ func PolicyUsageType_Values() []string {
 }
 
 const (
+	// ProjectStateTypeAvailable is a ProjectStateType enum value
+	ProjectStateTypeAvailable = "available"
+
+	// ProjectStateTypeBlocked is a ProjectStateType enum value
+	ProjectStateTypeBlocked = "blocked"
+
+	// ProjectStateTypeDeleted is a ProjectStateType enum value
+	ProjectStateTypeDeleted = "deleted"
+)
+
+// ProjectStateType_Values returns all elements of the ProjectStateType enum
+func ProjectStateType_Values() []string {
+	return []string{
+		ProjectStateTypeAvailable,
+		ProjectStateTypeBlocked,
+		ProjectStateTypeDeleted,
+	}
+}
+
+const (
 	// ReportFormatTypeTextCsv is a ReportFormatType enum value
 	ReportFormatTypeTextCsv = "text/csv"
 )
@@ -40823,8 +42342,8 @@ const (
 	// SummaryKeyTypeServerCertificatesQuota is a SummaryKeyType enum value
 	SummaryKeyTypeServerCertificatesQuota = "ServerCertificatesQuota"
 
-	// SummaryKeyTypeUserPolicySizeQuota is a SummaryKeyType enum value
-	SummaryKeyTypeUserPolicySizeQuota = "UserPolicySizeQuota"
+	// SummaryKeyTypeUserPolicySizeQuot is a SummaryKeyType enum value
+	SummaryKeyTypeUserPolicySizeQuot = "UserPolicySizeQuot"
 
 	// SummaryKeyTypeGroupPolicySizeQuota is a SummaryKeyType enum value
 	SummaryKeyTypeGroupPolicySizeQuota = "GroupPolicySizeQuota"
@@ -40893,7 +42412,7 @@ func SummaryKeyType_Values() []string {
 		SummaryKeyTypeGroupsQuota,
 		SummaryKeyTypeServerCertificates,
 		SummaryKeyTypeServerCertificatesQuota,
-		SummaryKeyTypeUserPolicySizeQuota,
+		SummaryKeyTypeUserPolicySizeQuot,
 		SummaryKeyTypeGroupPolicySizeQuota,
 		SummaryKeyTypeGroupsPerUserQuota,
 		SummaryKeyTypeSigningCertificatesPerUserQuota,

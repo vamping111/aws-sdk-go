@@ -104,8 +104,7 @@ func ExampleIAM_AddRoleToInstanceProfile_shared00() {
 func ExampleIAM_AddUserToGroup_shared00() {
 	svc := iam.New(session.New())
 	input := &iam.AddUserToGroupInput{
-		GroupName: aws.String("Admins"),
-		UserName:  aws.String("Bob"),
+		UserName: aws.String("Bob"),
 	}
 
 	result, err := svc.AddUserToGroup(input)
@@ -146,16 +145,6 @@ func ExampleIAM_AttachGroupPolicy_shared00() {
 	if err != nil {
 		if aerr, ok := err.(awserr.Error); ok {
 			switch aerr.Code() {
-			case iam.ErrCodeNoSuchEntityException:
-				fmt.Println(iam.ErrCodeNoSuchEntityException, aerr.Error())
-			case iam.ErrCodeLimitExceededException:
-				fmt.Println(iam.ErrCodeLimitExceededException, aerr.Error())
-			case iam.ErrCodeInvalidInputException:
-				fmt.Println(iam.ErrCodeInvalidInputException, aerr.Error())
-			case iam.ErrCodePolicyNotAttachableException:
-				fmt.Println(iam.ErrCodePolicyNotAttachableException, aerr.Error())
-			case iam.ErrCodeServiceFailureException:
-				fmt.Println(iam.ErrCodeServiceFailureException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -224,16 +213,6 @@ func ExampleIAM_AttachUserPolicy_shared00() {
 	if err != nil {
 		if aerr, ok := err.(awserr.Error); ok {
 			switch aerr.Code() {
-			case iam.ErrCodeNoSuchEntityException:
-				fmt.Println(iam.ErrCodeNoSuchEntityException, aerr.Error())
-			case iam.ErrCodeLimitExceededException:
-				fmt.Println(iam.ErrCodeLimitExceededException, aerr.Error())
-			case iam.ErrCodeInvalidInputException:
-				fmt.Println(iam.ErrCodeInvalidInputException, aerr.Error())
-			case iam.ErrCodePolicyNotAttachableException:
-				fmt.Println(iam.ErrCodePolicyNotAttachableException, aerr.Error())
-			case iam.ErrCodeServiceFailureException:
-				fmt.Println(iam.ErrCodeServiceFailureException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -364,14 +343,6 @@ func ExampleIAM_CreateGroup_shared00() {
 	if err != nil {
 		if aerr, ok := err.(awserr.Error); ok {
 			switch aerr.Code() {
-			case iam.ErrCodeLimitExceededException:
-				fmt.Println(iam.ErrCodeLimitExceededException, aerr.Error())
-			case iam.ErrCodeEntityAlreadyExistsException:
-				fmt.Println(iam.ErrCodeEntityAlreadyExistsException, aerr.Error())
-			case iam.ErrCodeNoSuchEntityException:
-				fmt.Println(iam.ErrCodeNoSuchEntityException, aerr.Error())
-			case iam.ErrCodeServiceFailureException:
-				fmt.Println(iam.ErrCodeServiceFailureException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -903,16 +874,6 @@ func ExampleIAM_DeleteUser_shared00() {
 	if err != nil {
 		if aerr, ok := err.(awserr.Error); ok {
 			switch aerr.Code() {
-			case iam.ErrCodeLimitExceededException:
-				fmt.Println(iam.ErrCodeLimitExceededException, aerr.Error())
-			case iam.ErrCodeNoSuchEntityException:
-				fmt.Println(iam.ErrCodeNoSuchEntityException, aerr.Error())
-			case iam.ErrCodeDeleteConflictException:
-				fmt.Println(iam.ErrCodeDeleteConflictException, aerr.Error())
-			case iam.ErrCodeConcurrentModificationException:
-				fmt.Println(iam.ErrCodeConcurrentModificationException, aerr.Error())
-			case iam.ErrCodeServiceFailureException:
-				fmt.Println(iam.ErrCodeServiceFailureException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -1390,10 +1351,6 @@ func ExampleIAM_ListGroupPolicies_shared00() {
 	if err != nil {
 		if aerr, ok := err.(awserr.Error); ok {
 			switch aerr.Code() {
-			case iam.ErrCodeNoSuchEntityException:
-				fmt.Println(iam.ErrCodeNoSuchEntityException, aerr.Error())
-			case iam.ErrCodeServiceFailureException:
-				fmt.Println(iam.ErrCodeServiceFailureException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -1418,8 +1375,6 @@ func ExampleIAM_ListGroups_shared00() {
 	if err != nil {
 		if aerr, ok := err.(awserr.Error); ok {
 			switch aerr.Code() {
-			case iam.ErrCodeServiceFailureException:
-				fmt.Println(iam.ErrCodeServiceFailureException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -1791,20 +1746,13 @@ func ExampleIAM_RemoveRoleFromInstanceProfile_shared00() {
 func ExampleIAM_RemoveUserFromGroup_shared00() {
 	svc := iam.New(session.New())
 	input := &iam.RemoveUserFromGroupInput{
-		GroupName: aws.String("Admins"),
-		UserName:  aws.String("Bob"),
+		UserName: aws.String("Bob"),
 	}
 
 	result, err := svc.RemoveUserFromGroup(input)
 	if err != nil {
 		if aerr, ok := err.(awserr.Error); ok {
 			switch aerr.Code() {
-			case iam.ErrCodeNoSuchEntityException:
-				fmt.Println(iam.ErrCodeNoSuchEntityException, aerr.Error())
-			case iam.ErrCodeLimitExceededException:
-				fmt.Println(iam.ErrCodeLimitExceededException, aerr.Error())
-			case iam.ErrCodeServiceFailureException:
-				fmt.Println(iam.ErrCodeServiceFailureException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -2241,18 +2189,6 @@ func ExampleIAM_UpdateUser_shared00() {
 	if err != nil {
 		if aerr, ok := err.(awserr.Error); ok {
 			switch aerr.Code() {
-			case iam.ErrCodeNoSuchEntityException:
-				fmt.Println(iam.ErrCodeNoSuchEntityException, aerr.Error())
-			case iam.ErrCodeLimitExceededException:
-				fmt.Println(iam.ErrCodeLimitExceededException, aerr.Error())
-			case iam.ErrCodeEntityAlreadyExistsException:
-				fmt.Println(iam.ErrCodeEntityAlreadyExistsException, aerr.Error())
-			case iam.ErrCodeEntityTemporarilyUnmodifiableException:
-				fmt.Println(iam.ErrCodeEntityTemporarilyUnmodifiableException, aerr.Error())
-			case iam.ErrCodeConcurrentModificationException:
-				fmt.Println(iam.ErrCodeConcurrentModificationException, aerr.Error())
-			case iam.ErrCodeServiceFailureException:
-				fmt.Println(iam.ErrCodeServiceFailureException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
