@@ -954,6 +954,16 @@
       ],
       "idempotent":true
     },
+    "UpdateBackupSelection":{
+      "name":"UpdateBackupSelection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/backup/plans/{backupPlanId}/selections/{selectionId}"
+      },
+      "input":{"shape":"UpdateBackupSelectionInput"},
+      "output":{"shape":"UpdateBackupSelectionOutput"},
+      "idempotent":true
+    },
     "UpdateFramework":{
       "name":"UpdateFramework",
       "http":{
@@ -1230,7 +1240,8 @@
       "type":"structure",
       "required":[
         "SelectionName",
-        "IamRoleArn"
+        "IamRoleArn",
+        "Resources"
       ],
       "members":{
         "SelectionName":{"shape":"BackupSelectionName"},
@@ -3251,6 +3262,35 @@
         "CreationDate":{"shape":"timestamp"},
         "VersionId":{"shape":"string"},
         "AdvancedBackupSettings":{"shape":"AdvancedBackupSettings"}
+      }
+    },
+    "UpdateBackupSelectionInput":{
+      "type":"structure",
+      "required":[
+        "BackupPlanId",
+        "BackupSelection",
+        "SelectionId"
+      ],
+      "members":{
+        "BackupPlanId":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"backupPlanId"
+        },
+        "BackupSelection":{"shape":"BackupSelection"},
+        "SelectionId":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"selectionId"
+        }
+      }
+    },
+    "UpdateBackupSelectionOutput":{
+      "type":"structure",
+      "members":{
+        "SelectionId":{"shape":"string"},
+        "BackupPlanId":{"shape":"string"},
+        "CreationDate":{"shape":"timestamp"}
       }
     },
     "UpdateFrameworkInput":{
