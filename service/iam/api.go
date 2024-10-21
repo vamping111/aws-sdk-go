@@ -41459,8 +41459,6 @@ type User struct {
 
 	Enabled *bool `type:"boolean"`
 
-	IdentityProvider *string `type:"string"`
-
 	LastLoginDate *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
 	Login *string `type:"string"`
@@ -41541,12 +41539,6 @@ func (s *User) SetEmail(v string) *User {
 // SetEnabled sets the Enabled field's value.
 func (s *User) SetEnabled(v bool) *User {
 	s.Enabled = &v
-	return s
-}
-
-// SetIdentityProvider sets the IdentityProvider field's value.
-func (s *User) SetIdentityProvider(v string) *User {
-	s.IdentityProvider = &v
 	return s
 }
 
