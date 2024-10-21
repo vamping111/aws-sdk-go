@@ -6160,9 +6160,6 @@
         "LastLoginDate":{
           "shape":"unixTimestampType"
         },
-        "IdentityProvider":{
-          "shape":"stringType"
-        },
         "Projects":{
           "shape":"projectLinksListType"
         },
