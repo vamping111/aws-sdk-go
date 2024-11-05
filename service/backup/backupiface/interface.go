@@ -349,6 +349,10 @@ type BackupAPI interface {
 	UpdateBackupPlanWithContext(aws.Context, *backup.UpdateBackupPlanInput, ...request.Option) (*backup.UpdateBackupPlanOutput, error)
 	UpdateBackupPlanRequest(*backup.UpdateBackupPlanInput) (*request.Request, *backup.UpdateBackupPlanOutput)
 
+	UpdateBackupSelection(*backup.UpdateBackupSelectionInput) (*backup.UpdateBackupSelectionOutput, error)
+	UpdateBackupSelectionWithContext(aws.Context, *backup.UpdateBackupSelectionInput, ...request.Option) (*backup.UpdateBackupSelectionOutput, error)
+	UpdateBackupSelectionRequest(*backup.UpdateBackupSelectionInput) (*request.Request, *backup.UpdateBackupSelectionOutput)
+
 	UpdateFramework(*backup.UpdateFrameworkInput) (*backup.UpdateFrameworkOutput, error)
 	UpdateFrameworkWithContext(aws.Context, *backup.UpdateFrameworkInput, ...request.Option) (*backup.UpdateFrameworkOutput, error)
 	UpdateFrameworkRequest(*backup.UpdateFrameworkInput) (*request.Request, *backup.UpdateFrameworkOutput)

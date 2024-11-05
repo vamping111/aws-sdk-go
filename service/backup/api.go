@@ -6435,6 +6435,99 @@ func (c *Backup) UpdateBackupPlanWithContext(ctx aws.Context, input *UpdateBacku
 	return out, req.Send()
 }
 
+const opUpdateBackupSelection = "UpdateBackupSelection"
+
+// UpdateBackupSelectionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateBackupSelection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateBackupSelection for more information on using the UpdateBackupSelection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateBackupSelectionRequest method.
+//	req, resp := client.UpdateBackupSelectionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/UpdateBackupSelection
+func (c *Backup) UpdateBackupSelectionRequest(input *UpdateBackupSelectionInput) (req *request.Request, output *UpdateBackupSelectionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateBackupSelection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/backup/plans/{backupPlanId}/selections/{selectionId}",
+	}
+
+	if input == nil {
+		input = &UpdateBackupSelectionInput{}
+	}
+
+	output = &UpdateBackupSelectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateBackupSelection API operation for AWS Backup.
+//
+// Updates a JSON document that specifies a set of resources to assign to a
+// backup plan. Resources can be included by specifying patterns for a ListOfTags
+// and selected Resources.
+//
+// For example, consider the following patterns:
+//
+//   - Resources: "arn:aws:ec2:region:account-id:volume/volume-id"
+//
+//   - ConditionKey:"department" ConditionValue:"finance" ConditionType:"StringEquals"
+//
+//   - ConditionKey:"importance" ConditionValue:"critical" ConditionType:"StringEquals"
+//
+// Using these patterns would back up all Amazon Elastic Block Store (Amazon
+// EBS) volumes that are tagged as "department=finance", "importance=critical",
+// in addition to an EBS volume with the specified volume ID.
+//
+// Resources and conditions are additive in that all resources that match the
+// pattern are selected. This shouldn't be confused with a logical AND, where
+// all conditions must match. The matching patterns are logically put together
+// using the OR operator. In other words, all patterns that match are selected
+// for backup.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup's
+// API operation UpdateBackupSelection for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/UpdateBackupSelection
+func (c *Backup) UpdateBackupSelection(input *UpdateBackupSelectionInput) (*UpdateBackupSelectionOutput, error) {
+	req, out := c.UpdateBackupSelectionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateBackupSelectionWithContext is the same as UpdateBackupSelection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateBackupSelection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) UpdateBackupSelectionWithContext(ctx aws.Context, input *UpdateBackupSelectionInput, opts ...request.Option) (*UpdateBackupSelectionOutput, error) {
+	req, out := c.UpdateBackupSelectionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateFramework = "UpdateFramework"
 
 // UpdateFrameworkRequest generates a "aws/request.Request" representing the
@@ -16914,7 +17007,9 @@ type Selection struct {
 	// If you need to assign many resources to a backup plan, consider a different
 	// resource selection strategy, such as assigning all resources of a resource
 	// type or refining your resource selection using tags.
-	Resources []*string `type:"list"`
+	//
+	// Resources is a required field
+	Resources []*string `type:"list" required:"true"`
 
 	// The display name of a resource selection document. Must contain 1 to 50 alphanumeric
 	// or '-_.' characters.
@@ -16946,6 +17041,9 @@ func (s *Selection) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Selection"}
 	if s.IamRoleArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("IamRoleArn"))
+	}
+	if s.Resources == nil {
+		invalidParams.Add(request.NewErrParamRequired("Resources"))
 	}
 	if s.SelectionName == nil {
 		invalidParams.Add(request.NewErrParamRequired("SelectionName"))
@@ -18214,6 +18312,147 @@ func (s *UpdateBackupPlanOutput) SetCreationDate(v time.Time) *UpdateBackupPlanO
 // SetVersionId sets the VersionId field's value.
 func (s *UpdateBackupPlanOutput) SetVersionId(v string) *UpdateBackupPlanOutput {
 	s.VersionId = &v
+	return s
+}
+
+type UpdateBackupSelectionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Uniquely identifies the backup plan to be associated with the selection of
+	// resources.
+	//
+	// BackupPlanId is a required field
+	BackupPlanId *string `location:"uri" locationName:"backupPlanId" type:"string" required:"true"`
+
+	// Specifies the body of a request to assign a set of resources to a backup
+	// plan.
+	//
+	// BackupSelection is a required field
+	BackupSelection *Selection `type:"structure" required:"true"`
+
+	// Uniquely identifies the body of a request to assign a set of resources to
+	// a backup plan.
+	//
+	// SelectionId is a required field
+	SelectionId *string `location:"uri" locationName:"selectionId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateBackupSelectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateBackupSelectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateBackupSelectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateBackupSelectionInput"}
+	if s.BackupPlanId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BackupPlanId"))
+	}
+	if s.BackupPlanId != nil && len(*s.BackupPlanId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BackupPlanId", 1))
+	}
+	if s.BackupSelection == nil {
+		invalidParams.Add(request.NewErrParamRequired("BackupSelection"))
+	}
+	if s.SelectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SelectionId"))
+	}
+	if s.SelectionId != nil && len(*s.SelectionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SelectionId", 1))
+	}
+	if s.BackupSelection != nil {
+		if err := s.BackupSelection.Validate(); err != nil {
+			invalidParams.AddNested("BackupSelection", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBackupPlanId sets the BackupPlanId field's value.
+func (s *UpdateBackupSelectionInput) SetBackupPlanId(v string) *UpdateBackupSelectionInput {
+	s.BackupPlanId = &v
+	return s
+}
+
+// SetBackupSelection sets the BackupSelection field's value.
+func (s *UpdateBackupSelectionInput) SetBackupSelection(v *Selection) *UpdateBackupSelectionInput {
+	s.BackupSelection = v
+	return s
+}
+
+// SetSelectionId sets the SelectionId field's value.
+func (s *UpdateBackupSelectionInput) SetSelectionId(v string) *UpdateBackupSelectionInput {
+	s.SelectionId = &v
+	return s
+}
+
+type UpdateBackupSelectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Uniquely identifies a backup plan.
+	BackupPlanId *string `type:"string"`
+
+	// The date and time a backup selection is created, in Unix format and Coordinated
+	// Universal Time (UTC). The value of CreationDate is accurate to milliseconds.
+	// For example, the value 1516925490.087 represents Friday, January 26, 2018
+	// 12:11:30.087 AM.
+	CreationDate *time.Time `type:"timestamp"`
+
+	// Uniquely identifies the body of a request to assign a set of resources to
+	// a backup plan.
+	SelectionId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateBackupSelectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateBackupSelectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetBackupPlanId sets the BackupPlanId field's value.
+func (s *UpdateBackupSelectionOutput) SetBackupPlanId(v string) *UpdateBackupSelectionOutput {
+	s.BackupPlanId = &v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *UpdateBackupSelectionOutput) SetCreationDate(v time.Time) *UpdateBackupSelectionOutput {
+	s.CreationDate = &v
+	return s
+}
+
+// SetSelectionId sets the SelectionId field's value.
+func (s *UpdateBackupSelectionOutput) SetSelectionId(v string) *UpdateBackupSelectionOutput {
+	s.SelectionId = &v
 	return s
 }
 

@@ -63,6 +63,7 @@
     "TagResource": "<p>Assigns a set of key-value pairs to a recovery point, backup plan, or backup vault identified by an Amazon Resource Name (ARN).</p>",
     "UntagResource": "<p>Removes a set of key-value pairs from a recovery point, backup plan, or backup vault identified by an Amazon Resource Name (ARN)</p>",
     "UpdateBackupPlan": "<p>Updates an existing backup plan identified by its <code>backupPlanId</code> with the input document in JSON format. The new version is uniquely identified by a <code>VersionId</code>.</p>",
+    "UpdateBackupSelection": "<p>Updates a JSON document that specifies a set of resources to assign to a backup plan. Resources can be included by specifying patterns for a <code>ListOfTags</code> and selected <code>Resources</code>. </p> <p>For example, consider the following patterns:</p> <ul> <li> <p> <code>Resources: \"arn:aws:ec2:region:account-id:volume/volume-id\"</code> </p> </li> <li> <p> <code>ConditionKey:\"department\"</code> </p> <p> <code>ConditionValue:\"finance\"</code> </p> <p> <code>ConditionType:\"StringEquals\"</code> </p> </li> <li> <p> <code>ConditionKey:\"importance\"</code> </p> <p> <code>ConditionValue:\"critical\"</code> </p> <p> <code>ConditionType:\"StringEquals\"</code> </p> </li> </ul> <p>Using these patterns would back up all Amazon Elastic Block Store (Amazon EBS) volumes that are tagged as <code>\"department=finance\"</code>, <code>\"importance=critical\"</code>, in addition to an EBS volume with the specified volume ID.</p> <p>Resources and conditions are additive in that all resources that match the pattern are selected. This shouldn't be confused with a logical AND, where all conditions must match. The matching patterns are logically put together using the OR operator. In other words, all patterns that match are selected for backup.</p>",
     "UpdateFramework": "<p>Updates an existing framework identified by its <code>FrameworkName</code> with the input document in JSON format.</p>",
     "UpdateGlobalSettings": "<p>Updates whether the Amazon Web Services account is opted in to cross-account backup. Returns an error if the account is not an Organizations management account. Use the <code>DescribeGlobalSettings</code> API to determine the current settings.</p>",
     "UpdateRecoveryPointLifecycle": "<p>Sets the transition lifecycle of a recovery point.</p> <p>The lifecycle defines when a protected resource is transitioned to cold storage and when it expires. Backup transitions and expires backups automatically according to the lifecycle that you define.</p> <p>Backups transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, the “retention” setting must be 90 days greater than the “transition to cold after days” setting. The “transition to cold after days” setting cannot be changed after a backup has been transitioned to cold.</p> <p>Only resource types that support full Backup management can transition their backups to cold storage. Those resource types are listed in the \"Full Backup management\" section of the <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource\"> Feature availability by resource</a> table. Backup ignores this expression for other resource types.</p> <p>This operation does not support continuous backups.</p>",
@@ -318,7 +319,8 @@
       "base": "<p>Used to specify a set of resources to a backup plan.</p>",
       "refs": {
         "CreateBackupSelectionInput$BackupSelection": "<p>Specifies the body of a request to assign a set of resources to a backup plan.</p>",
-        "GetBackupSelectionOutput$BackupSelection": "<p>Specifies the body of a request to assign a set of resources to a backup plan.</p>"
+        "GetBackupSelectionOutput$BackupSelection": "<p>Specifies the body of a request to assign a set of resources to a backup plan.</p>",
+        "UpdateBackupSelectionInput$BackupSelection": "<p>Specifies the body of a request to assign a set of resources to a backup plan.</p>"
       }
     },
     "BackupSelectionName": {
@@ -1565,6 +1567,16 @@
       "refs": {
       }
     },
+    "UpdateBackupSelectionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateBackupSelectionOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateFrameworkInput": {
       "base": null,
       "refs": {
@@ -1809,6 +1821,10 @@
         "UpdateBackupPlanInput$BackupPlanId": "<p>Uniquely identifies a backup plan.</p>",
         "UpdateBackupPlanOutput$BackupPlanId": "<p>Uniquely identifies a backup plan.</p>",
         "UpdateBackupPlanOutput$VersionId": "<p>Unique, randomly generated, Unicode, UTF-8 encoded strings that are at most 1,024 bytes long. Version Ids cannot be edited.</p>",
+        "UpdateBackupSelectionInput$BackupPlanId": "<p>Uniquely identifies the backup plan to be associated with the selection of resources.</p>",
+        "UpdateBackupSelectionInput$SelectionId": "<p>Uniquely identifies the body of a request to assign a set of resources to a backup plan.</p>",
+        "UpdateBackupSelectionOutput$BackupPlanId": "<p>Uniquely identifies a backup plan.</p>",
+        "UpdateBackupSelectionOutput$SelectionId": "<p>Uniquely identifies the body of a request to assign a set of resources to a backup plan.</p>",
         "UpdateFrameworkInput$IdempotencyToken": "<p>A customer-chosen string that you can use to distinguish between otherwise identical calls to <code>UpdateFrameworkInput</code>. Retrying a successful request with the same idempotency token results in a success message with no action taken.</p>",
         "UpdateReportPlanInput$IdempotencyToken": "<p>A customer-chosen string that you can use to distinguish between otherwise identical calls to <code>UpdateReportPlanInput</code>. Retrying a successful request with the same idempotency token results in a success message with no action taken.</p>",
         "stringList$member": null,
@@ -1903,6 +1919,7 @@
         "StartBackupJobOutput$CreationDate": "<p>The date and time that a backup job is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "StartCopyJobOutput$CreationDate": "<p>The date and time that a copy job is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "UpdateBackupPlanOutput$CreationDate": "<p>The date and time a backup plan is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
+        "UpdateBackupSelectionOutput$CreationDate": "<p>The date and time a backup selection is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "UpdateFrameworkOutput$CreationTime": "<p>The date and time that a framework is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationTime</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "UpdateReportPlanOutput$CreationTime": "<p>The date and time that a report plan is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationTime</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>"
       }
