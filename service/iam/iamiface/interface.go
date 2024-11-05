@@ -120,6 +120,10 @@ type IAMAPI interface {
 	CreatePolicyVersionWithContext(aws.Context, *iam.CreatePolicyVersionInput, ...request.Option) (*iam.CreatePolicyVersionOutput, error)
 	CreatePolicyVersionRequest(*iam.CreatePolicyVersionInput) (*request.Request, *iam.CreatePolicyVersionOutput)
 
+	CreateProject(*iam.CreateProjectInput) (*iam.CreateProjectOutput, error)
+	CreateProjectWithContext(aws.Context, *iam.CreateProjectInput, ...request.Option) (*iam.CreateProjectOutput, error)
+	CreateProjectRequest(*iam.CreateProjectInput) (*request.Request, *iam.CreateProjectOutput)
+
 	CreateRole(*iam.CreateRoleInput) (*iam.CreateRoleOutput, error)
 	CreateRoleWithContext(aws.Context, *iam.CreateRoleInput, ...request.Option) (*iam.CreateRoleOutput, error)
 	CreateRoleRequest(*iam.CreateRoleInput) (*request.Request, *iam.CreateRoleOutput)
@@ -187,6 +191,10 @@ type IAMAPI interface {
 	DeletePolicyVersion(*iam.DeletePolicyVersionInput) (*iam.DeletePolicyVersionOutput, error)
 	DeletePolicyVersionWithContext(aws.Context, *iam.DeletePolicyVersionInput, ...request.Option) (*iam.DeletePolicyVersionOutput, error)
 	DeletePolicyVersionRequest(*iam.DeletePolicyVersionInput) (*request.Request, *iam.DeletePolicyVersionOutput)
+
+	DeleteProject(*iam.DeleteProjectInput) (*iam.DeleteProjectOutput, error)
+	DeleteProjectWithContext(aws.Context, *iam.DeleteProjectInput, ...request.Option) (*iam.DeleteProjectOutput, error)
+	DeleteProjectRequest(*iam.DeleteProjectInput) (*request.Request, *iam.DeleteProjectOutput)
 
 	DeleteRole(*iam.DeleteRoleInput) (*iam.DeleteRoleOutput, error)
 	DeleteRoleWithContext(aws.Context, *iam.DeleteRoleInput, ...request.Option) (*iam.DeleteRoleOutput, error)
@@ -333,6 +341,10 @@ type IAMAPI interface {
 	GetPolicyVersion(*iam.GetPolicyVersionInput) (*iam.GetPolicyVersionOutput, error)
 	GetPolicyVersionWithContext(aws.Context, *iam.GetPolicyVersionInput, ...request.Option) (*iam.GetPolicyVersionOutput, error)
 	GetPolicyVersionRequest(*iam.GetPolicyVersionInput) (*request.Request, *iam.GetPolicyVersionOutput)
+
+	GetProject(*iam.GetProjectInput) (*iam.GetProjectOutput, error)
+	GetProjectWithContext(aws.Context, *iam.GetProjectInput, ...request.Option) (*iam.GetProjectOutput, error)
+	GetProjectRequest(*iam.GetProjectInput) (*request.Request, *iam.GetProjectOutput)
 
 	GetRole(*iam.GetRoleInput) (*iam.GetRoleOutput, error)
 	GetRoleWithContext(aws.Context, *iam.GetRoleInput, ...request.Option) (*iam.GetRoleOutput, error)
@@ -551,12 +563,28 @@ type IAMAPI interface {
 	ListSigningCertificatesPages(*iam.ListSigningCertificatesInput, func(*iam.ListSigningCertificatesOutput, bool) bool) error
 	ListSigningCertificatesPagesWithContext(aws.Context, *iam.ListSigningCertificatesInput, func(*iam.ListSigningCertificatesOutput, bool) bool, ...request.Option) error
 
+	ListUserGlobalGroups(*iam.ListUserGlobalGroupsInput) (*iam.ListUserGlobalGroupsOutput, error)
+	ListUserGlobalGroupsWithContext(aws.Context, *iam.ListUserGlobalGroupsInput, ...request.Option) (*iam.ListUserGlobalGroupsOutput, error)
+	ListUserGlobalGroupsRequest(*iam.ListUserGlobalGroupsInput) (*request.Request, *iam.ListUserGlobalGroupsOutput)
+
+	ListUserGlobalPolicies(*iam.ListUserGlobalPoliciesInput) (*iam.ListUserGlobalPoliciesOutput, error)
+	ListUserGlobalPoliciesWithContext(aws.Context, *iam.ListUserGlobalPoliciesInput, ...request.Option) (*iam.ListUserGlobalPoliciesOutput, error)
+	ListUserGlobalPoliciesRequest(*iam.ListUserGlobalPoliciesInput) (*request.Request, *iam.ListUserGlobalPoliciesOutput)
+
 	ListUserPolicies(*iam.ListUserPoliciesInput) (*iam.ListUserPoliciesOutput, error)
 	ListUserPoliciesWithContext(aws.Context, *iam.ListUserPoliciesInput, ...request.Option) (*iam.ListUserPoliciesOutput, error)
 	ListUserPoliciesRequest(*iam.ListUserPoliciesInput) (*request.Request, *iam.ListUserPoliciesOutput)
 
 	ListUserPoliciesPages(*iam.ListUserPoliciesInput, func(*iam.ListUserPoliciesOutput, bool) bool) error
 	ListUserPoliciesPagesWithContext(aws.Context, *iam.ListUserPoliciesInput, func(*iam.ListUserPoliciesOutput, bool) bool, ...request.Option) error
+
+	ListUserProjectGroups(*iam.ListUserProjectGroupsInput) (*iam.ListUserProjectGroupsOutput, error)
+	ListUserProjectGroupsWithContext(aws.Context, *iam.ListUserProjectGroupsInput, ...request.Option) (*iam.ListUserProjectGroupsOutput, error)
+	ListUserProjectGroupsRequest(*iam.ListUserProjectGroupsInput) (*request.Request, *iam.ListUserProjectGroupsOutput)
+
+	ListUserProjectPolicies(*iam.ListUserProjectPoliciesInput) (*iam.ListUserProjectPoliciesOutput, error)
+	ListUserProjectPoliciesWithContext(aws.Context, *iam.ListUserProjectPoliciesInput, ...request.Option) (*iam.ListUserProjectPoliciesOutput, error)
+	ListUserProjectPoliciesRequest(*iam.ListUserProjectPoliciesInput) (*request.Request, *iam.ListUserProjectPoliciesOutput)
 
 	ListUserTags(*iam.ListUserTagsInput) (*iam.ListUserTagsOutput, error)
 	ListUserTagsWithContext(aws.Context, *iam.ListUserTagsInput, ...request.Option) (*iam.ListUserTagsOutput, error)
@@ -728,6 +756,14 @@ type IAMAPI interface {
 	UpdateOpenIDConnectProviderThumbprint(*iam.UpdateOpenIDConnectProviderThumbprintInput) (*iam.UpdateOpenIDConnectProviderThumbprintOutput, error)
 	UpdateOpenIDConnectProviderThumbprintWithContext(aws.Context, *iam.UpdateOpenIDConnectProviderThumbprintInput, ...request.Option) (*iam.UpdateOpenIDConnectProviderThumbprintOutput, error)
 	UpdateOpenIDConnectProviderThumbprintRequest(*iam.UpdateOpenIDConnectProviderThumbprintInput) (*request.Request, *iam.UpdateOpenIDConnectProviderThumbprintOutput)
+
+	UpdatePolicy(*iam.UpdatePolicyInput) (*iam.UpdatePolicyOutput, error)
+	UpdatePolicyWithContext(aws.Context, *iam.UpdatePolicyInput, ...request.Option) (*iam.UpdatePolicyOutput, error)
+	UpdatePolicyRequest(*iam.UpdatePolicyInput) (*request.Request, *iam.UpdatePolicyOutput)
+
+	UpdateProject(*iam.UpdateProjectInput) (*iam.UpdateProjectOutput, error)
+	UpdateProjectWithContext(aws.Context, *iam.UpdateProjectInput, ...request.Option) (*iam.UpdateProjectOutput, error)
+	UpdateProjectRequest(*iam.UpdateProjectInput) (*request.Request, *iam.UpdateProjectOutput)
 
 	UpdateRole(*iam.UpdateRoleInput) (*iam.UpdateRoleOutput, error)
 	UpdateRoleWithContext(aws.Context, *iam.UpdateRoleInput, ...request.Option) (*iam.UpdateRoleOutput, error)
