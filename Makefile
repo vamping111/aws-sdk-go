@@ -10,7 +10,7 @@ LINTIGNORESINGLEFIGHT='internal/sync/singleflight/singleflight.go:.+error should
 UNIT_TEST_TAGS="example codegen awsinclude"
 ALL_TAGS="example codegen awsinclude integration perftest"
 
-# SDK's Core and client packages that are compatable with Go 1.5+.
+# SDK's Core and client packages that are compatible with Go 1.5+.
 SDK_CORE_PKGS=./aws/... ./private/... ./internal/...
 SDK_CLIENT_PKGS=./service/...
 SDK_COMPA_PKGS=${SDK_CORE_PKGS} ${SDK_CLIENT_PKGS}
@@ -98,11 +98,11 @@ client-integ:
 	AWS_REGION="" go test -count=1 -tags "integration" -v -run '^TestInteg_' ./service/...
 
 s3crypto-integ:
-	@echo "Integration Testing S3 Cyrpto utility"
+	@echo "Integration Testing S3 Crypto utility"
 	AWS_REGION="" go test -count=1 -tags "s3crypto_integ integration" -v -run '^TestInteg_' ./service/s3/s3crypto
 
 cleanup-integ-buckets:
-	@echo "Cleaning up SDK integraiton resources"
+	@echo "Cleaning up SDK integration resources"
 	go run -tags "integration" ./awstesting/cmd/bucket_cleanup/main.go "aws-sdk-go-integration"
 
 ###################
@@ -147,12 +147,16 @@ vet:
 # Dependencies #
 ################
 get-deps: 
-	@echo "getting pre go module dependnecies"
+	@echo "getting pre go module dependencies"
 	go get github.com/jmespath/go-jmespath
 
 get-deps-verify:
 	@echo "go get SDK verification utilities"
 	go get golang.org/x/lint/golint
+
+install-deps-verify:
+	@echo "go install SDK verification utilities"
+	go install golang.org/x/lint/golint@latest
 
 ##############
 # Benchmarks #

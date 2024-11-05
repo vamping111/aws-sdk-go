@@ -264,7 +264,6 @@ func parseTime(layout, value string) *time.Time {
 }
 
 // I pity the foo
-//
 // Foo bar baz qux
 func ExampleFooService_Foo_shared00() {
 	svc := fooservice.New(session.New())
