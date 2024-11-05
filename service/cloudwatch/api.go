@@ -8185,8 +8185,7 @@ type MetricAlarm struct {
 	// The Amazon Resource Name (ARN) of the alarm.
 	AlarmArn *string `min:"1" type:"string"`
 
-	// The time stamp of the last update to the alarm configuration.
-	AlarmConfigurationUpdatedTimestamp *time.Time `type:"timestamp"`
+	AlarmConfigurationUpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
 	// The description of the alarm.
 	AlarmDescription *string `type:"string"`
@@ -11723,15 +11722,6 @@ const (
 
 	// ComparisonOperatorLessThanOrEqualToThreshold is a ComparisonOperator enum value
 	ComparisonOperatorLessThanOrEqualToThreshold = "LessThanOrEqualToThreshold"
-
-	// ComparisonOperatorLessThanLowerOrGreaterThanUpperThreshold is a ComparisonOperator enum value
-	ComparisonOperatorLessThanLowerOrGreaterThanUpperThreshold = "LessThanLowerOrGreaterThanUpperThreshold"
-
-	// ComparisonOperatorLessThanLowerThreshold is a ComparisonOperator enum value
-	ComparisonOperatorLessThanLowerThreshold = "LessThanLowerThreshold"
-
-	// ComparisonOperatorGreaterThanUpperThreshold is a ComparisonOperator enum value
-	ComparisonOperatorGreaterThanUpperThreshold = "GreaterThanUpperThreshold"
 )
 
 // ComparisonOperator_Values returns all elements of the ComparisonOperator enum
@@ -11741,9 +11731,6 @@ func ComparisonOperator_Values() []string {
 		ComparisonOperatorGreaterThanThreshold,
 		ComparisonOperatorLessThanThreshold,
 		ComparisonOperatorLessThanOrEqualToThreshold,
-		ComparisonOperatorLessThanLowerOrGreaterThanUpperThreshold,
-		ComparisonOperatorLessThanLowerThreshold,
-		ComparisonOperatorGreaterThanUpperThreshold,
 	}
 }
 
@@ -11812,118 +11799,22 @@ func ScanBy_Values() []string {
 }
 
 const (
-	// StandardUnitSeconds is a StandardUnit enum value
-	StandardUnitSeconds = "Seconds"
-
-	// StandardUnitMicroseconds is a StandardUnit enum value
-	StandardUnitMicroseconds = "Microseconds"
-
-	// StandardUnitMilliseconds is a StandardUnit enum value
-	StandardUnitMilliseconds = "Milliseconds"
+	// StandardUnitPercent is a StandardUnit enum value
+	StandardUnitPercent = "Percent"
 
 	// StandardUnitBytes is a StandardUnit enum value
 	StandardUnitBytes = "Bytes"
 
-	// StandardUnitKilobytes is a StandardUnit enum value
-	StandardUnitKilobytes = "Kilobytes"
-
-	// StandardUnitMegabytes is a StandardUnit enum value
-	StandardUnitMegabytes = "Megabytes"
-
-	// StandardUnitGigabytes is a StandardUnit enum value
-	StandardUnitGigabytes = "Gigabytes"
-
-	// StandardUnitTerabytes is a StandardUnit enum value
-	StandardUnitTerabytes = "Terabytes"
-
-	// StandardUnitBits is a StandardUnit enum value
-	StandardUnitBits = "Bits"
-
-	// StandardUnitKilobits is a StandardUnit enum value
-	StandardUnitKilobits = "Kilobits"
-
-	// StandardUnitMegabits is a StandardUnit enum value
-	StandardUnitMegabits = "Megabits"
-
-	// StandardUnitGigabits is a StandardUnit enum value
-	StandardUnitGigabits = "Gigabits"
-
-	// StandardUnitTerabits is a StandardUnit enum value
-	StandardUnitTerabits = "Terabits"
-
-	// StandardUnitPercent is a StandardUnit enum value
-	StandardUnitPercent = "Percent"
-
 	// StandardUnitCount is a StandardUnit enum value
 	StandardUnitCount = "Count"
-
-	// StandardUnitBytesSecond is a StandardUnit enum value
-	StandardUnitBytesSecond = "Bytes/Second"
-
-	// StandardUnitKilobytesSecond is a StandardUnit enum value
-	StandardUnitKilobytesSecond = "Kilobytes/Second"
-
-	// StandardUnitMegabytesSecond is a StandardUnit enum value
-	StandardUnitMegabytesSecond = "Megabytes/Second"
-
-	// StandardUnitGigabytesSecond is a StandardUnit enum value
-	StandardUnitGigabytesSecond = "Gigabytes/Second"
-
-	// StandardUnitTerabytesSecond is a StandardUnit enum value
-	StandardUnitTerabytesSecond = "Terabytes/Second"
-
-	// StandardUnitBitsSecond is a StandardUnit enum value
-	StandardUnitBitsSecond = "Bits/Second"
-
-	// StandardUnitKilobitsSecond is a StandardUnit enum value
-	StandardUnitKilobitsSecond = "Kilobits/Second"
-
-	// StandardUnitMegabitsSecond is a StandardUnit enum value
-	StandardUnitMegabitsSecond = "Megabits/Second"
-
-	// StandardUnitGigabitsSecond is a StandardUnit enum value
-	StandardUnitGigabitsSecond = "Gigabits/Second"
-
-	// StandardUnitTerabitsSecond is a StandardUnit enum value
-	StandardUnitTerabitsSecond = "Terabits/Second"
-
-	// StandardUnitCountSecond is a StandardUnit enum value
-	StandardUnitCountSecond = "Count/Second"
-
-	// StandardUnitNone is a StandardUnit enum value
-	StandardUnitNone = "None"
 )
 
 // StandardUnit_Values returns all elements of the StandardUnit enum
 func StandardUnit_Values() []string {
 	return []string{
-		StandardUnitSeconds,
-		StandardUnitMicroseconds,
-		StandardUnitMilliseconds,
-		StandardUnitBytes,
-		StandardUnitKilobytes,
-		StandardUnitMegabytes,
-		StandardUnitGigabytes,
-		StandardUnitTerabytes,
-		StandardUnitBits,
-		StandardUnitKilobits,
-		StandardUnitMegabits,
-		StandardUnitGigabits,
-		StandardUnitTerabits,
 		StandardUnitPercent,
+		StandardUnitBytes,
 		StandardUnitCount,
-		StandardUnitBytesSecond,
-		StandardUnitKilobytesSecond,
-		StandardUnitMegabytesSecond,
-		StandardUnitGigabytesSecond,
-		StandardUnitTerabytesSecond,
-		StandardUnitBitsSecond,
-		StandardUnitKilobitsSecond,
-		StandardUnitMegabitsSecond,
-		StandardUnitGigabitsSecond,
-		StandardUnitTerabitsSecond,
-		StandardUnitCountSecond,
-		StandardUnitNone,
 	}
 }
 
