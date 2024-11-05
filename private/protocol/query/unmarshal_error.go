@@ -18,6 +18,12 @@ type xmlErrorResponse struct {
 	RequestID string `xml:"RequestId"`
 }
 
+type xmlEC2QueryErrorResponse struct {
+	Code      string `xml:"Errors>Error>Code"`
+	Message   string `xml:"Errors>Error>Message"`
+	RequestID string `xml:"RequestID"`
+}
+
 type xmlResponseError struct {
 	xmlErrorResponse
 }
@@ -25,6 +31,7 @@ type xmlResponseError struct {
 func (e *xmlResponseError) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 	const svcUnavailableTagName = "ServiceUnavailableException"
 	const errorResponseTagName = "ErrorResponse"
+	const errorEC2QueryResponseTagName = "Response"
 
 	switch start.Name.Local {
 	case svcUnavailableTagName:
@@ -34,6 +41,16 @@ func (e *xmlResponseError) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 
 	case errorResponseTagName:
 		return d.DecodeElement(&e.xmlErrorResponse, &start)
+
+	case errorEC2QueryResponseTagName:
+		var errResp xmlEC2QueryErrorResponse
+		if err := d.DecodeElement(&errResp, &start); err != nil {
+			return err
+		}
+		e.Code = errResp.Code
+		e.Message = errResp.Message
+		e.RequestID = errResp.RequestID
+		return nil
 
 	default:
 		return fmt.Errorf("unknown error response tag, %v", start)
