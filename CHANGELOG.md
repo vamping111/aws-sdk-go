@@ -1,3 +1,22 @@
+Release v1.44.10-ROCKIT10 (2024-11-06)
+===
+
+### SDK Features
+* Bump go version to 1.21
+### SDK Enhancements
+* `private/protocol/query`: Add ec2query errors unmarshaling for query protocol
+### Service client updates
+* `service/iam`: Updates service API
+* `service/backup`: Update service API
+  * Add the `UpdateBackupSelection` operation to API
+  * Make the `Resources` parameter required in the `BackupSelection` structure
+* `service/cloudwatch`: Update service API
+  * Change `AlarmConfigurationUpdatedTimestamp` format from ISO to unix timestamp
+  * Update `ComparisonOperator` enum values
+  * Update `StandardUnit` enum values
+* `service/ec2`: Update service API
+  * Add `ipsec.legacy` to `GatewayType` enum
+
 Release v1.44.10-ROCKIT9 (2024-07-01)
 ===
 
