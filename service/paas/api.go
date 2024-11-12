@@ -1934,7 +1934,7 @@ func (s *DescribeServiceOutput) SetService(v *Service) *DescribeServiceOutput {
 type Instance struct {
 	_ struct{} `type:"structure"`
 
-	Endpoint *string `locationName:"endpoint" type:"string"`
+	Endpoints []*InstanceEndpoint `locationName:"endpoints" type:"list"`
 
 	Index *int64 `locationName:"index" type:"integer"`
 
@@ -1969,9 +1969,9 @@ func (s Instance) GoString() string {
 	return s.String()
 }
 
-// SetEndpoint sets the Endpoint field's value.
-func (s *Instance) SetEndpoint(v string) *Instance {
-	s.Endpoint = &v
+// SetEndpoints sets the Endpoints field's value.
+func (s *Instance) SetEndpoints(v []*InstanceEndpoint) *Instance {
+	s.Endpoints = v
 	return s
 }
 
@@ -2014,6 +2014,44 @@ func (s *Instance) SetRole(v string) *Instance {
 // SetStatus sets the Status field's value.
 func (s *Instance) SetStatus(v string) *Instance {
 	s.Status = &v
+	return s
+}
+
+type InstanceEndpoint struct {
+	_ struct{} `type:"structure"`
+
+	Address *string `locationName:"address" type:"string"`
+
+	Name *string `locationName:"name" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstanceEndpoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstanceEndpoint) GoString() string {
+	return s.String()
+}
+
+// SetAddress sets the Address field's value.
+func (s *InstanceEndpoint) SetAddress(v string) *InstanceEndpoint {
+	s.Address = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *InstanceEndpoint) SetName(v string) *InstanceEndpoint {
+	s.Name = &v
 	return s
 }
 
@@ -2666,7 +2704,7 @@ type Service struct {
 
 	Databases []*DatabaseResponse `locationName:"databases" type:"list"`
 
-	Endpoints []*string `locationName:"endpoints" type:"list"`
+	Endpoints []*ServiceEndpoint `locationName:"endpoints" type:"list"`
 
 	ErrorCode *string `locationName:"errorCode" type:"string"`
 
@@ -2766,7 +2804,7 @@ func (s *Service) SetDatabases(v []*DatabaseResponse) *Service {
 }
 
 // SetEndpoints sets the Endpoints field's value.
-func (s *Service) SetEndpoints(v []*string) *Service {
+func (s *Service) SetEndpoints(v []*ServiceEndpoint) *Service {
 	s.Endpoints = v
 	return s
 }
@@ -2912,6 +2950,44 @@ func (s *Service) SetUsers(v []*UserResponse) *Service {
 // SetVpcId sets the VpcId field's value.
 func (s *Service) SetVpcId(v string) *Service {
 	s.VpcId = &v
+	return s
+}
+
+type ServiceEndpoint struct {
+	_ struct{} `type:"structure"`
+
+	Addresses []*string `locationName:"addresses" type:"list"`
+
+	Name *string `locationName:"name" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceEndpoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceEndpoint) GoString() string {
+	return s.String()
+}
+
+// SetAddresses sets the Addresses field's value.
+func (s *ServiceEndpoint) SetAddresses(v []*string) *ServiceEndpoint {
+	s.Addresses = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ServiceEndpoint) SetName(v string) *ServiceEndpoint {
+	s.Name = &v
 	return s
 }
 
