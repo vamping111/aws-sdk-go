@@ -1,3 +1,10 @@
+Release v1.44.10-ROCKIT11 (2024-11-13)
+===
+
+### Service client updates
+* `service/paas`: Update service API
+ * Add name for service and instance endpoints
+ 
 Release v1.44.10-ROCKIT10 (2024-11-06)
 ===
 
