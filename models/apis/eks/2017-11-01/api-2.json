@@ -788,7 +788,8 @@
         "platformVersion":{"shape":"String"},
         "tags":{"shape":"TagMap"},
         "encryptionConfig":{"shape":"EncryptionConfigList"},
-        "connectorConfig":{"shape":"ConnectorConfigResponse"}
+        "connectorConfig":{"shape":"ConnectorConfigResponse"},
+        "legacyClusterParams":{"shape":"legacyClusterParams"}
       }
     },
     "ClusterName":{
@@ -906,7 +907,8 @@
           "idempotencyToken":true
         },
         "tags":{"shape":"TagMap"},
-        "encryptionConfig":{"shape":"EncryptionConfigList"}
+        "encryptionConfig":{"shape":"EncryptionConfigList"},
+        "legacyClusterParams":{"shape":"legacyClusterParams"}
       }
     },
     "CreateClusterResponse":{
@@ -1435,6 +1437,7 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "Integer":{"type":"integer"},
     "InvalidParameterException":{
       "type":"structure",
       "members":{
@@ -1498,6 +1501,15 @@
         "name":{"shape":"String"},
         "version":{"shape":"String"},
         "id":{"shape":"String"}
+      }
+    },
+    "legacyClusterParams": {
+      "type": "structure",
+      "required": [
+        "masterConfig"
+      ],
+      "members": {
+        "masterConfig": {"shape": "masterConfig"}
       }
     },
     "ListAddonsRequest":{
@@ -1753,6 +1765,23 @@
       "type":"structure",
       "members":{
         "clusterLogging":{"shape":"LogSetups"}
+      }
+    },
+    "masterConfig":{
+      "type":"structure",
+      "required":[
+        "highAvailability",
+        "mastersInstanceType",
+        "mastersVolumeType",
+        "mastersVolumeSize"
+      ],
+      "members":{
+        "highAvailability":{"shape":"Boolean"},
+        "mastersInstanceType":{"shape":"String"},
+        "mastersVolumeType":{"shape":"String"},
+        "mastersVolumeSize":{"shape":"Integer"},
+        "mastersVolumeIops":{"shape":"Integer"},
+        "masterPublicIp":{"shape":"String"}
       }
     },
     "Nodegroup":{

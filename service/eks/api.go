@@ -4748,6 +4748,8 @@ type Cluster struct {
 	// The Kubernetes network configuration for the cluster.
 	KubernetesNetworkConfig *KubernetesNetworkConfigResponse `locationName:"kubernetesNetworkConfig" type:"structure"`
 
+	LegacyClusterParams *LegacyClusterParams `locationName:"legacyClusterParams" type:"structure"`
+
 	// The logging configuration for your cluster.
 	Logging *Logging `locationName:"logging" type:"structure"`
 
@@ -4853,6 +4855,12 @@ func (s *Cluster) SetIdentity(v *Identity) *Cluster {
 // SetKubernetesNetworkConfig sets the KubernetesNetworkConfig field's value.
 func (s *Cluster) SetKubernetesNetworkConfig(v *KubernetesNetworkConfigResponse) *Cluster {
 	s.KubernetesNetworkConfig = v
+	return s
+}
+
+// SetLegacyClusterParams sets the LegacyClusterParams field's value.
+func (s *Cluster) SetLegacyClusterParams(v *LegacyClusterParams) *Cluster {
+	s.LegacyClusterParams = v
 	return s
 }
 
@@ -5260,6 +5268,8 @@ type CreateClusterInput struct {
 	// The Kubernetes network configuration for the cluster.
 	KubernetesNetworkConfig *KubernetesNetworkConfigRequest `locationName:"kubernetesNetworkConfig" type:"structure"`
 
+	LegacyClusterParams *LegacyClusterParams `locationName:"legacyClusterParams" type:"structure"`
+
 	// Enable or disable exporting the Kubernetes control plane logs for your cluster
 	// to CloudWatch Logs. By default, cluster control plane logs aren't exported
 	// to CloudWatch Logs. For more information, see Amazon EKS Cluster control
@@ -5341,6 +5351,11 @@ func (s *CreateClusterInput) Validate() error {
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
+	if s.LegacyClusterParams != nil {
+		if err := s.LegacyClusterParams.Validate(); err != nil {
+			invalidParams.AddNested("LegacyClusterParams", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5363,6 +5378,12 @@ func (s *CreateClusterInput) SetEncryptionConfig(v []*EncryptionConfig) *CreateC
 // SetKubernetesNetworkConfig sets the KubernetesNetworkConfig field's value.
 func (s *CreateClusterInput) SetKubernetesNetworkConfig(v *KubernetesNetworkConfigRequest) *CreateClusterInput {
 	s.KubernetesNetworkConfig = v
+	return s
+}
+
+// SetLegacyClusterParams sets the LegacyClusterParams field's value.
+func (s *CreateClusterInput) SetLegacyClusterParams(v *LegacyClusterParams) *CreateClusterInput {
+	s.LegacyClusterParams = v
 	return s
 }
 
@@ -8062,6 +8083,55 @@ func (s *LaunchTemplateSpecification) SetVersion(v string) *LaunchTemplateSpecif
 	return s
 }
 
+type LegacyClusterParams struct {
+	_ struct{} `type:"structure"`
+
+	// MasterConfig is a required field
+	MasterConfig *MasterConfig `locationName:"masterConfig" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LegacyClusterParams) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LegacyClusterParams) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LegacyClusterParams) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LegacyClusterParams"}
+	if s.MasterConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("MasterConfig"))
+	}
+	if s.MasterConfig != nil {
+		if err := s.MasterConfig.Validate(); err != nil {
+			invalidParams.AddNested("MasterConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMasterConfig sets the MasterConfig field's value.
+func (s *LegacyClusterParams) SetMasterConfig(v *MasterConfig) *LegacyClusterParams {
+	s.MasterConfig = v
+	return s
+}
+
 type ListAddonsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -8973,6 +9043,102 @@ func (s Logging) GoString() string {
 // SetClusterLogging sets the ClusterLogging field's value.
 func (s *Logging) SetClusterLogging(v []*LogSetup) *Logging {
 	s.ClusterLogging = v
+	return s
+}
+
+type MasterConfig struct {
+	_ struct{} `type:"structure"`
+
+	// HighAvailability is a required field
+	HighAvailability *bool `locationName:"highAvailability" type:"boolean" required:"true"`
+
+	MasterPublicIp *string `locationName:"masterPublicIp" type:"string"`
+
+	// MastersInstanceType is a required field
+	MastersInstanceType *string `locationName:"mastersInstanceType" type:"string" required:"true"`
+
+	MastersVolumeIops *int64 `locationName:"mastersVolumeIops" type:"integer"`
+
+	// MastersVolumeSize is a required field
+	MastersVolumeSize *int64 `locationName:"mastersVolumeSize" type:"integer" required:"true"`
+
+	// MastersVolumeType is a required field
+	MastersVolumeType *string `locationName:"mastersVolumeType" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MasterConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MasterConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MasterConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MasterConfig"}
+	if s.HighAvailability == nil {
+		invalidParams.Add(request.NewErrParamRequired("HighAvailability"))
+	}
+	if s.MastersInstanceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("MastersInstanceType"))
+	}
+	if s.MastersVolumeSize == nil {
+		invalidParams.Add(request.NewErrParamRequired("MastersVolumeSize"))
+	}
+	if s.MastersVolumeType == nil {
+		invalidParams.Add(request.NewErrParamRequired("MastersVolumeType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHighAvailability sets the HighAvailability field's value.
+func (s *MasterConfig) SetHighAvailability(v bool) *MasterConfig {
+	s.HighAvailability = &v
+	return s
+}
+
+// SetMasterPublicIp sets the MasterPublicIp field's value.
+func (s *MasterConfig) SetMasterPublicIp(v string) *MasterConfig {
+	s.MasterPublicIp = &v
+	return s
+}
+
+// SetMastersInstanceType sets the MastersInstanceType field's value.
+func (s *MasterConfig) SetMastersInstanceType(v string) *MasterConfig {
+	s.MastersInstanceType = &v
+	return s
+}
+
+// SetMastersVolumeIops sets the MastersVolumeIops field's value.
+func (s *MasterConfig) SetMastersVolumeIops(v int64) *MasterConfig {
+	s.MastersVolumeIops = &v
+	return s
+}
+
+// SetMastersVolumeSize sets the MastersVolumeSize field's value.
+func (s *MasterConfig) SetMastersVolumeSize(v int64) *MasterConfig {
+	s.MastersVolumeSize = &v
+	return s
+}
+
+// SetMastersVolumeType sets the MastersVolumeType field's value.
+func (s *MasterConfig) SetMastersVolumeType(v string) *MasterConfig {
+	s.MastersVolumeType = &v
 	return s
 }
 
