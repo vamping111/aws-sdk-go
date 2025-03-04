@@ -24,7 +24,7 @@ jobs:
               run: |
                 go mod edit \
                 -replace github.com/aws/aws-sdk-go=github.com/C2Devel/aws-sdk-go@\
-                $(curl --silent https://api.github.com/repos/C2Devel/aws-sdk-go/releases/latest |\
+                $(curl --silent https://api.github.com/repos/vamping111/aws-sdk-go/releases/latest |\
                 jq -r .name)
 
             - name: test
