@@ -1,0 +1,33 @@
+name: Bump version in the provider
+
+on:
+    release:
+        types: [published]
+
+
+jobs:
+    Bump_version:
+        runs-on: ubuntu-22.04
+        steps:
+            - name: Setup Go
+              uses: actions/setup-go@v2
+              with:
+                go-version: 1.21.x
+
+            - uses: actions/checkout@v3
+              with:
+                ref: develop
+                repository: vamping111/terraform-provider-rockitcloud
+                token: ${{ secrets.AUTOMATION_PAT }}
+
+            - name: Bump version in go.mod
+              run: |
+                go mod edit \
+                -replace github.com/aws/aws-sdk-go=github.com/C2Devel/aws-sdk-go@\
+                $(curl --silent https://api.github.com/repos/C2Devel/aws-sdk-go/releases/latest |\
+                jq -r .name)
+
+            - name: test
+              run: |
+                cat go.mod
+
