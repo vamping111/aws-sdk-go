@@ -3,26 +3,22 @@ name: Run unit tests for the code
 on:
   pull_request:
     branches: 'develop'
-    # paths: 'internal/**'
 
 jobs:
-    Code-linter:
-        runs-on: ubuntu-22.04
-        steps:
-        - name: Setup Go
-          uses: actions/setup-go@v2
-          with:
-            go-version: 1.21.x
+  code-linter:
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Setup Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.21.x
 
-        - uses: actions/checkout@v3
-          with:
-            ref: ${{ github.event.pull_request.head.sha }}
+    - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
 
-        - name: Install tools
-          run: make install-deps-verify
+    - name: Install tools
+      run: make install-deps-verify
 
-        # - name: Install Docker
-        #   uses: crazy-max/ghaction-setup-docker@v3
-
-        - name: Run linters for the code
-          run: make all
+    - name: Run linters for the code
+      run: make all
