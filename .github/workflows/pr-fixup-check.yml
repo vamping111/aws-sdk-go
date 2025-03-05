@@ -3,7 +3,7 @@ name: Fixup checks
 on: [pull_request]
 
 jobs:
-  Block-fixup:
+  block-fixup:
     runs-on: ubuntu-22.04
 
     steps:

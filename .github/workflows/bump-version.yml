@@ -6,7 +6,7 @@ on:
 
 
 jobs:
-    Bump_version:
+    bump-version:
         runs-on: ubuntu-22.04
         steps:
             - name: Setup Go
@@ -26,11 +26,11 @@ jobs:
 
             - name: Bump version in go.mod
               run: |
-                go mod edit -replace github.com/aws/aws-sdk-go=github.com/C2Devel/aws-sdk-go@${{ env.LATEST_RELEASE }}
+                go mod edit -replace github.com/aws/aws-sdk-go=github.com/vamping111/aws-sdk-go@${{ env.LATEST_RELEASE }}
 
-            # - name: Update dependencies
-            #   run: |
-            #     go mod tidy
+            - name: Update dependencies
+              run: |
+                go mod tidy
 
             - name: Commit & Push changes
               uses: actions-js/push@master
@@ -67,3 +67,4 @@ jobs:
                   token: ${{ secrets.AUTOMATION_PAT }}
                   pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
                   merge-method: rebase
+                  repository: vamping111/terraform-provider-rockitcloud
