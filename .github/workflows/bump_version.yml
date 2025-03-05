@@ -49,6 +49,7 @@ jobs:
                 committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
                 author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
                 branch: ${{ env.LATEST_RELEASE }}
+                push-to-fork: vamping111/terraform-provider-rockitcloud
                 base: develop
                 delete-branch: true
                 title: "Bump aws-sdk-go to ${{ env.LATEST_RELEASE }}"
