@@ -27,7 +27,14 @@ jobs:
                 $(curl --silent https://api.github.com/repos/vamping111/aws-sdk-go/releases/latest |\
                 jq -r .name)
 
-            - name: test
+            - name: Update dependencies
               run: |
-                cat go.mod
+                go mod tidy
 
+            - name: Commit & Push changes
+              uses: actions-js/push@master
+              with:
+                github_token: ${{ secrets.AUTOMATION_PAT }}
+                repository: vamping111/terraform-provider-rockitcloud
+                message: "modules: bump aws-sdk-go version"
+                branch: "develop"
