@@ -67,3 +67,4 @@ jobs:
                   token: ${{ secrets.AUTOMATION_PAT }}
                   pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
                   merge-method: rebase
+                  repository: vamping111/terraform-provider-rockitcloud
