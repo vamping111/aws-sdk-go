@@ -56,7 +56,13 @@ func (u *UnmarshalTypedError) UnmarshalError(
 		}
 
 		body = ioutil.NopCloser(&buf)
-		code = jsonErr.Code
+
+		if jsonErr.Type != "" {
+			code = jsonErr.Type
+		} else {
+			code = jsonErr.Code
+		}
+
 		msg = jsonErr.Message
 	}
 
