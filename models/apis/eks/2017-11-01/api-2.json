@@ -789,7 +789,7 @@
         "tags":{"shape":"TagMap"},
         "encryptionConfig":{"shape":"EncryptionConfigList"},
         "connectorConfig":{"shape":"ConnectorConfigResponse"},
-        "legacyClusterParams":{"shape":"legacyClusterParams"}
+        "legacyClusterParams":{"shape":"LegacyClusterParamsResponse"}
       }
     },
     "ClusterName":{
@@ -908,7 +908,7 @@
         },
         "tags":{"shape":"TagMap"},
         "encryptionConfig":{"shape":"EncryptionConfigList"},
-        "legacyClusterParams":{"shape":"legacyClusterParams"}
+        "legacyClusterParams":{"shape":"LegacyClusterParamsRequest"}
       }
     },
     "CreateClusterResponse":{
@@ -1503,13 +1503,27 @@
         "id":{"shape":"String"}
       }
     },
-    "legacyClusterParams": {
+    "LegacyClusterParamsRequest": {
       "type": "structure",
       "required": [
         "masterConfig"
       ],
       "members": {
-        "masterConfig": {"shape": "masterConfig"}
+        "dockerRegistryConfig":{"shape":"DockerRegistryConfig"},
+        "ebsProviderConfig":{"shape":"EbsProviderConfigRequest"},
+        "ingressConfig":{"shape":"IngressConfig"},
+        "masterConfig":{"shape":"MasterConfig"},
+        "nlbProviderConfig":{"shape":"NlbProviderConfigRequest"}
+      }
+    },
+    "LegacyClusterParamsResponse": {
+      "type": "structure",
+      "members": {
+        "dockerRegistryConfig":{"shape":"DockerRegistryConfig"},
+        "ebsProviderConfig":{"shape":"EbsProviderConfigResponse"},
+        "ingressConfig":{"shape":"IngressConfig"},
+        "masterConfig":{"shape":"MasterConfig"},
+        "nlbProviderConfig":{"shape":"NlbProviderConfigResponse"}
       }
     },
     "ListAddonsRequest":{
@@ -1767,7 +1781,42 @@
         "clusterLogging":{"shape":"LogSetups"}
       }
     },
-    "masterConfig":{
+    "DockerRegistryConfig":{
+      "type":"structure",
+      "members":{
+        "dockerRegistryRequired":{"shape":"Boolean"},
+        "dockerRegistryVolumeType":{"shape":"String"},
+        "dockerRegistryVolumeSize":{"shape":"Integer"},
+        "dockerRegistryVolumeIops":{"shape":"Integer"}
+      }
+    },
+    "EbsProviderConfigRequest":{
+      "type":"structure",
+      "members":{
+        "ebsProviderRequired":{"shape":"Boolean"},
+        "ebsUser":{"shape":"String"}
+      }
+    },
+    "EbsProviderConfigResponse":{
+      "type":"structure",
+      "members":{
+        "ebsProviderRequired":{"shape":"Boolean"},
+        "ebsUser":{"shape":"String"},
+        "ebsUserName":{"shape":"String"}
+      }
+    },
+    "IngressConfig":{
+      "type":"structure",
+      "members":{
+        "ingressRequired":{"shape":"Boolean"},
+        "ingressInstanceType":{"shape":"String"},
+        "ingressVolumeType":{"shape":"String"},
+        "ingressVolumeSize":{"shape":"Integer"},
+        "ingressVolumeIops":{"shape":"Integer"},
+        "ingressPublicIp":{"shape":"String"}
+      }
+    },
+    "MasterConfig":{
       "type":"structure",
       "required":[
         "highAvailability",
@@ -1782,6 +1831,21 @@
         "mastersVolumeSize":{"shape":"Integer"},
         "mastersVolumeIops":{"shape":"Integer"},
         "masterPublicIp":{"shape":"String"}
+      }
+    },
+    "NlbProviderConfigRequest":{
+      "type":"structure",
+      "members":{
+        "nlbProviderRequired":{"shape":"Boolean"},
+        "nlbUser":{"shape":"String"}
+      }
+    },
+    "NlbProviderConfigResponse":{
+      "type":"structure",
+      "members":{
+        "nlbProviderRequired":{"shape":"Boolean"},
+        "nlbUser":{"shape":"String"},
+        "nlbUserName":{"shape":"String"}
       }
     },
     "Nodegroup":{
