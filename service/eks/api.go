@@ -12554,6 +12554,9 @@ func NodegroupIssueCode_Values() []string {
 }
 
 const (
+	// NodegroupStatusClaimed is a NodegroupStatus enum value
+	NodegroupStatusClaimed = "CLAIMED"
+
 	// NodegroupStatusCreating is a NodegroupStatus enum value
 	NodegroupStatusCreating = "CREATING"
 
@@ -12585,6 +12588,7 @@ const (
 // NodegroupStatus_Values returns all elements of the NodegroupStatus enum
 func NodegroupStatus_Values() []string {
 	return []string{
+		NodegroupStatusClaimed,
 		NodegroupStatusCreating,
 		NodegroupStatusPending,
 		NodegroupStatusActive,
