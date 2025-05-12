@@ -31,6 +31,7 @@ type SimpleError struct {
 }
 
 const otherErrJSON = `{"code":"OtherError", "message":"some message"}`
+const otherWithTypeErrJSON = `{"__type":"OtherError", "message":"some message"}`
 const complexCodeErrJSON = `{"code":"OtherError:foo:bar", "message":"some message"}`
 
 type OtherError struct {
@@ -96,6 +97,15 @@ func TestUnmarshalTypedError(t *testing.T) {
 			Response: &http.Response{
 				Header: http.Header{},
 				Body:   ioutil.NopCloser(strings.NewReader(otherErrJSON)),
+			},
+			Expect: &OtherError{
+				Message2: aws.String("some message"),
+			},
+		},
+		"other error, body __type": {
+			Response: &http.Response{
+				Header: http.Header{},
+				Body:   ioutil.NopCloser(strings.NewReader(otherWithTypeErrJSON)),
 			},
 			Expect: &OtherError{
 				Message2: aws.String("some message"),
