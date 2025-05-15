@@ -1,3 +1,16 @@
+Release v1.44.10-ROCKIT13 (2025-05-13)
+===
+
+### SDK Enhancements
+
+* `private/protocol/restjson`: consider `__type` in `UnmarshalTypedError`
+### Service client updates
+
+* `service/eks`: Update service API
+  * Add `CLAIMED` status for nodegroup
+* `service/paas`: Update service API
+  * Add available environment versions and environment version
+
 Release v1.44.10-ROCKIT12 (2024-12-19)
 ===
 
