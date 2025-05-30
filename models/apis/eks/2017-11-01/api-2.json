@@ -1513,7 +1513,8 @@
         "ebsProviderConfig":{"shape":"EbsProviderConfigRequest"},
         "ingressConfig":{"shape":"IngressConfig"},
         "masterConfig":{"shape":"MasterConfig"},
-        "nlbProviderConfig":{"shape":"NlbProviderConfigRequest"}
+        "nlbProviderConfig":{"shape":"NlbProviderConfigRequest"},
+        "placementConfig": {"shape": "placementConfig"}
       }
     },
     "LegacyClusterParamsResponse": {
@@ -1523,7 +1524,8 @@
         "ebsProviderConfig":{"shape":"EbsProviderConfigResponse"},
         "ingressConfig":{"shape":"IngressConfig"},
         "masterConfig":{"shape":"MasterConfig"},
-        "nlbProviderConfig":{"shape":"NlbProviderConfigResponse"}
+        "nlbProviderConfig":{"shape":"NlbProviderConfigResponse"},
+        "placementConfig": {"shape": "placementConfig"}
       }
     },
     "ListAddonsRequest":{
@@ -2037,6 +2039,28 @@
         "ec2SshKey":{"shape":"String"},
         "sourceSecurityGroups":{"shape":"StringList"}
       }
+    },
+    "placementConfig":{
+      "type":"structure",
+      "members":{
+        "affinity":{"shape":"Affinity"},
+        "hostId":{"shape":"String"},
+        "tenancy":{"shape":"Tenancy"}
+      }
+    },
+    "Affinity":{
+      "type":"string",
+      "enum":[
+        "default",
+        "host"
+      ]
+    },
+    "Tenancy":{
+      "type":"string",
+      "enum":[
+        "default",
+        "host"
+      ]
     },
     "ResolveConflicts":{
       "type":"string",
