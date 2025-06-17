@@ -91,51 +91,30 @@ func TestWithNormalizeBucketLocation(t *testing.T) {
 	}
 }
 
-func TestPopulateLocationConstraint(t *testing.T) {
-	s := s3.New(unit.Session)
-	in := &s3.CreateBucketInput{
-		Bucket: aws.String("bucket"),
-	}
-	req, _ := s.CreateBucketRequest(in)
-	if err := req.Build(); err != nil {
-		t.Fatalf("expect no error, got %v", err)
+func TestLocationConstraintNotPopulatedForAnyRegion(t *testing.T) {
+	cases := []struct {
+		region string
+	}{
+		{"us-east-1"},
+		{"mock-region"},
 	}
 
-	v, _ := awsutil.ValuesAtPath(req.Params, "CreateBucketConfiguration.LocationConstraint")
-	if e, a := "mock-region", *(v[0].(*string)); e != a {
-		t.Errorf("expect %s location constraint, got %s", e, a)
-	}
-	if v := in.CreateBucketConfiguration; v != nil {
-		// don't modify original params
-		t.Errorf("expect create bucket Configuration to be nil, got %s", *v)
-	}
-}
+	for _, c := range cases {
+		t.Run(c.region, func(t *testing.T) {
+			s := s3.New(unit.Session, &aws.Config{Region: aws.String(c.region)})
 
-func TestNoPopulateLocationConstraintIfProvided(t *testing.T) {
-	s := s3.New(unit.Session)
-	req, _ := s.CreateBucketRequest(&s3.CreateBucketInput{
-		Bucket:                    aws.String("bucket"),
-		CreateBucketConfiguration: &s3.CreateBucketConfiguration{},
-	})
-	if err := req.Build(); err != nil {
-		t.Fatalf("expect no error, got %v", err)
-	}
-	v, _ := awsutil.ValuesAtPath(req.Params, "CreateBucketConfiguration.LocationConstraint")
-	if l := len(v); l != 0 {
-		t.Errorf("expect no values, got %d", l)
-	}
-}
+			req, _ := s.CreateBucketRequest(&s3.CreateBucketInput{
+				Bucket: aws.String("bucket"),
+			})
 
-func TestNoPopulateLocationConstraintIfClassic(t *testing.T) {
-	s := s3.New(unit.Session, &aws.Config{Region: aws.String("us-east-1")})
-	req, _ := s.CreateBucketRequest(&s3.CreateBucketInput{
-		Bucket: aws.String("bucket"),
-	})
-	if err := req.Build(); err != nil {
-		t.Fatalf("expect no error, got %v", err)
-	}
-	v, _ := awsutil.ValuesAtPath(req.Params, "CreateBucketConfiguration.LocationConstraint")
-	if l := len(v); l != 0 {
-		t.Errorf("expect no values, got %d", l)
+			if err := req.Build(); err != nil {
+				t.Fatalf("expect no error, got %v", err)
+			}
+
+			v, _ := awsutil.ValuesAtPath(req.Params, "CreateBucketConfiguration.LocationConstraint")
+			if l := len(v); l != 0 {
+				t.Errorf("expect no values, got %d", l)
+			}
+		})
 	}
 }

@@ -6,7 +6,6 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 )
 
@@ -89,19 +88,6 @@ func buildGetBucketLocation(r *request.Request) {
 		if len(match) > 1 {
 			loc := string(match[1])
 			out.LocationConstraint = aws.String(loc)
-		}
-	}
-}
-
-func populateLocationConstraint(r *request.Request) {
-	if r.ParamsFilled() && aws.StringValue(r.Config.Region) != "us-east-1" {
-		in := r.Params.(*CreateBucketInput)
-		if in.CreateBucketConfiguration == nil {
-			r.Params = awsutil.CopyOf(r.Params)
-			in = r.Params.(*CreateBucketInput)
-			in.CreateBucketConfiguration = &CreateBucketConfiguration{
-				LocationConstraint: r.Config.Region,
-			}
 		}
 	}
 }
