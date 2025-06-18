@@ -30,7 +30,7 @@ var initRequest func(*request.Request)
 // Service information constants
 const (
 	ServiceName = "elasticloadbalancing"      // Name of service.
-	EndpointsID = ServiceName                 // ID to lookup a service endpoint with.
+	EndpointsID = "elb"                       // ID to lookup a service endpoint with.
 	ServiceID   = "Elastic Load Balancing v2" // ServiceID is a unique identifier of a specific service.
 )
 
@@ -50,8 +50,7 @@ const (
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *ELBV2 {
 	c := p.ClientConfig(EndpointsID, cfgs...)
 	if c.SigningNameDerived || len(c.SigningName) == 0 {
-		c.SigningName = EndpointsID
-		// No Fallback
+		c.SigningName = "elasticloadbalancing"
 	}
 	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
