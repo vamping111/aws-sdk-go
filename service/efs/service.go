@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 // Service information constants
 const (
 	ServiceName = "elasticfilesystem" // Name of service.
-	EndpointsID = ServiceName         // ID to lookup a service endpoint with.
+	EndpointsID = "efs"               // ID to lookup a service endpoint with.
 	ServiceID   = "EFS"               // ServiceID is a unique identifier of a specific service.
 )
 
@@ -51,8 +51,7 @@ const (
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *EFS {
 	c := p.ClientConfig(EndpointsID, cfgs...)
 	if c.SigningNameDerived || len(c.SigningName) == 0 {
-		c.SigningName = EndpointsID
-		// No Fallback
+		c.SigningName = "elasticfilesystem"
 	}
 	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
