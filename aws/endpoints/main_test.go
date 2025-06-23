@@ -39,4 +39,6 @@ func TestMain(m *testing.M) {
 			panic("unknown endpoints partition " + p.ID)
 		}
 	}
+
+	os.Exit(m.Run())
 }
