@@ -32,16 +32,9 @@ func TestMain(m *testing.M) {
 
 	for _, p := range partitions {
 		switch p.ID {
+		// FIXME: get rid of using aws partition when rewriting the tests.
 		case "aws":
 			awsPartition = p
-		case "aws-cn":
-			awscnPartition = p
-		case "aws-us-gov":
-			awsusgovPartition = p
-		case "aws-iso":
-			awsisoPartition = p
-		case "aws-iso-b":
-			awsisobPartition = p
 		default:
 			panic("unknown endpoints partition " + p.ID)
 		}
