@@ -15,7 +15,6 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3iface"
@@ -28,16 +27,17 @@ import (
 //
 // Example GetObject request to the service for the object with the key "MyObjectKey":
 //
-//   curl -v "http://127.0.0.1:8080/presign/my-object/key?method=GET"
+//	curl -v "http://127.0.0.1:8080/presign/my-object/key?method=GET"
 //
 // Example PutObject request to the service for the object with the key "MyObjectKey":
 //
-//   curl -v "http://127.0.0.1:8080/presign/my-object/key?method=PUT&contentLength=1024"
+//	curl -v "http://127.0.0.1:8080/presign/my-object/key?method=PUT&contentLength=1024"
 //
 // Use "--help" command line argument flag to see all options and defaults.
 //
 // Usage:
-//   go run -tags example service.go -b myBucket
+//
+//	go run -tags example service.go -b myBucket
 func main() {
 	addr, bucket, region := loadConfig()
 
@@ -51,7 +51,9 @@ func main() {
 	// to look in those partitions instead of AWS.
 	if len(region) == 0 {
 		var err error
-		region, err = s3manager.GetBucketRegion(aws.BackgroundContext(), sess, bucket, endpoints.UsWest2RegionID)
+
+		// FIXME: get rid of using aws regions when fixing these examples.
+		region, err = s3manager.GetBucketRegion(aws.BackgroundContext(), sess, bucket, "us-east-2")
 		if err != nil {
 			exitError(fmt.Errorf("failed to get bucket region, %v", err))
 		}

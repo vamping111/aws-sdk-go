@@ -11,7 +11,6 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials/plugincreds"
-	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
@@ -25,10 +24,12 @@ import (
 // environment variable is not defined.
 //
 // Build:
-//   go build -tags example -o myApp main.go
+//
+//	go build -tags example -o myApp main.go
 //
 // Usage:
-//   ./myApp <compiled plugin> <bucket> <object key>
+//
+//	./myApp <compiled plugin> <bucket> <object key>
 func main() {
 	if len(os.Args) < 4 {
 		exitErrorf("Usage: myApp <compiled plugin>, <bucket> <object key>")
@@ -61,7 +62,8 @@ func main() {
 	// from a query to S3 for the bucket's metadata
 	region := aws.StringValue(sess.Config.Region)
 	if len(region) == 0 {
-		region, err = s3manager.GetBucketRegion(context.Background(), sess, bucket, endpoints.UsEast1RegionID)
+		// FIXME: get rid of using aws regions when fixing these examples.
+		region, err = s3manager.GetBucketRegion(context.Background(), sess, bucket, "us-east-1")
 		if err != nil {
 			exitErrorf("failed to get bucket region, %v", err)
 		}
