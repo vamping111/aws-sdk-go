@@ -15,6 +15,9 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3"
 )
 
+// FIXME: some tests use aws.Config options that are handled in partition.EndpointFor(..).
+//   They must be tested in the endpoints package.
+
 type s3BucketTest struct {
 	bucket  string
 	url     string
@@ -79,36 +82,52 @@ func runTests(t *testing.T, svc *s3.S3, tests []s3BucketTest) {
 }
 
 func TestAccelerateBucketBuild(t *testing.T) {
-	s := s3.New(unit.Session, &aws.Config{S3UseAccelerate: aws.Bool(true)})
+	s := s3.New(unit.Session, &aws.Config{
+		S3UseAccelerate:  aws.Bool(true),
+		EndpointResolver: unit.MockEndpointResolver("https://s3.mock-region.amazonaws.com"),
+	})
 	runTests(t, s, accelerateTests)
 }
 
 func TestAccelerateNoSSLBucketBuild(t *testing.T) {
-	s := s3.New(unit.Session, &aws.Config{S3UseAccelerate: aws.Bool(true), DisableSSL: aws.Bool(true)})
+	s := s3.New(unit.Session, &aws.Config{
+		S3UseAccelerate:  aws.Bool(true),
+		DisableSSL:       aws.Bool(true),
+		EndpointResolver: unit.MockEndpointResolver("http://s3.mock-region.amazonaws.com"),
+	})
 	runTests(t, s, accelerateNoSSLTests)
 }
 
 func TestAccelerateDualstackBucketBuild(t *testing.T) {
 	s := s3.New(unit.Session, &aws.Config{
-		Region:          aws.String("us-west-2"),
-		S3UseAccelerate: aws.Bool(true),
-		UseDualStack:    aws.Bool(true),
+		Region:           aws.String("us-west-2"),
+		S3UseAccelerate:  aws.Bool(true),
+		UseDualStack:     aws.Bool(true),
+		EndpointResolver: unit.MockEndpointResolver("https://s3.dualstack.us-west-2.amazonaws.com"),
 	})
 	runTests(t, s, accelerateDualstack)
 }
 
 func TestHostStyleBucketBuild(t *testing.T) {
-	s := s3.New(unit.Session)
+	s := s3.New(unit.Session, &aws.Config{
+		EndpointResolver: unit.MockEndpointResolver("https://s3.mock-region.amazonaws.com"),
+	})
 	runTests(t, s, sslTests)
 }
 
 func TestHostStyleBucketBuildNoSSL(t *testing.T) {
-	s := s3.New(unit.Session, &aws.Config{DisableSSL: aws.Bool(true)})
+	s := s3.New(unit.Session, &aws.Config{
+		DisableSSL:       aws.Bool(true),
+		EndpointResolver: unit.MockEndpointResolver("http://s3.mock-region.amazonaws.com"),
+	})
 	runTests(t, s, nosslTests)
 }
 
 func TestPathStyleBucketBuild(t *testing.T) {
-	s := s3.New(unit.Session, &aws.Config{S3ForcePathStyle: aws.Bool(true)})
+	s := s3.New(unit.Session, &aws.Config{
+		S3ForcePathStyle: aws.Bool(true),
+		EndpointResolver: unit.MockEndpointResolver("https://s3.mock-region.amazonaws.com"),
+	})
 	runTests(t, s, forcepathTests)
 }
 
@@ -139,6 +158,7 @@ func TestVirtualHostStyleSuite(t *testing.T) {
 
 	var cases []struct {
 		Bucket                    string
+		EndpointUrl               string
 		Region                    string
 		UseDualStack              bool
 		UseS3Accelerate           bool
@@ -156,6 +176,7 @@ func TestVirtualHostStyleSuite(t *testing.T) {
 	const testPathStyle = "path"
 	for i, c := range cases {
 		svc := s3.New(unit.Session, &aws.Config{
+			EndpointResolver: unit.MockEndpointResolver(c.EndpointUrl),
 			Region:           &c.Region,
 			UseDualStack:     &c.UseDualStack,
 			S3UseAccelerate:  &c.UseS3Accelerate,

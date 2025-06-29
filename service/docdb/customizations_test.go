@@ -33,7 +33,10 @@ func TestCopyDBClusterSnapshotRequestNoPanic(t *testing.T) {
 func TestPresignCrossRegionRequest(t *testing.T) {
 	const targetRegion = "us-west-2"
 
-	svc := New(unit.Session, &aws.Config{Region: aws.String(targetRegion)})
+	svc := New(unit.Session, &aws.Config{
+		Region:           aws.String(targetRegion),
+		EndpointResolver: unit.MockEndpointResolver("https://rds.us-west-1.amazonaws.com"),
+	})
 
 	const regexPattern = `^https://rds.us-west-1\.amazonaws\.com/\?Action=%s.+?DestinationRegion=%s.+`
 

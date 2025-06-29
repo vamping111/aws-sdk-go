@@ -20,7 +20,10 @@ import (
 )
 
 func TestCopySnapshotPresignedURL(t *testing.T) {
-	svc := ec2.New(unit.Session, &aws.Config{Region: aws.String("us-west-2")})
+	svc := ec2.New(unit.Session, &aws.Config{
+		Region:           aws.String("us-west-2"),
+		EndpointResolver: unit.MockEndpointResolver("https://ec2.us-west-1.amazonaws.com"),
+	})
 
 	func() {
 		defer func() {
