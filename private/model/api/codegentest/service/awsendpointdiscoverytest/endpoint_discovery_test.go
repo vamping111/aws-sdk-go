@@ -12,18 +12,11 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 )
 
 func TestEndpointDiscoveryWithCustomEndpoint(t *testing.T) {
-	mockEndpointResolver := endpoints.ResolverFunc(func(service string, region string, opts ...func(options *endpoints.Options)) (endpoints.ResolvedEndpoint, error) {
-		return endpoints.ResolvedEndpoint{
-			URL: "https://mockEndpointForDiscovery",
-		}, nil
-	})
-
 	cases := map[string]struct {
 		hasDiscoveryEnabled bool
 		hasCustomEndpoint   bool
@@ -53,7 +46,7 @@ func TestEndpointDiscoveryWithCustomEndpoint(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			cfg := &aws.Config{
 				EnableEndpointDiscovery: aws.Bool(c.hasDiscoveryEnabled),
-				EndpointResolver:        mockEndpointResolver,
+				EndpointResolver:        unit.MockEndpointResolver("https://mockEndpointForDiscovery"),
 			}
 			if c.hasCustomEndpoint {
 				cfg.Endpoint = aws.String(c.customEndpoint)
@@ -96,12 +89,6 @@ func TestEndpointDiscoveryWithCustomEndpoint(t *testing.T) {
 }
 
 func TestEndpointDiscoveryWithAttemptedDiscovery(t *testing.T) {
-	mockEndpointResolver := endpoints.ResolverFunc(func(service string, region string, opts ...func(options *endpoints.Options)) (endpoints.ResolvedEndpoint, error) {
-		return endpoints.ResolvedEndpoint{
-			URL: "https://mockEndpointForDiscovery",
-		}, nil
-	})
-
 	cases := map[string]struct {
 		hasDiscoveryEnabled bool
 		hasCustomEndpoint   bool
@@ -124,7 +111,7 @@ func TestEndpointDiscoveryWithAttemptedDiscovery(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			cfg := &aws.Config{
 				EnableEndpointDiscovery: aws.Bool(c.hasDiscoveryEnabled),
-				EndpointResolver:        mockEndpointResolver,
+				EndpointResolver:        unit.MockEndpointResolver("https://mockEndpointForDiscovery"),
 			}
 			if c.hasCustomEndpoint {
 				cfg.Endpoint = aws.String(c.customEndpoint)
@@ -196,8 +183,11 @@ func TestEndpointDiscovery(t *testing.T) {
 func TestAsyncEndpointDiscovery(t *testing.T) {
 	t.Parallel()
 
+	const clientHost = "awsendpointdiscoverytestservice.mock-region.amazonaws.com"
+
 	svc := New(unit.Session, &aws.Config{
 		EnableEndpointDiscovery: aws.Bool(true),
+		EndpointResolver:        unit.MockEndpointResolver("https://" + clientHost),
 	})
 	svc.Handlers.Clear()
 
@@ -213,7 +203,6 @@ func TestAsyncEndpointDiscovery(t *testing.T) {
 	req, _ := svc.TestDiscoveryOptionalRequest(&TestDiscoveryOptionalInput{
 		Sdk: aws.String("sdk"),
 	})
-	const clientHost = "awsendpointdiscoverytestservice.mock-region.amazonaws.com"
 	req.Handlers.Send.PushBack(func(r *request.Request) {
 		if e, a := clientHost, r.HTTPRequest.URL.Host; e != a {
 			t.Errorf("expected %q, but received %q", e, a)
