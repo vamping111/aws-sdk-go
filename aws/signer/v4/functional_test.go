@@ -34,7 +34,7 @@ var standaloneSignCases = []struct {
 func epochTime() time.Time { return time.Unix(0, 0) }
 
 func TestPresignHandler(t *testing.T) {
-	svc := s3.New(unit.Session)
+	svc := s3.New(unit.Session, &aws.Config{Endpoint: aws.String("s3.mock-region.amazonaws.com")})
 	svc.Handlers.Sign.SwapNamed(request.NamedHandler{
 		Name: v4.SignRequestHandler.Name,
 		Fn: func(r *request.Request) {
@@ -91,7 +91,7 @@ func TestPresignHandler(t *testing.T) {
 }
 
 func TestPresignRequest(t *testing.T) {
-	svc := s3.New(unit.Session)
+	svc := s3.New(unit.Session, &aws.Config{Endpoint: aws.String("s3.mock-region.amazonaws.com")})
 	svc.Handlers.Sign.SwapNamed(request.NamedHandler{
 		Name: v4.SignRequestHandler.Name,
 		Fn: func(r *request.Request) {
