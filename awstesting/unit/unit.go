@@ -6,6 +6,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
+	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"github.com/aws/aws-sdk-go/aws/session"
 )
 
@@ -15,3 +16,11 @@ var Session = session.Must(session.NewSession(&aws.Config{
 	Region:      aws.String("mock-region"),
 	SleepDelay:  func(time.Duration) {},
 }))
+
+// MockEndpointResolver creates a mock implementation of the Resolver interface,
+// which returns a ResolvedEndpoint with the given URL.
+func MockEndpointResolver(url string) endpoints.ResolverFunc {
+	return func(service, region string, opts ...func(*endpoints.Options)) (endpoints.ResolvedEndpoint, error) {
+		return endpoints.ResolvedEndpoint{URL: url}, nil
+	}
+}
