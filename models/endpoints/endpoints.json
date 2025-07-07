@@ -127,6 +127,11 @@
           }
         }
       }
+    },
+    {
+      "partition": "aws",
+      "partitionName" : "AWS Standard (for tests only)",
+      "regionRegex" : "^not-empty-region-regex$"
     }
   ],
   "version": 3

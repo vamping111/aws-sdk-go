@@ -8,7 +8,8 @@ import (
 
 // Partition identifiers
 const (
-	K2PartitionID = "k2" // K2 Cloud Standard partition.
+	K2PartitionID  = "k2"  // K2 Cloud Standard partition.
+	AwsPartitionID = "aws" // AWS Standard (for tests only) partition.
 )
 
 // K2 Cloud Standard partition's regions.
@@ -17,8 +18,11 @@ const (
 	RuSpbRegionID = "ru-spb" // Saint Petersburg.
 )
 
+// AWS Standard (for tests only) partition's regions.
+const ()
+
 // DefaultResolver returns an Endpoint resolver that will be able
-// to resolve endpoints for: K2 Cloud Standard.
+// to resolve endpoints for: K2 Cloud Standard and AWS Standard (for tests only).
 //
 // Use DefaultPartitions() to get the list of the default partitions.
 func DefaultResolver() Resolver {
@@ -26,7 +30,7 @@ func DefaultResolver() Resolver {
 }
 
 // DefaultPartitions returns a list of the partitions the SDK is bundled
-// with. The available partitions are: K2 Cloud Standard.
+// with. The available partitions are: K2 Cloud Standard and AWS Standard (for tests only).
 //
 //	partitions := endpoints.DefaultPartitions
 //	for _, p := range partitions {
@@ -38,6 +42,7 @@ func DefaultPartitions() []Partition {
 
 var defaultPartitions = partitions{
 	k2Partition,
+	awsPartition,
 }
 
 // K2Partition returns the Resolver for K2 Cloud Standard.
@@ -224,4 +229,22 @@ var k2Partition = partition{
 			},
 		},
 	},
+}
+
+// AwsPartition returns the Resolver for AWS Standard (for tests only).
+func AwsPartition() Partition {
+	return awsPartition.Partition()
+}
+
+var awsPartition = partition{
+	ID:   "aws",
+	Name: "AWS Standard (for tests only)",
+	RegionRegex: regionRegex{
+		Regexp: func() *regexp.Regexp {
+			reg, _ := regexp.Compile("^not-empty-region-regex$")
+			return reg
+		}(),
+	},
+	Regions:  regions{},
+	Services: services{},
 }
