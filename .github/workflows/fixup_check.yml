@@ -1,0 +1,17 @@
+name: Fixup checks
+
+on:
+  pull_request_target:
+    types:
+      - reopened
+      - opened
+      - synchronize
+
+jobs:
+  block-fixup:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Block Fixup Commit Merge
+      uses: 13rac1/block-fixup-merge-action@v2.0.0
