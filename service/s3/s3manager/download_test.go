@@ -35,7 +35,9 @@ func dlLoggingSvc(data []byte) (*s3.S3, *[]string, *[]string) {
 	names := []string{}
 	ranges := []string{}
 
-	svc := s3.New(unit.Session)
+	svc := s3.New(unit.Session, &aws.Config{
+		EndpointResolver: unit.MockEndpointResolver("https://s3.us-region-1.amazonaws.com"),
+	})
 	svc.Handlers.Send.Clear()
 	svc.Handlers.Send.PushBack(func(r *request.Request) {
 		m.Lock()

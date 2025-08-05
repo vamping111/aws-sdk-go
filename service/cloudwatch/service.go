@@ -30,7 +30,7 @@ var initRequest func(*request.Request)
 // Service information constants
 const (
 	ServiceName = "monitoring" // Name of service.
-	EndpointsID = ServiceName  // ID to lookup a service endpoint with.
+	EndpointsID = "cloudwatch" // ID to lookup a service endpoint with.
 	ServiceID   = "CloudWatch" // ServiceID is a unique identifier of a specific service.
 )
 
@@ -50,8 +50,7 @@ const (
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *CloudWatch {
 	c := p.ClientConfig(EndpointsID, cfgs...)
 	if c.SigningNameDerived || len(c.SigningName) == 0 {
-		c.SigningName = EndpointsID
-		// No Fallback
+		c.SigningName = "monitoring"
 	}
 	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }

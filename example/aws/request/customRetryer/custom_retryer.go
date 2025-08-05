@@ -11,7 +11,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/defaults"
-	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/cloudwatchlogs"
@@ -35,7 +34,9 @@ func main() {
 				Filename: defaults.SharedCredentialsFilename(),
 				Profile:  "default",
 			}),
-			Region: aws.String(endpoints.UsWest2RegionID),
+
+			// FIXME: get rid of using aws regions when fixing these examples.
+			Region: aws.String("us-west-2"),
 		}),
 	)
 	// Add a request handler to the AfterRetry handler stack that is used by the

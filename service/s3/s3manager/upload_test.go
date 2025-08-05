@@ -72,7 +72,9 @@ func loggingSvc(ignoreOps []string) (*s3.S3, *[]string, *[]interface{}) {
 	partNum := 0
 	names := []string{}
 	params := []interface{}{}
-	svc := s3.New(unit.Session)
+	svc := s3.New(unit.Session, &aws.Config{
+		EndpointResolver: unit.MockEndpointResolver("https://s3.mock-region.amazonaws.com"),
+	})
 	svc.Handlers.Unmarshal.Clear()
 	svc.Handlers.UnmarshalMeta.Clear()
 	svc.Handlers.UnmarshalError.Clear()
@@ -1149,7 +1151,7 @@ func TestUploadRetry(t *testing.T) {
 
 				Logger:   logger,
 				LogLevel: logLevel,
-				//Credentials: credentials.AnonymousCredentials,
+				// Credentials: credentials.AnonymousCredentials,
 			})
 
 			uploader := s3manager.NewUploader(sess, func(u *s3manager.Uploader) {

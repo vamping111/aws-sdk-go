@@ -25,7 +25,10 @@ func TestRestGETStrategy(t *testing.T) {
 }
 
 func TestPresign(t *testing.T) {
-	svc := New(unit.Session, &aws.Config{Region: aws.String("us-west-2")})
+	svc := New(unit.Session, &aws.Config{
+		Region:           aws.String("us-west-2"),
+		EndpointResolver: unit.MockEndpointResolver("https://polly.us-west-2.amazonaws.com"),
+	})
 	r, _ := svc.SynthesizeSpeechRequest(&SynthesizeSpeechInput{
 		Text:         aws.String("Moo"),
 		OutputFormat: aws.String("mp3"),
