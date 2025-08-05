@@ -1,3 +1,14 @@
+Release v1.44.10-ROCKIT14 (2025-08-05)
+===
+
+### General
+* Add Github Actions workflows
+### SDK Features:
+* Support K2 Cloud partition and regions
+* Fix endpoint prefixes for cloudwatch, efs, elb services
+* Service client updates:
+  * `service/s3`: remove location constraint population on `CreateBucket`
+
 Release v1.44.10-ROCKIT13 (2025-05-13)
 ===
 
