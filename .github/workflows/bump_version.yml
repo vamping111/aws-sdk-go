@@ -39,7 +39,7 @@ jobs:
         with:
           github_token: ${{ secrets.AUTOMATION_PAT }}
           repository: C2Devel/terraform-provider-rockitcloud
-          message: "modules: bump aws-sdk-go version"
+          message: "bump aws-sdk-go version"
           branch: "${{ env.LATEST_RELEASE }}"
   
       - name: Create Pull Request
@@ -67,5 +67,5 @@ jobs:
         with:
           token: ${{ secrets.AUTOMATION_PAT }}
           pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
-          merge-method: rebase
+          merge-method: merge
           repository: C2Devel/terraform-provider-rockitcloud
