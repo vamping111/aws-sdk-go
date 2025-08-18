@@ -6114,8 +6114,7 @@
     "UploadServerCertificateResponse":{
       "type":"structure",
       "members":{
-        "ServerCertificateMetadata":{"shape":"ServerCertificateMetadata"},
-        "Tags":{"shape":"tagListType"}
+        "ServerCertificateMetadata":{"shape":"ServerCertificateMetadata"}
       }
     },
     "UploadSigningCertificateRequest":{
