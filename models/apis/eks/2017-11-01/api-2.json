@@ -1509,7 +1509,8 @@
         "masterConfig"
       ],
       "members": {
-        "masterConfig": {"shape": "masterConfig"}
+        "masterConfig": {"shape": "masterConfig"},
+        "userDataConfig": {"shape": "userDataConfig"}
       }
     },
     "ListAddonsRequest":{
@@ -1782,6 +1783,18 @@
         "mastersVolumeSize":{"shape":"Integer"},
         "mastersVolumeIops":{"shape":"Integer"},
         "masterPublicIp":{"shape":"String"}
+      }
+    },
+    "userDataConfig": {
+      "type": "structure",
+      "required": [],
+      "members": {
+        "userData": {
+          "shape": "String"
+        },
+        "userDataContentType": {
+          "shape": "String"
+        }
       }
     },
     "Nodegroup":{
