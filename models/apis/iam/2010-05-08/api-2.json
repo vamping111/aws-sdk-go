@@ -5399,25 +5399,22 @@
       "members":{
         "ServerCertificateMetadata":{"shape":"ServerCertificateMetadata"},
         "CertificateBody":{"shape":"certificateBodyType"},
-        "CertificateChain":{"shape":"certificateChainType"},
-        "Tags":{"shape":"tagListType"}
+        "CertificateChain":{"shape":"certificateChainType"}
       }
     },
     "ServerCertificateMetadata":{
       "type":"structure",
       "required":[
-        "Path",
         "ServerCertificateName",
         "ServerCertificateId",
         "Arn"
       ],
       "members":{
-        "Path":{"shape":"pathType"},
         "ServerCertificateName":{"shape":"serverCertificateNameType"},
         "ServerCertificateId":{"shape":"idType"},
         "Arn":{"shape":"arnType"},
-        "UploadDate":{"shape":"dateType"},
-        "Expiration":{"shape":"dateType"}
+        "UploadDate":{"shape":"unixTimestampType"},
+        "Expiration":{"shape":"unixTimestampType"}
       }
     },
     "ServiceFailureException":{
@@ -6103,12 +6100,10 @@
         "PrivateKey"
       ],
       "members":{
-        "Path":{"shape":"pathType"},
         "ServerCertificateName":{"shape":"serverCertificateNameType"},
         "CertificateBody":{"shape":"certificateBodyType"},
         "PrivateKey":{"shape":"privateKeyType"},
-        "CertificateChain":{"shape":"certificateChainType"},
-        "Tags":{"shape":"tagListType"}
+        "CertificateChain":{"shape":"certificateChainType"}
       }
     },
     "UploadServerCertificateResponse":{
