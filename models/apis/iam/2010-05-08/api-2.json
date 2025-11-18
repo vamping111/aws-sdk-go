@@ -582,7 +582,8 @@
         {"shape":"NoSuchEntityException"},
         {"shape":"DeleteConflictException"},
         {"shape":"LimitExceededException"},
-        {"shape":"ServiceFailureException"}
+        {"shape":"ServiceFailureException"},
+        {"shape":"ServerCertificateNotFoundException"}
       ]
     },
     "DeleteServiceLinkedRole":{
@@ -1084,7 +1085,8 @@
       },
       "errors":[
         {"shape":"NoSuchEntityException"},
-        {"shape":"ServiceFailureException"}
+        {"shape":"ServiceFailureException"},
+        {"shape":"ServerCertificateNotFoundException"}
       ]
     },
     "GetServiceLastAccessedDetails":{
@@ -5401,6 +5403,18 @@
         "CertificateBody":{"shape":"certificateBodyType"},
         "CertificateChain":{"shape":"certificateChainType"}
       }
+    },
+    "ServerCertificateNotFoundException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"noSuchEntityMessage"}
+      },
+      "error":{
+        "code":"ServerCertificateNotFound",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
     },
     "ServerCertificateMetadata":{
       "type":"structure",

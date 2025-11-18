@@ -170,6 +170,10 @@ const (
 	// this account are already running.
 	ErrCodeReportGenerationLimitExceededException = "ReportGenerationLimitExceeded"
 
+	// ErrCodeServerCertificateNotFoundException for service response error code
+	// "ServerCertificateNotFound".
+	ErrCodeServerCertificateNotFoundException = "ServerCertificateNotFound"
+
 	// ErrCodeServiceFailureException for service response error code
 	// "ServiceFailure".
 	//

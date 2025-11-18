@@ -3972,6 +3972,8 @@ func (c *IAM) DeleteServerCertificateRequest(input *DeleteServerCertificateInput
 //     The request processing has failed because of an unknown error, exception
 //     or failure.
 //
+//   - ErrCodeServerCertificateNotFoundException "ServerCertificateNotFound"
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteServerCertificate
 func (c *IAM) DeleteServerCertificate(input *DeleteServerCertificateInput) (*DeleteServerCertificateOutput, error) {
 	req, out := c.DeleteServerCertificateRequest(input)
@@ -7438,6 +7440,8 @@ func (c *IAM) GetServerCertificateRequest(input *GetServerCertificateInput) (req
 //   - ErrCodeServiceFailureException "ServiceFailure"
 //     The request processing has failed because of an unknown error, exception
 //     or failure.
+//
+//   - ErrCodeServerCertificateNotFoundException "ServerCertificateNotFound"
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetServerCertificate
 func (c *IAM) GetServerCertificate(input *GetServerCertificateInput) (*GetServerCertificateOutput, error) {
