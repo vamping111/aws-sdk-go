@@ -4748,7 +4748,7 @@ type Cluster struct {
 	// The Kubernetes network configuration for the cluster.
 	KubernetesNetworkConfig *KubernetesNetworkConfigResponse `locationName:"kubernetesNetworkConfig" type:"structure"`
 
-	LegacyClusterParams *LegacyClusterParams `locationName:"legacyClusterParams" type:"structure"`
+	LegacyClusterParams *LegacyClusterParamsResponse `locationName:"legacyClusterParams" type:"structure"`
 
 	// The logging configuration for your cluster.
 	Logging *Logging `locationName:"logging" type:"structure"`
@@ -4859,7 +4859,7 @@ func (s *Cluster) SetKubernetesNetworkConfig(v *KubernetesNetworkConfigResponse)
 }
 
 // SetLegacyClusterParams sets the LegacyClusterParams field's value.
-func (s *Cluster) SetLegacyClusterParams(v *LegacyClusterParams) *Cluster {
+func (s *Cluster) SetLegacyClusterParams(v *LegacyClusterParamsResponse) *Cluster {
 	s.LegacyClusterParams = v
 	return s
 }
@@ -5268,7 +5268,7 @@ type CreateClusterInput struct {
 	// The Kubernetes network configuration for the cluster.
 	KubernetesNetworkConfig *KubernetesNetworkConfigRequest `locationName:"kubernetesNetworkConfig" type:"structure"`
 
-	LegacyClusterParams *LegacyClusterParams `locationName:"legacyClusterParams" type:"structure"`
+	LegacyClusterParams *LegacyClusterParamsRequest `locationName:"legacyClusterParams" type:"structure"`
 
 	// Enable or disable exporting the Kubernetes control plane logs for your cluster
 	// to CloudWatch Logs. By default, cluster control plane logs aren't exported
@@ -5382,7 +5382,7 @@ func (s *CreateClusterInput) SetKubernetesNetworkConfig(v *KubernetesNetworkConf
 }
 
 // SetLegacyClusterParams sets the LegacyClusterParams field's value.
-func (s *CreateClusterInput) SetLegacyClusterParams(v *LegacyClusterParams) *CreateClusterInput {
+func (s *CreateClusterInput) SetLegacyClusterParams(v *LegacyClusterParamsRequest) *CreateClusterInput {
 	s.LegacyClusterParams = v
 	return s
 }
@@ -7236,6 +7236,144 @@ func (s *DisassociateIdentityProviderConfigOutput) SetUpdate(v *Update) *Disasso
 	return s
 }
 
+type DockerRegistryConfig struct {
+	_ struct{} `type:"structure"`
+
+	DockerRegistryRequired *bool `locationName:"dockerRegistryRequired" type:"boolean"`
+
+	DockerRegistryVolumeIops *int64 `locationName:"dockerRegistryVolumeIops" type:"integer"`
+
+	DockerRegistryVolumeSize *int64 `locationName:"dockerRegistryVolumeSize" type:"integer"`
+
+	DockerRegistryVolumeType *string `locationName:"dockerRegistryVolumeType" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DockerRegistryConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DockerRegistryConfig) GoString() string {
+	return s.String()
+}
+
+// SetDockerRegistryRequired sets the DockerRegistryRequired field's value.
+func (s *DockerRegistryConfig) SetDockerRegistryRequired(v bool) *DockerRegistryConfig {
+	s.DockerRegistryRequired = &v
+	return s
+}
+
+// SetDockerRegistryVolumeIops sets the DockerRegistryVolumeIops field's value.
+func (s *DockerRegistryConfig) SetDockerRegistryVolumeIops(v int64) *DockerRegistryConfig {
+	s.DockerRegistryVolumeIops = &v
+	return s
+}
+
+// SetDockerRegistryVolumeSize sets the DockerRegistryVolumeSize field's value.
+func (s *DockerRegistryConfig) SetDockerRegistryVolumeSize(v int64) *DockerRegistryConfig {
+	s.DockerRegistryVolumeSize = &v
+	return s
+}
+
+// SetDockerRegistryVolumeType sets the DockerRegistryVolumeType field's value.
+func (s *DockerRegistryConfig) SetDockerRegistryVolumeType(v string) *DockerRegistryConfig {
+	s.DockerRegistryVolumeType = &v
+	return s
+}
+
+type EbsProviderConfigRequest struct {
+	_ struct{} `type:"structure"`
+
+	EbsProviderRequired *bool `locationName:"ebsProviderRequired" type:"boolean"`
+
+	EbsUser *string `locationName:"ebsUser" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EbsProviderConfigRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EbsProviderConfigRequest) GoString() string {
+	return s.String()
+}
+
+// SetEbsProviderRequired sets the EbsProviderRequired field's value.
+func (s *EbsProviderConfigRequest) SetEbsProviderRequired(v bool) *EbsProviderConfigRequest {
+	s.EbsProviderRequired = &v
+	return s
+}
+
+// SetEbsUser sets the EbsUser field's value.
+func (s *EbsProviderConfigRequest) SetEbsUser(v string) *EbsProviderConfigRequest {
+	s.EbsUser = &v
+	return s
+}
+
+type EbsProviderConfigResponse struct {
+	_ struct{} `type:"structure"`
+
+	EbsProviderRequired *bool `locationName:"ebsProviderRequired" type:"boolean"`
+
+	EbsUser *string `locationName:"ebsUser" type:"string"`
+
+	EbsUserName *string `locationName:"ebsUserName" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EbsProviderConfigResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EbsProviderConfigResponse) GoString() string {
+	return s.String()
+}
+
+// SetEbsProviderRequired sets the EbsProviderRequired field's value.
+func (s *EbsProviderConfigResponse) SetEbsProviderRequired(v bool) *EbsProviderConfigResponse {
+	s.EbsProviderRequired = &v
+	return s
+}
+
+// SetEbsUser sets the EbsUser field's value.
+func (s *EbsProviderConfigResponse) SetEbsUser(v string) *EbsProviderConfigResponse {
+	s.EbsUser = &v
+	return s
+}
+
+// SetEbsUserName sets the EbsUserName field's value.
+func (s *EbsProviderConfigResponse) SetEbsUserName(v string) *EbsProviderConfigResponse {
+	s.EbsUserName = &v
+	return s
+}
+
 // The encryption configuration for the cluster.
 type EncryptionConfig struct {
 	_ struct{} `type:"structure"`
@@ -7622,6 +7760,76 @@ func (s IdentityProviderConfigResponse) GoString() string {
 // SetOidc sets the Oidc field's value.
 func (s *IdentityProviderConfigResponse) SetOidc(v *OidcIdentityProviderConfig) *IdentityProviderConfigResponse {
 	s.Oidc = v
+	return s
+}
+
+type IngressConfig struct {
+	_ struct{} `type:"structure"`
+
+	IngressInstanceType *string `locationName:"ingressInstanceType" type:"string"`
+
+	IngressPublicIp *string `locationName:"ingressPublicIp" type:"string"`
+
+	IngressRequired *bool `locationName:"ingressRequired" type:"boolean"`
+
+	IngressVolumeIops *int64 `locationName:"ingressVolumeIops" type:"integer"`
+
+	IngressVolumeSize *int64 `locationName:"ingressVolumeSize" type:"integer"`
+
+	IngressVolumeType *string `locationName:"ingressVolumeType" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IngressConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IngressConfig) GoString() string {
+	return s.String()
+}
+
+// SetIngressInstanceType sets the IngressInstanceType field's value.
+func (s *IngressConfig) SetIngressInstanceType(v string) *IngressConfig {
+	s.IngressInstanceType = &v
+	return s
+}
+
+// SetIngressPublicIp sets the IngressPublicIp field's value.
+func (s *IngressConfig) SetIngressPublicIp(v string) *IngressConfig {
+	s.IngressPublicIp = &v
+	return s
+}
+
+// SetIngressRequired sets the IngressRequired field's value.
+func (s *IngressConfig) SetIngressRequired(v bool) *IngressConfig {
+	s.IngressRequired = &v
+	return s
+}
+
+// SetIngressVolumeIops sets the IngressVolumeIops field's value.
+func (s *IngressConfig) SetIngressVolumeIops(v int64) *IngressConfig {
+	s.IngressVolumeIops = &v
+	return s
+}
+
+// SetIngressVolumeSize sets the IngressVolumeSize field's value.
+func (s *IngressConfig) SetIngressVolumeSize(v int64) *IngressConfig {
+	s.IngressVolumeSize = &v
+	return s
+}
+
+// SetIngressVolumeType sets the IngressVolumeType field's value.
+func (s *IngressConfig) SetIngressVolumeType(v string) *IngressConfig {
+	s.IngressVolumeType = &v
 	return s
 }
 
@@ -8083,11 +8291,19 @@ func (s *LaunchTemplateSpecification) SetVersion(v string) *LaunchTemplateSpecif
 	return s
 }
 
-type LegacyClusterParams struct {
+type LegacyClusterParamsRequest struct {
 	_ struct{} `type:"structure"`
+
+	DockerRegistryConfig *DockerRegistryConfig `locationName:"dockerRegistryConfig" type:"structure"`
+
+	EbsProviderConfig *EbsProviderConfigRequest `locationName:"ebsProviderConfig" type:"structure"`
+
+	IngressConfig *IngressConfig `locationName:"ingressConfig" type:"structure"`
 
 	// MasterConfig is a required field
 	MasterConfig *MasterConfig `locationName:"masterConfig" type:"structure" required:"true"`
+
+	NlbProviderConfig *NlbProviderConfigRequest `locationName:"nlbProviderConfig" type:"structure"`
 }
 
 // String returns the string representation.
@@ -8095,7 +8311,7 @@ type LegacyClusterParams struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s LegacyClusterParams) String() string {
+func (s LegacyClusterParamsRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -8104,13 +8320,13 @@ func (s LegacyClusterParams) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s LegacyClusterParams) GoString() string {
+func (s LegacyClusterParamsRequest) GoString() string {
 	return s.String()
 }
 
 // Validate inspects the fields of the type to determine if they are valid.
-func (s *LegacyClusterParams) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "LegacyClusterParams"}
+func (s *LegacyClusterParamsRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LegacyClusterParamsRequest"}
 	if s.MasterConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("MasterConfig"))
 	}
@@ -8126,9 +8342,95 @@ func (s *LegacyClusterParams) Validate() error {
 	return nil
 }
 
+// SetDockerRegistryConfig sets the DockerRegistryConfig field's value.
+func (s *LegacyClusterParamsRequest) SetDockerRegistryConfig(v *DockerRegistryConfig) *LegacyClusterParamsRequest {
+	s.DockerRegistryConfig = v
+	return s
+}
+
+// SetEbsProviderConfig sets the EbsProviderConfig field's value.
+func (s *LegacyClusterParamsRequest) SetEbsProviderConfig(v *EbsProviderConfigRequest) *LegacyClusterParamsRequest {
+	s.EbsProviderConfig = v
+	return s
+}
+
+// SetIngressConfig sets the IngressConfig field's value.
+func (s *LegacyClusterParamsRequest) SetIngressConfig(v *IngressConfig) *LegacyClusterParamsRequest {
+	s.IngressConfig = v
+	return s
+}
+
 // SetMasterConfig sets the MasterConfig field's value.
-func (s *LegacyClusterParams) SetMasterConfig(v *MasterConfig) *LegacyClusterParams {
+func (s *LegacyClusterParamsRequest) SetMasterConfig(v *MasterConfig) *LegacyClusterParamsRequest {
 	s.MasterConfig = v
+	return s
+}
+
+// SetNlbProviderConfig sets the NlbProviderConfig field's value.
+func (s *LegacyClusterParamsRequest) SetNlbProviderConfig(v *NlbProviderConfigRequest) *LegacyClusterParamsRequest {
+	s.NlbProviderConfig = v
+	return s
+}
+
+type LegacyClusterParamsResponse struct {
+	_ struct{} `type:"structure"`
+
+	DockerRegistryConfig *DockerRegistryConfig `locationName:"dockerRegistryConfig" type:"structure"`
+
+	EbsProviderConfig *EbsProviderConfigResponse `locationName:"ebsProviderConfig" type:"structure"`
+
+	IngressConfig *IngressConfig `locationName:"ingressConfig" type:"structure"`
+
+	MasterConfig *MasterConfig `locationName:"masterConfig" type:"structure"`
+
+	NlbProviderConfig *NlbProviderConfigResponse `locationName:"nlbProviderConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LegacyClusterParamsResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LegacyClusterParamsResponse) GoString() string {
+	return s.String()
+}
+
+// SetDockerRegistryConfig sets the DockerRegistryConfig field's value.
+func (s *LegacyClusterParamsResponse) SetDockerRegistryConfig(v *DockerRegistryConfig) *LegacyClusterParamsResponse {
+	s.DockerRegistryConfig = v
+	return s
+}
+
+// SetEbsProviderConfig sets the EbsProviderConfig field's value.
+func (s *LegacyClusterParamsResponse) SetEbsProviderConfig(v *EbsProviderConfigResponse) *LegacyClusterParamsResponse {
+	s.EbsProviderConfig = v
+	return s
+}
+
+// SetIngressConfig sets the IngressConfig field's value.
+func (s *LegacyClusterParamsResponse) SetIngressConfig(v *IngressConfig) *LegacyClusterParamsResponse {
+	s.IngressConfig = v
+	return s
+}
+
+// SetMasterConfig sets the MasterConfig field's value.
+func (s *LegacyClusterParamsResponse) SetMasterConfig(v *MasterConfig) *LegacyClusterParamsResponse {
+	s.MasterConfig = v
+	return s
+}
+
+// SetNlbProviderConfig sets the NlbProviderConfig field's value.
+func (s *LegacyClusterParamsResponse) SetNlbProviderConfig(v *NlbProviderConfigResponse) *LegacyClusterParamsResponse {
+	s.NlbProviderConfig = v
 	return s
 }
 
@@ -9139,6 +9441,90 @@ func (s *MasterConfig) SetMastersVolumeSize(v int64) *MasterConfig {
 // SetMastersVolumeType sets the MastersVolumeType field's value.
 func (s *MasterConfig) SetMastersVolumeType(v string) *MasterConfig {
 	s.MastersVolumeType = &v
+	return s
+}
+
+type NlbProviderConfigRequest struct {
+	_ struct{} `type:"structure"`
+
+	NlbProviderRequired *bool `locationName:"nlbProviderRequired" type:"boolean"`
+
+	NlbUser *string `locationName:"nlbUser" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NlbProviderConfigRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NlbProviderConfigRequest) GoString() string {
+	return s.String()
+}
+
+// SetNlbProviderRequired sets the NlbProviderRequired field's value.
+func (s *NlbProviderConfigRequest) SetNlbProviderRequired(v bool) *NlbProviderConfigRequest {
+	s.NlbProviderRequired = &v
+	return s
+}
+
+// SetNlbUser sets the NlbUser field's value.
+func (s *NlbProviderConfigRequest) SetNlbUser(v string) *NlbProviderConfigRequest {
+	s.NlbUser = &v
+	return s
+}
+
+type NlbProviderConfigResponse struct {
+	_ struct{} `type:"structure"`
+
+	NlbProviderRequired *bool `locationName:"nlbProviderRequired" type:"boolean"`
+
+	NlbUser *string `locationName:"nlbUser" type:"string"`
+
+	NlbUserName *string `locationName:"nlbUserName" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NlbProviderConfigResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NlbProviderConfigResponse) GoString() string {
+	return s.String()
+}
+
+// SetNlbProviderRequired sets the NlbProviderRequired field's value.
+func (s *NlbProviderConfigResponse) SetNlbProviderRequired(v bool) *NlbProviderConfigResponse {
+	s.NlbProviderRequired = &v
+	return s
+}
+
+// SetNlbUser sets the NlbUser field's value.
+func (s *NlbProviderConfigResponse) SetNlbUser(v string) *NlbProviderConfigResponse {
+	s.NlbUser = &v
+	return s
+}
+
+// SetNlbUserName sets the NlbUserName field's value.
+func (s *NlbProviderConfigResponse) SetNlbUserName(v string) *NlbProviderConfigResponse {
+	s.NlbUserName = &v
 	return s
 }
 
