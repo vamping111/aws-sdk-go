@@ -2210,7 +2210,6 @@ func ExampleIAM_UploadServerCertificate_shared00() {
 	svc := iam.New(session.New())
 	input := &iam.UploadServerCertificateInput{
 		CertificateBody:       aws.String("-----BEGIN CERTIFICATE-----<a very long certificate text string>-----END CERTIFICATE-----"),
-		Path:                  aws.String("/company/servercerts/"),
 		PrivateKey:            aws.String("-----BEGIN DSA PRIVATE KEY-----<a very long private key string>-----END DSA PRIVATE KEY-----"),
 		ServerCertificateName: aws.String("ProdServerCert"),
 	}
