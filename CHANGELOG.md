@@ -1,3 +1,16 @@
+Release v1.44.10-ROCKIT15 (2025-12-01)
+===
+
+### Service client updates:
+
+* `service/eks`: Update service API
+  * Add `dockerRegistryConfig`, `ebsProviderConfig`, `ingressConfig`, `nlbProviderConfig` for `legacyClusterParams`
+  * Add `UserDataConfig` for EKS clusters
+  * Add support for the `masterConfig.useDedicatedHost` parameter for EKS clusters
+  * Add support for the `useDedicatedHost` parameter for NodeGroups
+* `service/iam`: Update service API
+  * Remove unused parameters
+
 Release v1.44.10-ROCKIT14 (2025-08-05)
 ===
 
