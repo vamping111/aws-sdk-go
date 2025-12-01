@@ -8304,6 +8304,8 @@ type LegacyClusterParamsRequest struct {
 	MasterConfig *MasterConfig `locationName:"masterConfig" type:"structure" required:"true"`
 
 	NlbProviderConfig *NlbProviderConfigRequest `locationName:"nlbProviderConfig" type:"structure"`
+
+	PlacementConfig *PlacementConfig `locationName:"placementConfig" type:"structure"`
 }
 
 // String returns the string representation.
@@ -8372,6 +8374,12 @@ func (s *LegacyClusterParamsRequest) SetNlbProviderConfig(v *NlbProviderConfigRe
 	return s
 }
 
+// SetPlacementConfig sets the PlacementConfig field's value.
+func (s *LegacyClusterParamsRequest) SetPlacementConfig(v *PlacementConfig) *LegacyClusterParamsRequest {
+	s.PlacementConfig = v
+	return s
+}
+
 type LegacyClusterParamsResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -8384,6 +8392,8 @@ type LegacyClusterParamsResponse struct {
 	MasterConfig *MasterConfig `locationName:"masterConfig" type:"structure"`
 
 	NlbProviderConfig *NlbProviderConfigResponse `locationName:"nlbProviderConfig" type:"structure"`
+
+	PlacementConfig *PlacementConfig `locationName:"placementConfig" type:"structure"`
 }
 
 // String returns the string representation.
@@ -8431,6 +8441,12 @@ func (s *LegacyClusterParamsResponse) SetMasterConfig(v *MasterConfig) *LegacyCl
 // SetNlbProviderConfig sets the NlbProviderConfig field's value.
 func (s *LegacyClusterParamsResponse) SetNlbProviderConfig(v *NlbProviderConfigResponse) *LegacyClusterParamsResponse {
 	s.NlbProviderConfig = v
+	return s
+}
+
+// SetPlacementConfig sets the PlacementConfig field's value.
+func (s *LegacyClusterParamsResponse) SetPlacementConfig(v *PlacementConfig) *LegacyClusterParamsResponse {
+	s.PlacementConfig = v
 	return s
 }
 
@@ -10390,6 +10406,52 @@ func (s *OidcIdentityProviderConfigRequest) SetUsernameClaim(v string) *OidcIden
 // SetUsernamePrefix sets the UsernamePrefix field's value.
 func (s *OidcIdentityProviderConfigRequest) SetUsernamePrefix(v string) *OidcIdentityProviderConfigRequest {
 	s.UsernamePrefix = &v
+	return s
+}
+
+type PlacementConfig struct {
+	_ struct{} `type:"structure"`
+
+	Affinity *string `locationName:"affinity" type:"string" enum:"Affinity"`
+
+	HostId *string `locationName:"hostId" type:"string"`
+
+	Tenancy *string `locationName:"tenancy" type:"string" enum:"Tenancy"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PlacementConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PlacementConfig) GoString() string {
+	return s.String()
+}
+
+// SetAffinity sets the Affinity field's value.
+func (s *PlacementConfig) SetAffinity(v string) *PlacementConfig {
+	s.Affinity = &v
+	return s
+}
+
+// SetHostId sets the HostId field's value.
+func (s *PlacementConfig) SetHostId(v string) *PlacementConfig {
+	s.HostId = &v
+	return s
+}
+
+// SetTenancy sets the Tenancy field's value.
+func (s *PlacementConfig) SetTenancy(v string) *PlacementConfig {
+	s.Tenancy = &v
 	return s
 }
 
@@ -12584,6 +12646,22 @@ func AddonStatus_Values() []string {
 }
 
 const (
+	// AffinityDefault is a Affinity enum value
+	AffinityDefault = "default"
+
+	// AffinityHost is a Affinity enum value
+	AffinityHost = "host"
+)
+
+// Affinity_Values returns all elements of the Affinity enum
+func Affinity_Values() []string {
+	return []string{
+		AffinityDefault,
+		AffinityHost,
+	}
+}
+
+const (
 	// CapacityTypesOnDemand is a CapacityTypes enum value
 	CapacityTypesOnDemand = "ON_DEMAND"
 
@@ -13020,6 +13098,22 @@ func TaintEffect_Values() []string {
 		TaintEffectNoSchedule,
 		TaintEffectNoExecute,
 		TaintEffectPreferNoSchedule,
+	}
+}
+
+const (
+	// TenancyDefault is a Tenancy enum value
+	TenancyDefault = "default"
+
+	// TenancyHost is a Tenancy enum value
+	TenancyHost = "host"
+)
+
+// Tenancy_Values returns all elements of the Tenancy enum
+func Tenancy_Values() []string {
+	return []string{
+		TenancyDefault,
+		TenancyHost,
 	}
 }
 
