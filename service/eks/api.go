@@ -8303,13 +8303,11 @@ type LegacyClusterParamsRequest struct {
 	// MasterConfig is a required field
 	MasterConfig *MasterConfig `locationName:"masterConfig" type:"structure" required:"true"`
 
-
-	UserDataConfig *UserDataConfig `locationName:"userDataConfig" type:"structure"`
-
 	NlbProviderConfig *NlbProviderConfigRequest `locationName:"nlbProviderConfig" type:"structure"`
 
 	PlacementConfig *PlacementConfig `locationName:"placementConfig" type:"structure"`
 
+	UserDataConfig *UserDataConfig `locationName:"userDataConfig" type:"structure"`
 }
 
 // String returns the string representation.
@@ -8384,6 +8382,12 @@ func (s *LegacyClusterParamsRequest) SetPlacementConfig(v *PlacementConfig) *Leg
 	return s
 }
 
+// SetUserDataConfig sets the UserDataConfig field's value.
+func (s *LegacyClusterParamsRequest) SetUserDataConfig(v *UserDataConfig) *LegacyClusterParamsRequest {
+	s.UserDataConfig = v
+	return s
+}
+
 type LegacyClusterParamsResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -8439,12 +8443,6 @@ func (s *LegacyClusterParamsResponse) SetIngressConfig(v *IngressConfig) *Legacy
 // SetMasterConfig sets the MasterConfig field's value.
 func (s *LegacyClusterParamsResponse) SetMasterConfig(v *MasterConfig) *LegacyClusterParamsResponse {
 	s.MasterConfig = v
-	return s
-}
-
-// SetUserDataConfig sets the UserDataConfig field's value.
-func (s *LegacyClusterParams) SetUserDataConfig(v *UserDataConfig) *LegacyClusterParams {
-	s.UserDataConfig = v
 	return s
 }
 
