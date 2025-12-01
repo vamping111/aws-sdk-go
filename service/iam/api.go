@@ -3972,6 +3972,8 @@ func (c *IAM) DeleteServerCertificateRequest(input *DeleteServerCertificateInput
 //     The request processing has failed because of an unknown error, exception
 //     or failure.
 //
+//   - ErrCodeServerCertificateNotFoundException "ServerCertificateNotFound"
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteServerCertificate
 func (c *IAM) DeleteServerCertificate(input *DeleteServerCertificateInput) (*DeleteServerCertificateOutput, error) {
 	req, out := c.DeleteServerCertificateRequest(input)
@@ -7438,6 +7440,8 @@ func (c *IAM) GetServerCertificateRequest(input *GetServerCertificateInput) (req
 //   - ErrCodeServiceFailureException "ServiceFailure"
 //     The request processing has failed because of an unknown error, exception
 //     or failure.
+//
+//   - ErrCodeServerCertificateNotFoundException "ServerCertificateNotFound"
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetServerCertificate
 func (c *IAM) GetServerCertificate(input *GetServerCertificateInput) (*GetServerCertificateOutput, error) {
@@ -35979,11 +35983,6 @@ type ServerCertificate struct {
 	//
 	// ServerCertificateMetadata is a required field
 	ServerCertificateMetadata *ServerCertificateMetadata `type:"structure" required:"true"`
-
-	// A list of tags that are attached to the server certificate. For more information
-	// about tagging, see Tagging IAM resources (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html)
-	// in the IAM User Guide.
-	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation.
@@ -36022,12 +36021,6 @@ func (s *ServerCertificate) SetServerCertificateMetadata(v *ServerCertificateMet
 	return s
 }
 
-// SetTags sets the Tags field's value.
-func (s *ServerCertificate) SetTags(v []*Tag) *ServerCertificate {
-	s.Tags = v
-	return s
-}
-
 // Contains information about a server certificate without its certificate body,
 // certificate chain, and private key.
 //
@@ -36044,15 +36037,7 @@ type ServerCertificateMetadata struct {
 	// Arn is a required field
 	Arn *string `min:"15" type:"string" required:"true"`
 
-	// The date on which the certificate is set to expire.
-	Expiration *time.Time `type:"timestamp"`
-
-	// The path to the server certificate. For more information about paths, see
-	// IAM identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
-	// in the IAM User Guide.
-	//
-	// Path is a required field
-	Path *string `min:"1" type:"string" required:"true"`
+	Expiration *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
 	// The stable and unique string identifying the server certificate. For more
 	// information about IDs, see IAM identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
@@ -36066,8 +36051,7 @@ type ServerCertificateMetadata struct {
 	// ServerCertificateName is a required field
 	ServerCertificateName *string `min:"1" type:"string" required:"true"`
 
-	// The date when the server certificate was uploaded.
-	UploadDate *time.Time `type:"timestamp"`
+	UploadDate *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 }
 
 // String returns the string representation.
@@ -36097,12 +36081,6 @@ func (s *ServerCertificateMetadata) SetArn(v string) *ServerCertificateMetadata 
 // SetExpiration sets the Expiration field's value.
 func (s *ServerCertificateMetadata) SetExpiration(v time.Time) *ServerCertificateMetadata {
 	s.Expiration = &v
-	return s
-}
-
-// SetPath sets the Path field's value.
-func (s *ServerCertificateMetadata) SetPath(v string) *ServerCertificateMetadata {
-	s.Path = &v
 	return s
 }
 
@@ -41128,24 +41106,6 @@ type UploadServerCertificateInput struct {
 	//    return (\u000D)
 	CertificateChain *string `min:"1" type:"string"`
 
-	// The path for the server certificate. For more information about paths, see
-	// IAM identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
-	// in the IAM User Guide.
-	//
-	// This parameter is optional. If it is not included, it defaults to a slash
-	// (/). This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of either a forward slash (/) by itself
-	// or a string that must begin and end with forward slashes. In addition, it
-	// can contain any ASCII character from the ! (\u0021) through the DEL character
-	// (\u007F), including most punctuation characters, digits, and upper and lowercased
-	// letters.
-	//
-	// If you are uploading a server certificate specifically for use with Amazon
-	// CloudFront distributions, you must specify a path using the path parameter.
-	// The path must begin with /cloudfront and must include a trailing slash (for
-	// example, /cloudfront/test/).
-	Path *string `min:"1" type:"string"`
-
 	// The contents of the private key in PEM-encoded format.
 	//
 	// The regex pattern (http://wikipedia.org/wiki/regex) used to validate this
@@ -41176,15 +41136,6 @@ type UploadServerCertificateInput struct {
 	//
 	// ServerCertificateName is a required field
 	ServerCertificateName *string `min:"1" type:"string" required:"true"`
-
-	// A list of tags that you want to attach to the new IAM server certificate
-	// resource. Each tag consists of a key name and an associated value. For more
-	// information about tagging, see Tagging IAM resources (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html)
-	// in the IAM User Guide.
-	//
-	// If any one of the tags is invalid or if you exceed the allowed maximum number
-	// of tags, then the entire request fails and the resource is not created.
-	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation.
@@ -41217,9 +41168,6 @@ func (s *UploadServerCertificateInput) Validate() error {
 	if s.CertificateChain != nil && len(*s.CertificateChain) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("CertificateChain", 1))
 	}
-	if s.Path != nil && len(*s.Path) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Path", 1))
-	}
 	if s.PrivateKey == nil {
 		invalidParams.Add(request.NewErrParamRequired("PrivateKey"))
 	}
@@ -41231,16 +41179,6 @@ func (s *UploadServerCertificateInput) Validate() error {
 	}
 	if s.ServerCertificateName != nil && len(*s.ServerCertificateName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ServerCertificateName", 1))
-	}
-	if s.Tags != nil {
-		for i, v := range s.Tags {
-			if v == nil {
-				continue
-			}
-			if err := v.Validate(); err != nil {
-				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
-			}
-		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -41261,12 +41199,6 @@ func (s *UploadServerCertificateInput) SetCertificateChain(v string) *UploadServ
 	return s
 }
 
-// SetPath sets the Path field's value.
-func (s *UploadServerCertificateInput) SetPath(v string) *UploadServerCertificateInput {
-	s.Path = &v
-	return s
-}
-
 // SetPrivateKey sets the PrivateKey field's value.
 func (s *UploadServerCertificateInput) SetPrivateKey(v string) *UploadServerCertificateInput {
 	s.PrivateKey = &v
@@ -41279,12 +41211,6 @@ func (s *UploadServerCertificateInput) SetServerCertificateName(v string) *Uploa
 	return s
 }
 
-// SetTags sets the Tags field's value.
-func (s *UploadServerCertificateInput) SetTags(v []*Tag) *UploadServerCertificateInput {
-	s.Tags = v
-	return s
-}
-
 // Contains the response to a successful UploadServerCertificate request.
 type UploadServerCertificateOutput struct {
 	_ struct{} `type:"structure"`
@@ -41292,12 +41218,6 @@ type UploadServerCertificateOutput struct {
 	// The meta information of the uploaded server certificate without its certificate
 	// body, certificate chain, and private key.
 	ServerCertificateMetadata *ServerCertificateMetadata `type:"structure"`
-
-	// A list of tags that are attached to the new IAM server certificate. The returned
-	// list of tags is sorted by tag key. For more information about tagging, see
-	// Tagging IAM resources (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html)
-	// in the IAM User Guide.
-	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation.
@@ -41321,12 +41241,6 @@ func (s UploadServerCertificateOutput) GoString() string {
 // SetServerCertificateMetadata sets the ServerCertificateMetadata field's value.
 func (s *UploadServerCertificateOutput) SetServerCertificateMetadata(v *ServerCertificateMetadata) *UploadServerCertificateOutput {
 	s.ServerCertificateMetadata = v
-	return s
-}
-
-// SetTags sets the Tags field's value.
-func (s *UploadServerCertificateOutput) SetTags(v []*Tag) *UploadServerCertificateOutput {
-	s.Tags = v
 	return s
 }
 
