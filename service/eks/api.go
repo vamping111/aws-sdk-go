@@ -8303,9 +8303,13 @@ type LegacyClusterParamsRequest struct {
 	// MasterConfig is a required field
 	MasterConfig *MasterConfig `locationName:"masterConfig" type:"structure" required:"true"`
 
+
+	UserDataConfig *UserDataConfig `locationName:"userDataConfig" type:"structure"`
+
 	NlbProviderConfig *NlbProviderConfigRequest `locationName:"nlbProviderConfig" type:"structure"`
 
 	PlacementConfig *PlacementConfig `locationName:"placementConfig" type:"structure"`
+
 }
 
 // String returns the string representation.
@@ -8435,6 +8439,12 @@ func (s *LegacyClusterParamsResponse) SetIngressConfig(v *IngressConfig) *Legacy
 // SetMasterConfig sets the MasterConfig field's value.
 func (s *LegacyClusterParamsResponse) SetMasterConfig(v *MasterConfig) *LegacyClusterParamsResponse {
 	s.MasterConfig = v
+	return s
+}
+
+// SetUserDataConfig sets the UserDataConfig field's value.
+func (s *LegacyClusterParams) SetUserDataConfig(v *UserDataConfig) *LegacyClusterParams {
+	s.UserDataConfig = v
 	return s
 }
 
@@ -12326,6 +12336,44 @@ func (s *UpdateTaintsPayload) SetAddOrUpdateTaints(v []*Taint) *UpdateTaintsPayl
 // SetRemoveTaints sets the RemoveTaints field's value.
 func (s *UpdateTaintsPayload) SetRemoveTaints(v []*Taint) *UpdateTaintsPayload {
 	s.RemoveTaints = v
+	return s
+}
+
+type UserDataConfig struct {
+	_ struct{} `type:"structure"`
+
+	UserData *string `locationName:"userData" type:"string"`
+
+	UserDataContentType *string `locationName:"userDataContentType" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserDataConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserDataConfig) GoString() string {
+	return s.String()
+}
+
+// SetUserData sets the UserData field's value.
+func (s *UserDataConfig) SetUserData(v string) *UserDataConfig {
+	s.UserData = &v
+	return s
+}
+
+// SetUserDataContentType sets the UserDataContentType field's value.
+func (s *UserDataConfig) SetUserDataContentType(v string) *UserDataConfig {
+	s.UserDataContentType = &v
 	return s
 }
 

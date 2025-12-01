@@ -1513,6 +1513,7 @@
         "ebsProviderConfig":{"shape":"EbsProviderConfigRequest"},
         "ingressConfig":{"shape":"IngressConfig"},
         "masterConfig":{"shape":"MasterConfig"},
+        "userDataConfig": {"shape": "userDataConfig"},
         "nlbProviderConfig":{"shape":"NlbProviderConfigRequest"},
         "placementConfig": {"shape": "placementConfig"}
       }
@@ -1833,6 +1834,18 @@
         "mastersVolumeSize":{"shape":"Integer"},
         "mastersVolumeIops":{"shape":"Integer"},
         "masterPublicIp":{"shape":"String"}
+      }
+    },
+    "userDataConfig": {
+      "type": "structure",
+      "required": [],
+      "members": {
+        "userData": {
+          "shape": "String"
+        },
+        "userDataContentType": {
+          "shape": "String"
+        }
       }
     },
     "NlbProviderConfigRequest":{
