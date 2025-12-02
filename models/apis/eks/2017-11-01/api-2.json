@@ -1526,7 +1526,8 @@
         "ingressConfig":{"shape":"IngressConfig"},
         "masterConfig":{"shape":"MasterConfig"},
         "nlbProviderConfig":{"shape":"NlbProviderConfigResponse"},
-        "placementConfig": {"shape": "placementConfig"}
+        "placementConfig": {"shape": "placementConfig"},
+        "userDataConfig": {"shape": "userDataConfig"}
       }
     },
     "ListAddonsRequest":{

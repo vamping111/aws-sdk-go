@@ -8402,6 +8402,8 @@ type LegacyClusterParamsResponse struct {
 	NlbProviderConfig *NlbProviderConfigResponse `locationName:"nlbProviderConfig" type:"structure"`
 
 	PlacementConfig *PlacementConfig `locationName:"placementConfig" type:"structure"`
+
+	UserDataConfig *UserDataConfig `locationName:"userDataConfig" type:"structure"`
 }
 
 // String returns the string representation.
@@ -8455,6 +8457,12 @@ func (s *LegacyClusterParamsResponse) SetNlbProviderConfig(v *NlbProviderConfigR
 // SetPlacementConfig sets the PlacementConfig field's value.
 func (s *LegacyClusterParamsResponse) SetPlacementConfig(v *PlacementConfig) *LegacyClusterParamsResponse {
 	s.PlacementConfig = v
+	return s
+}
+
+// SetUserDataConfig sets the UserDataConfig field's value.
+func (s *LegacyClusterParamsResponse) SetUserDataConfig(v *UserDataConfig) *LegacyClusterParamsResponse {
+	s.UserDataConfig = v
 	return s
 }
 
