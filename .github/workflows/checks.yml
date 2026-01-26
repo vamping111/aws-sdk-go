@@ -22,3 +22,11 @@ jobs:
 
     - name: Run linters for the code
       run: make all
+
+    - name: Check changed files
+      run: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "::error::Code generation produced changes. Please run 'make generate' and commit the changes."
+          git status --short
+          exit 1
+        fi
