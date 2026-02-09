@@ -1630,7 +1630,8 @@
       "enum":[
         "VMDK",
         "RAW",
-        "VHD"
+        "VHD",
+        "QCOW2"
       ]
     },
     "Distribution":{
