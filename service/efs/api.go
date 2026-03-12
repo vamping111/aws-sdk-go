@@ -8165,6 +8165,9 @@ type MountTargetDescription struct {
 	// Services account.
 	AvailabilityZoneName *string `min:"1" type:"string"`
 
+	// DNS name of the mount target.
+	DnsName *string `type:"string"`
+
 	// The ID of the file system for which the mount target is intended.
 	//
 	// FileSystemId is a required field
@@ -8226,6 +8229,12 @@ func (s *MountTargetDescription) SetAvailabilityZoneId(v string) *MountTargetDes
 // SetAvailabilityZoneName sets the AvailabilityZoneName field's value.
 func (s *MountTargetDescription) SetAvailabilityZoneName(v string) *MountTargetDescription {
 	s.AvailabilityZoneName = &v
+	return s
+}
+
+// SetDnsName sets the DnsName field's value.
+func (s *MountTargetDescription) SetDnsName(v string) *MountTargetDescription {
+	s.DnsName = &v
 	return s
 }
 
@@ -10565,16 +10574,12 @@ func LifeCycleState_Values() []string {
 const (
 	// PerformanceModeGeneralPurpose is a PerformanceMode enum value
 	PerformanceModeGeneralPurpose = "generalPurpose"
-
-	// PerformanceModeMaxIo is a PerformanceMode enum value
-	PerformanceModeMaxIo = "maxIO"
 )
 
 // PerformanceMode_Values returns all elements of the PerformanceMode enum
 func PerformanceMode_Values() []string {
 	return []string{
 		PerformanceModeGeneralPurpose,
-		PerformanceModeMaxIo,
 	}
 }
 
