@@ -17463,7 +17463,8 @@
       "enum":[
         "VMDK",
         "RAW",
-        "VHD"
+        "VHD",
+        "QCOW2"
       ]
     },
     "DiskImageList":{

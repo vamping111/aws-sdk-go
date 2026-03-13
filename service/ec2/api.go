@@ -110883,7 +110883,7 @@ type ImageDiskContainer struct {
 
 	// The format of the disk image being imported.
 	//
-	// Valid values: OVA | VHD | VHDX | VMDK | RAW
+	// Valid values: OVA | VHD | VMDK | RAW | QCOW2
 	Format *string `type:"string"`
 
 	// The ID of the EBS snapshot to be used for importing the snapshot.
@@ -148260,7 +148260,7 @@ type SnapshotDiskContainer struct {
 
 	// The format of the disk image being imported.
 	//
-	// Valid values: VHD | VMDK | RAW
+	// Valid values: VHD | VMDK | RAW | QCOW2
 	Format *string `type:"string"`
 
 	// The URL to the Amazon S3-based disk image being imported. It can either be
@@ -161460,6 +161460,9 @@ const (
 
 	// DiskImageFormatVhd is a DiskImageFormat enum value
 	DiskImageFormatVhd = "VHD"
+
+	// DiskImageFormatQcow2 is a DiskImageFormat enum value
+	DiskImageFormatQcow2 = "QCOW2"
 )
 
 // DiskImageFormat_Values returns all elements of the DiskImageFormat enum
@@ -161468,6 +161471,7 @@ func DiskImageFormat_Values() []string {
 		DiskImageFormatVmdk,
 		DiskImageFormatRaw,
 		DiskImageFormatVhd,
+		DiskImageFormatQcow2,
 	}
 }
 
