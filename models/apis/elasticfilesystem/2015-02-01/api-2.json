@@ -1057,6 +1057,7 @@
       "type":"list",
       "member":{"shape":"DestinationToCreate"}
     },
+    "DnsName":{"type":"string"},
     "Encrypted":{"type":"boolean"},
     "ErrorCode":{
       "type":"string",
@@ -1365,7 +1366,8 @@
         "NetworkInterfaceId":{"shape":"NetworkInterfaceId"},
         "AvailabilityZoneId":{"shape":"AvailabilityZoneId"},
         "AvailabilityZoneName":{"shape":"AvailabilityZoneName"},
-        "VpcId":{"shape":"VpcId"}
+        "VpcId":{"shape":"VpcId"},
+        "DnsName":{"shape":"DnsName"}
       }
     },
     "MountTargetDescriptions":{
@@ -1429,8 +1431,7 @@
     "PerformanceMode":{
       "type":"string",
       "enum":[
-        "generalPurpose",
-        "maxIO"
+        "generalPurpose"
       ]
     },
     "Permissions":{

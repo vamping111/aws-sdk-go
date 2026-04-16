@@ -325,6 +325,12 @@
         "CreateReplicationConfigurationRequest$Destinations": "<p>An array of destination configuration objects. Only one destination configuration object is supported.</p>"
       }
     },
+    "DnsName": {
+      "base": null,
+      "refs": {
+        "MountTargetDescription$DnsName": "<p>DNS name of the mount target.</p>"
+      }
+    },
     "Encrypted": {
       "base": null,
       "refs": {
