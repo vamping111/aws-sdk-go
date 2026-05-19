@@ -1,8 +1,32 @@
+Release v1.44.10-ROCKIT20 (2026-05-19)
+===
+
+### Service client updates
+* `service/paas`: Update service API
+  * Add database and user management operations
+  * Add Kafka topic, Logstash pipeline, Elasticsearch snapshot repository, Prometheus route, Prometheus scrape job, and notification channel operations
+  * Add service lifecycle operations: start, stop, restart, and synchronize status
+  * Add service configuration operations for parameters, environment, instance type, volume size/IOPS, load balancers, and maintenance preferences
+  * Add load balancer, maintenance, tags, nodes, instance quantity, and recoverability fields to service responses
+
+Release v1.44.10-ROCKIT19 (2026-04-16)
+===
+
+### Service client updates
+* service/efs: Update service API
+  * Add DnsName field to MountTargetDescribe structure
+
+Release v1.44.10-ROCKIT18 (2026-04-07)
+===
+
+### Service client updates
+* service/ec2: Update service API
+  * Add image format `QCOW2`
+
 Release v1.44.10-ROCKIT15 (2025-12-01)
 ===
 
-### Service client updates:
-
+### Service client updates
 * `service/eks`: Update service API
   * Add `dockerRegistryConfig`, `ebsProviderConfig`, `ingressConfig`, `nlbProviderConfig` for `legacyClusterParams`
   * Add `UserDataConfig` for EKS clusters
@@ -16,7 +40,7 @@ Release v1.44.10-ROCKIT14 (2025-08-05)
 
 ### General
 * Add Github Actions workflows
-### SDK Features:
+### SDK Features
 * Support K2 Cloud partition and regions
 * Fix endpoint prefixes for cloudwatch, efs, elb services
 * Service client updates:
@@ -26,10 +50,8 @@ Release v1.44.10-ROCKIT13 (2025-05-13)
 ===
 
 ### SDK Enhancements
-
 * `private/protocol/restjson`: consider `__type` in `UnmarshalTypedError`
 ### Service client updates
-
 * `service/eks`: Update service API
   * Add `CLAIMED` status for nodegroup
 * `service/paas`: Update service API
