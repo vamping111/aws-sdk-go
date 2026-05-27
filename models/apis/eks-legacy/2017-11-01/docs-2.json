@@ -1,0 +1,53 @@
+{
+  "version": "2.0",
+  "service": "<p>Amazon EKS Legacy API provides operations that use the legacy endpoint prefix.</p>",
+  "operations": {
+    "GetClusterKubeconfig": "<p>Returns the kubeconfig for the specified cluster.</p>"
+  },
+  "shapes": {
+    "ClientException": {
+      "base": "<p>These errors are usually caused by a client action. Actions can include using an action or resource on behalf of a user that doesn't have permissions to use the action or resource or specifying an identifier that is not valid.</p>",
+      "refs": {
+      }
+    },
+    "GetClusterKubeconfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetClusterKubeconfigResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p>The specified resource could not be found. You can view your available clusters with ListClusters. You can view your available managed node groups with ListNodegroups. Amazon EKS clusters and node groups are Region-specific.</p>",
+      "refs": {
+      }
+    },
+    "ServerException": {
+      "base": "<p>These errors are usually caused by a server-side issue.</p>",
+      "refs": {
+      }
+    },
+    "ServiceUnavailableException": {
+      "base": "<p>The service is unavailable. Back off and retry the operation.</p>",
+      "refs": {
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "ClientException$clusterName": null,
+        "ClientException$message": null,
+        "GetClusterKubeconfigRequest$name": "<p>The name of the cluster for which to get the kubeconfig.</p>",
+        "GetClusterKubeconfigResponse$kubeconfig": "<p>The kubeconfig for the specified cluster.</p>",
+        "ResourceNotFoundException$clusterName": null,
+        "ResourceNotFoundException$message": null,
+        "ServerException$clusterName": null,
+        "ServerException$message": null,
+        "ServiceUnavailableException$message": null
+      }
+    }
+  }
+}
