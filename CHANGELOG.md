@@ -1,3 +1,10 @@
+Release v1.44.10-ROCKIT21 (2026-06-05)
+===
+
+### Service client updates
+* `service/eks-legacy`: Update service API
+  * add GetClusterKubeconfig for Legacy EKS clusters
+
 Release v1.44.10-ROCKIT20 (2026-05-19)
 ===
 
