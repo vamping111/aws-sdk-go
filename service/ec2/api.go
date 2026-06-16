@@ -1582,6 +1582,77 @@ func (c *EC2) AssociateInstanceEventWindowWithContext(ctx aws.Context, input *As
 	return out, req.Send()
 }
 
+const opAssociateNatGatewayAddress = "AssociateNatGatewayAddress"
+
+// AssociateNatGatewayAddressRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateNatGatewayAddress operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateNatGatewayAddress for more information on using the AssociateNatGatewayAddress
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AssociateNatGatewayAddressRequest method.
+//	req, resp := client.AssociateNatGatewayAddressRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-2016-11-15/AssociateNatGatewayAddress
+func (c *EC2) AssociateNatGatewayAddressRequest(input *AssociateNatGatewayAddressInput) (req *request.Request, output *AssociateNatGatewayAddressOutput) {
+	op := &request.Operation{
+		Name:       opAssociateNatGatewayAddress,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AssociateNatGatewayAddressInput{}
+	}
+
+	output = &AssociateNatGatewayAddressOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AssociateNatGatewayAddress API operation for Amazon Elastic Compute Cloud.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Compute Cloud's
+// API operation AssociateNatGatewayAddress for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-2016-11-15/AssociateNatGatewayAddress
+func (c *EC2) AssociateNatGatewayAddress(input *AssociateNatGatewayAddressInput) (*AssociateNatGatewayAddressOutput, error) {
+	req, out := c.AssociateNatGatewayAddressRequest(input)
+	return out, req.Send()
+}
+
+// AssociateNatGatewayAddressWithContext is the same as AssociateNatGatewayAddress with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateNatGatewayAddress for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EC2) AssociateNatGatewayAddressWithContext(ctx aws.Context, input *AssociateNatGatewayAddressInput, opts ...request.Option) (*AssociateNatGatewayAddressOutput, error) {
+	req, out := c.AssociateNatGatewayAddressRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAssociateRouteTable = "AssociateRouteTable"
 
 // AssociateRouteTableRequest generates a "aws/request.Request" representing the
@@ -32269,6 +32340,77 @@ func (c *EC2) DisassociateInstanceEventWindowWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opDisassociateNatGatewayAddress = "DisassociateNatGatewayAddress"
+
+// DisassociateNatGatewayAddressRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateNatGatewayAddress operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateNatGatewayAddress for more information on using the DisassociateNatGatewayAddress
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DisassociateNatGatewayAddressRequest method.
+//	req, resp := client.DisassociateNatGatewayAddressRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-2016-11-15/DisassociateNatGatewayAddress
+func (c *EC2) DisassociateNatGatewayAddressRequest(input *DisassociateNatGatewayAddressInput) (req *request.Request, output *DisassociateNatGatewayAddressOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateNatGatewayAddress,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DisassociateNatGatewayAddressInput{}
+	}
+
+	output = &DisassociateNatGatewayAddressOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DisassociateNatGatewayAddress API operation for Amazon Elastic Compute Cloud.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Compute Cloud's
+// API operation DisassociateNatGatewayAddress for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-2016-11-15/DisassociateNatGatewayAddress
+func (c *EC2) DisassociateNatGatewayAddress(input *DisassociateNatGatewayAddressInput) (*DisassociateNatGatewayAddressOutput, error) {
+	req, out := c.DisassociateNatGatewayAddressRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateNatGatewayAddressWithContext is the same as DisassociateNatGatewayAddress with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateNatGatewayAddress for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EC2) DisassociateNatGatewayAddressWithContext(ctx aws.Context, input *DisassociateNatGatewayAddressInput, opts ...request.Option) (*DisassociateNatGatewayAddressOutput, error) {
+	req, out := c.DisassociateNatGatewayAddressRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDisassociateRouteTable = "DisassociateRouteTable"
 
 // DisassociateRouteTableRequest generates a "aws/request.Request" representing the
@@ -51818,6 +51960,124 @@ func (s *AssociateInstanceEventWindowOutput) SetInstanceEventWindow(v *InstanceE
 	return s
 }
 
+type AssociateNatGatewayAddressInput struct {
+	_ struct{} `type:"structure"`
+
+	// AllocationIds is a required field
+	AllocationIds []*string `locationName:"AllocationId" locationNameList:"AllocationId" type:"list" required:"true"`
+
+	AvailabilityZone *string `type:"string"`
+
+	AvailabilityZoneId *string `type:"string"`
+
+	DryRun *bool `type:"boolean"`
+
+	// NatGatewayId is a required field
+	NatGatewayId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateNatGatewayAddressInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateNatGatewayAddressInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateNatGatewayAddressInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateNatGatewayAddressInput"}
+	if s.AllocationIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("AllocationIds"))
+	}
+	if s.NatGatewayId == nil {
+		invalidParams.Add(request.NewErrParamRequired("NatGatewayId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAllocationIds sets the AllocationIds field's value.
+func (s *AssociateNatGatewayAddressInput) SetAllocationIds(v []*string) *AssociateNatGatewayAddressInput {
+	s.AllocationIds = v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *AssociateNatGatewayAddressInput) SetAvailabilityZone(v string) *AssociateNatGatewayAddressInput {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetAvailabilityZoneId sets the AvailabilityZoneId field's value.
+func (s *AssociateNatGatewayAddressInput) SetAvailabilityZoneId(v string) *AssociateNatGatewayAddressInput {
+	s.AvailabilityZoneId = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *AssociateNatGatewayAddressInput) SetDryRun(v bool) *AssociateNatGatewayAddressInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetNatGatewayId sets the NatGatewayId field's value.
+func (s *AssociateNatGatewayAddressInput) SetNatGatewayId(v string) *AssociateNatGatewayAddressInput {
+	s.NatGatewayId = &v
+	return s
+}
+
+type AssociateNatGatewayAddressOutput struct {
+	_ struct{} `type:"structure"`
+
+	NatGatewayAddresses []*NatGatewayAddress `locationName:"natGatewayAddressSet" locationNameList:"item" type:"list"`
+
+	NatGatewayId *string `locationName:"natGatewayId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateNatGatewayAddressOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateNatGatewayAddressOutput) GoString() string {
+	return s.String()
+}
+
+// SetNatGatewayAddresses sets the NatGatewayAddresses field's value.
+func (s *AssociateNatGatewayAddressOutput) SetNatGatewayAddresses(v []*NatGatewayAddress) *AssociateNatGatewayAddressOutput {
+	s.NatGatewayAddresses = v
+	return s
+}
+
+// SetNatGatewayId sets the NatGatewayId field's value.
+func (s *AssociateNatGatewayAddressOutput) SetNatGatewayId(v string) *AssociateNatGatewayAddressOutput {
+	s.NatGatewayId = &v
+	return s
+}
+
 type AssociateRouteTableInput struct {
 	_ struct{} `type:"structure"`
 
@@ -54124,6 +54384,52 @@ func (s *AvailabilityZone) SetZoneName(v string) *AvailabilityZone {
 // SetZoneType sets the ZoneType field's value.
 func (s *AvailabilityZone) SetZoneType(v string) *AvailabilityZone {
 	s.ZoneType = &v
+	return s
+}
+
+type AvailabilityZoneAddress struct {
+	_ struct{} `type:"structure"`
+
+	AllocationIds []*string `locationName:"AllocationId" locationNameList:"AllocationId" type:"list"`
+
+	AvailabilityZone *string `type:"string"`
+
+	AvailabilityZoneId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AvailabilityZoneAddress) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AvailabilityZoneAddress) GoString() string {
+	return s.String()
+}
+
+// SetAllocationIds sets the AllocationIds field's value.
+func (s *AvailabilityZoneAddress) SetAllocationIds(v []*string) *AvailabilityZoneAddress {
+	s.AllocationIds = v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *AvailabilityZoneAddress) SetAvailabilityZone(v string) *AvailabilityZoneAddress {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetAvailabilityZoneId sets the AvailabilityZoneId field's value.
+func (s *AvailabilityZoneAddress) SetAvailabilityZoneId(v string) *AvailabilityZoneAddress {
+	s.AvailabilityZoneId = &v
 	return s
 }
 
@@ -63624,6 +63930,10 @@ type CreateNatGatewayInput struct {
 	// another resource, you must first disassociate it.
 	AllocationId *string `type:"string"`
 
+	AvailabilityMode *string `type:"string" enum:"AvailabilityMode"`
+
+	AvailabilityZoneAddresses []*AvailabilityZoneAddress `locationName:"AvailabilityZoneAddress" locationNameList:"AvailabilityZoneAddress" type:"list"`
+
 	// Unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request. For more information, see How to ensure idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
 	//
@@ -63641,12 +63951,12 @@ type CreateNatGatewayInput struct {
 	DryRun *bool `type:"boolean"`
 
 	// The subnet in which to create the NAT gateway.
-	//
-	// SubnetId is a required field
-	SubnetId *string `type:"string" required:"true"`
+	SubnetId *string `type:"string"`
 
 	// The tags to assign to the NAT gateway.
 	TagSpecifications []*TagSpecification `locationName:"TagSpecification" locationNameList:"item" type:"list"`
+
+	VpcId *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -63667,22 +63977,21 @@ func (s CreateNatGatewayInput) GoString() string {
 	return s.String()
 }
 
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *CreateNatGatewayInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "CreateNatGatewayInput"}
-	if s.SubnetId == nil {
-		invalidParams.Add(request.NewErrParamRequired("SubnetId"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
 // SetAllocationId sets the AllocationId field's value.
 func (s *CreateNatGatewayInput) SetAllocationId(v string) *CreateNatGatewayInput {
 	s.AllocationId = &v
+	return s
+}
+
+// SetAvailabilityMode sets the AvailabilityMode field's value.
+func (s *CreateNatGatewayInput) SetAvailabilityMode(v string) *CreateNatGatewayInput {
+	s.AvailabilityMode = &v
+	return s
+}
+
+// SetAvailabilityZoneAddresses sets the AvailabilityZoneAddresses field's value.
+func (s *CreateNatGatewayInput) SetAvailabilityZoneAddresses(v []*AvailabilityZoneAddress) *CreateNatGatewayInput {
+	s.AvailabilityZoneAddresses = v
 	return s
 }
 
@@ -63713,6 +64022,12 @@ func (s *CreateNatGatewayInput) SetSubnetId(v string) *CreateNatGatewayInput {
 // SetTagSpecifications sets the TagSpecifications field's value.
 func (s *CreateNatGatewayInput) SetTagSpecifications(v []*TagSpecification) *CreateNatGatewayInput {
 	s.TagSpecifications = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *CreateNatGatewayInput) SetVpcId(v string) *CreateNatGatewayInput {
+	s.VpcId = &v
 	return s
 }
 
@@ -98143,6 +98458,119 @@ func (s *DisassociateInstanceEventWindowOutput) SetInstanceEventWindow(v *Instan
 	return s
 }
 
+type DisassociateNatGatewayAddressInput struct {
+	_ struct{} `type:"structure"`
+
+	// AssociationIds is a required field
+	AssociationIds []*string `locationName:"AssociationId" locationNameList:"item" type:"list" required:"true"`
+
+	DryRun *bool `type:"boolean"`
+
+	MaxDrainDurationSeconds *int64 `min:"1" type:"integer"`
+
+	// NatGatewayId is a required field
+	NatGatewayId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateNatGatewayAddressInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateNatGatewayAddressInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateNatGatewayAddressInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateNatGatewayAddressInput"}
+	if s.AssociationIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociationIds"))
+	}
+	if s.MaxDrainDurationSeconds != nil && *s.MaxDrainDurationSeconds < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxDrainDurationSeconds", 1))
+	}
+	if s.NatGatewayId == nil {
+		invalidParams.Add(request.NewErrParamRequired("NatGatewayId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociationIds sets the AssociationIds field's value.
+func (s *DisassociateNatGatewayAddressInput) SetAssociationIds(v []*string) *DisassociateNatGatewayAddressInput {
+	s.AssociationIds = v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DisassociateNatGatewayAddressInput) SetDryRun(v bool) *DisassociateNatGatewayAddressInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetMaxDrainDurationSeconds sets the MaxDrainDurationSeconds field's value.
+func (s *DisassociateNatGatewayAddressInput) SetMaxDrainDurationSeconds(v int64) *DisassociateNatGatewayAddressInput {
+	s.MaxDrainDurationSeconds = &v
+	return s
+}
+
+// SetNatGatewayId sets the NatGatewayId field's value.
+func (s *DisassociateNatGatewayAddressInput) SetNatGatewayId(v string) *DisassociateNatGatewayAddressInput {
+	s.NatGatewayId = &v
+	return s
+}
+
+type DisassociateNatGatewayAddressOutput struct {
+	_ struct{} `type:"structure"`
+
+	NatGatewayAddresses []*NatGatewayAddress `locationName:"natGatewayAddressSet" locationNameList:"item" type:"list"`
+
+	NatGatewayId *string `locationName:"natGatewayId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateNatGatewayAddressOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateNatGatewayAddressOutput) GoString() string {
+	return s.String()
+}
+
+// SetNatGatewayAddresses sets the NatGatewayAddresses field's value.
+func (s *DisassociateNatGatewayAddressOutput) SetNatGatewayAddresses(v []*NatGatewayAddress) *DisassociateNatGatewayAddressOutput {
+	s.NatGatewayAddresses = v
+	return s
+}
+
+// SetNatGatewayId sets the NatGatewayId field's value.
+func (s *DisassociateNatGatewayAddressOutput) SetNatGatewayId(v string) *DisassociateNatGatewayAddressOutput {
+	s.NatGatewayId = &v
+	return s
+}
+
 type DisassociateRouteTableInput struct {
 	_ struct{} `type:"structure"`
 
@@ -131580,14 +132008,20 @@ func (s *MovingAddressStatus) SetPublicIp(v string) *MovingAddressStatus {
 type NatGateway struct {
 	_ struct{} `type:"structure"`
 
+	AutoProvisionZones *string `locationName:"autoProvisionZones" type:"string" enum:"AutoProvisionZonesState"`
+
+	AutoScalingIps *string `locationName:"autoScalingIps" type:"string" enum:"AutoScalingIpsState"`
+
+	AvailabilityMode *string `locationName:"availabilityMode" type:"string" enum:"AvailabilityMode"`
+
 	// Indicates whether the NAT gateway supports public or private connectivity.
 	ConnectivityType *string `locationName:"connectivityType" type:"string" enum:"ConnectivityType"`
 
 	// The date and time the NAT gateway was created.
-	CreateTime *time.Time `locationName:"createTime" type:"timestamp"`
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" timestampFormat:"unixTimestamp"`
 
 	// The date and time the NAT gateway was deleted, if applicable.
-	DeleteTime *time.Time `locationName:"deleteTime" type:"timestamp"`
+	DeleteTime *time.Time `locationName:"deleteTime" type:"timestamp" timestampFormat:"unixTimestamp"`
 
 	// If the NAT gateway could not be created, specifies the error code for the
 	// failure. (InsufficientFreeAddressesInSubnet | Gateway.NotAttached | InvalidAllocationID.NotFound
@@ -131675,6 +132109,24 @@ func (s NatGateway) GoString() string {
 	return s.String()
 }
 
+// SetAutoProvisionZones sets the AutoProvisionZones field's value.
+func (s *NatGateway) SetAutoProvisionZones(v string) *NatGateway {
+	s.AutoProvisionZones = &v
+	return s
+}
+
+// SetAutoScalingIps sets the AutoScalingIps field's value.
+func (s *NatGateway) SetAutoScalingIps(v string) *NatGateway {
+	s.AutoScalingIps = &v
+	return s
+}
+
+// SetAvailabilityMode sets the AvailabilityMode field's value.
+func (s *NatGateway) SetAvailabilityMode(v string) *NatGateway {
+	s.AvailabilityMode = &v
+	return s
+}
+
 // SetConnectivityType sets the ConnectivityType field's value.
 func (s *NatGateway) SetConnectivityType(v string) *NatGateway {
 	s.ConnectivityType = &v
@@ -131755,6 +132207,16 @@ type NatGatewayAddress struct {
 	// associated with the NAT gateway.
 	AllocationId *string `locationName:"allocationId" type:"string"`
 
+	AssociationId *string `locationName:"associationId" type:"string"`
+
+	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
+
+	AvailabilityZoneId *string `locationName:"availabilityZoneId" type:"string"`
+
+	FailureMessage *string `locationName:"failureMessage" type:"string"`
+
+	IsPrimary *bool `locationName:"isPrimary" type:"boolean"`
+
 	// The ID of the network interface associated with the NAT gateway.
 	NetworkInterfaceId *string `locationName:"networkInterfaceId" type:"string"`
 
@@ -131764,6 +132226,8 @@ type NatGatewayAddress struct {
 	// [Public NAT gateway only] The Elastic IP address associated with the NAT
 	// gateway.
 	PublicIp *string `locationName:"publicIp" type:"string"`
+
+	Status *string `locationName:"status" type:"string" enum:"NatGatewayAddressStatus"`
 }
 
 // String returns the string representation.
@@ -131790,6 +132254,36 @@ func (s *NatGatewayAddress) SetAllocationId(v string) *NatGatewayAddress {
 	return s
 }
 
+// SetAssociationId sets the AssociationId field's value.
+func (s *NatGatewayAddress) SetAssociationId(v string) *NatGatewayAddress {
+	s.AssociationId = &v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *NatGatewayAddress) SetAvailabilityZone(v string) *NatGatewayAddress {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetAvailabilityZoneId sets the AvailabilityZoneId field's value.
+func (s *NatGatewayAddress) SetAvailabilityZoneId(v string) *NatGatewayAddress {
+	s.AvailabilityZoneId = &v
+	return s
+}
+
+// SetFailureMessage sets the FailureMessage field's value.
+func (s *NatGatewayAddress) SetFailureMessage(v string) *NatGatewayAddress {
+	s.FailureMessage = &v
+	return s
+}
+
+// SetIsPrimary sets the IsPrimary field's value.
+func (s *NatGatewayAddress) SetIsPrimary(v bool) *NatGatewayAddress {
+	s.IsPrimary = &v
+	return s
+}
+
 // SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
 func (s *NatGatewayAddress) SetNetworkInterfaceId(v string) *NatGatewayAddress {
 	s.NetworkInterfaceId = &v
@@ -131805,6 +132299,12 @@ func (s *NatGatewayAddress) SetPrivateIp(v string) *NatGatewayAddress {
 // SetPublicIp sets the PublicIp field's value.
 func (s *NatGatewayAddress) SetPublicIp(v string) *NatGatewayAddress {
 	s.PublicIp = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *NatGatewayAddress) SetStatus(v string) *NatGatewayAddress {
+	s.Status = &v
 	return s
 }
 
@@ -160540,6 +161040,54 @@ func AutoPlacement_Values() []string {
 }
 
 const (
+	// AutoProvisionZonesStateEnabled is a AutoProvisionZonesState enum value
+	AutoProvisionZonesStateEnabled = "enabled"
+
+	// AutoProvisionZonesStateDisabled is a AutoProvisionZonesState enum value
+	AutoProvisionZonesStateDisabled = "disabled"
+)
+
+// AutoProvisionZonesState_Values returns all elements of the AutoProvisionZonesState enum
+func AutoProvisionZonesState_Values() []string {
+	return []string{
+		AutoProvisionZonesStateEnabled,
+		AutoProvisionZonesStateDisabled,
+	}
+}
+
+const (
+	// AutoScalingIpsStateEnabled is a AutoScalingIpsState enum value
+	AutoScalingIpsStateEnabled = "enabled"
+
+	// AutoScalingIpsStateDisabled is a AutoScalingIpsState enum value
+	AutoScalingIpsStateDisabled = "disabled"
+)
+
+// AutoScalingIpsState_Values returns all elements of the AutoScalingIpsState enum
+func AutoScalingIpsState_Values() []string {
+	return []string{
+		AutoScalingIpsStateEnabled,
+		AutoScalingIpsStateDisabled,
+	}
+}
+
+const (
+	// AvailabilityModeZonal is a AvailabilityMode enum value
+	AvailabilityModeZonal = "zonal"
+
+	// AvailabilityModeRegional is a AvailabilityMode enum value
+	AvailabilityModeRegional = "regional"
+)
+
+// AvailabilityMode_Values returns all elements of the AvailabilityMode enum
+func AvailabilityMode_Values() []string {
+	return []string{
+		AvailabilityModeZonal,
+		AvailabilityModeRegional,
+	}
+}
+
+const (
 	// AvailabilityZoneOptInStatusOptInNotRequired is a AvailabilityZoneOptInStatus enum value
 	AvailabilityZoneOptInStatusOptInNotRequired = "opt-in-not-required"
 
@@ -165660,6 +166208,38 @@ func MulticastSupportValue_Values() []string {
 	return []string{
 		MulticastSupportValueEnable,
 		MulticastSupportValueDisable,
+	}
+}
+
+const (
+	// NatGatewayAddressStatusAssigning is a NatGatewayAddressStatus enum value
+	NatGatewayAddressStatusAssigning = "assigning"
+
+	// NatGatewayAddressStatusUnassigning is a NatGatewayAddressStatus enum value
+	NatGatewayAddressStatusUnassigning = "unassigning"
+
+	// NatGatewayAddressStatusAssociating is a NatGatewayAddressStatus enum value
+	NatGatewayAddressStatusAssociating = "associating"
+
+	// NatGatewayAddressStatusDisassociating is a NatGatewayAddressStatus enum value
+	NatGatewayAddressStatusDisassociating = "disassociating"
+
+	// NatGatewayAddressStatusSucceeded is a NatGatewayAddressStatus enum value
+	NatGatewayAddressStatusSucceeded = "succeeded"
+
+	// NatGatewayAddressStatusFailed is a NatGatewayAddressStatus enum value
+	NatGatewayAddressStatusFailed = "failed"
+)
+
+// NatGatewayAddressStatus_Values returns all elements of the NatGatewayAddressStatus enum
+func NatGatewayAddressStatus_Values() []string {
+	return []string{
+		NatGatewayAddressStatusAssigning,
+		NatGatewayAddressStatusUnassigning,
+		NatGatewayAddressStatusAssociating,
+		NatGatewayAddressStatusDisassociating,
+		NatGatewayAddressStatusSucceeded,
+		NatGatewayAddressStatusFailed,
 	}
 }
 
