@@ -507,6 +507,23 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "UpdateClusterUserData":{
+      "name":"UpdateClusterUserData",
+      "http":{
+        "method":"POST",
+        "requestUri":"/clusters/{name}/update-user-data"
+      },
+      "input":{"shape":"UpdateClusterUserDataRequest"},
+      "output":{"shape":"UpdateClusterUserDataResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServerException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
     "UpdateClusterVersion":{
       "name":"UpdateClusterVersion",
       "http":{
@@ -775,6 +792,7 @@
         "name":{"shape":"String"},
         "arn":{"shape":"String"},
         "createdAt":{"shape":"Timestamp"},
+        "remoteAccessConfig":{"shape":"RemoteAccessConfig"},
         "version":{"shape":"String"},
         "endpoint":{"shape":"String"},
         "roleArn":{"shape":"String"},
@@ -789,8 +807,38 @@
         "tags":{"shape":"TagMap"},
         "encryptionConfig":{"shape":"EncryptionConfigList"},
         "connectorConfig":{"shape":"ConnectorConfigResponse"},
-        "legacyClusterParams":{"shape":"LegacyClusterParamsResponse"}
+        "legacyClusterParams":{"shape":"LegacyClusterParamsResponse"},
+        "health":{"shape":"ClusterHealth"}
       }
+    },
+    "ClusterHealth":{
+      "type":"structure",
+      "members":{
+        "issues":{"shape":"ClusterIssueList"}
+      }
+    },
+    "ClusterIssue":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"ClusterIssueCode"},
+        "message":{"shape":"String"},
+        "resourceIds":{"shape":"StringList"}
+      }
+    },
+    "ClusterIssueCode":{
+      "type":"string",
+      "enum":[
+        "AccessDenied",
+        "ClusterUnreachable",
+        "ConfigurationConflict",
+        "InternalFailure",
+        "ResourceLimitExceeded",
+        "ResourceNotFound"
+      ]
+    },
+    "ClusterIssueList":{
+      "type":"list",
+      "member":{"shape":"ClusterIssue"}
     },
     "ClusterName":{
       "type":"string",
@@ -805,6 +853,7 @@
         "CREATING",
         "PROVISIONING",
         "READY",
+        "ACTIVE",
         "DELETING",
         "DELETED",
         "FAILED",
@@ -892,13 +941,17 @@
       "type":"structure",
       "required":[
         "name",
-        "roleArn",
-        "resourcesVpcConfig"
+        "resourcesVpcConfig",
+        "version"
       ],
       "members":{
         "name":{"shape":"ClusterName"},
         "version":{"shape":"String"},
         "roleArn":{"shape":"String"},
+        "remoteAccessConfig":{
+          "shape":"RemoteAccessConfig",
+          "deprecated":true
+        },
         "resourcesVpcConfig":{"shape":"VpcConfigRequest"},
         "kubernetesNetworkConfig":{"shape":"KubernetesNetworkConfigRequest"},
         "logging":{"shape":"Logging"},
@@ -952,8 +1005,7 @@
       "required":[
         "clusterName",
         "nodegroupName",
-        "subnets",
-        "nodeRole"
+        "subnets"
       ],
       "members":{
         "clusterName":{
@@ -1461,6 +1513,14 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "ClusterNotReady":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "IpFamily":{
       "type":"string",
       "enum":[
@@ -1483,6 +1543,7 @@
     "KubernetesNetworkConfigRequest":{
       "type":"structure",
       "members":{
+        "podIpv4Cidr":{"shape":"String"},
         "serviceIpv4Cidr":{"shape":"String"},
         "ipFamily":{"shape":"IpFamily"}
       }
@@ -1490,6 +1551,7 @@
     "KubernetesNetworkConfigResponse":{
       "type":"structure",
       "members":{
+        "podIpv4Cidr":{"shape":"String"},
         "serviceIpv4Cidr":{"shape":"String"},
         "serviceIpv6Cidr":{"shape":"String"},
         "ipFamily":{"shape":"IpFamily"}
@@ -1513,8 +1575,9 @@
         "ebsProviderConfig":{"shape":"EbsProviderConfigRequest"},
         "ingressConfig":{"shape":"IngressConfig"},
         "masterConfig":{"shape":"MasterConfig"},
-        "userDataConfig": {"shape": "userDataConfig"},
+        "userDataConfig": {"shape": "UserDataConfig"},
         "nlbProviderConfig":{"shape":"NlbProviderConfigRequest"},
+        "clusterAutoscalerConfig":{"shape":"clusterAutoscalerConfig"},
         "placementConfig": {"shape": "placementConfig"}
       }
     },
@@ -1526,8 +1589,9 @@
         "ingressConfig":{"shape":"IngressConfig"},
         "masterConfig":{"shape":"MasterConfig"},
         "nlbProviderConfig":{"shape":"NlbProviderConfigResponse"},
+        "clusterAutoscalerConfig":{"shape":"clusterAutoscalerConfig"},
         "placementConfig": {"shape": "placementConfig"},
-        "userDataConfig": {"shape": "userDataConfig"}
+        "userDataConfig": {"shape": "UserDataConfig"}
       }
     },
     "ListAddonsRequest":{
@@ -1837,18 +1901,6 @@
         "masterPublicIp":{"shape":"String"}
       }
     },
-    "userDataConfig": {
-      "type": "structure",
-      "required": [],
-      "members": {
-        "userData": {
-          "shape": "String"
-        },
-        "userDataContentType": {
-          "shape": "String"
-        }
-      }
-    },
     "NlbProviderConfigRequest":{
       "type":"structure",
       "members":{
@@ -1862,6 +1914,14 @@
         "nlbProviderRequired":{"shape":"Boolean"},
         "nlbUser":{"shape":"String"},
         "nlbUserName":{"shape":"String"}
+      }
+    },
+    "clusterAutoscalerConfig":{
+      "type":"structure",
+      "members":{
+        "clusterAutoscalerRequired":{"shape":"Boolean"},
+        "clusterAutoscalerUser":{"shape":"String"},
+        "clusterAutoscalerUserName":{"shape":"String"}
       }
     },
     "Nodegroup":{
@@ -1949,7 +2009,8 @@
         "DELETED",
         "CREATE_FAILED",
         "DELETE_FAILED",
-        "DEGRADED"
+        "DEGRADED",
+        "PROVISIONING"
       ]
     },
     "NodegroupUpdateConfig":{
@@ -2315,6 +2376,28 @@
         "update":{"shape":"Update"}
       }
     },
+    "UpdateClusterUserDataRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "userDataConfig":{"shape":"UserDataConfig"},
+        "clientRequestToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "UpdateClusterUserDataResponse":{
+      "type":"structure",
+      "members":{
+        "update":{"shape":"Update"}
+      }
+    },
     "UpdateClusterVersionRequest":{
       "type":"structure",
       "required":[
@@ -2501,6 +2584,13 @@
         "endpointPublicAccess":{"shape":"Boolean"},
         "endpointPrivateAccess":{"shape":"Boolean"},
         "publicAccessCidrs":{"shape":"StringList"}
+      }
+    },
+    "UserDataConfig":{
+      "type":"structure",
+      "members":{
+        "userData":{"shape":"String"},
+        "userDataContentType":{"shape":"String"}
       }
     },
     "ZeroCapacity":{
