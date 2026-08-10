@@ -205,6 +205,10 @@ type EKSAPI interface {
 	UpdateClusterConfigWithContext(aws.Context, *eks.UpdateClusterConfigInput, ...request.Option) (*eks.UpdateClusterConfigOutput, error)
 	UpdateClusterConfigRequest(*eks.UpdateClusterConfigInput) (*request.Request, *eks.UpdateClusterConfigOutput)
 
+	UpdateClusterUserData(*eks.UpdateClusterUserDataInput) (*eks.UpdateClusterUserDataOutput, error)
+	UpdateClusterUserDataWithContext(aws.Context, *eks.UpdateClusterUserDataInput, ...request.Option) (*eks.UpdateClusterUserDataOutput, error)
+	UpdateClusterUserDataRequest(*eks.UpdateClusterUserDataInput) (*request.Request, *eks.UpdateClusterUserDataOutput)
+
 	UpdateClusterVersion(*eks.UpdateClusterVersionInput) (*eks.UpdateClusterVersionOutput, error)
 	UpdateClusterVersionWithContext(aws.Context, *eks.UpdateClusterVersionInput, ...request.Option) (*eks.UpdateClusterVersionOutput, error)
 	UpdateClusterVersionRequest(*eks.UpdateClusterVersionInput) (*request.Request, *eks.UpdateClusterVersionOutput)

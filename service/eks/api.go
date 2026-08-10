@@ -3565,6 +3565,108 @@ func (c *EKS) UpdateClusterConfigWithContext(ctx aws.Context, input *UpdateClust
 	return out, req.Send()
 }
 
+const opUpdateClusterUserData = "UpdateClusterUserData"
+
+// UpdateClusterUserDataRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateClusterUserData operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateClusterUserData for more information on using the UpdateClusterUserData
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateClusterUserDataRequest method.
+//	req, resp := client.UpdateClusterUserDataRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/UpdateClusterUserData
+func (c *EKS) UpdateClusterUserDataRequest(input *UpdateClusterUserDataInput) (req *request.Request, output *UpdateClusterUserDataOutput) {
+	op := &request.Operation{
+		Name:       opUpdateClusterUserData,
+		HTTPMethod: "POST",
+		HTTPPath:   "/clusters/{name}/update-user-data",
+	}
+
+	if input == nil {
+		input = &UpdateClusterUserDataInput{}
+	}
+
+	output = &UpdateClusterUserDataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateClusterUserData API operation for Amazon Elastic Kubernetes Service.
+//
+// Updates the user data configuration for an Amazon EKS cluster. The update
+// is asynchronous and the response includes an update ID that you can track
+// with the DescribeUpdate operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Kubernetes Service's
+// API operation UpdateClusterUserData for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     The specified parameter is invalid. Review the available parameters for the
+//     API request.
+//
+//   - ClientException
+//     These errors are usually caused by a client action. Actions can include using
+//     an action or resource on behalf of a user that doesn't have permissions to
+//     use the action or resource or specifying an identifier that is not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server-side issue.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - ResourceNotFoundException
+//     The specified resource could not be found. You can view your available clusters
+//     with ListClusters. You can view your available managed node groups with ListNodegroups.
+//     Amazon EKS clusters and node groups are Region-specific.
+//
+//   - InvalidRequestException
+//     The request is invalid given the state of the cluster. Check the state of
+//     the cluster and the associated operations.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/UpdateClusterUserData
+func (c *EKS) UpdateClusterUserData(input *UpdateClusterUserDataInput) (*UpdateClusterUserDataOutput, error) {
+	req, out := c.UpdateClusterUserDataRequest(input)
+	return out, req.Send()
+}
+
+// UpdateClusterUserDataWithContext is the same as UpdateClusterUserData with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateClusterUserData for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EKS) UpdateClusterUserDataWithContext(ctx aws.Context, input *UpdateClusterUserDataInput, opts ...request.Option) (*UpdateClusterUserDataOutput, error) {
+	req, out := c.UpdateClusterUserDataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateClusterVersion = "UpdateClusterVersion"
 
 // UpdateClusterVersionRequest generates a "aws/request.Request" representing the
@@ -4742,6 +4844,10 @@ type Cluster struct {
 	// The endpoint for your Kubernetes API server.
 	Endpoint *string `locationName:"endpoint" type:"string"`
 
+	// The health status of the cluster. If there are issues with the cluster's
+	// health, they are listed here.
+	Health *ClusterHealth `locationName:"health" type:"structure"`
+
 	// The identity provider information for the cluster.
 	Identity *Identity `locationName:"identity" type:"structure"`
 
@@ -4760,6 +4866,9 @@ type Cluster struct {
 	// Platform Versions (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html)
 	// in the Amazon EKS User Guide .
 	PlatformVersion *string `locationName:"platformVersion" type:"string"`
+
+	// The remote access configuration for the Kubernetes cluster.
+	RemoteAccessConfig *RemoteAccessConfig `locationName:"remoteAccessConfig" type:"structure"`
 
 	// The VPC configuration used by the cluster control plane. Amazon EKS VPC resources
 	// have specific requirements to work properly with Kubernetes. For more information,
@@ -4846,6 +4955,12 @@ func (s *Cluster) SetEndpoint(v string) *Cluster {
 	return s
 }
 
+// SetHealth sets the Health field's value.
+func (s *Cluster) SetHealth(v *ClusterHealth) *Cluster {
+	s.Health = v
+	return s
+}
+
 // SetIdentity sets the Identity field's value.
 func (s *Cluster) SetIdentity(v *Identity) *Cluster {
 	s.Identity = v
@@ -4882,6 +4997,12 @@ func (s *Cluster) SetPlatformVersion(v string) *Cluster {
 	return s
 }
 
+// SetRemoteAccessConfig sets the RemoteAccessConfig field's value.
+func (s *Cluster) SetRemoteAccessConfig(v *RemoteAccessConfig) *Cluster {
+	s.RemoteAccessConfig = v
+	return s
+}
+
 // SetResourcesVpcConfig sets the ResourcesVpcConfig field's value.
 func (s *Cluster) SetResourcesVpcConfig(v *VpcConfigResponse) *Cluster {
 	s.ResourcesVpcConfig = v
@@ -4909,6 +5030,134 @@ func (s *Cluster) SetTags(v map[string]*string) *Cluster {
 // SetVersion sets the Version field's value.
 func (s *Cluster) SetVersion(v string) *Cluster {
 	s.Version = &v
+	return s
+}
+
+// The Kubernetes cluster autoscaler provider configuration for the cluster.
+type ClusterAutoscalerConfig struct {
+	_ struct{} `type:"structure"`
+
+	ClusterAutoscalerRequired *bool `locationName:"clusterAutoscalerRequired" type:"boolean"`
+
+	ClusterAutoscalerUser *string `locationName:"clusterAutoscalerUser" type:"string"`
+
+	ClusterAutoscalerUserName *string `locationName:"clusterAutoscalerUserName" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClusterAutoscalerConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClusterAutoscalerConfig) GoString() string {
+	return s.String()
+}
+
+// SetClusterAutoscalerRequired sets the ClusterAutoscalerRequired field's value.
+func (s *ClusterAutoscalerConfig) SetClusterAutoscalerRequired(v bool) *ClusterAutoscalerConfig {
+	s.ClusterAutoscalerRequired = &v
+	return s
+}
+
+// SetClusterAutoscalerUser sets the ClusterAutoscalerUser field's value.
+func (s *ClusterAutoscalerConfig) SetClusterAutoscalerUser(v string) *ClusterAutoscalerConfig {
+	s.ClusterAutoscalerUser = &v
+	return s
+}
+
+// SetClusterAutoscalerUserName sets the ClusterAutoscalerUserName field's value.
+func (s *ClusterAutoscalerConfig) SetClusterAutoscalerUserName(v string) *ClusterAutoscalerConfig {
+	s.ClusterAutoscalerUserName = &v
+	return s
+}
+
+// An object representing the health of an EKS cluster.
+type ClusterHealth struct {
+	_ struct{} `type:"structure"`
+
+	// Any issues that are associated with the cluster.
+	Issues []*ClusterIssue `locationName:"issues" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClusterHealth) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClusterHealth) GoString() string {
+	return s.String()
+}
+
+// SetIssues sets the Issues field's value.
+func (s *ClusterHealth) SetIssues(v []*ClusterIssue) *ClusterHealth {
+	s.Issues = v
+	return s
+}
+
+// An issue with an EKS cluster.
+type ClusterIssue struct {
+	_ struct{} `type:"structure"`
+
+	// The error code of the issue.
+	Code *string `locationName:"code" type:"string" enum:"ClusterIssueCode"`
+
+	// A description of the cluster health issue.
+	Message *string `locationName:"message" type:"string"`
+
+	ResourceIds []*string `locationName:"resourceIds" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClusterIssue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClusterIssue) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *ClusterIssue) SetCode(v string) *ClusterIssue {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *ClusterIssue) SetMessage(v string) *ClusterIssue {
+	s.Message = &v
+	return s
+}
+
+// SetResourceIds sets the ResourceIds field's value.
+func (s *ClusterIssue) SetResourceIds(v []*string) *ClusterIssue {
+	s.ResourceIds = v
 	return s
 }
 
@@ -5286,6 +5535,11 @@ type CreateClusterInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
+	// The remote access configuration for the Kubernetes cluster.
+	//
+	// Deprecated: RemoteAccessConfig has been deprecated
+	RemoteAccessConfig *RemoteAccessConfig `locationName:"remoteAccessConfig" deprecated:"true" type:"structure"`
+
 	// The VPC configuration that's used by the cluster control plane. Amazon EKS
 	// VPC resources have specific requirements to work properly with Kubernetes.
 	// For more information, see Cluster VPC Considerations (https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html)
@@ -5302,9 +5556,7 @@ type CreateClusterInput struct {
 	// operations on your behalf. For more information, see Amazon EKS Service IAM
 	// Role (https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html)
 	// in the Amazon EKS User Guide .
-	//
-	// RoleArn is a required field
-	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	// The metadata to apply to the cluster to assist with categorization and organization.
 	// Each tag consists of a key and an optional value. You define both.
@@ -5312,7 +5564,9 @@ type CreateClusterInput struct {
 
 	// The desired Kubernetes version for your cluster. If you don't specify a value
 	// here, the latest version available in Amazon EKS is used.
-	Version *string `locationName:"version" type:"string"`
+	//
+	// Version is a required field
+	Version *string `locationName:"version" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -5345,11 +5599,11 @@ func (s *CreateClusterInput) Validate() error {
 	if s.ResourcesVpcConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("ResourcesVpcConfig"))
 	}
-	if s.RoleArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
-	}
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Version == nil {
+		invalidParams.Add(request.NewErrParamRequired("Version"))
 	}
 	if s.LegacyClusterParams != nil {
 		if err := s.LegacyClusterParams.Validate(); err != nil {
@@ -5396,6 +5650,12 @@ func (s *CreateClusterInput) SetLogging(v *Logging) *CreateClusterInput {
 // SetName sets the Name field's value.
 func (s *CreateClusterInput) SetName(v string) *CreateClusterInput {
 	s.Name = &v
+	return s
+}
+
+// SetRemoteAccessConfig sets the RemoteAccessConfig field's value.
+func (s *CreateClusterInput) SetRemoteAccessConfig(v *RemoteAccessConfig) *CreateClusterInput {
+	s.RemoteAccessConfig = v
 	return s
 }
 
@@ -5682,9 +5942,7 @@ type CreateNodegroupInput struct {
 	// information about using launch templates with Amazon EKS, see Launch template
 	// support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)
 	// in the Amazon EKS User Guide.
-	//
-	// NodeRole is a required field
-	NodeRole *string `locationName:"nodeRole" type:"string" required:"true"`
+	NodeRole *string `locationName:"nodeRole" type:"string"`
 
 	// The unique name to give your node group.
 	//
@@ -5771,9 +6029,6 @@ func (s *CreateNodegroupInput) Validate() error {
 	}
 	if s.ClusterName != nil && len(*s.ClusterName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClusterName", 1))
-	}
-	if s.NodeRole == nil {
-		invalidParams.Add(request.NewErrParamRequired("NodeRole"))
 	}
 	if s.NodegroupName == nil {
 		invalidParams.Add(request.NewErrParamRequired("NodegroupName"))
@@ -8115,6 +8370,9 @@ type KubernetesNetworkConfigRequest struct {
 	// specify a custom IPv6 CIDR block.
 	IpFamily *string `locationName:"ipFamily" type:"string" enum:"IpFamily"`
 
+	// The IPv4 CIDR block to assign Kubernetes Pod IP addresses from.
+	PodIpv4Cidr *string `locationName:"podIpv4Cidr" type:"string"`
+
 	// Don't specify a value if you select ipv6 for ipFamily. The CIDR block to
 	// assign Kubernetes service IP addresses from. If you don't specify a block,
 	// Kubernetes assigns addresses from either the 10.100.0.0/16 or 172.20.0.0/16
@@ -8159,6 +8417,12 @@ func (s *KubernetesNetworkConfigRequest) SetIpFamily(v string) *KubernetesNetwor
 	return s
 }
 
+// SetPodIpv4Cidr sets the PodIpv4Cidr field's value.
+func (s *KubernetesNetworkConfigRequest) SetPodIpv4Cidr(v string) *KubernetesNetworkConfigRequest {
+	s.PodIpv4Cidr = &v
+	return s
+}
+
 // SetServiceIpv4Cidr sets the ServiceIpv4Cidr field's value.
 func (s *KubernetesNetworkConfigRequest) SetServiceIpv4Cidr(v string) *KubernetesNetworkConfigRequest {
 	s.ServiceIpv4Cidr = &v
@@ -8175,6 +8439,9 @@ type KubernetesNetworkConfigResponse struct {
 	// version 1.10.0 or later of the Amazon VPC CNI add-on and specified ipv6 when
 	// you created the cluster.
 	IpFamily *string `locationName:"ipFamily" type:"string" enum:"IpFamily"`
+
+	// The IPv4 CIDR block assigned to Kubernetes Pod IP addresses.
+	PodIpv4Cidr *string `locationName:"podIpv4Cidr" type:"string"`
 
 	// The CIDR block that Kubernetes Pod and Service IP addresses are assigned
 	// from. Kubernetes assigns addresses from an IPv4 CIDR block assigned to a
@@ -8213,6 +8480,12 @@ func (s KubernetesNetworkConfigResponse) GoString() string {
 // SetIpFamily sets the IpFamily field's value.
 func (s *KubernetesNetworkConfigResponse) SetIpFamily(v string) *KubernetesNetworkConfigResponse {
 	s.IpFamily = &v
+	return s
+}
+
+// SetPodIpv4Cidr sets the PodIpv4Cidr field's value.
+func (s *KubernetesNetworkConfigResponse) SetPodIpv4Cidr(v string) *KubernetesNetworkConfigResponse {
+	s.PodIpv4Cidr = &v
 	return s
 }
 
@@ -8294,6 +8567,9 @@ func (s *LaunchTemplateSpecification) SetVersion(v string) *LaunchTemplateSpecif
 type LegacyClusterParamsRequest struct {
 	_ struct{} `type:"structure"`
 
+	// The cluster autoscaler configuration to use when creating the cluster.
+	ClusterAutoscalerConfig *ClusterAutoscalerConfig `locationName:"clusterAutoscalerConfig" type:"structure"`
+
 	DockerRegistryConfig *DockerRegistryConfig `locationName:"dockerRegistryConfig" type:"structure"`
 
 	EbsProviderConfig *EbsProviderConfigRequest `locationName:"ebsProviderConfig" type:"structure"`
@@ -8307,6 +8583,7 @@ type LegacyClusterParamsRequest struct {
 
 	PlacementConfig *PlacementConfig `locationName:"placementConfig" type:"structure"`
 
+	// The user data configuration applied to cluster nodes.
 	UserDataConfig *UserDataConfig `locationName:"userDataConfig" type:"structure"`
 }
 
@@ -8344,6 +8621,12 @@ func (s *LegacyClusterParamsRequest) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetClusterAutoscalerConfig sets the ClusterAutoscalerConfig field's value.
+func (s *LegacyClusterParamsRequest) SetClusterAutoscalerConfig(v *ClusterAutoscalerConfig) *LegacyClusterParamsRequest {
+	s.ClusterAutoscalerConfig = v
+	return s
 }
 
 // SetDockerRegistryConfig sets the DockerRegistryConfig field's value.
@@ -8391,6 +8674,9 @@ func (s *LegacyClusterParamsRequest) SetUserDataConfig(v *UserDataConfig) *Legac
 type LegacyClusterParamsResponse struct {
 	_ struct{} `type:"structure"`
 
+	// The cluster autoscaler configuration for the cluster.
+	ClusterAutoscalerConfig *ClusterAutoscalerConfig `locationName:"clusterAutoscalerConfig" type:"structure"`
+
 	DockerRegistryConfig *DockerRegistryConfig `locationName:"dockerRegistryConfig" type:"structure"`
 
 	EbsProviderConfig *EbsProviderConfigResponse `locationName:"ebsProviderConfig" type:"structure"`
@@ -8403,6 +8689,7 @@ type LegacyClusterParamsResponse struct {
 
 	PlacementConfig *PlacementConfig `locationName:"placementConfig" type:"structure"`
 
+	// The user data configuration applied to cluster nodes.
 	UserDataConfig *UserDataConfig `locationName:"userDataConfig" type:"structure"`
 }
 
@@ -8422,6 +8709,12 @@ func (s LegacyClusterParamsResponse) String() string {
 // value will be replaced with "sensitive".
 func (s LegacyClusterParamsResponse) GoString() string {
 	return s.String()
+}
+
+// SetClusterAutoscalerConfig sets the ClusterAutoscalerConfig field's value.
+func (s *LegacyClusterParamsResponse) SetClusterAutoscalerConfig(v *ClusterAutoscalerConfig) *LegacyClusterParamsResponse {
+	s.ClusterAutoscalerConfig = v
+	return s
 }
 
 // SetDockerRegistryConfig sets the DockerRegistryConfig field's value.
@@ -11764,6 +12057,101 @@ func (s *UpdateClusterConfigOutput) SetUpdate(v *Update) *UpdateClusterConfigOut
 	return s
 }
 
+type UpdateClusterUserDataInput struct {
+	_ struct{} `type:"structure"`
+
+	ClientRequestToken *string `locationName:"clientRequestToken" type:"string" idempotencyToken:"true"`
+
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" type:"string" required:"true"`
+
+	// The user data configuration for the cluster.
+	UserDataConfig *UserDataConfig `locationName:"userDataConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateClusterUserDataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateClusterUserDataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateClusterUserDataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateClusterUserDataInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *UpdateClusterUserDataInput) SetClientRequestToken(v string) *UpdateClusterUserDataInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateClusterUserDataInput) SetName(v string) *UpdateClusterUserDataInput {
+	s.Name = &v
+	return s
+}
+
+// SetUserDataConfig sets the UserDataConfig field's value.
+func (s *UpdateClusterUserDataInput) SetUserDataConfig(v *UserDataConfig) *UpdateClusterUserDataInput {
+	s.UserDataConfig = v
+	return s
+}
+
+type UpdateClusterUserDataOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The full description of the user data update.
+	Update *Update `locationName:"update" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateClusterUserDataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateClusterUserDataOutput) GoString() string {
+	return s.String()
+}
+
+// SetUpdate sets the Update field's value.
+func (s *UpdateClusterUserDataOutput) SetUpdate(v *Update) *UpdateClusterUserDataOutput {
+	s.Update = v
+	return s
+}
+
 type UpdateClusterVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12345,6 +12733,7 @@ func (s *UpdateTaintsPayload) SetRemoveTaints(v []*Taint) *UpdateTaintsPayload {
 	return s
 }
 
+// The user data configuration applied to cluster nodes.
 type UserDataConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -12732,6 +13121,38 @@ func CapacityTypes_Values() []string {
 }
 
 const (
+	// ClusterIssueCodeAccessDenied is a ClusterIssueCode enum value
+	ClusterIssueCodeAccessDenied = "AccessDenied"
+
+	// ClusterIssueCodeClusterUnreachable is a ClusterIssueCode enum value
+	ClusterIssueCodeClusterUnreachable = "ClusterUnreachable"
+
+	// ClusterIssueCodeConfigurationConflict is a ClusterIssueCode enum value
+	ClusterIssueCodeConfigurationConflict = "ConfigurationConflict"
+
+	// ClusterIssueCodeInternalFailure is a ClusterIssueCode enum value
+	ClusterIssueCodeInternalFailure = "InternalFailure"
+
+	// ClusterIssueCodeResourceLimitExceeded is a ClusterIssueCode enum value
+	ClusterIssueCodeResourceLimitExceeded = "ResourceLimitExceeded"
+
+	// ClusterIssueCodeResourceNotFound is a ClusterIssueCode enum value
+	ClusterIssueCodeResourceNotFound = "ResourceNotFound"
+)
+
+// ClusterIssueCode_Values returns all elements of the ClusterIssueCode enum
+func ClusterIssueCode_Values() []string {
+	return []string{
+		ClusterIssueCodeAccessDenied,
+		ClusterIssueCodeClusterUnreachable,
+		ClusterIssueCodeConfigurationConflict,
+		ClusterIssueCodeInternalFailure,
+		ClusterIssueCodeResourceLimitExceeded,
+		ClusterIssueCodeResourceNotFound,
+	}
+}
+
+const (
 	// ClusterStatusClaimed is a ClusterStatus enum value
 	ClusterStatusClaimed = "CLAIMED"
 
@@ -12743,6 +13164,9 @@ const (
 
 	// ClusterStatusReady is a ClusterStatus enum value
 	ClusterStatusReady = "READY"
+
+	// ClusterStatusActive is a ClusterStatus enum value
+	ClusterStatusActive = "ACTIVE"
 
 	// ClusterStatusDeleting is a ClusterStatus enum value
 	ClusterStatusDeleting = "DELETING"
@@ -12767,6 +13191,7 @@ func ClusterStatus_Values() []string {
 		ClusterStatusCreating,
 		ClusterStatusProvisioning,
 		ClusterStatusReady,
+		ClusterStatusActive,
 		ClusterStatusDeleting,
 		ClusterStatusDeleted,
 		ClusterStatusFailed,
@@ -13101,6 +13526,9 @@ const (
 
 	// NodegroupStatusDegraded is a NodegroupStatus enum value
 	NodegroupStatusDegraded = "DEGRADED"
+
+	// NodegroupStatusProvisioning is a NodegroupStatus enum value
+	NodegroupStatusProvisioning = "PROVISIONING"
 )
 
 // NodegroupStatus_Values returns all elements of the NodegroupStatus enum
@@ -13116,6 +13544,7 @@ func NodegroupStatus_Values() []string {
 		NodegroupStatusCreateFailed,
 		NodegroupStatusDeleteFailed,
 		NodegroupStatusDegraded,
+		NodegroupStatusProvisioning,
 	}
 }
 
