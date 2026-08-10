@@ -1,3 +1,13 @@
+Release v1.44.10-ROCKIT23 (2026-08-10)
+===
+
+### Service client updates
+* `service/eks`: Update service API
+  * Add EKS cluster remote access, Pod IPv4 CIDR, cluster autoscaler, and cluster health fields
+  * Add the `UpdateClusterUserData` operation
+  * Align cluster, node group, status, and error models with the K2Cloud EKS API
+
+
 Release v1.44.10-ROCKIT22 (2026-08-10)
 ===
 
