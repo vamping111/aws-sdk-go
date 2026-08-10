@@ -182,6 +182,15 @@
       "input":{"shape":"AssociateInstanceEventWindowRequest"},
       "output":{"shape":"AssociateInstanceEventWindowResult"}
     },
+    "AssociateNatGatewayAddress":{
+      "name":"AssociateNatGatewayAddress",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociateNatGatewayAddressRequest"},
+      "output":{"shape":"AssociateNatGatewayAddressResult"}
+    },
     "AssociateRouteTable":{
       "name":"AssociateRouteTable",
       "http":{
@@ -3029,6 +3038,15 @@
       },
       "input":{"shape":"DisassociateInstanceEventWindowRequest"},
       "output":{"shape":"DisassociateInstanceEventWindowResult"}
+    },
+    "DisassociateNatGatewayAddress":{
+      "name":"DisassociateNatGatewayAddress",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisassociateNatGatewayAddressRequest"},
+      "output":{"shape":"DisassociateNatGatewayAddressResult"}
     },
     "DisassociateRouteTable":{
       "name":"DisassociateRouteTable",
@@ -5941,6 +5959,36 @@
         }
       }
     },
+    "AssociateNatGatewayAddressRequest":{
+      "type":"structure",
+      "required":[
+        "NatGatewayId",
+        "AllocationIds"
+      ],
+      "members":{
+        "NatGatewayId":{"shape":"NatGatewayId"},
+        "AllocationIds":{
+          "shape":"AllocationIdList",
+          "locationName":"AllocationId"
+        },
+        "DryRun":{"shape":"Boolean"},
+        "AvailabilityZone":{"shape":"String"},
+        "AvailabilityZoneId":{"shape":"String"}
+      }
+    },
+    "AssociateNatGatewayAddressResult":{
+      "type":"structure",
+      "members":{
+        "NatGatewayId":{
+          "shape":"NatGatewayId",
+          "locationName":"natGatewayId"
+        },
+        "NatGatewayAddresses":{
+          "shape":"NatGatewayAddressList",
+          "locationName":"natGatewayAddressSet"
+        }
+      }
+    },
     "AssociateRouteTableRequest":{
       "type":"structure",
       "required":["RouteTableId"],
@@ -6558,7 +6606,28 @@
         "off"
       ]
     },
+    "AutoProvisionZonesState":{
+      "type":"string",
+      "enum":[
+        "enabled",
+        "disabled"
+      ]
+    },
     "AutoRecoveryFlag":{"type":"boolean"},
+    "AutoScalingIpsState":{
+      "type":"string",
+      "enum":[
+        "enabled",
+        "disabled"
+      ]
+    },
+    "AvailabilityMode":{
+      "type":"string",
+      "enum":[
+        "zonal",
+        "regional"
+      ]
+    },
     "AvailabilityZone":{
       "type":"structure",
       "members":{
@@ -6606,6 +6675,24 @@
           "shape":"String",
           "locationName":"parentZoneId"
         }
+      }
+    },
+    "AvailabilityZoneAddress":{
+      "type":"structure",
+      "members":{
+        "AvailabilityZone":{"shape":"String"},
+        "AvailabilityZoneId":{"shape":"String"},
+        "AllocationIds":{
+          "shape":"AllocationIdList",
+          "locationName":"AllocationId"
+        }
+      }
+    },
+    "AvailabilityZoneAddresses":{
+      "type":"list",
+      "member":{
+        "shape":"AvailabilityZoneAddress",
+        "locationName":"AvailabilityZoneAddress"
       }
     },
     "AvailabilityZoneList":{
@@ -9512,7 +9599,6 @@
     },
     "CreateNatGatewayRequest":{
       "type":"structure",
-      "required":["SubnetId"],
       "members":{
         "AllocationId":{"shape":"AllocationId"},
         "ClientToken":{
@@ -9525,7 +9611,13 @@
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
         },
-        "ConnectivityType":{"shape":"ConnectivityType"}
+        "ConnectivityType":{"shape":"ConnectivityType"},
+        "AvailabilityMode":{"shape":"AvailabilityMode"},
+        "VpcId":{"shape":"VpcId"},
+        "AvailabilityZoneAddresses":{
+          "shape":"AvailabilityZoneAddresses",
+          "locationName":"AvailabilityZoneAddress"
+        }
       }
     },
     "CreateNatGatewayResult":{
@@ -17278,6 +17370,35 @@
         }
       }
     },
+    "DisassociateNatGatewayAddressRequest":{
+      "type":"structure",
+      "required":[
+        "NatGatewayId",
+        "AssociationIds"
+      ],
+      "members":{
+        "NatGatewayId":{"shape":"NatGatewayId"},
+        "AssociationIds":{
+          "shape":"EipAssociationIdList",
+          "locationName":"AssociationId"
+        },
+        "MaxDrainDurationSeconds":{"shape":"DrainSeconds"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DisassociateNatGatewayAddressResult":{
+      "type":"structure",
+      "members":{
+        "NatGatewayId":{
+          "shape":"NatGatewayId",
+          "locationName":"natGatewayId"
+        },
+        "NatGatewayAddresses":{
+          "shape":"NatGatewayAddressList",
+          "locationName":"natGatewayAddressSet"
+        }
+      }
+    },
     "DisassociateRouteTableRequest":{
       "type":"structure",
       "required":["AssociationId"],
@@ -17571,6 +17692,11 @@
       "max":99.999,
       "min":0.001
     },
+    "DrainSeconds":{
+      "type":"integer",
+      "max":4000,
+      "min":1
+    },
     "EbsBlockDevice":{
       "type":"structure",
       "members":{
@@ -17755,6 +17881,13 @@
       "type":"list",
       "member":{
         "shape":"EgressOnlyInternetGateway",
+        "locationName":"item"
+      }
+    },
+    "EipAssociationIdList":{
+      "type":"list",
+      "member":{
+        "shape":"ElasticIpAssociationId",
         "locationName":"item"
       }
     },
@@ -28693,11 +28826,13 @@
       "members":{
         "CreateTime":{
           "shape":"DateTime",
-          "locationName":"createTime"
+          "locationName":"createTime",
+          "timestampFormat":"unixTimestamp"
         },
         "DeleteTime":{
           "shape":"DateTime",
-          "locationName":"deleteTime"
+          "locationName":"deleteTime",
+          "timestampFormat":"unixTimestamp"
         },
         "FailureCode":{
           "shape":"String",
@@ -28738,6 +28873,18 @@
         "ConnectivityType":{
           "shape":"ConnectivityType",
           "locationName":"connectivityType"
+        },
+        "AvailabilityMode":{
+          "shape":"AvailabilityMode",
+          "locationName":"availabilityMode"
+        },
+        "AutoScalingIps":{
+          "shape":"AutoScalingIpsState",
+          "locationName":"autoScalingIps"
+        },
+        "AutoProvisionZones":{
+          "shape":"AutoProvisionZonesState",
+          "locationName":"autoProvisionZones"
         }
       }
     },
@@ -28759,6 +28906,30 @@
         "PublicIp":{
           "shape":"String",
           "locationName":"publicIp"
+        },
+        "AssociationId":{
+          "shape":"String",
+          "locationName":"associationId"
+        },
+        "IsPrimary":{
+          "shape":"Boolean",
+          "locationName":"isPrimary"
+        },
+        "FailureMessage":{
+          "shape":"String",
+          "locationName":"failureMessage"
+        },
+        "Status":{
+          "shape":"NatGatewayAddressStatus",
+          "locationName":"status"
+        },
+        "AvailabilityZone":{
+          "shape":"String",
+          "locationName":"availabilityZone"
+        },
+        "AvailabilityZoneId":{
+          "shape":"String",
+          "locationName":"availabilityZoneId"
         }
       }
     },
@@ -28768,6 +28939,17 @@
         "shape":"NatGatewayAddress",
         "locationName":"item"
       }
+    },
+    "NatGatewayAddressStatus":{
+      "type":"string",
+      "enum":[
+        "assigning",
+        "unassigning",
+        "associating",
+        "disassociating",
+        "succeeded",
+        "failed"
+      ]
     },
     "NatGatewayId":{"type":"string"},
     "NatGatewayIdStringList":{

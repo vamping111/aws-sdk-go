@@ -136,6 +136,10 @@ type EC2API interface {
 	AssociateInstanceEventWindowWithContext(aws.Context, *ec2.AssociateInstanceEventWindowInput, ...request.Option) (*ec2.AssociateInstanceEventWindowOutput, error)
 	AssociateInstanceEventWindowRequest(*ec2.AssociateInstanceEventWindowInput) (*request.Request, *ec2.AssociateInstanceEventWindowOutput)
 
+	AssociateNatGatewayAddress(*ec2.AssociateNatGatewayAddressInput) (*ec2.AssociateNatGatewayAddressOutput, error)
+	AssociateNatGatewayAddressWithContext(aws.Context, *ec2.AssociateNatGatewayAddressInput, ...request.Option) (*ec2.AssociateNatGatewayAddressOutput, error)
+	AssociateNatGatewayAddressRequest(*ec2.AssociateNatGatewayAddressInput) (*request.Request, *ec2.AssociateNatGatewayAddressOutput)
+
 	AssociateRouteTable(*ec2.AssociateRouteTableInput) (*ec2.AssociateRouteTableOutput, error)
 	AssociateRouteTableWithContext(aws.Context, *ec2.AssociateRouteTableInput, ...request.Option) (*ec2.AssociateRouteTableOutput, error)
 	AssociateRouteTableRequest(*ec2.AssociateRouteTableInput) (*request.Request, *ec2.AssociateRouteTableOutput)
@@ -1709,6 +1713,10 @@ type EC2API interface {
 	DisassociateInstanceEventWindow(*ec2.DisassociateInstanceEventWindowInput) (*ec2.DisassociateInstanceEventWindowOutput, error)
 	DisassociateInstanceEventWindowWithContext(aws.Context, *ec2.DisassociateInstanceEventWindowInput, ...request.Option) (*ec2.DisassociateInstanceEventWindowOutput, error)
 	DisassociateInstanceEventWindowRequest(*ec2.DisassociateInstanceEventWindowInput) (*request.Request, *ec2.DisassociateInstanceEventWindowOutput)
+
+	DisassociateNatGatewayAddress(*ec2.DisassociateNatGatewayAddressInput) (*ec2.DisassociateNatGatewayAddressOutput, error)
+	DisassociateNatGatewayAddressWithContext(aws.Context, *ec2.DisassociateNatGatewayAddressInput, ...request.Option) (*ec2.DisassociateNatGatewayAddressOutput, error)
+	DisassociateNatGatewayAddressRequest(*ec2.DisassociateNatGatewayAddressInput) (*request.Request, *ec2.DisassociateNatGatewayAddressOutput)
 
 	DisassociateRouteTable(*ec2.DisassociateRouteTableInput) (*ec2.DisassociateRouteTableOutput, error)
 	DisassociateRouteTableWithContext(aws.Context, *ec2.DisassociateRouteTableInput, ...request.Option) (*ec2.DisassociateRouteTableOutput, error)
