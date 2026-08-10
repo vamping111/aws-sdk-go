@@ -1,3 +1,13 @@
+Release v1.44.10-ROCKIT22 (2026-08-10)
+===
+
+### Service client updates
+* `service/ec2`: Update service API
+  * Add regional NAT gateway support: `AvailabilityMode` and `AvailabilityZoneAddresses` in `CreateNatGateway` 
+  * `AssociateNatGatewayAddress` and `DisassociateNatGatewayAddress` operations
+  * extended shapes
+
+
 Release v1.44.10-ROCKIT21 (2026-06-05)
 ===
 
