@@ -26,7 +26,7 @@ import (
 //	// myFunc uses an SDK service client to make a request to
 //	// AWS PaaS.
 //	func myFunc(svc paasiface.PaaSAPI) bool {
-//	    // Make svc.CreateDatabase request
+//	    // Make svc.AddClickhouseShard request
 //	}
 //
 //	func main() {
@@ -42,7 +42,7 @@ import (
 //	type mockPaaSClient struct {
 //	    paasiface.PaaSAPI
 //	}
-//	func (m *mockPaaSClient) CreateDatabase(input *paas.CreateDatabaseInput) (*paas.CreateDatabaseOutput, error) {
+//	func (m *mockPaaSClient) AddClickhouseShard(input *paas.AddClickhouseShardInput) (*paas.AddClickhouseShardOutput, error) {
 //	    // mock response/functionality
 //	}
 //
@@ -60,6 +60,18 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type PaaSAPI interface {
+	AddClickhouseShard(*paas.AddClickhouseShardInput) (*paas.AddClickhouseShardOutput, error)
+	AddClickhouseShardWithContext(aws.Context, *paas.AddClickhouseShardInput, ...request.Option) (*paas.AddClickhouseShardOutput, error)
+	AddClickhouseShardRequest(*paas.AddClickhouseShardInput) (*request.Request, *paas.AddClickhouseShardOutput)
+
+	CreateClickhouseProfile(*paas.CreateClickhouseProfileInput) (*paas.CreateClickhouseProfileOutput, error)
+	CreateClickhouseProfileWithContext(aws.Context, *paas.CreateClickhouseProfileInput, ...request.Option) (*paas.CreateClickhouseProfileOutput, error)
+	CreateClickhouseProfileRequest(*paas.CreateClickhouseProfileInput) (*request.Request, *paas.CreateClickhouseProfileOutput)
+
+	CreateClickhouseQuota(*paas.CreateClickhouseQuotaInput) (*paas.CreateClickhouseQuotaOutput, error)
+	CreateClickhouseQuotaWithContext(aws.Context, *paas.CreateClickhouseQuotaInput, ...request.Option) (*paas.CreateClickhouseQuotaOutput, error)
+	CreateClickhouseQuotaRequest(*paas.CreateClickhouseQuotaInput) (*request.Request, *paas.CreateClickhouseQuotaOutput)
+
 	CreateDatabase(*paas.CreateDatabaseInput) (*paas.CreateDatabaseOutput, error)
 	CreateDatabaseWithContext(aws.Context, *paas.CreateDatabaseInput, ...request.Option) (*paas.CreateDatabaseOutput, error)
 	CreateDatabaseRequest(*paas.CreateDatabaseInput) (*request.Request, *paas.CreateDatabaseOutput)
@@ -99,6 +111,14 @@ type PaaSAPI interface {
 	DeleteBackups(*paas.DeleteBackupsInput) (*paas.DeleteBackupsOutput, error)
 	DeleteBackupsWithContext(aws.Context, *paas.DeleteBackupsInput, ...request.Option) (*paas.DeleteBackupsOutput, error)
 	DeleteBackupsRequest(*paas.DeleteBackupsInput) (*request.Request, *paas.DeleteBackupsOutput)
+
+	DeleteClickhouseProfile(*paas.DeleteClickhouseProfileInput) (*paas.DeleteClickhouseProfileOutput, error)
+	DeleteClickhouseProfileWithContext(aws.Context, *paas.DeleteClickhouseProfileInput, ...request.Option) (*paas.DeleteClickhouseProfileOutput, error)
+	DeleteClickhouseProfileRequest(*paas.DeleteClickhouseProfileInput) (*request.Request, *paas.DeleteClickhouseProfileOutput)
+
+	DeleteClickhouseQuota(*paas.DeleteClickhouseQuotaInput) (*paas.DeleteClickhouseQuotaOutput, error)
+	DeleteClickhouseQuotaWithContext(aws.Context, *paas.DeleteClickhouseQuotaInput, ...request.Option) (*paas.DeleteClickhouseQuotaOutput, error)
+	DeleteClickhouseQuotaRequest(*paas.DeleteClickhouseQuotaInput) (*request.Request, *paas.DeleteClickhouseQuotaOutput)
 
 	DeleteDatabase(*paas.DeleteDatabaseInput) (*paas.DeleteDatabaseOutput, error)
 	DeleteDatabaseWithContext(aws.Context, *paas.DeleteDatabaseInput, ...request.Option) (*paas.DeleteDatabaseOutput, error)
@@ -168,6 +188,18 @@ type PaaSAPI interface {
 	ListBackupsWithContext(aws.Context, *paas.ListBackupsInput, ...request.Option) (*paas.ListBackupsOutput, error)
 	ListBackupsRequest(*paas.ListBackupsInput) (*request.Request, *paas.ListBackupsOutput)
 
+	ListClickhouseProfiles(*paas.ListClickhouseProfilesInput) (*paas.ListClickhouseProfilesOutput, error)
+	ListClickhouseProfilesWithContext(aws.Context, *paas.ListClickhouseProfilesInput, ...request.Option) (*paas.ListClickhouseProfilesOutput, error)
+	ListClickhouseProfilesRequest(*paas.ListClickhouseProfilesInput) (*request.Request, *paas.ListClickhouseProfilesOutput)
+
+	ListClickhouseQuotas(*paas.ListClickhouseQuotasInput) (*paas.ListClickhouseQuotasOutput, error)
+	ListClickhouseQuotasWithContext(aws.Context, *paas.ListClickhouseQuotasInput, ...request.Option) (*paas.ListClickhouseQuotasOutput, error)
+	ListClickhouseQuotasRequest(*paas.ListClickhouseQuotasInput) (*request.Request, *paas.ListClickhouseQuotasOutput)
+
+	ListClickhouseShards(*paas.ListClickhouseShardsInput) (*paas.ListClickhouseShardsOutput, error)
+	ListClickhouseShardsWithContext(aws.Context, *paas.ListClickhouseShardsInput, ...request.Option) (*paas.ListClickhouseShardsOutput, error)
+	ListClickhouseShardsRequest(*paas.ListClickhouseShardsInput) (*request.Request, *paas.ListClickhouseShardsOutput)
+
 	ListDatabases(*paas.ListDatabasesInput) (*paas.ListDatabasesOutput, error)
 	ListDatabasesWithContext(aws.Context, *paas.ListDatabasesInput, ...request.Option) (*paas.ListDatabasesOutput, error)
 	ListDatabasesRequest(*paas.ListDatabasesInput) (*request.Request, *paas.ListDatabasesOutput)
@@ -211,6 +243,18 @@ type PaaSAPI interface {
 	ModifyBackup(*paas.ModifyBackupInput) (*paas.ModifyBackupOutput, error)
 	ModifyBackupWithContext(aws.Context, *paas.ModifyBackupInput, ...request.Option) (*paas.ModifyBackupOutput, error)
 	ModifyBackupRequest(*paas.ModifyBackupInput) (*request.Request, *paas.ModifyBackupOutput)
+
+	ModifyClickhouseProfile(*paas.ModifyClickhouseProfileInput) (*paas.ModifyClickhouseProfileOutput, error)
+	ModifyClickhouseProfileWithContext(aws.Context, *paas.ModifyClickhouseProfileInput, ...request.Option) (*paas.ModifyClickhouseProfileOutput, error)
+	ModifyClickhouseProfileRequest(*paas.ModifyClickhouseProfileInput) (*request.Request, *paas.ModifyClickhouseProfileOutput)
+
+	ModifyClickhouseQuota(*paas.ModifyClickhouseQuotaInput) (*paas.ModifyClickhouseQuotaOutput, error)
+	ModifyClickhouseQuotaWithContext(aws.Context, *paas.ModifyClickhouseQuotaInput, ...request.Option) (*paas.ModifyClickhouseQuotaOutput, error)
+	ModifyClickhouseQuotaRequest(*paas.ModifyClickhouseQuotaInput) (*request.Request, *paas.ModifyClickhouseQuotaOutput)
+
+	ModifyClickhouseShard(*paas.ModifyClickhouseShardInput) (*paas.ModifyClickhouseShardOutput, error)
+	ModifyClickhouseShardWithContext(aws.Context, *paas.ModifyClickhouseShardInput, ...request.Option) (*paas.ModifyClickhouseShardOutput, error)
+	ModifyClickhouseShardRequest(*paas.ModifyClickhouseShardInput) (*request.Request, *paas.ModifyClickhouseShardOutput)
 
 	ModifyDatabase(*paas.ModifyDatabaseInput) (*paas.ModifyDatabaseOutput, error)
 	ModifyDatabaseWithContext(aws.Context, *paas.ModifyDatabaseInput, ...request.Option) (*paas.ModifyDatabaseOutput, error)

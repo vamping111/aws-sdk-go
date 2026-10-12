@@ -12,6 +12,219 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opAddClickhouseShard = "AddClickhouseShard"
+
+// AddClickhouseShardRequest generates a "aws/request.Request" representing the
+// client's request for the AddClickhouseShard operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AddClickhouseShard for more information on using the AddClickhouseShard
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AddClickhouseShardRequest method.
+//	req, resp := client.AddClickhouseShardRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/AddClickhouseShard
+func (c *PaaS) AddClickhouseShardRequest(input *AddClickhouseShardInput) (req *request.Request, output *AddClickhouseShardOutput) {
+	op := &request.Operation{
+		Name:       opAddClickhouseShard,
+		HTTPMethod: "POST",
+		HTTPPath:   "/services/{serviceId}/clickhouse-shards",
+	}
+
+	if input == nil {
+		input = &AddClickhouseShardInput{}
+	}
+
+	output = &AddClickhouseShardOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AddClickhouseShard API operation for AWS PaaS.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS PaaS's
+// API operation AddClickhouseShard for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/AddClickhouseShard
+func (c *PaaS) AddClickhouseShard(input *AddClickhouseShardInput) (*AddClickhouseShardOutput, error) {
+	req, out := c.AddClickhouseShardRequest(input)
+	return out, req.Send()
+}
+
+// AddClickhouseShardWithContext is the same as AddClickhouseShard with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AddClickhouseShard for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PaaS) AddClickhouseShardWithContext(ctx aws.Context, input *AddClickhouseShardInput, opts ...request.Option) (*AddClickhouseShardOutput, error) {
+	req, out := c.AddClickhouseShardRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateClickhouseProfile = "CreateClickhouseProfile"
+
+// CreateClickhouseProfileRequest generates a "aws/request.Request" representing the
+// client's request for the CreateClickhouseProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateClickhouseProfile for more information on using the CreateClickhouseProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateClickhouseProfileRequest method.
+//	req, resp := client.CreateClickhouseProfileRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/CreateClickhouseProfile
+func (c *PaaS) CreateClickhouseProfileRequest(input *CreateClickhouseProfileInput) (req *request.Request, output *CreateClickhouseProfileOutput) {
+	op := &request.Operation{
+		Name:       opCreateClickhouseProfile,
+		HTTPMethod: "POST",
+		HTTPPath:   "/services/{serviceId}/clickhouse-profiles",
+	}
+
+	if input == nil {
+		input = &CreateClickhouseProfileInput{}
+	}
+
+	output = &CreateClickhouseProfileOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateClickhouseProfile API operation for AWS PaaS.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS PaaS's
+// API operation CreateClickhouseProfile for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/CreateClickhouseProfile
+func (c *PaaS) CreateClickhouseProfile(input *CreateClickhouseProfileInput) (*CreateClickhouseProfileOutput, error) {
+	req, out := c.CreateClickhouseProfileRequest(input)
+	return out, req.Send()
+}
+
+// CreateClickhouseProfileWithContext is the same as CreateClickhouseProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateClickhouseProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PaaS) CreateClickhouseProfileWithContext(ctx aws.Context, input *CreateClickhouseProfileInput, opts ...request.Option) (*CreateClickhouseProfileOutput, error) {
+	req, out := c.CreateClickhouseProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateClickhouseQuota = "CreateClickhouseQuota"
+
+// CreateClickhouseQuotaRequest generates a "aws/request.Request" representing the
+// client's request for the CreateClickhouseQuota operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateClickhouseQuota for more information on using the CreateClickhouseQuota
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateClickhouseQuotaRequest method.
+//	req, resp := client.CreateClickhouseQuotaRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/CreateClickhouseQuota
+func (c *PaaS) CreateClickhouseQuotaRequest(input *CreateClickhouseQuotaInput) (req *request.Request, output *CreateClickhouseQuotaOutput) {
+	op := &request.Operation{
+		Name:       opCreateClickhouseQuota,
+		HTTPMethod: "POST",
+		HTTPPath:   "/services/{serviceId}/clickhouse-quotas",
+	}
+
+	if input == nil {
+		input = &CreateClickhouseQuotaInput{}
+	}
+
+	output = &CreateClickhouseQuotaOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateClickhouseQuota API operation for AWS PaaS.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS PaaS's
+// API operation CreateClickhouseQuota for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/CreateClickhouseQuota
+func (c *PaaS) CreateClickhouseQuota(input *CreateClickhouseQuotaInput) (*CreateClickhouseQuotaOutput, error) {
+	req, out := c.CreateClickhouseQuotaRequest(input)
+	return out, req.Send()
+}
+
+// CreateClickhouseQuotaWithContext is the same as CreateClickhouseQuota with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateClickhouseQuota for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PaaS) CreateClickhouseQuotaWithContext(ctx aws.Context, input *CreateClickhouseQuotaInput, opts ...request.Option) (*CreateClickhouseQuotaOutput, error) {
+	req, out := c.CreateClickhouseQuotaRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDatabase = "CreateDatabase"
 
 // CreateDatabaseRequest generates a "aws/request.Request" representing the
@@ -718,6 +931,150 @@ func (c *PaaS) DeleteBackups(input *DeleteBackupsInput) (*DeleteBackupsOutput, e
 // for more information on using Contexts.
 func (c *PaaS) DeleteBackupsWithContext(ctx aws.Context, input *DeleteBackupsInput, opts ...request.Option) (*DeleteBackupsOutput, error) {
 	req, out := c.DeleteBackupsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteClickhouseProfile = "DeleteClickhouseProfile"
+
+// DeleteClickhouseProfileRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteClickhouseProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteClickhouseProfile for more information on using the DeleteClickhouseProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteClickhouseProfileRequest method.
+//	req, resp := client.DeleteClickhouseProfileRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/DeleteClickhouseProfile
+func (c *PaaS) DeleteClickhouseProfileRequest(input *DeleteClickhouseProfileInput) (req *request.Request, output *DeleteClickhouseProfileOutput) {
+	op := &request.Operation{
+		Name:       opDeleteClickhouseProfile,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/services/{serviceId}/clickhouse-profiles/{profileId}",
+	}
+
+	if input == nil {
+		input = &DeleteClickhouseProfileInput{}
+	}
+
+	output = &DeleteClickhouseProfileOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteClickhouseProfile API operation for AWS PaaS.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS PaaS's
+// API operation DeleteClickhouseProfile for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/DeleteClickhouseProfile
+func (c *PaaS) DeleteClickhouseProfile(input *DeleteClickhouseProfileInput) (*DeleteClickhouseProfileOutput, error) {
+	req, out := c.DeleteClickhouseProfileRequest(input)
+	return out, req.Send()
+}
+
+// DeleteClickhouseProfileWithContext is the same as DeleteClickhouseProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteClickhouseProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PaaS) DeleteClickhouseProfileWithContext(ctx aws.Context, input *DeleteClickhouseProfileInput, opts ...request.Option) (*DeleteClickhouseProfileOutput, error) {
+	req, out := c.DeleteClickhouseProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteClickhouseQuota = "DeleteClickhouseQuota"
+
+// DeleteClickhouseQuotaRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteClickhouseQuota operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteClickhouseQuota for more information on using the DeleteClickhouseQuota
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteClickhouseQuotaRequest method.
+//	req, resp := client.DeleteClickhouseQuotaRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/DeleteClickhouseQuota
+func (c *PaaS) DeleteClickhouseQuotaRequest(input *DeleteClickhouseQuotaInput) (req *request.Request, output *DeleteClickhouseQuotaOutput) {
+	op := &request.Operation{
+		Name:       opDeleteClickhouseQuota,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/services/{serviceId}/clickhouse-quotas/{quotaId}",
+	}
+
+	if input == nil {
+		input = &DeleteClickhouseQuotaInput{}
+	}
+
+	output = &DeleteClickhouseQuotaOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteClickhouseQuota API operation for AWS PaaS.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS PaaS's
+// API operation DeleteClickhouseQuota for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/DeleteClickhouseQuota
+func (c *PaaS) DeleteClickhouseQuota(input *DeleteClickhouseQuotaInput) (*DeleteClickhouseQuotaOutput, error) {
+	req, out := c.DeleteClickhouseQuotaRequest(input)
+	return out, req.Send()
+}
+
+// DeleteClickhouseQuotaWithContext is the same as DeleteClickhouseQuota with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteClickhouseQuota for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PaaS) DeleteClickhouseQuotaWithContext(ctx aws.Context, input *DeleteClickhouseQuotaInput, opts ...request.Option) (*DeleteClickhouseQuotaOutput, error) {
+	req, out := c.DeleteClickhouseQuotaRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1939,6 +2296,219 @@ func (c *PaaS) ListBackupsWithContext(ctx aws.Context, input *ListBackupsInput, 
 	return out, req.Send()
 }
 
+const opListClickhouseProfiles = "ListClickhouseProfiles"
+
+// ListClickhouseProfilesRequest generates a "aws/request.Request" representing the
+// client's request for the ListClickhouseProfiles operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListClickhouseProfiles for more information on using the ListClickhouseProfiles
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListClickhouseProfilesRequest method.
+//	req, resp := client.ListClickhouseProfilesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/ListClickhouseProfiles
+func (c *PaaS) ListClickhouseProfilesRequest(input *ListClickhouseProfilesInput) (req *request.Request, output *ListClickhouseProfilesOutput) {
+	op := &request.Operation{
+		Name:       opListClickhouseProfiles,
+		HTTPMethod: "GET",
+		HTTPPath:   "/services/{serviceId}/clickhouse-profiles",
+	}
+
+	if input == nil {
+		input = &ListClickhouseProfilesInput{}
+	}
+
+	output = &ListClickhouseProfilesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListClickhouseProfiles API operation for AWS PaaS.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS PaaS's
+// API operation ListClickhouseProfiles for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/ListClickhouseProfiles
+func (c *PaaS) ListClickhouseProfiles(input *ListClickhouseProfilesInput) (*ListClickhouseProfilesOutput, error) {
+	req, out := c.ListClickhouseProfilesRequest(input)
+	return out, req.Send()
+}
+
+// ListClickhouseProfilesWithContext is the same as ListClickhouseProfiles with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListClickhouseProfiles for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PaaS) ListClickhouseProfilesWithContext(ctx aws.Context, input *ListClickhouseProfilesInput, opts ...request.Option) (*ListClickhouseProfilesOutput, error) {
+	req, out := c.ListClickhouseProfilesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListClickhouseQuotas = "ListClickhouseQuotas"
+
+// ListClickhouseQuotasRequest generates a "aws/request.Request" representing the
+// client's request for the ListClickhouseQuotas operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListClickhouseQuotas for more information on using the ListClickhouseQuotas
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListClickhouseQuotasRequest method.
+//	req, resp := client.ListClickhouseQuotasRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/ListClickhouseQuotas
+func (c *PaaS) ListClickhouseQuotasRequest(input *ListClickhouseQuotasInput) (req *request.Request, output *ListClickhouseQuotasOutput) {
+	op := &request.Operation{
+		Name:       opListClickhouseQuotas,
+		HTTPMethod: "GET",
+		HTTPPath:   "/services/{serviceId}/clickhouse-quotas",
+	}
+
+	if input == nil {
+		input = &ListClickhouseQuotasInput{}
+	}
+
+	output = &ListClickhouseQuotasOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListClickhouseQuotas API operation for AWS PaaS.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS PaaS's
+// API operation ListClickhouseQuotas for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/ListClickhouseQuotas
+func (c *PaaS) ListClickhouseQuotas(input *ListClickhouseQuotasInput) (*ListClickhouseQuotasOutput, error) {
+	req, out := c.ListClickhouseQuotasRequest(input)
+	return out, req.Send()
+}
+
+// ListClickhouseQuotasWithContext is the same as ListClickhouseQuotas with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListClickhouseQuotas for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PaaS) ListClickhouseQuotasWithContext(ctx aws.Context, input *ListClickhouseQuotasInput, opts ...request.Option) (*ListClickhouseQuotasOutput, error) {
+	req, out := c.ListClickhouseQuotasRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListClickhouseShards = "ListClickhouseShards"
+
+// ListClickhouseShardsRequest generates a "aws/request.Request" representing the
+// client's request for the ListClickhouseShards operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListClickhouseShards for more information on using the ListClickhouseShards
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListClickhouseShardsRequest method.
+//	req, resp := client.ListClickhouseShardsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/ListClickhouseShards
+func (c *PaaS) ListClickhouseShardsRequest(input *ListClickhouseShardsInput) (req *request.Request, output *ListClickhouseShardsOutput) {
+	op := &request.Operation{
+		Name:       opListClickhouseShards,
+		HTTPMethod: "GET",
+		HTTPPath:   "/services/{serviceId}/clickhouse-shards",
+	}
+
+	if input == nil {
+		input = &ListClickhouseShardsInput{}
+	}
+
+	output = &ListClickhouseShardsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListClickhouseShards API operation for AWS PaaS.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS PaaS's
+// API operation ListClickhouseShards for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/ListClickhouseShards
+func (c *PaaS) ListClickhouseShards(input *ListClickhouseShardsInput) (*ListClickhouseShardsOutput, error) {
+	req, out := c.ListClickhouseShardsRequest(input)
+	return out, req.Send()
+}
+
+// ListClickhouseShardsWithContext is the same as ListClickhouseShards with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListClickhouseShards for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PaaS) ListClickhouseShardsWithContext(ctx aws.Context, input *ListClickhouseShardsInput, opts ...request.Option) (*ListClickhouseShardsOutput, error) {
+	req, out := c.ListClickhouseShardsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListDatabases = "ListDatabases"
 
 // ListDatabasesRequest generates a "aws/request.Request" representing the
@@ -2715,6 +3285,219 @@ func (c *PaaS) ModifyBackup(input *ModifyBackupInput) (*ModifyBackupOutput, erro
 // for more information on using Contexts.
 func (c *PaaS) ModifyBackupWithContext(ctx aws.Context, input *ModifyBackupInput, opts ...request.Option) (*ModifyBackupOutput, error) {
 	req, out := c.ModifyBackupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opModifyClickhouseProfile = "ModifyClickhouseProfile"
+
+// ModifyClickhouseProfileRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyClickhouseProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ModifyClickhouseProfile for more information on using the ModifyClickhouseProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ModifyClickhouseProfileRequest method.
+//	req, resp := client.ModifyClickhouseProfileRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/ModifyClickhouseProfile
+func (c *PaaS) ModifyClickhouseProfileRequest(input *ModifyClickhouseProfileInput) (req *request.Request, output *ModifyClickhouseProfileOutput) {
+	op := &request.Operation{
+		Name:       opModifyClickhouseProfile,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/services/{serviceId}/clickhouse-profiles/{profileId}",
+	}
+
+	if input == nil {
+		input = &ModifyClickhouseProfileInput{}
+	}
+
+	output = &ModifyClickhouseProfileOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ModifyClickhouseProfile API operation for AWS PaaS.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS PaaS's
+// API operation ModifyClickhouseProfile for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/ModifyClickhouseProfile
+func (c *PaaS) ModifyClickhouseProfile(input *ModifyClickhouseProfileInput) (*ModifyClickhouseProfileOutput, error) {
+	req, out := c.ModifyClickhouseProfileRequest(input)
+	return out, req.Send()
+}
+
+// ModifyClickhouseProfileWithContext is the same as ModifyClickhouseProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ModifyClickhouseProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PaaS) ModifyClickhouseProfileWithContext(ctx aws.Context, input *ModifyClickhouseProfileInput, opts ...request.Option) (*ModifyClickhouseProfileOutput, error) {
+	req, out := c.ModifyClickhouseProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opModifyClickhouseQuota = "ModifyClickhouseQuota"
+
+// ModifyClickhouseQuotaRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyClickhouseQuota operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ModifyClickhouseQuota for more information on using the ModifyClickhouseQuota
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ModifyClickhouseQuotaRequest method.
+//	req, resp := client.ModifyClickhouseQuotaRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/ModifyClickhouseQuota
+func (c *PaaS) ModifyClickhouseQuotaRequest(input *ModifyClickhouseQuotaInput) (req *request.Request, output *ModifyClickhouseQuotaOutput) {
+	op := &request.Operation{
+		Name:       opModifyClickhouseQuota,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/services/{serviceId}/clickhouse-quotas/{quotaId}",
+	}
+
+	if input == nil {
+		input = &ModifyClickhouseQuotaInput{}
+	}
+
+	output = &ModifyClickhouseQuotaOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ModifyClickhouseQuota API operation for AWS PaaS.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS PaaS's
+// API operation ModifyClickhouseQuota for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/ModifyClickhouseQuota
+func (c *PaaS) ModifyClickhouseQuota(input *ModifyClickhouseQuotaInput) (*ModifyClickhouseQuotaOutput, error) {
+	req, out := c.ModifyClickhouseQuotaRequest(input)
+	return out, req.Send()
+}
+
+// ModifyClickhouseQuotaWithContext is the same as ModifyClickhouseQuota with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ModifyClickhouseQuota for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PaaS) ModifyClickhouseQuotaWithContext(ctx aws.Context, input *ModifyClickhouseQuotaInput, opts ...request.Option) (*ModifyClickhouseQuotaOutput, error) {
+	req, out := c.ModifyClickhouseQuotaRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opModifyClickhouseShard = "ModifyClickhouseShard"
+
+// ModifyClickhouseShardRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyClickhouseShard operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ModifyClickhouseShard for more information on using the ModifyClickhouseShard
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ModifyClickhouseShardRequest method.
+//	req, resp := client.ModifyClickhouseShardRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/ModifyClickhouseShard
+func (c *PaaS) ModifyClickhouseShardRequest(input *ModifyClickhouseShardInput) (req *request.Request, output *ModifyClickhouseShardOutput) {
+	op := &request.Operation{
+		Name:       opModifyClickhouseShard,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/services/{serviceId}/clickhouse-shards/{shardIndex}",
+	}
+
+	if input == nil {
+		input = &ModifyClickhouseShardInput{}
+	}
+
+	output = &ModifyClickhouseShardOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ModifyClickhouseShard API operation for AWS PaaS.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS PaaS's
+// API operation ModifyClickhouseShard for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/ModifyClickhouseShard
+func (c *PaaS) ModifyClickhouseShard(input *ModifyClickhouseShardInput) (*ModifyClickhouseShardOutput, error) {
+	req, out := c.ModifyClickhouseShardRequest(input)
+	return out, req.Send()
+}
+
+// ModifyClickhouseShardWithContext is the same as ModifyClickhouseShard with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ModifyClickhouseShard for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PaaS) ModifyClickhouseShardWithContext(ctx aws.Context, input *ModifyClickhouseShardInput, opts ...request.Option) (*ModifyClickhouseShardOutput, error) {
+	req, out := c.ModifyClickhouseShardRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4140,6 +4923,95 @@ func (c *PaaS) SynchronizeServiceStatusWithContext(ctx aws.Context, input *Synch
 	return out, req.Send()
 }
 
+type AddClickhouseShardInput struct {
+	_ struct{} `type:"structure"`
+
+	// Parameters is a required field
+	Parameters *ClickHouseShardParameters `locationName:"parameters" type:"structure" required:"true"`
+
+	// ServiceId is a required field
+	ServiceId *string `location:"uri" locationName:"serviceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddClickhouseShardInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddClickhouseShardInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddClickhouseShardInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddClickhouseShardInput"}
+	if s.Parameters == nil {
+		invalidParams.Add(request.NewErrParamRequired("Parameters"))
+	}
+	if s.ServiceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceId"))
+	}
+	if s.ServiceId != nil && len(*s.ServiceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *AddClickhouseShardInput) SetParameters(v *ClickHouseShardParameters) *AddClickhouseShardInput {
+	s.Parameters = v
+	return s
+}
+
+// SetServiceId sets the ServiceId field's value.
+func (s *AddClickhouseShardInput) SetServiceId(v string) *AddClickhouseShardInput {
+	s.ServiceId = &v
+	return s
+}
+
+type AddClickhouseShardOutput struct {
+	_ struct{} `type:"structure"`
+
+	Shard *ClickHouseShard `locationName:"shard" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddClickhouseShardOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddClickhouseShardOutput) GoString() string {
+	return s.String()
+}
+
+// SetShard sets the Shard field's value.
+func (s *AddClickhouseShardOutput) SetShard(v *ClickHouseShard) *AddClickhouseShardOutput {
+	s.Shard = v
+	return s
+}
+
 type Backup struct {
 	_ struct{} `type:"structure"`
 
@@ -4541,6 +5413,414 @@ func (s *BalancerTarget) SetServiceCaption(v string) *BalancerTarget {
 // SetServiceType sets the ServiceType field's value.
 func (s *BalancerTarget) SetServiceType(v string) *BalancerTarget {
 	s.ServiceType = &v
+	return s
+}
+
+type ClickHouseProfile struct {
+	_ struct{} `type:"structure"`
+
+	Id *string `locationName:"id" type:"string"`
+
+	Name *string `locationName:"name" type:"string"`
+
+	Parameters *ClickHouseProfileParameters `locationName:"parameters" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClickHouseProfile) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClickHouseProfile) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *ClickHouseProfile) SetId(v string) *ClickHouseProfile {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ClickHouseProfile) SetName(v string) *ClickHouseProfile {
+	s.Name = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *ClickHouseProfile) SetParameters(v *ClickHouseProfileParameters) *ClickHouseProfile {
+	s.Parameters = v
+	return s
+}
+
+type ClickHouseProfileParameters struct {
+	_ struct{} `type:"structure"`
+
+	Settings map[string]interface{} `locationName:"settings" type:"none"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClickHouseProfileParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClickHouseProfileParameters) GoString() string {
+	return s.String()
+}
+
+// SetSettings sets the Settings field's value.
+func (s *ClickHouseProfileParameters) SetSettings(v map[string]interface{}) *ClickHouseProfileParameters {
+	s.Settings = v
+	return s
+}
+
+type ClickHouseQuota struct {
+	_ struct{} `type:"structure"`
+
+	Id *string `locationName:"id" type:"string"`
+
+	Name *string `locationName:"name" type:"string"`
+
+	Parameters map[string]interface{} `locationName:"parameters" type:"none"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClickHouseQuota) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClickHouseQuota) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *ClickHouseQuota) SetId(v string) *ClickHouseQuota {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ClickHouseQuota) SetName(v string) *ClickHouseQuota {
+	s.Name = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *ClickHouseQuota) SetParameters(v map[string]interface{}) *ClickHouseQuota {
+	s.Parameters = v
+	return s
+}
+
+type ClickHouseShard struct {
+	_ struct{} `type:"structure"`
+
+	Index *int64 `locationName:"index" type:"integer"`
+
+	Parameters *ClickHouseShardParameters `locationName:"parameters" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClickHouseShard) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClickHouseShard) GoString() string {
+	return s.String()
+}
+
+// SetIndex sets the Index field's value.
+func (s *ClickHouseShard) SetIndex(v int64) *ClickHouseShard {
+	s.Index = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *ClickHouseShard) SetParameters(v *ClickHouseShardParameters) *ClickHouseShard {
+	s.Parameters = v
+	return s
+}
+
+type ClickHouseShardParameters struct {
+	_ struct{} `type:"structure"`
+
+	InternalReplication *bool `locationName:"internalReplication" type:"boolean"`
+
+	Replicas *int64 `locationName:"replicas" type:"integer"`
+
+	Weight *int64 `locationName:"weight" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClickHouseShardParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClickHouseShardParameters) GoString() string {
+	return s.String()
+}
+
+// SetInternalReplication sets the InternalReplication field's value.
+func (s *ClickHouseShardParameters) SetInternalReplication(v bool) *ClickHouseShardParameters {
+	s.InternalReplication = &v
+	return s
+}
+
+// SetReplicas sets the Replicas field's value.
+func (s *ClickHouseShardParameters) SetReplicas(v int64) *ClickHouseShardParameters {
+	s.Replicas = &v
+	return s
+}
+
+// SetWeight sets the Weight field's value.
+func (s *ClickHouseShardParameters) SetWeight(v int64) *ClickHouseShardParameters {
+	s.Weight = &v
+	return s
+}
+
+type CreateClickhouseProfileInput struct {
+	_ struct{} `type:"structure"`
+
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// Parameters is a required field
+	Parameters *ClickHouseProfileParameters `locationName:"parameters" type:"structure" required:"true"`
+
+	// ServiceId is a required field
+	ServiceId *string `location:"uri" locationName:"serviceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateClickhouseProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateClickhouseProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateClickhouseProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateClickhouseProfileInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Parameters == nil {
+		invalidParams.Add(request.NewErrParamRequired("Parameters"))
+	}
+	if s.ServiceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceId"))
+	}
+	if s.ServiceId != nil && len(*s.ServiceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *CreateClickhouseProfileInput) SetName(v string) *CreateClickhouseProfileInput {
+	s.Name = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *CreateClickhouseProfileInput) SetParameters(v *ClickHouseProfileParameters) *CreateClickhouseProfileInput {
+	s.Parameters = v
+	return s
+}
+
+// SetServiceId sets the ServiceId field's value.
+func (s *CreateClickhouseProfileInput) SetServiceId(v string) *CreateClickhouseProfileInput {
+	s.ServiceId = &v
+	return s
+}
+
+type CreateClickhouseProfileOutput struct {
+	_ struct{} `type:"structure"`
+
+	Profile *ClickHouseProfile `locationName:"profile" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateClickhouseProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateClickhouseProfileOutput) GoString() string {
+	return s.String()
+}
+
+// SetProfile sets the Profile field's value.
+func (s *CreateClickhouseProfileOutput) SetProfile(v *ClickHouseProfile) *CreateClickhouseProfileOutput {
+	s.Profile = v
+	return s
+}
+
+type CreateClickhouseQuotaInput struct {
+	_ struct{} `type:"structure"`
+
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// Parameters is a required field
+	Parameters map[string]interface{} `locationName:"parameters" type:"none" required:"true"`
+
+	// ServiceId is a required field
+	ServiceId *string `location:"uri" locationName:"serviceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateClickhouseQuotaInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateClickhouseQuotaInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateClickhouseQuotaInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateClickhouseQuotaInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Parameters == nil {
+		invalidParams.Add(request.NewErrParamRequired("Parameters"))
+	}
+	if s.ServiceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceId"))
+	}
+	if s.ServiceId != nil && len(*s.ServiceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *CreateClickhouseQuotaInput) SetName(v string) *CreateClickhouseQuotaInput {
+	s.Name = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *CreateClickhouseQuotaInput) SetParameters(v map[string]interface{}) *CreateClickhouseQuotaInput {
+	s.Parameters = v
+	return s
+}
+
+// SetServiceId sets the ServiceId field's value.
+func (s *CreateClickhouseQuotaInput) SetServiceId(v string) *CreateClickhouseQuotaInput {
+	s.ServiceId = &v
+	return s
+}
+
+type CreateClickhouseQuotaOutput struct {
+	_ struct{} `type:"structure"`
+
+	Quota *ClickHouseQuota `locationName:"quota" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateClickhouseQuotaOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateClickhouseQuotaOutput) GoString() string {
+	return s.String()
+}
+
+// SetQuota sets the Quota field's value.
+func (s *CreateClickhouseQuotaOutput) SetQuota(v *ClickHouseQuota) *CreateClickhouseQuotaOutput {
+	s.Quota = v
 	return s
 }
 
@@ -6055,6 +7335,174 @@ func (s DeleteBackupsOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteBackupsOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteClickhouseProfileInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// ProfileId is a required field
+	ProfileId *string `location:"uri" locationName:"profileId" type:"string" required:"true"`
+
+	// ServiceId is a required field
+	ServiceId *string `location:"uri" locationName:"serviceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteClickhouseProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteClickhouseProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteClickhouseProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteClickhouseProfileInput"}
+	if s.ProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfileId"))
+	}
+	if s.ProfileId != nil && len(*s.ProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileId", 1))
+	}
+	if s.ServiceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceId"))
+	}
+	if s.ServiceId != nil && len(*s.ServiceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProfileId sets the ProfileId field's value.
+func (s *DeleteClickhouseProfileInput) SetProfileId(v string) *DeleteClickhouseProfileInput {
+	s.ProfileId = &v
+	return s
+}
+
+// SetServiceId sets the ServiceId field's value.
+func (s *DeleteClickhouseProfileInput) SetServiceId(v string) *DeleteClickhouseProfileInput {
+	s.ServiceId = &v
+	return s
+}
+
+type DeleteClickhouseProfileOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteClickhouseProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteClickhouseProfileOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteClickhouseQuotaInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// QuotaId is a required field
+	QuotaId *string `location:"uri" locationName:"quotaId" type:"string" required:"true"`
+
+	// ServiceId is a required field
+	ServiceId *string `location:"uri" locationName:"serviceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteClickhouseQuotaInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteClickhouseQuotaInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteClickhouseQuotaInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteClickhouseQuotaInput"}
+	if s.QuotaId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QuotaId"))
+	}
+	if s.QuotaId != nil && len(*s.QuotaId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QuotaId", 1))
+	}
+	if s.ServiceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceId"))
+	}
+	if s.ServiceId != nil && len(*s.ServiceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetQuotaId sets the QuotaId field's value.
+func (s *DeleteClickhouseQuotaInput) SetQuotaId(v string) *DeleteClickhouseQuotaInput {
+	s.QuotaId = &v
+	return s
+}
+
+// SetServiceId sets the ServiceId field's value.
+func (s *DeleteClickhouseQuotaInput) SetServiceId(v string) *DeleteClickhouseQuotaInput {
+	s.ServiceId = &v
+	return s
+}
+
+type DeleteClickhouseQuotaOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteClickhouseQuotaOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteClickhouseQuotaOutput) GoString() string {
 	return s.String()
 }
 
@@ -7714,6 +9162,237 @@ func (s *ListBackupsOutput) SetNextToken(v string) *ListBackupsOutput {
 	return s
 }
 
+type ListClickhouseProfilesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// ServiceId is a required field
+	ServiceId *string `location:"uri" locationName:"serviceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClickhouseProfilesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClickhouseProfilesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListClickhouseProfilesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListClickhouseProfilesInput"}
+	if s.ServiceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceId"))
+	}
+	if s.ServiceId != nil && len(*s.ServiceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetServiceId sets the ServiceId field's value.
+func (s *ListClickhouseProfilesInput) SetServiceId(v string) *ListClickhouseProfilesInput {
+	s.ServiceId = &v
+	return s
+}
+
+type ListClickhouseProfilesOutput struct {
+	_ struct{} `type:"structure"`
+
+	Profiles []*ClickHouseProfile `locationName:"profiles" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClickhouseProfilesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClickhouseProfilesOutput) GoString() string {
+	return s.String()
+}
+
+// SetProfiles sets the Profiles field's value.
+func (s *ListClickhouseProfilesOutput) SetProfiles(v []*ClickHouseProfile) *ListClickhouseProfilesOutput {
+	s.Profiles = v
+	return s
+}
+
+type ListClickhouseQuotasInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// ServiceId is a required field
+	ServiceId *string `location:"uri" locationName:"serviceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClickhouseQuotasInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClickhouseQuotasInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListClickhouseQuotasInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListClickhouseQuotasInput"}
+	if s.ServiceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceId"))
+	}
+	if s.ServiceId != nil && len(*s.ServiceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetServiceId sets the ServiceId field's value.
+func (s *ListClickhouseQuotasInput) SetServiceId(v string) *ListClickhouseQuotasInput {
+	s.ServiceId = &v
+	return s
+}
+
+type ListClickhouseQuotasOutput struct {
+	_ struct{} `type:"structure"`
+
+	Quotas []*ClickHouseQuota `locationName:"quotas" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClickhouseQuotasOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClickhouseQuotasOutput) GoString() string {
+	return s.String()
+}
+
+// SetQuotas sets the Quotas field's value.
+func (s *ListClickhouseQuotasOutput) SetQuotas(v []*ClickHouseQuota) *ListClickhouseQuotasOutput {
+	s.Quotas = v
+	return s
+}
+
+type ListClickhouseShardsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// ServiceId is a required field
+	ServiceId *string `location:"uri" locationName:"serviceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClickhouseShardsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClickhouseShardsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListClickhouseShardsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListClickhouseShardsInput"}
+	if s.ServiceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceId"))
+	}
+	if s.ServiceId != nil && len(*s.ServiceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetServiceId sets the ServiceId field's value.
+func (s *ListClickhouseShardsInput) SetServiceId(v string) *ListClickhouseShardsInput {
+	s.ServiceId = &v
+	return s
+}
+
+type ListClickhouseShardsOutput struct {
+	_ struct{} `type:"structure"`
+
+	Shards []*ClickHouseShard `locationName:"shards" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClickhouseShardsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClickhouseShardsOutput) GoString() string {
+	return s.String()
+}
+
+// SetShards sets the Shards field's value.
+func (s *ListClickhouseShardsOutput) SetShards(v []*ClickHouseShard) *ListClickhouseShardsOutput {
+	s.Shards = v
+	return s
+}
+
 type ListDatabasesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -9021,6 +10700,315 @@ func (s ModifyBackupOutput) GoString() string {
 // SetBackup sets the Backup field's value.
 func (s *ModifyBackupOutput) SetBackup(v *Backup) *ModifyBackupOutput {
 	s.Backup = v
+	return s
+}
+
+type ModifyClickhouseProfileInput struct {
+	_ struct{} `type:"structure"`
+
+	// Parameters is a required field
+	Parameters *ClickHouseProfileParameters `locationName:"parameters" type:"structure" required:"true"`
+
+	// ProfileId is a required field
+	ProfileId *string `location:"uri" locationName:"profileId" type:"string" required:"true"`
+
+	// ServiceId is a required field
+	ServiceId *string `location:"uri" locationName:"serviceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyClickhouseProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyClickhouseProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyClickhouseProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyClickhouseProfileInput"}
+	if s.Parameters == nil {
+		invalidParams.Add(request.NewErrParamRequired("Parameters"))
+	}
+	if s.ProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfileId"))
+	}
+	if s.ProfileId != nil && len(*s.ProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileId", 1))
+	}
+	if s.ServiceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceId"))
+	}
+	if s.ServiceId != nil && len(*s.ServiceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *ModifyClickhouseProfileInput) SetParameters(v *ClickHouseProfileParameters) *ModifyClickhouseProfileInput {
+	s.Parameters = v
+	return s
+}
+
+// SetProfileId sets the ProfileId field's value.
+func (s *ModifyClickhouseProfileInput) SetProfileId(v string) *ModifyClickhouseProfileInput {
+	s.ProfileId = &v
+	return s
+}
+
+// SetServiceId sets the ServiceId field's value.
+func (s *ModifyClickhouseProfileInput) SetServiceId(v string) *ModifyClickhouseProfileInput {
+	s.ServiceId = &v
+	return s
+}
+
+type ModifyClickhouseProfileOutput struct {
+	_ struct{} `type:"structure"`
+
+	Profile *ClickHouseProfile `locationName:"profile" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyClickhouseProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyClickhouseProfileOutput) GoString() string {
+	return s.String()
+}
+
+// SetProfile sets the Profile field's value.
+func (s *ModifyClickhouseProfileOutput) SetProfile(v *ClickHouseProfile) *ModifyClickhouseProfileOutput {
+	s.Profile = v
+	return s
+}
+
+type ModifyClickhouseQuotaInput struct {
+	_ struct{} `type:"structure"`
+
+	// Parameters is a required field
+	Parameters map[string]interface{} `locationName:"parameters" type:"none" required:"true"`
+
+	// QuotaId is a required field
+	QuotaId *string `location:"uri" locationName:"quotaId" type:"string" required:"true"`
+
+	// ServiceId is a required field
+	ServiceId *string `location:"uri" locationName:"serviceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyClickhouseQuotaInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyClickhouseQuotaInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyClickhouseQuotaInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyClickhouseQuotaInput"}
+	if s.Parameters == nil {
+		invalidParams.Add(request.NewErrParamRequired("Parameters"))
+	}
+	if s.QuotaId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QuotaId"))
+	}
+	if s.QuotaId != nil && len(*s.QuotaId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QuotaId", 1))
+	}
+	if s.ServiceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceId"))
+	}
+	if s.ServiceId != nil && len(*s.ServiceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *ModifyClickhouseQuotaInput) SetParameters(v map[string]interface{}) *ModifyClickhouseQuotaInput {
+	s.Parameters = v
+	return s
+}
+
+// SetQuotaId sets the QuotaId field's value.
+func (s *ModifyClickhouseQuotaInput) SetQuotaId(v string) *ModifyClickhouseQuotaInput {
+	s.QuotaId = &v
+	return s
+}
+
+// SetServiceId sets the ServiceId field's value.
+func (s *ModifyClickhouseQuotaInput) SetServiceId(v string) *ModifyClickhouseQuotaInput {
+	s.ServiceId = &v
+	return s
+}
+
+type ModifyClickhouseQuotaOutput struct {
+	_ struct{} `type:"structure"`
+
+	Quota *ClickHouseQuota `locationName:"quota" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyClickhouseQuotaOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyClickhouseQuotaOutput) GoString() string {
+	return s.String()
+}
+
+// SetQuota sets the Quota field's value.
+func (s *ModifyClickhouseQuotaOutput) SetQuota(v *ClickHouseQuota) *ModifyClickhouseQuotaOutput {
+	s.Quota = v
+	return s
+}
+
+type ModifyClickhouseShardInput struct {
+	_ struct{} `type:"structure"`
+
+	// Parameters is a required field
+	Parameters *ClickHouseShardParameters `locationName:"parameters" type:"structure" required:"true"`
+
+	// ServiceId is a required field
+	ServiceId *string `location:"uri" locationName:"serviceId" type:"string" required:"true"`
+
+	// ShardIndex is a required field
+	ShardIndex *int64 `location:"uri" locationName:"shardIndex" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyClickhouseShardInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyClickhouseShardInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyClickhouseShardInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyClickhouseShardInput"}
+	if s.Parameters == nil {
+		invalidParams.Add(request.NewErrParamRequired("Parameters"))
+	}
+	if s.ServiceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceId"))
+	}
+	if s.ServiceId != nil && len(*s.ServiceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceId", 1))
+	}
+	if s.ShardIndex == nil {
+		invalidParams.Add(request.NewErrParamRequired("ShardIndex"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *ModifyClickhouseShardInput) SetParameters(v *ClickHouseShardParameters) *ModifyClickhouseShardInput {
+	s.Parameters = v
+	return s
+}
+
+// SetServiceId sets the ServiceId field's value.
+func (s *ModifyClickhouseShardInput) SetServiceId(v string) *ModifyClickhouseShardInput {
+	s.ServiceId = &v
+	return s
+}
+
+// SetShardIndex sets the ShardIndex field's value.
+func (s *ModifyClickhouseShardInput) SetShardIndex(v int64) *ModifyClickhouseShardInput {
+	s.ShardIndex = &v
+	return s
+}
+
+type ModifyClickhouseShardOutput struct {
+	_ struct{} `type:"structure"`
+
+	Shard *ClickHouseShard `locationName:"shard" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyClickhouseShardOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyClickhouseShardOutput) GoString() string {
+	return s.String()
+}
+
+// SetShard sets the Shard field's value.
+func (s *ModifyClickhouseShardOutput) SetShard(v *ClickHouseShard) *ModifyClickhouseShardOutput {
+	s.Shard = v
 	return s
 }
 
