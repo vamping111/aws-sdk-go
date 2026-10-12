@@ -571,6 +571,16 @@
       "output": {"shape": "SynchronizeServiceStatusResponse"},
       "documentation": "<p>Synchronize service status.</p>"
     },
+    "UpdateAutoDiskExpansionSettings": {
+      "name": "UpdateAutoDiskExpansionSettings",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/services/{serviceId}/ade"
+      },
+      "input": {"shape": "UpdateAutoDiskExpansionSettingsRequest"},
+      "output": {"shape": "UpdateAutoDiskExpansionSettingsResponse"},
+      "documentation": "<p>Modifies the ADE settings for service.</p>"
+    },
     "ModifyMaintenancePreferences": {
       "name": "ModifyMaintenancePreferences",
       "http": {
@@ -728,6 +738,15 @@
         }
       }
     },
+    "AutoDiskExpansionSettings": {
+      "type": "structure",
+      "members": {
+        "enabled": {"shape": "Boolean"},
+        "status": {"shape": "String"},
+        "conditionValue": {"shape": "Integer"},
+        "maxSizeGb": {"shape": "Integer"}
+      }
+    },
     "Backup": {
       "type": "structure",
       "members": {
@@ -846,6 +865,23 @@
         "internalReplication": {"shape": "Boolean"},
         "weight": {"shape": "Integer"},
         "replicas": {"shape": "Integer"}
+      }
+    },
+    "CreateAutoDiskExpansionSettingsRequest": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "shape": "Boolean",
+          "documentation": "<p>Auto disk expansion option is enabled.</p>"
+        },
+        "conditionValue": {
+          "shape": "Integer",
+          "documentation": "<p>The disk usage percentage threshold that triggers autoexpansion.</p>"
+        },
+        "maxSizeGb": {
+          "shape": "Integer",
+          "documentation": "<p>The maximum disk size in GiB that auto expansion can reach.</p>"
+        }
       }
     },
     "CreateClickHouseProfileRequest": {
@@ -1011,6 +1047,7 @@
         "externalBalancerRequired": {"shape": "Boolean"},
         "coordinator": {"shape": "NodeRequest"},
         "maintenance": {"shape": "MaintenancePeriod"},
+        "adeSettings": {"shape": "CreateAutoDiskExpansionSettingsRequest"},
         "tags": {"shape":  "TagList"}
       }
     },
@@ -2370,6 +2407,7 @@
         "availableEnvironmentVersions": {"shape": "StringList"},
         "isRolledBack": {"shape": "Boolean"},
         "maintenance": {"shape": "MaintenancePreferences"},
+        "autoDiskExpansionSettings": {"shape": "AutoDiskExpansionSettings"},
         "tags": {"shape":  "TagList"}
       }
     },
@@ -2533,6 +2571,45 @@
       }
     },
     "Timestamp": {"type": "timestamp"},
+    "UpdateAutoDiskExpansionSettingsRequest": {
+      "type": "structure",
+      "documentation": "<p>Service settings for automatic disk expansion.</p>",
+      "required": [
+        "serviceId",
+        "enabled",
+        "conditionValue",
+        "maxSizeGb"
+      ],
+      "members": {
+        "serviceId": {
+          "shape": "String",
+          "documentation": "<p>The ID of service to modify ADE settings.</p>",
+          "location": "uri",
+          "locationName": "serviceId"
+        },
+        "enabled": {
+          "shape": "Boolean",
+          "documentation": "<p>Auto disk expansion option is enabled.</p>"
+        },
+        "conditionValue": {
+          "shape": "Integer",
+          "documentation": "<p>The disk usage percentage threshold that triggers auto expansion.</p>"
+        },
+        "maxSizeGb": {
+          "shape": "Integer",
+          "documentation": "<p>The maximum disk size in GiB that auto expansion can reach.</p>"
+        }
+      }
+    },
+    "UpdateAutoDiskExpansionSettingsResponse": {
+      "type": "structure",
+      "members": {
+        "return": {
+          "shape": "Boolean",
+          "documentation": "<p>Returns true if the ADE settings were updated successfully.</p>"
+        }
+      }
+    },
     "UserCompactResponse": {
       "type": "structure",
       "members": {

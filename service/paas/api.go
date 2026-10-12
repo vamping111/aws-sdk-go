@@ -4923,6 +4923,77 @@ func (c *PaaS) SynchronizeServiceStatusWithContext(ctx aws.Context, input *Synch
 	return out, req.Send()
 }
 
+const opUpdateAutoDiskExpansionSettings = "UpdateAutoDiskExpansionSettings"
+
+// UpdateAutoDiskExpansionSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAutoDiskExpansionSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAutoDiskExpansionSettings for more information on using the UpdateAutoDiskExpansionSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateAutoDiskExpansionSettingsRequest method.
+//	req, resp := client.UpdateAutoDiskExpansionSettingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/UpdateAutoDiskExpansionSettings
+func (c *PaaS) UpdateAutoDiskExpansionSettingsRequest(input *UpdateAutoDiskExpansionSettingsInput) (req *request.Request, output *UpdateAutoDiskExpansionSettingsOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAutoDiskExpansionSettings,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/services/{serviceId}/ade",
+	}
+
+	if input == nil {
+		input = &UpdateAutoDiskExpansionSettingsInput{}
+	}
+
+	output = &UpdateAutoDiskExpansionSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateAutoDiskExpansionSettings API operation for AWS PaaS.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS PaaS's
+// API operation UpdateAutoDiskExpansionSettings for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/paas-2022-09-06/UpdateAutoDiskExpansionSettings
+func (c *PaaS) UpdateAutoDiskExpansionSettings(input *UpdateAutoDiskExpansionSettingsInput) (*UpdateAutoDiskExpansionSettingsOutput, error) {
+	req, out := c.UpdateAutoDiskExpansionSettingsRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAutoDiskExpansionSettingsWithContext is the same as UpdateAutoDiskExpansionSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAutoDiskExpansionSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PaaS) UpdateAutoDiskExpansionSettingsWithContext(ctx aws.Context, input *UpdateAutoDiskExpansionSettingsInput, opts ...request.Option) (*UpdateAutoDiskExpansionSettingsOutput, error) {
+	req, out := c.UpdateAutoDiskExpansionSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 type AddClickhouseShardInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5009,6 +5080,60 @@ func (s AddClickhouseShardOutput) GoString() string {
 // SetShard sets the Shard field's value.
 func (s *AddClickhouseShardOutput) SetShard(v *ClickHouseShard) *AddClickhouseShardOutput {
 	s.Shard = v
+	return s
+}
+
+type AutoDiskExpansionSettings struct {
+	_ struct{} `type:"structure"`
+
+	ConditionValue *int64 `locationName:"conditionValue" type:"integer"`
+
+	Enabled *bool `locationName:"enabled" type:"boolean"`
+
+	MaxSizeGb *int64 `locationName:"maxSizeGb" type:"integer"`
+
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoDiskExpansionSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoDiskExpansionSettings) GoString() string {
+	return s.String()
+}
+
+// SetConditionValue sets the ConditionValue field's value.
+func (s *AutoDiskExpansionSettings) SetConditionValue(v int64) *AutoDiskExpansionSettings {
+	s.ConditionValue = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *AutoDiskExpansionSettings) SetEnabled(v bool) *AutoDiskExpansionSettings {
+	s.Enabled = &v
+	return s
+}
+
+// SetMaxSizeGb sets the MaxSizeGb field's value.
+func (s *AutoDiskExpansionSettings) SetMaxSizeGb(v int64) *AutoDiskExpansionSettings {
+	s.MaxSizeGb = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AutoDiskExpansionSettings) SetStatus(v string) *AutoDiskExpansionSettings {
+	s.Status = &v
 	return s
 }
 
@@ -5619,6 +5744,52 @@ func (s *ClickHouseShardParameters) SetReplicas(v int64) *ClickHouseShardParamet
 // SetWeight sets the Weight field's value.
 func (s *ClickHouseShardParameters) SetWeight(v int64) *ClickHouseShardParameters {
 	s.Weight = &v
+	return s
+}
+
+type CreateAutoDiskExpansionSettingsRequest struct {
+	_ struct{} `type:"structure"`
+
+	ConditionValue *int64 `locationName:"conditionValue" type:"integer"`
+
+	Enabled *bool `locationName:"enabled" type:"boolean"`
+
+	MaxSizeGb *int64 `locationName:"maxSizeGb" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAutoDiskExpansionSettingsRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAutoDiskExpansionSettingsRequest) GoString() string {
+	return s.String()
+}
+
+// SetConditionValue sets the ConditionValue field's value.
+func (s *CreateAutoDiskExpansionSettingsRequest) SetConditionValue(v int64) *CreateAutoDiskExpansionSettingsRequest {
+	s.ConditionValue = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *CreateAutoDiskExpansionSettingsRequest) SetEnabled(v bool) *CreateAutoDiskExpansionSettingsRequest {
+	s.Enabled = &v
+	return s
+}
+
+// SetMaxSizeGb sets the MaxSizeGb field's value.
+func (s *CreateAutoDiskExpansionSettingsRequest) SetMaxSizeGb(v int64) *CreateAutoDiskExpansionSettingsRequest {
+	s.MaxSizeGb = &v
 	return s
 }
 
@@ -6517,6 +6688,8 @@ type CreateServiceInput struct {
 
 	AdditionalRoles []*string `locationName:"additionalRoles" type:"list"`
 
+	AdeSettings *CreateAutoDiskExpansionSettingsRequest `locationName:"adeSettings" type:"structure"`
+
 	ArbitratorRequired *bool `locationName:"arbitratorRequired" type:"boolean"`
 
 	BackupSettings *BackupSettingsRequest `locationName:"backupSettings" type:"structure"`
@@ -6647,6 +6820,12 @@ func (s *CreateServiceInput) Validate() error {
 // SetAdditionalRoles sets the AdditionalRoles field's value.
 func (s *CreateServiceInput) SetAdditionalRoles(v []*string) *CreateServiceInput {
 	s.AdditionalRoles = v
+	return s
+}
+
+// SetAdeSettings sets the AdeSettings field's value.
+func (s *CreateServiceInput) SetAdeSettings(v *CreateAutoDiskExpansionSettingsRequest) *CreateServiceInput {
+	s.AdeSettings = v
 	return s
 }
 
@@ -13111,6 +13290,8 @@ func (s *SecurityGroup) SetId(v string) *SecurityGroup {
 type Service struct {
 	_ struct{} `type:"structure"`
 
+	AutoDiskExpansionSettings *AutoDiskExpansionSettings `locationName:"autoDiskExpansionSettings" type:"structure"`
+
 	AvailableEnvironmentVersions []*string `locationName:"availableEnvironmentVersions" type:"list"`
 
 	BackupSettings *BackupSettingsResponse `locationName:"backupSettings" type:"structure"`
@@ -13216,6 +13397,12 @@ func (s Service) String() string {
 // value will be replaced with "sensitive".
 func (s Service) GoString() string {
 	return s.String()
+}
+
+// SetAutoDiskExpansionSettings sets the AutoDiskExpansionSettings field's value.
+func (s *Service) SetAutoDiskExpansionSettings(v *AutoDiskExpansionSettings) *Service {
+	s.AutoDiskExpansionSettings = v
+	return s
 }
 
 // SetAvailableEnvironmentVersions sets the AvailableEnvironmentVersions field's value.
@@ -13786,6 +13973,119 @@ func (s *Tag) SetKey(v string) *Tag {
 // SetValue sets the Value field's value.
 func (s *Tag) SetValue(v string) *Tag {
 	s.Value = &v
+	return s
+}
+
+type UpdateAutoDiskExpansionSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// ConditionValue is a required field
+	ConditionValue *int64 `locationName:"conditionValue" type:"integer" required:"true"`
+
+	// Enabled is a required field
+	Enabled *bool `locationName:"enabled" type:"boolean" required:"true"`
+
+	// MaxSizeGb is a required field
+	MaxSizeGb *int64 `locationName:"maxSizeGb" type:"integer" required:"true"`
+
+	// ServiceId is a required field
+	ServiceId *string `location:"uri" locationName:"serviceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAutoDiskExpansionSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAutoDiskExpansionSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAutoDiskExpansionSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAutoDiskExpansionSettingsInput"}
+	if s.ConditionValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConditionValue"))
+	}
+	if s.Enabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enabled"))
+	}
+	if s.MaxSizeGb == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxSizeGb"))
+	}
+	if s.ServiceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceId"))
+	}
+	if s.ServiceId != nil && len(*s.ServiceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConditionValue sets the ConditionValue field's value.
+func (s *UpdateAutoDiskExpansionSettingsInput) SetConditionValue(v int64) *UpdateAutoDiskExpansionSettingsInput {
+	s.ConditionValue = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *UpdateAutoDiskExpansionSettingsInput) SetEnabled(v bool) *UpdateAutoDiskExpansionSettingsInput {
+	s.Enabled = &v
+	return s
+}
+
+// SetMaxSizeGb sets the MaxSizeGb field's value.
+func (s *UpdateAutoDiskExpansionSettingsInput) SetMaxSizeGb(v int64) *UpdateAutoDiskExpansionSettingsInput {
+	s.MaxSizeGb = &v
+	return s
+}
+
+// SetServiceId sets the ServiceId field's value.
+func (s *UpdateAutoDiskExpansionSettingsInput) SetServiceId(v string) *UpdateAutoDiskExpansionSettingsInput {
+	s.ServiceId = &v
+	return s
+}
+
+type UpdateAutoDiskExpansionSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	Return *bool `locationName:"return" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAutoDiskExpansionSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAutoDiskExpansionSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetReturn sets the Return field's value.
+func (s *UpdateAutoDiskExpansionSettingsOutput) SetReturn(v bool) *UpdateAutoDiskExpansionSettingsOutput {
+	s.Return = &v
 	return s
 }
 

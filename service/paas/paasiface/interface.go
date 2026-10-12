@@ -335,6 +335,10 @@ type PaaSAPI interface {
 	SynchronizeServiceStatus(*paas.SynchronizeServiceStatusInput) (*paas.SynchronizeServiceStatusOutput, error)
 	SynchronizeServiceStatusWithContext(aws.Context, *paas.SynchronizeServiceStatusInput, ...request.Option) (*paas.SynchronizeServiceStatusOutput, error)
 	SynchronizeServiceStatusRequest(*paas.SynchronizeServiceStatusInput) (*request.Request, *paas.SynchronizeServiceStatusOutput)
+
+	UpdateAutoDiskExpansionSettings(*paas.UpdateAutoDiskExpansionSettingsInput) (*paas.UpdateAutoDiskExpansionSettingsOutput, error)
+	UpdateAutoDiskExpansionSettingsWithContext(aws.Context, *paas.UpdateAutoDiskExpansionSettingsInput, ...request.Option) (*paas.UpdateAutoDiskExpansionSettingsOutput, error)
+	UpdateAutoDiskExpansionSettingsRequest(*paas.UpdateAutoDiskExpansionSettingsInput) (*request.Request, *paas.UpdateAutoDiskExpansionSettingsOutput)
 }
 
 var _ PaaSAPI = (*paas.PaaS)(nil)
