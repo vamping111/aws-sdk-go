@@ -11,6 +11,36 @@
     "uid": "paas-2022-09-06"
   },
   "operations": {
+    "AddClickhouseShard": {
+      "name": "AddClickhouseShard",
+      "http": {
+        "method": "POST",
+        "requestUri": "/services/{serviceId}/clickhouse-shards"
+      },
+      "input": {"shape": "AddClickHouseShardRequest"},
+      "output": {"shape": "AddClickHouseShardResponse"},
+      "documentation": "<p>Adds a ClickHouse shard to given service.</p>"
+    },
+    "CreateClickhouseProfile": {
+      "name": "CreateClickhouseProfile",
+      "http": {
+        "method": "POST",
+        "requestUri": "/services/{serviceId}/clickhouse-profiles"
+      },
+      "input": {"shape": "CreateClickHouseProfileRequest"},
+      "output": {"shape": "CreateClickHouseProfileResponse"},
+      "documentation": "<p>Creates a ClickHouse profile in given service.</p>"
+    },
+    "CreateClickhouseQuota": {
+      "name": "CreateClickhouseQuota",
+      "http": {
+        "method": "POST",
+        "requestUri": "/services/{serviceId}/clickhouse-quotas"
+      },
+      "input": {"shape": "CreateClickHouseQuotaRequest"},
+      "output": {"shape": "CreateClickHouseQuotaResponse"},
+      "documentation": "<p>Creates a ClickHouse quota in given service.</p>"
+    },
     "CreateDatabase": {
       "name": "CreateDatabase",
       "http": {
@@ -80,6 +110,26 @@
       "input": {"shape": "DeleteBackupsRequest"},
       "output": {"shape": "DeleteBackupsResponse"},
       "documentation": "<p>Deletes service backups.</p>"
+    },
+    "DeleteClickhouseProfile": {
+      "name": "DeleteClickhouseProfile",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/services/{serviceId}/clickhouse-profiles/{profileId}"
+      },
+      "input": {"shape": "DeleteClickHouseProfileRequest"},
+      "output": {"shape": "DeleteClickHouseProfileResponse"},
+      "documentation": "<p>Deletes a ClickHouse profile from given service.</p>"
+    },
+    "DeleteClickhouseQuota": {
+      "name": "DeleteClickhouseQuota",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/services/{serviceId}/clickhouse-quotas/{quotaId}"
+      },
+      "input": {"shape": "DeleteClickHouseQuotaRequest"},
+      "output": {"shape": "DeleteClickHouseQuotaResponse"},
+      "documentation": "<p>Deletes a ClickHouse quota from given service.</p>"
     },
     "DeleteKafkaTopic": {
         "name": "DeleteKafkaTopic",
@@ -221,6 +271,36 @@
       "output": {"shape": "ListBackupUsersResponse"},
       "documentation": "<p>Returns users list, available for service backup.</p>"
     },
+    "ListClickhouseProfiles": {
+      "name": "ListClickhouseProfiles",
+      "http": {
+        "method": "GET",
+        "requestUri": "/services/{serviceId}/clickhouse-profiles"
+      },
+      "input": {"shape": "ListClickHouseProfilesRequest"},
+      "output": {"shape": "ListClickHouseProfilesResponse"},
+      "documentation": "<p>Lists ClickHouse profiles in given service.</p>"
+    },
+    "ListClickhouseQuotas": {
+      "name": "ListClickhouseQuotas",
+      "http": {
+        "method": "GET",
+        "requestUri": "/services/{serviceId}/clickhouse-quotas"
+      },
+      "input": {"shape": "ListClickHouseQuotasRequest"},
+      "output": {"shape": "ListClickHouseQuotasResponse"},
+      "documentation": "<p>Lists ClickHouse quotas in given service.</p>"
+    },
+    "ListClickhouseShards": {
+      "name": "ListClickhouseShards",
+      "http": {
+        "method": "GET",
+        "requestUri": "/services/{serviceId}/clickhouse-shards"
+      },
+      "input": {"shape": "ListClickHouseShardsRequest"},
+      "output": {"shape": "ListClickHouseShardsResponse"},
+      "documentation": "<p>Lists ClickHouse shards in given service.</p>"
+    },
     "ListDatabases": {
       "name": "ListDatabases",
       "http": {
@@ -300,6 +380,36 @@
       "input": {"shape": "ModifyBackupRequest"},
       "output": {"shape": "ModifyBackupResponse"},
       "documentation": "<p>Modifies the PaaS backup.</p>"
+    },
+    "ModifyClickhouseProfile": {
+      "name": "ModifyClickhouseProfile",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/services/{serviceId}/clickhouse-profiles/{profileId}"
+      },
+      "input": {"shape": "ModifyClickHouseProfileRequest"},
+      "output": {"shape": "ModifyClickHouseProfileResponse"},
+      "documentation": "<p>Modifies a ClickHouse profile in given service.</p>"
+    },
+    "ModifyClickhouseQuota": {
+      "name": "ModifyClickhouseQuota",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/services/{serviceId}/clickhouse-quotas/{quotaId}"
+      },
+      "input": {"shape": "ModifyClickHouseQuotaRequest"},
+      "output": {"shape": "ModifyClickHouseQuotaResponse"},
+      "documentation": "<p>Modifies a ClickHouse quota in given service.</p>"
+    },
+    "ModifyClickhouseShard": {
+      "name": "ModifyClickhouseShard",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/services/{serviceId}/clickhouse-shards/{shardIndex}"
+      },
+      "input": {"shape": "ModifyClickHouseShardRequest"},
+      "output": {"shape": "ModifyClickHouseShardResponse"},
+      "documentation": "<p>Modifies a ClickHouse shard in given service.</p>"
     },
     "ModifyLogstashPipeline": {
       "name": "ModifyLogstashPipeline",
@@ -593,6 +703,31 @@
     }
   },
   "shapes": {
+    "AddClickHouseShardRequest": {
+      "type": "structure",
+      "required": [
+        "serviceId",
+        "parameters"
+      ],
+      "members": {
+        "serviceId": {
+          "shape": "String",
+          "documentation": "<p>The ID of service to modify.</p>",
+          "location": "uri",
+          "locationName": "serviceId"
+        },
+        "parameters": {"shape": "ClickHouseShardParameters"}
+      }
+    },
+    "AddClickHouseShardResponse": {
+      "type": "structure",
+      "members": {
+        "shard": {
+          "shape": "ClickHouseShard",
+          "documentation": "<p>The full description of added ClickHouse shard.</p>"
+        }
+      }
+    },
     "Backup": {
       "type": "structure",
       "members": {
@@ -663,6 +798,110 @@
       }
     },
     "Boolean": {"type": "boolean"},
+    "ClickHouseProfile": {
+      "type": "structure",
+      "members": {
+        "id": {"shape": "String"},
+        "name": {"shape": "String"},
+        "parameters": {"shape": "ClickHouseProfileParameters"}
+      }
+    },
+    "ClickHouseProfileList": {
+      "type": "list",
+      "member": {"shape": "ClickHouseProfile"}
+    },
+    "ClickHouseProfileParameters": {
+      "type": "structure",
+      "members": {
+        "settings": {"shape": "None"}
+      }
+    },
+    "ClickHouseQuota": {
+      "type": "structure",
+      "members": {
+        "id": {"shape": "String"},
+        "name": {"shape": "String"},
+        "parameters": {"shape": "ClickHouseQuotaParameters"}
+      }
+    },
+    "ClickHouseQuotaList": {
+      "type": "list",
+      "member": {"shape": "ClickHouseQuota"}
+    },
+    "ClickHouseQuotaParameters": {"type": "none"},
+    "ClickHouseShard": {
+      "type": "structure",
+      "members": {
+        "index": {"shape": "Integer"},
+        "parameters": {"shape": "ClickHouseShardParameters"}
+      }
+    },
+    "ClickHouseShardList": {
+      "type": "list",
+      "member": {"shape": "ClickHouseShard"}
+    },
+    "ClickHouseShardParameters": {
+      "type": "structure",
+      "members": {
+        "internalReplication": {"shape": "Boolean"},
+        "weight": {"shape": "Integer"},
+        "replicas": {"shape": "Integer"}
+      }
+    },
+    "CreateClickHouseProfileRequest": {
+      "type": "structure",
+      "required": [
+        "serviceId",
+        "name",
+        "parameters"
+      ],
+      "members": {
+        "serviceId": {
+          "shape": "String",
+          "documentation": "<p>The ID of service to modify.</p>",
+          "location": "uri",
+          "locationName": "serviceId"
+        },
+        "name": {"shape": "String"},
+        "parameters": {"shape": "ClickHouseProfileParameters"}
+      }
+    },
+    "CreateClickHouseProfileResponse": {
+      "type": "structure",
+      "members": {
+        "profile": {
+          "shape": "ClickHouseProfile",
+          "documentation": "<p>The full description of created ClickHouse profile.</p>"
+        }
+      }
+    },
+    "CreateClickHouseQuotaRequest": {
+      "type": "structure",
+      "required": [
+        "serviceId",
+        "name",
+        "parameters"
+      ],
+      "members": {
+        "serviceId": {
+          "shape": "String",
+          "documentation": "<p>The ID of service to modify.</p>",
+          "location": "uri",
+          "locationName": "serviceId"
+        },
+        "name": {"shape": "String"},
+        "parameters": {"shape": "ClickHouseQuotaParameters"}
+      }
+    },
+    "CreateClickHouseQuotaResponse": {
+      "type": "structure",
+      "members": {
+        "quota": {
+          "shape": "ClickHouseQuota",
+          "documentation": "<p>The full description of created ClickHouse quota.</p>"
+        }
+      }
+    },
     "CreateDatabaseRequest": {
       "type": "structure",
       "required": [
@@ -847,6 +1086,56 @@
     "DatabaseCreateRequestList": {
       "type": "list",
       "member": {"shape": "DatabaseCreateRequest"}
+    },
+    "DeleteClickHouseProfileRequest": {
+      "type": "structure",
+      "required": [
+        "serviceId",
+        "profileId"
+      ],
+      "members": {
+        "serviceId": {
+          "shape": "String",
+          "documentation": "<p>The ID of service.</p>",
+          "location": "uri",
+          "locationName": "serviceId"
+        },
+        "profileId": {
+          "shape": "String",
+          "documentation": "<p>The ID of profile to delete.</p>",
+          "location": "uri",
+          "locationName": "profileId"
+        }
+      }
+    },
+    "DeleteClickHouseProfileResponse": {
+      "type": "structure",
+      "members": {}
+    },
+    "DeleteClickHouseQuotaRequest": {
+      "type": "structure",
+      "required": [
+        "serviceId",
+        "quotaId"
+      ],
+      "members": {
+        "serviceId": {
+          "shape": "String",
+          "documentation": "<p>The ID of service.</p>",
+          "location": "uri",
+          "locationName": "serviceId"
+        },
+        "quotaId": {
+          "shape": "String",
+          "documentation": "<p>The ID of quota to delete.</p>",
+          "location": "uri",
+          "locationName": "quotaId"
+        }
+      }
+    },
+    "DeleteClickHouseQuotaResponse": {
+      "type": "structure",
+      "members": {}
     },
     "DeleteKafkaTopicRequest": {
         "type": "structure",
@@ -1216,6 +1505,75 @@
       "type": "list",
       "member": {"shape": "Backup"}
     },
+    "ListClickHouseProfilesRequest": {
+      "type": "structure",
+      "required": [
+        "serviceId"
+      ],
+      "members": {
+        "serviceId": {
+          "shape": "String",
+          "documentation": "<p>The ID of service.</p>",
+          "location": "uri",
+          "locationName": "serviceId"
+        }
+      }
+    },
+    "ListClickHouseProfilesResponse": {
+      "type": "structure",
+      "members": {
+        "profiles": {
+          "shape": "ClickHouseProfileList",
+          "documentation": "<p>A list of ClickHouse profiles available for service.</p>"
+        }
+      }
+    },
+    "ListClickHouseQuotasRequest": {
+      "type": "structure",
+      "required": [
+        "serviceId"
+      ],
+      "members": {
+        "serviceId": {
+          "shape": "String",
+          "documentation": "<p>The ID of service.</p>",
+          "location": "uri",
+          "locationName": "serviceId"
+        }
+      }
+    },
+    "ListClickHouseQuotasResponse": {
+      "type": "structure",
+      "members": {
+        "quotas": {
+          "shape": "ClickHouseQuotaList",
+          "documentation": "<p>A list of ClickHouse quotas available for service.</p>"
+        }
+      }
+    },
+    "ListClickHouseShardsRequest": {
+      "type": "structure",
+      "required": [
+        "serviceId"
+      ],
+      "members": {
+        "serviceId": {
+          "shape": "String",
+          "documentation": "<p>The ID of service.</p>",
+          "location": "uri",
+          "locationName": "serviceId"
+        }
+      }
+    },
+    "ListClickHouseShardsResponse": {
+      "type": "structure",
+      "members": {
+        "shards": {
+          "shape": "ClickHouseShardList",
+          "documentation": "<p>A list of ClickHouse shards available for service.</p>"
+        }
+      }
+    },
     "MaxItems": {
       "type": "integer",
       "max": 1000,
@@ -1438,6 +1796,102 @@
         "arn": {"shape": "String"},
         "port": {"shape": "Integer"},
         "protocol": {"shape": "String"}
+      }
+    },
+    "ModifyClickHouseProfileRequest": {
+      "type": "structure",
+      "required": [
+        "serviceId",
+        "profileId",
+        "parameters"
+      ],
+      "members": {
+        "serviceId": {
+          "shape": "String",
+          "documentation": "<p>The ID of service to modify.</p>",
+          "location": "uri",
+          "locationName": "serviceId"
+        },
+        "profileId": {
+          "shape": "String",
+          "documentation": "<p>The ID of profile to modify.</p>",
+          "location": "uri",
+          "locationName": "profileId"
+        },
+        "parameters": {"shape": "ClickHouseProfileParameters"}
+      }
+    },
+    "ModifyClickHouseProfileResponse": {
+      "type": "structure",
+      "members": {
+        "profile": {
+          "shape": "ClickHouseProfile",
+          "documentation": "<p>The full description of modified ClickHouse profile.</p>"
+        }
+      }
+    },
+    "ModifyClickHouseQuotaRequest": {
+      "type": "structure",
+      "required": [
+        "serviceId",
+        "quotaId",
+        "parameters"
+      ],
+      "members": {
+        "serviceId": {
+          "shape": "String",
+          "documentation": "<p>The ID of service to modify.</p>",
+          "location": "uri",
+          "locationName": "serviceId"
+        },
+        "quotaId": {
+          "shape": "String",
+          "documentation": "<p>The ID of quota to modify.</p>",
+          "location": "uri",
+          "locationName": "quotaId"
+        },
+        "parameters": {"shape": "ClickHouseQuotaParameters"}
+      }
+    },
+    "ModifyClickHouseQuotaResponse": {
+      "type": "structure",
+      "members": {
+        "quota": {
+          "shape": "ClickHouseQuota",
+          "documentation": "<p>The full description of modified ClickHouse quota.</p>"
+        }
+      }
+    },
+    "ModifyClickHouseShardRequest": {
+      "type": "structure",
+      "required": [
+        "serviceId",
+        "shardIndex",
+        "parameters"
+      ],
+      "members": {
+        "serviceId": {
+          "shape": "String",
+          "documentation": "<p>The ID of service to modify.</p>",
+          "location": "uri",
+          "locationName": "serviceId"
+        },
+        "shardIndex": {
+          "shape": "Integer",
+          "documentation": "<p>The index of shard to modify.</p>",
+          "location": "uri",
+          "locationName": "shardIndex"
+        },
+        "parameters": {"shape": "ClickHouseShardParameters"}
+      }
+    },
+    "ModifyClickHouseShardResponse": {
+      "type": "structure",
+      "members": {
+        "shard": {
+          "shape": "ClickHouseShard",
+          "documentation": "<p>The full description of modified ClickHouse shard.</p>"
+        }
       }
     },
     "targetGroupsList": {
