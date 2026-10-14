@@ -1,3 +1,14 @@
+Release v1.44.10-ROCKIT24 (2026-10-14)
+===
+
+### Service client updates
+* `service/paas`: Update service API
+  * Add the `CreateClickhouseProfile`, `ListClickhouseProfiles`, `ModifyClickhouseProfile`, and `DeleteClickhouseProfile` operations
+  * Add the `CreateClickhouseQuota`, `ListClickhouseQuotas`, `ModifyClickhouseQuota`, and `DeleteClickhouseQuota` operations
+  * Add the `AddClickhouseShard`, `ListClickhouseShards`, and `ModifyClickhouseShard` operations
+  * Preserve `null` values and integer precision in ClickHouse profile settings and quota parameters
+
+
 Release v1.44.10-ROCKIT23 (2026-08-10)
 ===
 
