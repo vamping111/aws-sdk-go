@@ -1,3 +1,13 @@
+Release v1.44.10-ROCKIT25 (2026-10-16)
+===
+
+### Service client updates
+* `service/paas`: Update service API
+  * Add the `UpdateAutoDiskExpansionSettings` operation
+  * Add the `AdeSettings` field to `CreateServiceInput`
+  * Add the `AutoDiskExpansionSettings` field to `Service`
+
+
 Release v1.44.10-ROCKIT24 (2026-10-14)
 ===
 
